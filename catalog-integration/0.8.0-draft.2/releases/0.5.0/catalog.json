@@ -1,0 +1,20 @@
+{
+ "fingerprint": "5534196f824aff80156e33cd5fa741c869c5fd8d23e48b39e295d15d73e8b7d9",
+ "form_version": 1,
+ "gates": {
+  "stand_tasks_required": false,
+  "subject_words_required": false
+ },
+ "legacy_registry_rev": "d4426bc03dea",
+ "name": "template-catalog",
+ "note": "Выпуск 0.5.0: три поля записи семьи (чтение истории по виду, размер нарушения, свидетель природы) и карта единиц нарушения «код → слово» (старшая правка по закону каталога); долг четырёх носителей границы горизонта закрыт; паритет L15 по названному свидетелю",
+ "released_at": "2026-09-11",
+ "released_by": "владелец",
+ "sections": {
+  "criteria": "criteria.json",
+  "dictionaries": "dictionaries.json",
+  "families": "families.json",
+  "requests": "requests.json"
+ },
+ "version": "0.5.0"
+}

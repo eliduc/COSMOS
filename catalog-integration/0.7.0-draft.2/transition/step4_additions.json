@@ -1,0 +1,608 @@
+{
+ "base": {
+  "code": "754c272613f075c3978a0d242b35e3a9185e4eb2",
+  "fingerprint": "b357cd33a70638907766d5bd9fef8ede57fd3b02d7e0ff254012767637188471",
+  "legacy_registry_rev": "bc78f37804ec",
+  "snapshot": "tests/fixtures/registry_step1.json",
+  "version": "0.1.0-draft.3"
+ },
+ "criteria_added": [
+  "credit_hours_spread",
+  "layover_nights_total",
+  "positioning_cost",
+  "preferred_days_off_violations",
+  "total_pairing_cost",
+  "uncovered_seats"
+ ],
+ "dates": [
+  "2026-09-03",
+  "2026-09-08",
+  "2026-09-09",
+  "2026-09-17"
+ ],
+ "dictionaries": {
+  "synthetic_codes_added": [
+   "dataset_ids"
+  ],
+  "unbound_params_removed": [
+   "fleet_type",
+   "max_deadheads_per_day",
+   "max_deadheads_per_flight",
+   "max_monthly_block",
+   "max_sit_duration",
+   "max_weekly_block"
+  ],
+  "world_forms_added": [
+   "tables"
+  ]
+ },
+ "executor_kinds_added": {
+  "connection_windows": [
+   "check_code"
+  ],
+  "crew_composition": [
+   "builder_method"
+  ],
+  "crew_unavailability": [
+   "check_code",
+   "kotlin_constraint"
+  ],
+  "duty_extension_penalty": [
+   "check_code"
+  ],
+  "duty_limits": [
+   "check_code",
+   "export_form"
+  ],
+  "duty_series_limit": [
+   "check_code",
+   "kotlin_logic_form"
+  ],
+  "fleet_exclusions": [
+   "check_code"
+  ],
+  "rest_floors": [
+   "check_code",
+   "export_form"
+  ],
+  "span_accumulators": [
+   "check_code"
+  ]
+ },
+ "executors_source": "vmp/bindings.json",
+ "families_added": {
+  "crew_unavailability": {
+   "class": "core",
+   "kind": "HARD",
+   "nature": "schedule",
+   "title": "недоступность членов экипажа: отпуска и иные дни отсутствия",
+   "violation_unit": null,
+   "zone": "ROSTERING"
+  },
+  "duty_series_limit": {
+   "class": "extension",
+   "kind": "HARD",
+   "nature": "history",
+   "title": "Лимит серии рабочих смен подряд и обязательный день отдыха после неё",
+   "violation_unit": null,
+   "zone": "ROSTERING"
+  }
+ },
+ "fingerprint": "07d68c15c6fb8c66d44b5cd5bc466e632a59e20db807d78a91772145010f9357",
+ "form_version": 1,
+ "gates": {
+  "stand_tasks_required": false,
+  "subject_words_required": false
+ },
+ "history_added": {
+  "criteria/credit_hours_spread": [
+   {
+    "by": "сессия COSMOS",
+    "date": "2026-09-03",
+    "kind": "инвентаризация",
+    "note": "метрика в словаре решателя",
+    "ref": null
+   },
+   {
+    "by": "сессия COSMOS",
+    "date": "2026-09-08",
+    "kind": "создание",
+    "note": "запись критерия-метрики решателя (шаг 4)",
+    "ref": null
+   }
+  ],
+  "criteria/layover_nights_total": [
+   {
+    "by": "сессия COSMOS",
+    "date": "2026-09-03",
+    "kind": "инвентаризация",
+    "note": "метрика в словаре решателя",
+    "ref": null
+   },
+   {
+    "by": "сессия COSMOS",
+    "date": "2026-09-08",
+    "kind": "создание",
+    "note": "запись критерия-метрики решателя (шаг 4)",
+    "ref": null
+   }
+  ],
+  "criteria/positioning_cost": [
+   {
+    "by": "сессия COSMOS",
+    "date": "2026-09-03",
+    "kind": "инвентаризация",
+    "note": "метрика в словаре решателя",
+    "ref": null
+   },
+   {
+    "by": "сессия COSMOS",
+    "date": "2026-09-08",
+    "kind": "создание",
+    "note": "запись критерия-метрики решателя (шаг 4)",
+    "ref": null
+   }
+  ],
+  "criteria/preferred_days_off_violations": [
+   {
+    "by": "сессия COSMOS",
+    "date": "2026-09-03",
+    "kind": "инвентаризация",
+    "note": "метрика в словаре решателя",
+    "ref": null
+   },
+   {
+    "by": "сессия COSMOS",
+    "date": "2026-09-08",
+    "kind": "создание",
+    "note": "запись критерия-метрики решателя (шаг 4)",
+    "ref": null
+   }
+  ],
+  "criteria/total_pairing_cost": [
+   {
+    "by": "сессия COSMOS",
+    "date": "2026-09-03",
+    "kind": "инвентаризация",
+    "note": "метрика в словаре решателя",
+    "ref": null
+   },
+   {
+    "by": "сессия COSMOS",
+    "date": "2026-09-08",
+    "kind": "создание",
+    "note": "запись критерия-метрики решателя (шаг 4)",
+    "ref": null
+   }
+  ],
+  "criteria/uncovered_seats": [
+   {
+    "by": "сессия COSMOS",
+    "date": "2026-09-03",
+    "kind": "инвентаризация",
+    "note": "метрика в словаре решателя",
+    "ref": null
+   },
+   {
+    "by": "сессия COSMOS",
+    "date": "2026-09-08",
+    "kind": "создание",
+    "note": "запись критерия-метрики решателя (шаг 4)",
+    "ref": null
+   }
+  ],
+  "families/balanced_workload": [
+   {
+    "by": "сессия COSMOS",
+    "date": "2026-09-08",
+    "kind": "изменение",
+    "note": "по слову владельца параметр workload_spread_threshold получил отношение «не больше» (черновик 2 шага 4)",
+    "ref": null
+   }
+  ],
+  "families/connection_windows": [
+   {
+    "by": "сессия COSMOS",
+    "date": "2026-09-08",
+    "kind": "изменение",
+    "note": "вид check_code объявлен; стендовые задачи (шаг 4)",
+    "ref": null
+   },
+   {
+    "by": "сессия COSMOS",
+    "date": "2026-09-08",
+    "kind": "изменение",
+    "note": "параметр max_sit_duration получил семью (черновик 2 шага 4)",
+    "ref": null
+   },
+   {
+    "by": "владелец",
+    "date": "2026-09-09",
+    "kind": "изменение",
+    "note": "param_sets: параметры семьи независимы — каждый набор минимально полный (закон CDPM «полнота параметров семьи», развилка 09.09.2026, вариант 1; без объявления закон считал бы все параметры обязательными и задавал бы лишние вопросы на H0)",
+    "ref": null
+   }
+  ],
+  "families/crew_composition": [
+   {
+    "by": "сессия COSMOS",
+    "date": "2026-09-08",
+    "kind": "изменение",
+    "note": "вид builder_method объявлен; стендовые задачи (шаг 4)",
+    "ref": null
+   }
+  ],
+  "families/crew_unavailability": [
+   {
+    "by": "аналитик",
+    "date": "2026-09-17",
+    "kind": "заявка",
+    "note": "заявка req-03139728775952845650: посадка категории C; документ свода правил авиакомпании / прогон CDPM",
+    "ref": "req-03139728775952845650"
+   },
+   {
+    "by": "владелец",
+    "date": "2026-09-17",
+    "kind": "решение владельца",
+    "note": "Слово владельца 17.09.2026 («Даю отмашку COSMOS выпустить каталог самому»): заявка принята — семья недоступности членов экипажа для правила VN-027 «Отпуск» набора Н0-C; исполнители уже в коде, новых параметров нет; выпуск каталога 0.6.0",
+    "ref": "req-03139728775952845650"
+   },
+   {
+    "by": "аналитик",
+    "date": "2026-09-17",
+    "kind": "создание",
+    "note": "кандидат конвейера по заявке req-03139728775952845650 (ветка demo-h0c-vacation-rule, коммит f372ea320388, привязки сторож привязок по коду после сборки: символы найдены)",
+    "ref": "req-03139728775952845650"
+   },
+   {
+    "by": "аналитик",
+    "date": "2026-09-17",
+    "kind": "изменение",
+    "note": "правка записи по закону паритета: природа «расписание» по перечням кода (свидетель — отрицательный), одна стендовая задача положительного контроля",
+    "ref": "req-03139728775952845650"
+   }
+  ],
+  "families/deadhead_rules": [
+   {
+    "by": "сессия COSMOS",
+    "date": "2026-09-08",
+    "kind": "изменение",
+    "note": "параметры max_deadheads_per_flight и max_deadheads_per_day получили семью; стендовые задачи (шаг 4)",
+    "ref": null
+   },
+   {
+    "by": "владелец",
+    "date": "2026-09-09",
+    "kind": "изменение",
+    "note": "param_sets: параметры семьи независимы — каждый набор минимально полный (закон CDPM «полнота параметров семьи», развилка 09.09.2026, вариант 1; без объявления закон считал бы все параметры обязательными и задавал бы лишние вопросы на H0)",
+    "ref": null
+   }
+  ],
+  "families/duty_extension_penalty": [
+   {
+    "by": "сессия COSMOS",
+    "date": "2026-09-08",
+    "kind": "изменение",
+    "note": "вид check_code объявлен; стендовые задачи (шаг 4)",
+    "ref": null
+   },
+   {
+    "by": "сессия COSMOS",
+    "date": "2026-09-08",
+    "kind": "изменение",
+    "note": "по слову владельца параметры duty_extension_cap и long_duty_threshold получили отношение «не больше» (черновик 2 шага 4)",
+    "ref": null
+   }
+  ],
+  "families/duty_limits": [
+   {
+    "by": "сессия COSMOS",
+    "date": "2026-09-08",
+    "kind": "изменение",
+    "note": "виды check_code и export_form объявлены; стендовые задачи (шаг 4)",
+    "ref": null
+   },
+   {
+    "by": "владелец",
+    "date": "2026-09-09",
+    "kind": "изменение",
+    "note": "param_sets: параметры семьи независимы — каждый набор минимально полный (закон CDPM «полнота параметров семьи», развилка 09.09.2026, вариант 1; без объявления закон считал бы все параметры обязательными и задавал бы лишние вопросы на H0)",
+    "ref": null
+   }
+  ],
+  "families/duty_series_limit": [
+   {
+    "by": "сессия CDPM",
+    "date": "2026-09-09",
+    "kind": "заявка",
+    "note": "заявка req-15317771322635164531: посадка категории C; документ свода правил авиакомпании / прогон CDPM",
+    "ref": "req-15317771322635164531"
+   },
+   {
+    "by": "владелец",
+    "date": "2026-09-09",
+    "kind": "решение владельца",
+    "note": "Слово владельца 09.09.2026 10:3x («РСП пункты 1-3»): заявка принята — семья duty_series_limit для правила VN-026 набора Н0-C; реализация конвейером CR COSMOS, выпуск каталога 0.3.0",
+    "ref": "req-15317771322635164531"
+   },
+   {
+    "by": "владелец",
+    "date": "2026-09-09",
+    "kind": "создание",
+    "note": "кандидат конвейера по заявке req-15317771322635164531 (ветка cr-cr5872c504, коммит 1da8cad8, стенд 6/0/0, привязки ok, паритет ok, pytest green)",
+    "ref": "req-15317771322635164531"
+   }
+  ],
+  "families/fleet_exclusions": [
+   {
+    "by": "сессия COSMOS",
+    "date": "2026-09-08",
+    "kind": "изменение",
+    "note": "вид check_code объявлен; стендовые задачи (шаг 4)",
+    "ref": null
+   },
+   {
+    "by": "сессия COSMOS",
+    "date": "2026-09-08",
+    "kind": "изменение",
+    "note": "параметр fleet_type получил семью (черновик 2 шага 4)",
+    "ref": null
+   },
+   {
+    "by": "владелец",
+    "date": "2026-09-09",
+    "kind": "изменение",
+    "note": "param_sets: параметры семьи независимы — каждый набор минимально полный (закон CDPM «полнота параметров семьи», развилка 09.09.2026, вариант 1; без объявления закон считал бы все параметры обязательными и задавал бы лишние вопросы на H0)",
+    "ref": null
+   }
+  ],
+  "families/rest_floors": [
+   {
+    "by": "сессия COSMOS",
+    "date": "2026-09-08",
+    "kind": "изменение",
+    "note": "виды check_code и export_form объявлены; стендовые задачи (шаг 4)",
+    "ref": null
+   }
+  ],
+  "families/span_accumulators": [
+   {
+    "by": "сессия COSMOS",
+    "date": "2026-09-08",
+    "kind": "изменение",
+    "note": "параметр max_monthly_block получил семью; вид check_code объявлен; стендовые задачи (шаг 4)",
+    "ref": null
+   },
+   {
+    "by": "сессия COSMOS",
+    "date": "2026-09-08",
+    "kind": "изменение",
+    "note": "параметр max_weekly_block получил семью (черновик 2 шага 4)",
+    "ref": null
+   },
+   {
+    "by": "владелец",
+    "date": "2026-09-09",
+    "kind": "изменение",
+    "note": "param_sets: параметры семьи независимы — каждый набор минимально полный (закон CDPM «полнота параметров семьи», развилка 09.09.2026, вариант 1; без объявления закон считал бы все параметры обязательными и задавал бы лишние вопросы на H0)",
+    "ref": null
+   }
+  ]
+ },
+ "legacy_registry_rev": "07f945deecdc",
+ "params_relation_set": {
+  "duty_extension_cap": {
+   "family": "duty_extension_penalty",
+   "relation": "max",
+   "unit": "duration_minutes",
+   "was": {
+    "by": "владелец",
+    "relation": null
+   }
+  },
+  "long_duty_threshold": {
+   "family": "duty_extension_penalty",
+   "relation": "max",
+   "unit": "duration_minutes",
+   "was": {
+    "by": "владелец",
+    "relation": null
+   }
+  },
+  "workload_spread_threshold": {
+   "family": "balanced_workload",
+   "relation": "max",
+   "unit": "credit_hours",
+   "was": {
+    "by": "владелец",
+    "relation": null
+   }
+  }
+ },
+ "params_to_families": {
+  "fleet_type": {
+   "family": "fleet_exclusions",
+   "qualifier": null,
+   "relation": null,
+   "unit": "code",
+   "was": {
+    "relation": null,
+    "source": "словарь CDPM"
+   }
+  },
+  "max_deadheads_per_day": {
+   "family": "deadhead_rules",
+   "qualifier": null,
+   "relation": "max",
+   "unit": "count",
+   "was": {
+    "relation": "max",
+    "source": "словарь CDPM"
+   }
+  },
+  "max_deadheads_per_flight": {
+   "family": "deadhead_rules",
+   "qualifier": null,
+   "relation": "max",
+   "unit": "count",
+   "was": {
+    "relation": "max",
+    "source": "словарь CDPM"
+   }
+  },
+  "max_duty_series_length": {
+   "family": "duty_series_limit",
+   "qualifier": null,
+   "relation": "max",
+   "unit": "count",
+   "was": {
+    "relation": null,
+    "source": "словарь решателя"
+   }
+  },
+  "max_monthly_block": {
+   "family": "span_accumulators",
+   "qualifier": null,
+   "relation": "max",
+   "unit": "duration_minutes",
+   "was": {
+    "relation": "max",
+    "source": "словарь CDPM"
+   }
+  },
+  "max_sit_duration": {
+   "family": "connection_windows",
+   "qualifier": null,
+   "relation": "max",
+   "unit": "duration_minutes",
+   "was": {
+    "relation": "max",
+    "source": "словарь решателя"
+   }
+  },
+  "max_weekly_block": {
+   "family": "span_accumulators",
+   "qualifier": null,
+   "relation": "max",
+   "unit": "duration_minutes",
+   "was": {
+    "relation": "max",
+    "source": "словарь решателя"
+   }
+  },
+  "post_series_days_off": {
+   "family": "duty_series_limit",
+   "qualifier": null,
+   "relation": "min",
+   "unit": "count",
+   "was": {
+    "relation": null,
+    "source": "словарь решателя"
+   }
+  }
+ },
+ "records_without_stand_tasks": [],
+ "stand_tasks": {
+  "criteria/credit_hours_spread": [
+   "st-chs-1"
+  ],
+  "criteria/layover_nights_total": [
+   "st-lnt-1"
+  ],
+  "criteria/min_person_days": [
+   "st-mpd-1"
+  ],
+  "criteria/positioning_cost": [
+   "st-pos-1"
+  ],
+  "criteria/preferred_days_off_violations": [
+   "st-pdo-1"
+  ],
+  "criteria/rank_normalized_cost": [
+   "st-rnc-1"
+  ],
+  "criteria/total_pairing_cost": [
+   "st-tpc-1"
+  ],
+  "criteria/uncovered_seats": [
+   "st-unc-1"
+  ],
+  "families/balanced_workload": [
+   "st-spread-1"
+  ],
+  "families/calendar_windows": [
+   "st-window-1"
+  ],
+  "families/connection_windows": [
+   "st-sit-1"
+  ],
+  "families/crew_composition": [
+   "st-crew-1",
+   "st-crew-count-0",
+   "st-crew-count-2"
+  ],
+  "families/crew_unavailability": [
+   "st-unavail-0"
+  ],
+  "families/days_off_floor": [
+   "st-daysoff-month-0",
+   "st-daysoff-month-1",
+   "st-off-1",
+   "st-off-2"
+  ],
+  "families/deadhead_rules": [
+   "st-dh-1"
+  ],
+  "families/duty_extension_penalty": [
+   "st-extension-1",
+   "st-extension-2"
+  ],
+  "families/duty_limits": [
+   "st-duty-1",
+   "st-duty-2",
+   "st-duty-3",
+   "st-duty-hours-0",
+   "st-duty-hours-2"
+  ],
+  "families/duty_series_limit": [
+   "st-series-0",
+   "st-series-1",
+   "st-series-2"
+  ],
+  "families/fleet_exclusions": [
+   "st-fleet-1",
+   "st-fleet-valid-0",
+   "st-fleet-valid-2"
+  ],
+  "families/layover_penalty": [
+   "st-layover-1"
+  ],
+  "families/night_series": [
+   "st-night-1",
+   "st-night-2",
+   "st-night-run-0",
+   "st-night-run-1"
+  ],
+  "families/reserve_floors": [
+   "st-reserve-1"
+  ],
+  "families/rest_floors": [
+   "st-rest-1",
+   "st-rest-away-1",
+   "st-rest-gap-0",
+   "st-rest-home-1"
+  ],
+  "families/rolling_rest": [
+   "st-roll-1",
+   "st-rolling-rest-0",
+   "st-rolling-rest-1"
+  ],
+  "families/span_accumulators": [
+   "st-span-1"
+  ],
+  "families/time_scale": [
+   "st-scale-0"
+  ]
+ },
+ "version": "0.7.0-draft.2"
+}

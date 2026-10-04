@@ -1,0 +1,131 @@
+# Сборка проверяет два независимых слоя: набор тестов Python и решатель
+# этапа 2 на Kotlin. Обе части прогонялись локально перед публикацией
+# (Python — 1901 пройденных на Windows/3.14, Kotlin — `mvn test` с
+# JDK 21), поэтому конфигурация описывает проверенное, а не намеренное.
+#
+# Обе площадки обязательны. Windows — там разрабатывается проект.
+# Linux был необязательным, пока переносимость не была доказана; это
+# прятало красноту — прогон значился Success, а внутри разрешённого
+# красного жили четыре падения. 2026-08-16 все четыре разобраны до
+# первопричины (прогон №14: 0 падений), и с этого дня Linux красит
+# сборку наравне с Windows.
+name: CI
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - '**/*.md'
+      - 'docs/**'
+      - 'wiki/**'
+  pull_request:
+  workflow_dispatch:
+
+# Новый push отменяет предыдущий незавершённый прогон той же ветки:
+# репозиторий приватный, минуты сборки метрические, а Windows тратит их
+# вдвое быстрее.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  python-tests:
+    name: Тесты Python (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          # Рабочая версия проекта; границы заданы в pyproject.toml
+          # (>=3.11,<3.15).
+          python-version: "3.14"
+          cache: pip
+          cache-dependency-path: pyproject.toml
+
+      - name: Установка зависимостей
+        # Пакет ставится вместе с зависимостями из pyproject.toml —
+        # единый источник истины, разъехаться с ним список не может.
+        # Дополнение `dev` приносит pytest.
+        #
+        # Хвост вывода уходит в сводку прогона: разбирать неудачу по
+        # аннотации «exit code 1» нельзя, а лезть за журналом каждый раз
+        # — терять время.
+        shell: bash
+        run: |
+          set +e
+          python -m pip install --upgrade pip > pip-output.txt 2>&1
+          pip install -e ".[dev]" >> pip-output.txt 2>&1
+          code=$?
+          set -e
+          tail -n 25 pip-output.txt
+          {
+            echo "### Установка зависимостей — ${{ matrix.os }} (код $code)"
+            echo '```'
+            tail -n 25 pip-output.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+          exit $code
+
+      - name: Прогон тестов
+        # Переменные PYTHONIOENCODING и PYTHONUTF8 намеренно НЕ задаются:
+        # они маскируют настоящие дефекты кодировки.
+        #
+        # tests/conftest.py исключает тесты устаревшего движка
+        # python-timefold, когда необязательное дополнение не
+        # установлено, и печатает это в итоге прогона — исключение
+        # никогда не бывает молчаливым. Там же объявлена зависимость
+        # части набора от опубликованных артефактов: их нет в свежем
+        # клоне, и такие тесты пропускаются с названной причиной.
+        shell: bash
+        run: |
+          set +e
+          python -m pytest tests -q --tb=short > pytest-output.txt 2>&1
+          code=$?
+          set -e
+          tail -n 60 pytest-output.txt
+          {
+            echo "### Прогон тестов — ${{ matrix.os }} (код $code)"
+            echo '```'
+            tail -n 60 pytest-output.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+          exit $code
+
+      - name: Сохранить вывод прогона
+        # Полный вывод остаётся артефактом даже при неудаче — сводка
+        # показывает хвост, артефакт хранит всё.
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pytest-output-${{ matrix.os }}
+          path: |
+            pytest-output.txt
+            pip-output.txt
+          if-no-files-found: ignore
+
+  kotlin-tests:
+    name: Тесты решателя (Kotlin)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          # kotlin-solver/pom.xml задаёт maven.compiler.release=21 и
+          # jvmTarget=21 для Kotlin.
+          java-version: "21"
+          cache: maven
+
+      - name: Прогон тестов Maven
+        run: mvn -B --no-transfer-progress test
+        working-directory: kotlin-solver

@@ -1,0 +1,161 @@
+{
+ "parameters": {
+  "carriers": [
+   "UA"
+  ],
+  "nightEnd": "06:59:00",
+  "mentorTag": "MENTOR",
+  "planSince": "2027-03-01T00:00:00Z[UTC]",
+  "planUntil": "2027-03-31T23:59:00Z[UTC]",
+  "nightStart": "23:00:00",
+  "solvingMode": "DUTY_SPLITTING",
+  "layoverRules": {
+   "@type": "durationAndStationAndTranslatitude",
+   "thresholds": [
+    {
+     "onBaseMinimum": "PT13H",
+     "offBaseMinimum": "PT13H45M",
+     "thresholdDuration": "PT13H",
+     "onBaseNightMinimum": "PT24H",
+     "onBaseTransMinimum": "PT24H",
+     "offBaseNightMinimum": "PT13H45M",
+     "offBaseTransMinimum": "PT24H"
+    },
+    {
+     "onBaseMinimum": "PT36H",
+     "offBaseMinimum": "PT24H45M",
+     "thresholdDuration": "PT15H",
+     "onBaseNightMinimum": "PT36H",
+     "onBaseTransMinimum": "PT48H",
+     "offBaseNightMinimum": "PT24H45M",
+     "offBaseTransMinimum": "PT24H"
+    },
+    {
+     "onBaseMinimum": "PT36H",
+     "offBaseMinimum": "PT24H45M",
+     "thresholdDuration": "PT17H",
+     "onBaseNightMinimum": "PT36H",
+     "onBaseTransMinimum": "PT48H",
+     "offBaseNightMinimum": "PT24H45M",
+     "offBaseTransMinimum": "PT24H"
+    }
+   ],
+   "thresholdDuration": "PT4H",
+   "layoverAfterGround": "PT13H"
+  },
+  "maleFeatWord": "MALE",
+  "darkDutyRules": {
+   "@type": "startEnd",
+   "darkEnd": "07:00:00",
+   "darkStart": "22:00:00",
+   "darkDutyCheckWindow": 3,
+   "allowedDarkDutySequenceLength": 2
+  },
+  "employeePilot": false,
+  "greenFeatWord": "GREEN",
+  "femaleFeatWord": "FEMALE",
+  "nightDutyRules": {
+   "@type": "ratio",
+   "thresholdRatio": 0.5
+  },
+  "relayThreshold": "PT13H",
+  "weeklyRestRules": {
+   "@type": "twoPerWeek",
+   "requiredWeeklyRest": "PT48H",
+   "layoverAfterDutyInVac": false,
+   "minNightsPerWeeklyRest": 0,
+   "requiredPeriodRestDays": 4,
+   "minDurationPerWeeklyRest": "PT24H",
+   "recomputeRequiredDaysCount": true,
+   "minOffBaseDurationPerWeeklyRest": "PT24H"
+  },
+  "dutyEndLocalHour": "23:00:00",
+  "solvingTimeLimit": "PT10M",
+  "transLegThreshold": "PT13H",
+  "employeeLimitRules": {
+   "@type": "planningPeriod",
+   "timeControlWindow": null,
+   "overtimeAllowedTag": "",
+   "monthlyOvertimeLimit": "PT0S"
+  },
+  "maximumPairingDays": 6,
+  "experiencedFeatWord": "EXPERIENCED",
+  "greenHoursThreshold": 450,
+  "crewEnforcementRules": {
+   "@type": "weekAndPeriodRule",
+   "periodLimits": {
+    "TWIN": 2,
+    "EXT": 4
+   },
+   "weeklyLimits": {
+    "TWIN": 1,
+    "EXT": 1
+   }
+  },
+  "offBaseWorkTimeRatio": 0.25,
+  "acclimatizationPeriod": "PT72H",
+  "longVacationThreshold": "PT72H",
+  "maximumWeeklyWorkTime": "PT0S",
+  "transferDeadheadRules": {
+   "@type": "noTransfers"
+  },
+  "extendedDutyUpperLimit": 0,
+  "nightDutySequenceRules": {
+   "@type": "checkSeq",
+   "localTimeNextDutyStart": "06:59:00",
+   "allowedNightDutySequenceLength": 1,
+   "minLayoverAfterNightDutySequenceOnBase": "PT24H",
+   "minLayoverAfterNightDutySequenceOffBase": "PT13H"
+  },
+  "extendedDutyCheckWindow": 0,
+  "stationEquivalenceRules": {
+   "@type": "equivalentAndTeleportationWithTimeLimit",
+   "allowRestOffBase": true,
+   "teleportationCodesList": [
+    {
+     "symmetric": true,
+     "arrivalStation": "DNB",
+     "minimumDuration": "PT36H",
+     "departureStation": "KVL"
+    },
+    {
+     "symmetric": false,
+     "arrivalStation": "MRT",
+     "minimumDuration": "PT36H",
+     "departureStation": "VLO"
+    },
+    {
+     "symmetric": false,
+     "arrivalStation": "XLI",
+     "minimumDuration": "PT36H",
+     "departureStation": "THV"
+    },
+    {
+     "symmetric": false,
+     "arrivalStation": "NRP",
+     "minimumDuration": "PT36H",
+     "departureStation": "SNG"
+    }
+   ]
+  },
+  "experiencedHoursThreshold": 900,
+  "overqualificationPenalties": {
+   "CA": {
+    "PURS": 10,
+    "CA С-cl": 1
+   },
+   "CA С-cl": {
+    "PURS": 1
+   }
+  },
+  "ranksForSingleAccomodation": [
+   "PURS"
+  ],
+  "unknownStationCostThreshold": 1000000,
+  "allowedSplitDutySequenceLength": 0,
+  "flightTimeCostCalculationRules": {
+   "@type": "noCostRule"
+  },
+  "minLayoverAfterSplitDutySequence": "PT0S"
+ }
+}

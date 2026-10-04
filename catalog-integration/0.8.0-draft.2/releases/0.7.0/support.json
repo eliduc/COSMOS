@@ -1,0 +1,3773 @@
+{
+ "catalog": {
+  "fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+  "version": "0.7.0"
+ },
+ "cells": [
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "kotlin_metric",
+   "product": "CDPM",
+   "record_id": "credit_hours_spread",
+   "section": "criteria",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": null,
+   "binding": {
+    "cr_key": null,
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/TaskModes.kt",
+    "note": null,
+    "state": "есть",
+    "symbol": "METRIC_EXECUTORS"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "kotlin_metric",
+   "product": "COSMOS",
+   "record_id": "credit_hours_spread",
+   "section": "criteria",
+   "stand": null,
+   "state": "не проверено"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "kotlin_metric",
+   "product": "CDPM",
+   "record_id": "layover_nights_total",
+   "section": "criteria",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": null,
+   "binding": {
+    "cr_key": null,
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/TaskModes.kt",
+    "note": null,
+    "state": "есть",
+    "symbol": "METRIC_EXECUTORS"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "kotlin_metric",
+   "product": "COSMOS",
+   "record_id": "layover_nights_total",
+   "section": "criteria",
+   "stand": null,
+   "state": "не проверено"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "builder_method",
+   "product": "CDPM",
+   "record_id": "min_person_days",
+   "section": "criteria",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": {
+    "at": "2026-09-20",
+    "by": "владелец",
+    "how": "выпуск 0.7.0, предпроверка 10"
+   },
+   "binding": {
+    "cr_key": null,
+    "file": "vmp/criteria.py",
+    "note": "счёт — Builder.span_days в ветке весов Builder.price, ключ --w-span-day",
+    "state": "есть",
+    "symbol": "_exec_min_person_days"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "builder_method",
+   "product": "COSMOS",
+   "record_id": "min_person_days",
+   "section": "criteria",
+   "stand": {
+    "at": "2026-09-20T06:00:50+00:00",
+    "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "failed": 0,
+    "passed": 1,
+    "skipped": 0,
+    "tasks": [
+     "st-mpd-1"
+    ]
+   },
+   "state": "есть"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "kotlin_metric",
+   "product": "CDPM",
+   "record_id": "positioning_cost",
+   "section": "criteria",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": null,
+   "binding": {
+    "cr_key": null,
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/TaskModes.kt",
+    "note": null,
+    "state": "есть",
+    "symbol": "METRIC_EXECUTORS"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "kotlin_metric",
+   "product": "COSMOS",
+   "record_id": "positioning_cost",
+   "section": "criteria",
+   "stand": null,
+   "state": "не проверено"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "kotlin_metric",
+   "product": "CDPM",
+   "record_id": "preferred_days_off_violations",
+   "section": "criteria",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": null,
+   "binding": {
+    "cr_key": null,
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/TaskModes.kt",
+    "note": null,
+    "state": "есть",
+    "symbol": "METRIC_EXECUTORS"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "kotlin_metric",
+   "product": "COSMOS",
+   "record_id": "preferred_days_off_violations",
+   "section": "criteria",
+   "stand": null,
+   "state": "не проверено"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "builder_method",
+   "product": "CDPM",
+   "record_id": "rank_normalized_cost",
+   "section": "criteria",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": {
+    "at": "2026-09-20",
+    "by": "владелец",
+    "how": "выпуск 0.7.0, предпроверка 10"
+   },
+   "binding": {
+    "cr_key": null,
+    "file": "vmp/criteria.py",
+    "note": "счёт — Builder.cost_0096; исполнитель сверяет контрольную пару файла контура (vmp-criterion-control-pairs.json): путь в него не передаётся, файла нет — исход «silent»; у стенда свой файл пары, его сверяет судья той же check_control_pair",
+    "state": "есть",
+    "symbol": "_exec_rank_normalized_cost"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "builder_method",
+   "product": "COSMOS",
+   "record_id": "rank_normalized_cost",
+   "section": "criteria",
+   "stand": {
+    "at": "2026-09-20T06:00:50+00:00",
+    "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "failed": 0,
+    "passed": 1,
+    "skipped": 0,
+    "tasks": [
+     "st-rnc-1"
+    ]
+   },
+   "state": "есть"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "builder_method",
+   "product": "CDPM",
+   "record_id": "total_pairing_cost",
+   "section": "criteria",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": {
+    "at": "2026-09-20",
+    "by": "владелец",
+    "how": "выпуск 0.7.0, предпроверка 10"
+   },
+   "binding": {
+    "cr_key": null,
+    "file": "_pairing_builder.py",
+    "note": "композиция целевой пейринга: критерий блока criterion пакета плюс сумма мера×вес×состав; движок отбора — _select_engines.solve",
+    "state": "есть",
+    "symbol": "Builder.price"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "builder_method",
+   "product": "COSMOS",
+   "record_id": "total_pairing_cost",
+   "section": "criteria",
+   "stand": {
+    "at": "2026-09-20T06:00:50+00:00",
+    "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "failed": 0,
+    "passed": 1,
+    "skipped": 0,
+    "tasks": [
+     "st-tpc-1"
+    ]
+   },
+   "state": "есть"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "kotlin_metric",
+   "product": "CDPM",
+   "record_id": "total_pairing_cost",
+   "section": "criteria",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": null,
+   "binding": {
+    "cr_key": null,
+    "file": null,
+    "note": "метрика total_pairing_cost вычислима только раздельным прогоном пейринга; на объединённой модели назначения стоимости пейрингов нет, а похожую величину подставлять нельзя",
+    "state": "нет",
+    "symbol": null
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "kotlin_metric",
+   "product": "COSMOS",
+   "record_id": "total_pairing_cost",
+   "section": "criteria",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "kotlin_metric",
+   "product": "CDPM",
+   "record_id": "uncovered_seats",
+   "section": "criteria",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": null,
+   "binding": {
+    "cr_key": null,
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/TaskModes.kt",
+    "note": null,
+    "state": "есть",
+    "symbol": "METRIC_EXECUTORS"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "kotlin_metric",
+   "product": "COSMOS",
+   "record_id": "uncovered_seats",
+   "section": "criteria",
+   "stand": null,
+   "state": "не проверено"
+  },
+  {
+   "approved": null,
+   "binding": {
+    "cr_key": null,
+    "file": null,
+    "note": "шаблон сертификата — исполнитель COSMOS (vmp/run/roster_certify.py)",
+    "state": "нет",
+    "symbol": null
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "check_template",
+   "product": "CDPM",
+   "record_id": "balanced_workload",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": {
+    "at": "2026-09-20",
+    "by": "владелец",
+    "how": "выпуск 0.7.0, предпроверка 10"
+   },
+   "binding": {
+    "cr_key": null,
+    "file": "vmp/run/roster_certify.py",
+    "note": "находок нет по замыслу: мера правила — measure.value",
+    "state": "есть",
+    "symbol": "measure_soft_rules"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "check_template",
+   "product": "COSMOS",
+   "record_id": "balanced_workload",
+   "section": "families",
+   "stand": {
+    "at": "2026-09-20T06:00:50+00:00",
+    "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "failed": 0,
+    "passed": 1,
+    "skipped": 0,
+    "tasks": [
+     "st-spread-1"
+    ]
+   },
+   "state": "есть"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "kotlin_constraint",
+   "product": "CDPM",
+   "record_id": "balanced_workload",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": null,
+   "binding": {
+    "cr_key": null,
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+    "note": null,
+    "state": "есть",
+    "symbol": "FlightCrewSchedulingConstraintProvider.creditHoursSpreadOverThreshold"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "kotlin_constraint",
+   "product": "COSMOS",
+   "record_id": "balanced_workload",
+   "section": "families",
+   "stand": null,
+   "state": "не проверено"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "kotlin_knob",
+   "product": "CDPM",
+   "record_id": "balanced_workload",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": null,
+   "binding": {
+    "cr_key": null,
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+    "note": "запись в часах, ручка в минутах (умножение на 60 — TaskPackage.workloadSpreadOf); relation записи держится null до слова владельца",
+    "state": "есть",
+    "symbol": "RunThresholds.applyWorkloadSpread"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "kotlin_knob",
+   "product": "COSMOS",
+   "record_id": "balanced_workload",
+   "section": "families",
+   "stand": null,
+   "state": "не проверено"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "builder_method",
+   "product": "CDPM",
+   "record_id": "calendar_windows",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": {
+    "at": "2026-09-20",
+    "by": "владелец",
+    "how": "выпуск 0.7.0, предпроверка 10"
+   },
+   "binding": {
+    "cr_key": null,
+    "file": "_pairing_builder.py",
+    "note": "ключи w_weekend_night и weekend_days превращаются в правило семьи (rules_from_weights)",
+    "state": "есть",
+    "symbol": "Builder.soft_rules"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "builder_method",
+   "product": "COSMOS",
+   "record_id": "calendar_windows",
+   "section": "families",
+   "stand": {
+    "at": "2026-09-20T06:00:50+00:00",
+    "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "failed": 0,
+    "passed": 1,
+    "skipped": 0,
+    "tasks": [
+     "st-window-1"
+    ]
+   },
+   "state": "есть"
+  },
+  {
+   "approved": null,
+   "binding": {
+    "cr_key": null,
+    "file": null,
+    "note": "шаблон сертификата — исполнитель COSMOS (vmp/run/roster_certify.py)",
+    "state": "нет",
+    "symbol": null
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "check_template",
+   "product": "CDPM",
+   "record_id": "calendar_windows",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": {
+    "at": "2026-09-20",
+    "by": "владелец",
+    "how": "выпуск 0.7.0, предпроверка 10"
+   },
+   "binding": {
+    "cr_key": null,
+    "file": "vmp/run/roster_certify.py",
+    "note": null,
+    "state": "есть",
+    "symbol": "measure_soft_rules"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "check_template",
+   "product": "COSMOS",
+   "record_id": "calendar_windows",
+   "section": "families",
+   "stand": {
+    "at": "2026-09-20T06:00:50+00:00",
+    "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "failed": 0,
+    "passed": 1,
+    "skipped": 0,
+    "tasks": [
+     "st-window-1"
+    ]
+   },
+   "state": "есть"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "kotlin_constraint",
+   "product": "CDPM",
+   "record_id": "calendar_windows",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": null,
+   "binding": {
+    "cr_key": null,
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+    "note": null,
+    "state": "есть",
+    "symbol": "FlightCrewSchedulingConstraintProvider.calendarWindowLayovers"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "kotlin_constraint",
+   "product": "COSMOS",
+   "record_id": "calendar_windows",
+   "section": "families",
+   "stand": null,
+   "state": "не проверено"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "kotlin_form",
+   "product": "CDPM",
+   "record_id": "calendar_windows",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": null,
+   "binding": {
+    "cr_key": null,
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/TaskPackage.kt",
+    "note": null,
+    "state": "есть",
+    "symbol": "TaskPackage.calendarWindowsOf"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "kotlin_form",
+   "product": "COSMOS",
+   "record_id": "calendar_windows",
+   "section": "families",
+   "stand": null,
+   "state": "не проверено"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "builder_method",
+   "product": "CDPM",
+   "record_id": "connection_windows",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": {
+    "at": "2026-09-20",
+    "by": "владелец",
+    "how": "выпуск 0.7.0, предпроверка 10"
+   },
+   "binding": {
+    "cr_key": null,
+    "file": "_pairing_builder.py",
+    "note": "низ окна — порог стыковки sit_min при генерации смен: пауза короче порога смену не продолжает",
+    "state": "есть",
+    "symbol": "Builder.build_duties"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "builder_method",
+   "product": "COSMOS",
+   "record_id": "connection_windows",
+   "section": "families",
+   "stand": {
+    "at": "2026-09-20T06:00:50+00:00",
+    "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "failed": 0,
+    "passed": 1,
+    "skipped": 0,
+    "tasks": [
+     "st-sit-1"
+    ]
+   },
+   "state": "есть"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "check_code",
+   "product": "CDPM",
+   "record_id": "connection_windows",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": {
+    "at": "2026-09-20",
+    "by": "владелец",
+    "how": "выпуск 0.7.0, предпроверка 10"
+   },
+   "binding": {
+    "cr_key": null,
+    "file": "vmp/run/fit_checks.py",
+    "note": null,
+    "state": "есть",
+    "symbol": "_turnaround"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "check_code",
+   "product": "COSMOS",
+   "record_id": "connection_windows",
+   "section": "families",
+   "stand": {
+    "at": "2026-09-20T06:00:50+00:00",
+    "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "failed": 0,
+    "passed": 1,
+    "skipped": 0,
+    "tasks": [
+     "st-sit-1"
+    ]
+   },
+   "state": "есть"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "kotlin_constraint",
+   "product": "CDPM",
+   "record_id": "connection_windows",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": null,
+   "binding": {
+    "cr_key": null,
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+    "note": "имя ограничения — аргумент perEmployeeAdjacency",
+    "state": "есть",
+    "symbol": "FlightCrewSchedulingConstraintProvider.minimumTurnaround"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "kotlin_constraint",
+   "product": "COSMOS",
+   "record_id": "connection_windows",
+   "section": "families",
+   "stand": null,
+   "state": "не проверено"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "kotlin_knob",
+   "product": "CDPM",
+   "record_id": "connection_windows",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": null,
+   "binding": {
+    "cr_key": null,
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+    "note": "порог мёртвой зоны стыковки; имя получило семью connection_windows в каталоге 0.2.0-draft.2 — предупреждения B03 «ручка семьи без параметра в записи» больше нет",
+    "state": "есть",
+    "symbol": "RunThresholds.KNOBS"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "kotlin_knob",
+   "product": "COSMOS",
+   "record_id": "connection_windows",
+   "section": "families",
+   "stand": null,
+   "state": "не проверено"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "builder_method",
+   "product": "CDPM",
+   "record_id": "crew_composition",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": {
+    "at": "2026-09-20",
+    "by": "владелец",
+    "how": "выпуск 0.7.0, предпроверка 10"
+   },
+   "binding": {
+    "cr_key": null,
+    "file": "_pairing_builder.py",
+    "note": null,
+    "state": "есть",
+    "symbol": "Builder.crew_size"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "builder_method",
+   "product": "COSMOS",
+   "record_id": "crew_composition",
+   "section": "families",
+   "stand": {
+    "at": "2026-09-20T06:00:50+00:00",
+    "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "failed": 0,
+    "passed": 1,
+    "skipped": 0,
+    "tasks": [
+     "st-crew-1"
+    ]
+   },
+   "state": "есть"
+  },
+  {
+   "approved": {
+    "at": "2026-09-20",
+    "by": "владелец",
+    "how": "выпуск 0.7.0, предпроверка 10"
+   },
+   "binding": {
+    "cr_key": null,
+    "file": "cdpm/data_checks.py",
+    "note": "спецификацию судит validate_spec",
+    "state": "есть",
+    "symbol": "run_spec_ex"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "check_template",
+   "product": "CDPM",
+   "record_id": "crew_composition",
+   "section": "families",
+   "stand": {
+    "at": "2026-09-20T06:00:50+00:00",
+    "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "failed": 0,
+    "passed": 2,
+    "skipped": 0,
+    "tasks": [
+     "st-crew-count-0",
+     "st-crew-count-2"
+    ]
+   },
+   "state": "есть"
+  },
+  {
+   "approved": null,
+   "binding": {
+    "cr_key": null,
+    "file": null,
+    "note": "исполнитель — линия данных CDPM (cdpm/data_checks.py, run_spec_ex); спецификацию по посадке в сертификате COSMOS строит vmp/run/fit_checks.fit_code_checks, исполняет та же библиотека",
+    "state": "нет",
+    "symbol": null
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "check_template",
+   "product": "COSMOS",
+   "record_id": "crew_composition",
+   "section": "families",
+   "stand": {
+    "at": "2026-09-20T06:00:50+00:00",
+    "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "failed": 0,
+    "passed": 0,
+    "skipped": 2,
+    "tasks": [
+     "st-crew-count-0",
+     "st-crew-count-2"
+    ]
+   },
+   "state": "нет"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "kotlin_constraint",
+   "product": "CDPM",
+   "record_id": "crew_composition",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": null,
+   "binding": {
+    "cr_key": null,
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+    "note": "на местах рейса — различные люди; пустое место уменьшает счёт",
+    "state": "есть",
+    "symbol": "FlightCrewSchedulingConstraintProvider.crewSizePerFlight"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "kotlin_constraint",
+   "product": "COSMOS",
+   "record_id": "crew_composition",
+   "section": "families",
+   "stand": null,
+   "state": "не проверено"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "kotlin_knob",
+   "product": "CDPM",
+   "record_id": "crew_composition",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": null,
+   "binding": {
+    "cr_key": null,
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+    "note": null,
+    "state": "есть",
+    "symbol": "RunThresholds.KNOBS"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "kotlin_knob",
+   "product": "COSMOS",
+   "record_id": "crew_composition",
+   "section": "families",
+   "stand": null,
+   "state": "не проверено"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "check_code",
+   "product": "CDPM",
+   "record_id": "crew_unavailability",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": null,
+   "binding": {
+    "cr_key": null,
+    "file": "vmp/source_check.py",
+    "note": null,
+    "state": "есть",
+    "symbol": "_run_unavailability"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "check_code",
+   "product": "COSMOS",
+   "record_id": "crew_unavailability",
+   "section": "families",
+   "stand": null,
+   "state": "не проверено"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "kotlin_constraint",
+   "product": "CDPM",
+   "record_id": "crew_unavailability",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": null,
+   "binding": {
+    "cr_key": null,
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+    "note": "недоступные дни сотрудника (Employee.unavailableDays) — отпуск и иные отсутствия; дни приходят листом «Отпуска» пакета постановки",
+    "state": "есть",
+    "symbol": "FlightCrewSchedulingConstraintProvider.employeeUnavailability"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "kotlin_constraint",
+   "product": "COSMOS",
+   "record_id": "crew_unavailability",
+   "section": "families",
+   "stand": null,
+   "state": "не проверено"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "check_code",
+   "product": "CDPM",
+   "record_id": "days_off_floor",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": {
+    "at": "2026-09-20",
+    "by": "владелец",
+    "how": "выпуск 0.7.0, предпроверка 10"
+   },
+   "binding": {
+    "cr_key": null,
+    "file": "vmp/run/logic_checks.py",
+    "note": null,
+    "state": "есть",
+    "symbol": "_days_off"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "check_code",
+   "product": "COSMOS",
+   "record_id": "days_off_floor",
+   "section": "families",
+   "stand": {
+    "at": "2026-09-20T06:00:50+00:00",
+    "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "failed": 0,
+    "passed": 2,
+    "skipped": 0,
+    "tasks": [
+     "st-off-1",
+     "st-off-2"
+    ]
+   },
+   "state": "есть"
+  },
+  {
+   "approved": {
+    "at": "2026-09-20",
+    "by": "владелец",
+    "how": "выпуск 0.7.0, предпроверка 10"
+   },
+   "binding": {
+    "cr_key": null,
+    "file": "cdpm/data_checks.py",
+    "note": "спецификацию судит validate_spec",
+    "state": "есть",
+    "symbol": "run_spec_ex"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "check_template",
+   "product": "CDPM",
+   "record_id": "days_off_floor",
+   "section": "families",
+   "stand": {
+    "at": "2026-09-20T06:00:50+00:00",
+    "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "failed": 0,
+    "passed": 2,
+    "skipped": 0,
+    "tasks": [
+     "st-daysoff-month-0",
+     "st-daysoff-month-1"
+    ]
+   },
+   "state": "есть"
+  },
+  {
+   "approved": null,
+   "binding": {
+    "cr_key": null,
+    "file": null,
+    "note": "исполнитель — линия данных CDPM (cdpm/data_checks.py, группа data)",
+    "state": "нет",
+    "symbol": null
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "check_template",
+   "product": "COSMOS",
+   "record_id": "days_off_floor",
+   "section": "families",
+   "stand": {
+    "at": "2026-09-20T06:00:50+00:00",
+    "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "failed": 0,
+    "passed": 0,
+    "skipped": 2,
+    "tasks": [
+     "st-daysoff-month-0",
+     "st-daysoff-month-1"
+    ]
+   },
+   "state": "нет"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "kotlin_logic_form",
+   "product": "CDPM",
+   "record_id": "days_off_floor",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": null,
+   "binding": {
+    "cr_key": null,
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/LogicForms.kt",
+    "note": null,
+    "state": "есть",
+    "symbol": "LogicForms.daysOffInRollingWindow"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "kotlin_logic_form",
+   "product": "COSMOS",
+   "record_id": "days_off_floor",
+   "section": "families",
+   "stand": null,
+   "state": "не проверено"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "builder_method",
+   "product": "CDPM",
+   "record_id": "deadhead_rules",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": {
+    "at": "2026-09-20",
+    "by": "владелец",
+    "how": "выпуск 0.7.0, предпроверка 10"
+   },
+   "binding": {
+    "cr_key": null,
+    "file": "_pairing_builder.py",
+    "note": "минимум между перегоном и рабочим участком — порог стыковки построителя; минимум между соседними перегонами — из условий (adjacent_dh_min)",
+    "state": "есть",
+    "symbol": "Builder.adjacent_dh_ok"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "builder_method",
+   "product": "COSMOS",
+   "record_id": "deadhead_rules",
+   "section": "families",
+   "stand": {
+    "at": "2026-09-20T06:00:50+00:00",
+    "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "failed": 0,
+    "passed": 1,
+    "skipped": 0,
+    "tasks": [
+     "st-dh-1"
+    ]
+   },
+   "state": "есть"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "kotlin_constraint",
+   "product": "CDPM",
+   "record_id": "deadhead_rules",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": null,
+   "binding": {
+    "cr_key": null,
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+    "note": "живёт при обеих ручках больше нуля",
+    "state": "есть",
+    "symbol": "FlightCrewSchedulingConstraintProvider.deadheadsPerDay"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "kotlin_constraint",
+   "product": "COSMOS",
+   "record_id": "deadhead_rules",
+   "section": "families",
+   "stand": null,
+   "state": "не проверено"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "kotlin_knob",
+   "product": "CDPM",
+   "record_id": "deadhead_rules",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": null,
+   "binding": {
+    "cr_key": null,
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+    "note": null,
+    "state": "есть",
+    "symbol": "RunThresholds.KNOBS"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "kotlin_knob",
+   "product": "COSMOS",
+   "record_id": "deadhead_rules",
+   "section": "families",
+   "stand": null,
+   "state": "не проверено"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "builder_method",
+   "product": "CDPM",
+   "record_id": "duty_extension_penalty",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": {
+    "at": "2026-09-20",
+    "by": "владелец",
+    "how": "выпуск 0.7.0, предпроверка 10"
+   },
+   "binding": {
+    "cr_key": null,
+    "file": "_pairing_builder.py",
+    "note": null,
+    "state": "есть",
+    "symbol": "Builder.soft_rules"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "builder_method",
+   "product": "COSMOS",
+   "record_id": "duty_extension_penalty",
+   "section": "families",
+   "stand": {
+    "at": "2026-09-20T06:00:50+00:00",
+    "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "failed": 0,
+    "passed": 1,
+    "skipped": 0,
+    "tasks": [
+     "st-extension-1"
+    ]
+   },
+   "state": "есть"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "check_code",
+   "product": "CDPM",
+   "record_id": "duty_extension_penalty",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": {
+    "at": "2026-09-20",
+    "by": "владелец",
+    "how": "выпуск 0.7.0, предпроверка 10"
+   },
+   "binding": {
+    "cr_key": null,
+    "file": "vmp/run/roster_certify.py",
+    "note": "адресный потолок продления по условиям EXTENSION_CONDITIONS (extension_bases in, extension_consent yes); исход строки даёт _run_cap_check",
+    "state": "есть",
+    "symbol": "apply_extension_caps"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "check_code",
+   "product": "COSMOS",
+   "record_id": "duty_extension_penalty",
+   "section": "families",
+   "stand": {
+    "at": "2026-09-20T06:00:50+00:00",
+    "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "failed": 0,
+    "passed": 2,
+    "skipped": 0,
+    "tasks": [
+     "st-extension-1",
+     "st-extension-2"
+    ]
+   },
+   "state": "есть"
+  },
+  {
+   "approved": null,
+   "binding": {
+    "cr_key": null,
+    "file": null,
+    "note": "шаблон сертификата — исполнитель COSMOS (vmp/run/roster_certify.py)",
+    "state": "нет",
+    "symbol": null
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "check_template",
+   "product": "CDPM",
+   "record_id": "duty_extension_penalty",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": {
+    "at": "2026-09-20",
+    "by": "владелец",
+    "how": "выпуск 0.7.0, предпроверка 10"
+   },
+   "binding": {
+    "cr_key": null,
+    "file": "vmp/run/roster_certify.py",
+    "note": null,
+    "state": "есть",
+    "symbol": "measure_soft_rules"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "check_template",
+   "product": "COSMOS",
+   "record_id": "duty_extension_penalty",
+   "section": "families",
+   "stand": {
+    "at": "2026-09-20T06:00:50+00:00",
+    "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "failed": 0,
+    "passed": 1,
+    "skipped": 0,
+    "tasks": [
+     "st-extension-1"
+    ]
+   },
+   "state": "есть"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "kotlin_constraint",
+   "product": "CDPM",
+   "record_id": "duty_extension_penalty",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": null,
+   "binding": {
+    "cr_key": null,
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+    "note": null,
+    "state": "есть",
+    "symbol": "FlightCrewSchedulingConstraintProvider.dutyExtensionOverThreshold"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "kotlin_constraint",
+   "product": "COSMOS",
+   "record_id": "duty_extension_penalty",
+   "section": "families",
+   "stand": null,
+   "state": "не проверено"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "kotlin_knob",
+   "product": "CDPM",
+   "record_id": "duty_extension_penalty",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": null,
+   "binding": {
+    "cr_key": null,
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+    "note": "применяется только при потолке И базовом пределе max_duty_duration семьи duty_limits, причём потолок строже базового (RunThresholds.kt:676-702)",
+    "state": "есть",
+    "symbol": "RunThresholds.applyDutyExtension"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "kotlin_knob",
+   "product": "COSMOS",
+   "record_id": "duty_extension_penalty",
+   "section": "families",
+   "stand": null,
+   "state": "не проверено"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "builder_method",
+   "product": "CDPM",
+   "record_id": "duty_limits",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": {
+    "at": "2026-09-20",
+    "by": "владелец",
+    "how": "выпуск 0.7.0, предпроверка 10"
+   },
+   "binding": {
+    "cr_key": null,
+    "file": "_pairing_builder.py",
+    "note": null,
+    "state": "есть",
+    "symbol": "Builder.duty_limit_ok"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "builder_method",
+   "product": "COSMOS",
+   "record_id": "duty_limits",
+   "section": "families",
+   "stand": {
+    "at": "2026-09-20T06:00:50+00:00",
+    "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "failed": 0,
+    "passed": 2,
+    "skipped": 0,
+    "tasks": [
+     "st-duty-1",
+     "st-duty-3"
+    ]
+   },
+   "state": "есть"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "check_code",
+   "product": "CDPM",
+   "record_id": "duty_limits",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": {
+    "at": "2026-09-20",
+    "by": "владелец",
+    "how": "выпуск 0.7.0, предпроверка 10"
+   },
+   "binding": {
+    "cr_key": null,
+    "file": "vmp/run/fit_checks.py",
+    "note": null,
+    "state": "есть",
+    "symbol": "_landings_per_duty"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "check_code",
+   "product": "COSMOS",
+   "record_id": "duty_limits",
+   "section": "families",
+   "stand": {
+    "at": "2026-09-20T06:00:50+00:00",
+    "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "failed": 0,
+    "passed": 3,
+    "skipped": 0,
+    "tasks": [
+     "st-duty-1",
+     "st-duty-2",
+     "st-duty-3"
+    ]
+   },
+   "state": "есть"
+  },
+  {
+   "approved": {
+    "at": "2026-09-20",
+    "by": "владелец",
+    "how": "выпуск 0.7.0, предпроверка 10"
+   },
+   "binding": {
+    "cr_key": null,
+    "file": "cdpm/data_checks.py",
+    "note": "спецификацию судит validate_spec",
+    "state": "есть",
+    "symbol": "run_spec_ex"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "check_template",
+   "product": "CDPM",
+   "record_id": "duty_limits",
+   "section": "families",
+   "stand": {
+    "at": "2026-09-20T06:00:50+00:00",
+    "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "failed": 0,
+    "passed": 2,
+    "skipped": 0,
+    "tasks": [
+     "st-duty-hours-0",
+     "st-duty-hours-2"
+    ]
+   },
+   "state": "есть"
+  },
+  {
+   "approved": null,
+   "binding": {
+    "cr_key": null,
+    "file": null,
+    "note": "исполнитель — линия данных CDPM (cdpm/data_checks.py); при потолке продления спецификация заменяется кодом apply_extension_caps",
+    "state": "нет",
+    "symbol": null
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "check_template",
+   "product": "COSMOS",
+   "record_id": "duty_limits",
+   "section": "families",
+   "stand": {
+    "at": "2026-09-20T06:00:50+00:00",
+    "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "failed": 0,
+    "passed": 0,
+    "skipped": 2,
+    "tasks": [
+     "st-duty-hours-0",
+     "st-duty-hours-2"
+    ]
+   },
+   "state": "нет"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "export_form",
+   "product": "CDPM",
+   "record_id": "duty_limits",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": {
+    "at": "2026-09-20",
+    "by": "владелец",
+    "how": "выпуск 0.7.0, предпроверка 10"
+   },
+   "binding": {
+    "cr_key": null,
+    "file": "vmp/conditions_export.py",
+    "note": "точная ярусная форма worktime_exact словаря условий; прежняя строка описи _conditions.worktime_exact — символа нет",
+    "state": "есть",
+    "symbol": "build_conditions"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "export_form",
+   "product": "COSMOS",
+   "record_id": "duty_limits",
+   "section": "families",
+   "stand": {
+    "at": "2026-09-20T06:00:50+00:00",
+    "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "failed": 0,
+    "passed": 1,
+    "skipped": 0,
+    "tasks": [
+     "st-export-worktime-exact-1"
+    ]
+   },
+   "state": "есть"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "kotlin_constraint",
+   "product": "CDPM",
+   "record_id": "duty_limits",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": null,
+   "binding": {
+    "cr_key": null,
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+    "note": null,
+    "state": "есть",
+    "symbol": "FlightCrewSchedulingConstraintProvider.maxDutyPeriodRestSegmented"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "kotlin_constraint",
+   "product": "COSMOS",
+   "record_id": "duty_limits",
+   "section": "families",
+   "stand": null,
+   "state": "не проверено"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "kotlin_knob",
+   "product": "CDPM",
+   "record_id": "duty_limits",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": null,
+   "binding": {
+    "cr_key": null,
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+    "note": null,
+    "state": "есть",
+    "symbol": "RunThresholds.KNOBS"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "kotlin_knob",
+   "product": "COSMOS",
+   "record_id": "duty_limits",
+   "section": "families",
+   "stand": null,
+   "state": "не проверено"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "check_code",
+   "product": "CDPM",
+   "record_id": "duty_series_limit",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": {
+    "at": "2026-09-20",
+    "by": "владелец",
+    "how": "выпуск 0.7.0, предпроверка 10"
+   },
+   "binding": {
+    "cr_key": null,
+    "file": "vmp/run/logic_checks.py",
+    "note": null,
+    "state": "есть",
+    "symbol": "_duty_series"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "check_code",
+   "product": "COSMOS",
+   "record_id": "duty_series_limit",
+   "section": "families",
+   "stand": {
+    "at": "2026-09-20T06:00:50+00:00",
+    "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "failed": 0,
+    "passed": 3,
+    "skipped": 0,
+    "tasks": [
+     "st-series-0",
+     "st-series-1",
+     "st-series-2"
+    ]
+   },
+   "state": "есть"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "kotlin_logic_form",
+   "product": "CDPM",
+   "record_id": "duty_series_limit",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": null,
+   "binding": {
+    "cr_key": null,
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/LogicForms.kt",
+    "note": null,
+    "state": "есть",
+    "symbol": "LogicForms.dutySeriesLimit"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "kotlin_logic_form",
+   "product": "COSMOS",
+   "record_id": "duty_series_limit",
+   "section": "families",
+   "stand": null,
+   "state": "не проверено"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "check_code",
+   "product": "CDPM",
+   "record_id": "fleet_exclusions",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": {
+    "at": "2026-09-20",
+    "by": "владелец",
+    "how": "выпуск 0.7.0, предпроверка 10"
+   },
+   "binding": {
+    "cr_key": null,
+    "file": "vmp/run/fit_checks.py",
+    "note": null,
+    "state": "есть",
+    "symbol": "_fleet_qualification"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "check_code",
+   "product": "COSMOS",
+   "record_id": "fleet_exclusions",
+   "section": "families",
+   "stand": {
+    "at": "2026-09-20T06:00:50+00:00",
+    "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "failed": 0,
+    "passed": 1,
+    "skipped": 0,
+    "tasks": [
+     "st-fleet-1"
+    ]
+   },
+   "state": "есть"
+  },
+  {
+   "approved": {
+    "at": "2026-09-20",
+    "by": "владелец",
+    "how": "выпуск 0.7.0, предпроверка 10"
+   },
+   "binding": {
+    "cr_key": null,
+    "file": "cdpm/data_checks.py",
+    "note": "спецификацию судит validate_spec",
+    "state": "есть",
+    "symbol": "run_spec_ex"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "check_template",
+   "product": "CDPM",
+   "record_id": "fleet_exclusions",
+   "section": "families",
+   "stand": {
+    "at": "2026-09-20T06:00:50+00:00",
+    "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "failed": 0,
+    "passed": 2,
+    "skipped": 0,
+    "tasks": [
+     "st-fleet-valid-0",
+     "st-fleet-valid-2"
+    ]
+   },
+   "state": "есть"
+  },
+  {
+   "approved": null,
+   "binding": {
+    "cr_key": null,
+    "file": null,
+    "note": "исполнитель — линия данных CDPM (cdpm/data_checks.py); при исходной книге сертификат COSMOS судит кодом fit_checks._fleet_qualification",
+    "state": "нет",
+    "symbol": null
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "check_template",
+   "product": "COSMOS",
+   "record_id": "fleet_exclusions",
+   "section": "families",
+   "stand": {
+    "at": "2026-09-20T06:00:50+00:00",
+    "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "failed": 0,
+    "passed": 0,
+    "skipped": 2,
+    "tasks": [
+     "st-fleet-valid-0",
+     "st-fleet-valid-2"
+    ]
+   },
+   "state": "нет"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "export_form",
+   "product": "CDPM",
+   "record_id": "fleet_exclusions",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": {
+    "at": "2026-09-20",
+    "by": "владелец",
+    "how": "выпуск 0.7.0, предпроверка 10"
+   },
+   "binding": {
+    "cr_key": null,
+    "file": "vmp/conditions_export.py",
+    "note": "условия fleet_auto_plan_excluded, crew_min_by_fleet, crew_std_by_fleet",
+    "state": "есть",
+    "symbol": "build_conditions"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "export_form",
+   "product": "COSMOS",
+   "record_id": "fleet_exclusions",
+   "section": "families",
+   "stand": {
+    "at": "2026-09-20T06:00:50+00:00",
+    "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "failed": 0,
+    "passed": 1,
+    "skipped": 0,
+    "tasks": [
+     "st-export-fleet-exclusions-1"
+    ]
+   },
+   "state": "есть"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "kotlin_constraint",
+   "product": "CDPM",
+   "record_id": "fleet_exclusions",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": null,
+   "binding": {
+    "cr_key": null,
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+    "note": "судит только при датированных окнах допусков (qualificationWindows)",
+    "state": "есть",
+    "symbol": "FlightCrewSchedulingConstraintProvider.typeRatingCurrency"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "kotlin_constraint",
+   "product": "COSMOS",
+   "record_id": "fleet_exclusions",
+   "section": "families",
+   "stand": null,
+   "state": "не проверено"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "kotlin_knob",
+   "product": "CDPM",
+   "record_id": "fleet_exclusions",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": null,
+   "binding": {
+    "cr_key": null,
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+    "note": "синоним перечня — один код; имя получило семью fleet_exclusions в каталоге 0.2.0-draft.2 — предупреждения B03 больше нет",
+    "state": "есть",
+    "symbol": "RunThresholds.FLEET_THRESHOLD"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "kotlin_knob",
+   "product": "COSMOS",
+   "record_id": "fleet_exclusions",
+   "section": "families",
+   "stand": null,
+   "state": "не проверено"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "builder_method",
+   "product": "CDPM",
+   "record_id": "layover_penalty",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": {
+    "at": "2026-09-20",
+    "by": "владелец",
+    "how": "выпуск 0.7.0, предпроверка 10"
+   },
+   "binding": {
+    "cr_key": null,
+    "file": "_pairing_builder.py",
+    "note": "композиция цены: критерий + сумма мера×вес×состав; правила части — Builder.soft_rules",
+    "state": "есть",
+    "symbol": "Builder.price"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "builder_method",
+   "product": "COSMOS",
+   "record_id": "layover_penalty",
+   "section": "families",
+   "stand": {
+    "at": "2026-09-20T06:00:50+00:00",
+    "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "failed": 0,
+    "passed": 1,
+    "skipped": 0,
+    "tasks": [
+     "st-layover-1"
+    ]
+   },
+   "state": "есть"
+  },
+  {
+   "approved": null,
+   "binding": {
+    "cr_key": null,
+    "file": null,
+    "note": "шаблон сертификата — исполнитель COSMOS (vmp/run/roster_certify.py)",
+    "state": "нет",
+    "symbol": null
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "check_template",
+   "product": "CDPM",
+   "record_id": "layover_penalty",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": {
+    "at": "2026-09-20",
+    "by": "владелец",
+    "how": "выпуск 0.7.0, предпроверка 10"
+   },
+   "binding": {
+    "cr_key": null,
+    "file": "vmp/run/roster_certify.py",
+    "note": null,
+    "state": "есть",
+    "symbol": "measure_soft_rules"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "check_template",
+   "product": "COSMOS",
+   "record_id": "layover_penalty",
+   "section": "families",
+   "stand": {
+    "at": "2026-09-20T06:00:50+00:00",
+    "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "failed": 0,
+    "passed": 1,
+    "skipped": 0,
+    "tasks": [
+     "st-layover-1"
+    ]
+   },
+   "state": "есть"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "kotlin_constraint",
+   "product": "CDPM",
+   "record_id": "layover_penalty",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": null,
+   "binding": {
+    "cr_key": null,
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+    "note": null,
+    "state": "есть",
+    "symbol": "FlightCrewSchedulingConstraintProvider.layoverNights"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "kotlin_constraint",
+   "product": "COSMOS",
+   "record_id": "layover_penalty",
+   "section": "families",
+   "stand": null,
+   "state": "не проверено"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "check_code",
+   "product": "CDPM",
+   "record_id": "night_series",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": {
+    "at": "2026-09-20",
+    "by": "владелец",
+    "how": "выпуск 0.7.0, предпроверка 10"
+   },
+   "binding": {
+    "cr_key": null,
+    "file": "vmp/run/logic_checks.py",
+    "note": null,
+    "state": "есть",
+    "symbol": "_night_series"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "check_code",
+   "product": "COSMOS",
+   "record_id": "night_series",
+   "section": "families",
+   "stand": {
+    "at": "2026-09-20T06:00:50+00:00",
+    "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "failed": 0,
+    "passed": 2,
+    "skipped": 0,
+    "tasks": [
+     "st-night-1",
+     "st-night-2"
+    ]
+   },
+   "state": "есть"
+  },
+  {
+   "approved": {
+    "at": "2026-09-20",
+    "by": "владелец",
+    "how": "выпуск 0.7.0, предпроверка 10"
+   },
+   "binding": {
+    "cr_key": null,
+    "file": "cdpm/data_checks.py",
+    "note": "спецификацию судит validate_spec",
+    "state": "есть",
+    "symbol": "run_spec_ex"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "check_template",
+   "product": "CDPM",
+   "record_id": "night_series",
+   "section": "families",
+   "stand": {
+    "at": "2026-09-20T06:00:50+00:00",
+    "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "failed": 0,
+    "passed": 2,
+    "skipped": 0,
+    "tasks": [
+     "st-night-run-0",
+     "st-night-run-1"
+    ]
+   },
+   "state": "есть"
+  },
+  {
+   "approved": null,
+   "binding": {
+    "cr_key": null,
+    "file": null,
+    "note": "исполнитель — линия данных CDPM (cdpm/history_section.py, группа history_form)",
+    "state": "нет",
+    "symbol": null
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "check_template",
+   "product": "COSMOS",
+   "record_id": "night_series",
+   "section": "families",
+   "stand": {
+    "at": "2026-09-20T06:00:50+00:00",
+    "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "failed": 0,
+    "passed": 0,
+    "skipped": 2,
+    "tasks": [
+     "st-night-run-0",
+     "st-night-run-1"
+    ]
+   },
+   "state": "нет"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "kotlin_logic_form",
+   "product": "CDPM",
+   "record_id": "night_series",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": null,
+   "binding": {
+    "cr_key": null,
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/LogicForms.kt",
+    "note": null,
+    "state": "есть",
+    "symbol": "LogicForms.consecutiveNightDuties"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "kotlin_logic_form",
+   "product": "COSMOS",
+   "record_id": "night_series",
+   "section": "families",
+   "stand": null,
+   "state": "не проверено"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "kotlin_constraint",
+   "product": "CDPM",
+   "record_id": "reserve_floors",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": null,
+   "binding": {
+    "cr_key": null,
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+    "note": "клетка база × роль × сутки по нормам; без норм выключено",
+    "state": "есть",
+    "symbol": "FlightCrewSchedulingConstraintProvider.reserveCrewsPerBase"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "kotlin_constraint",
+   "product": "COSMOS",
+   "record_id": "reserve_floors",
+   "section": "families",
+   "stand": null,
+   "state": "не проверено"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "kotlin_knob",
+   "product": "CDPM",
+   "record_id": "reserve_floors",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": null,
+   "binding": {
+    "cr_key": null,
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+    "note": "семейство ключей reserve_crews_min[<база>], константа DefaultProviderRules.RESERVE_FAMILY",
+    "state": "есть",
+    "symbol": "RunThresholds.KNOBS"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "kotlin_knob",
+   "product": "COSMOS",
+   "record_id": "reserve_floors",
+   "section": "families",
+   "stand": null,
+   "state": "не проверено"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "builder_method",
+   "product": "CDPM",
+   "record_id": "rest_floors",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": {
+    "at": "2026-09-20",
+    "by": "владелец",
+    "how": "выпуск 0.7.0, предпроверка 10"
+   },
+   "binding": {
+    "cr_key": null,
+    "file": "_pairing_builder.py",
+    "note": null,
+    "state": "есть",
+    "symbol": "Builder.rest_floor_after"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "builder_method",
+   "product": "COSMOS",
+   "record_id": "rest_floors",
+   "section": "families",
+   "stand": {
+    "at": "2026-09-20T06:00:50+00:00",
+    "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "failed": 0,
+    "passed": 1,
+    "skipped": 0,
+    "tasks": [
+     "st-rest-1"
+    ]
+   },
+   "state": "есть"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "check_code",
+   "product": "CDPM",
+   "record_id": "rest_floors",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": {
+    "at": "2026-09-20",
+    "by": "владелец",
+    "how": "выпуск 0.7.0, предпроверка 10"
+   },
+   "binding": {
+    "cr_key": null,
+    "file": "vmp/run/fit_checks.py",
+    "note": null,
+    "state": "есть",
+    "symbol": "_rest_floor"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "check_code",
+   "product": "COSMOS",
+   "record_id": "rest_floors",
+   "section": "families",
+   "stand": {
+    "at": "2026-09-20T06:00:50+00:00",
+    "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "failed": 0,
+    "passed": 1,
+    "skipped": 0,
+    "tasks": [
+     "st-rest-1"
+    ]
+   },
+   "state": "есть"
+  },
+  {
+   "approved": {
+    "at": "2026-09-20",
+    "by": "владелец",
+    "how": "выпуск 0.7.0, предпроверка 10"
+   },
+   "binding": {
+    "cr_key": null,
+    "file": "cdpm/data_checks.py",
+    "note": "спецификацию судит validate_spec",
+    "state": "есть",
+    "symbol": "run_spec_ex"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "check_template",
+   "product": "CDPM",
+   "record_id": "rest_floors",
+   "section": "families",
+   "stand": {
+    "at": "2026-09-20T06:00:50+00:00",
+    "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "failed": 0,
+    "passed": 3,
+    "skipped": 0,
+    "tasks": [
+     "st-rest-away-1",
+     "st-rest-gap-0",
+     "st-rest-home-1"
+    ]
+   },
+   "state": "есть"
+  },
+  {
+   "approved": null,
+   "binding": {
+    "cr_key": null,
+    "file": null,
+    "note": "исполнитель — линия данных CDPM (cdpm/data_checks.py); сертификат COSMOS судит пол отдыха кодом fit_checks._rest_floor",
+    "state": "нет",
+    "symbol": null
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "check_template",
+   "product": "COSMOS",
+   "record_id": "rest_floors",
+   "section": "families",
+   "stand": {
+    "at": "2026-09-20T06:00:50+00:00",
+    "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "failed": 0,
+    "passed": 0,
+    "skipped": 3,
+    "tasks": [
+     "st-rest-away-1",
+     "st-rest-gap-0",
+     "st-rest-home-1"
+    ]
+   },
+   "state": "нет"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "export_form",
+   "product": "CDPM",
+   "record_id": "rest_floors",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": {
+    "at": "2026-09-20",
+    "by": "владелец",
+    "how": "выпуск 0.7.0, предпроверка 10"
+   },
+   "binding": {
+    "cr_key": null,
+    "file": "vmp/conditions_export.py",
+    "note": "лестницы отдыха (_ladder); прежняя строка описи _conditions.rest_floor — символа нет",
+    "state": "есть",
+    "symbol": "build_conditions"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "export_form",
+   "product": "COSMOS",
+   "record_id": "rest_floors",
+   "section": "families",
+   "stand": {
+    "at": "2026-09-20T06:00:50+00:00",
+    "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "failed": 0,
+    "passed": 1,
+    "skipped": 0,
+    "tasks": [
+     "st-export-required-layover-1"
+    ]
+   },
+   "state": "есть"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "kotlin_constraint",
+   "product": "CDPM",
+   "record_id": "rest_floors",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": null,
+   "binding": {
+    "cr_key": null,
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+    "note": null,
+    "state": "есть",
+    "symbol": "FlightCrewSchedulingConstraintProvider.restBeforeHorizon"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "kotlin_constraint",
+   "product": "COSMOS",
+   "record_id": "rest_floors",
+   "section": "families",
+   "stand": null,
+   "state": "не проверено"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "kotlin_knob",
+   "product": "CDPM",
+   "record_id": "rest_floors",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": null,
+   "binding": {
+    "cr_key": null,
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+    "note": null,
+    "state": "есть",
+    "symbol": "RunThresholds.KNOBS"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "kotlin_knob",
+   "product": "COSMOS",
+   "record_id": "rest_floors",
+   "section": "families",
+   "stand": null,
+   "state": "не проверено"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "check_code",
+   "product": "CDPM",
+   "record_id": "rolling_rest",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": {
+    "at": "2026-09-20",
+    "by": "владелец",
+    "how": "выпуск 0.7.0, предпроверка 10"
+   },
+   "binding": {
+    "cr_key": null,
+    "file": "vmp/run/logic_checks.py",
+    "note": null,
+    "state": "есть",
+    "symbol": "_rolling_rest"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "check_code",
+   "product": "COSMOS",
+   "record_id": "rolling_rest",
+   "section": "families",
+   "stand": {
+    "at": "2026-09-20T06:00:50+00:00",
+    "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "failed": 0,
+    "passed": 1,
+    "skipped": 0,
+    "tasks": [
+     "st-roll-1"
+    ]
+   },
+   "state": "есть"
+  },
+  {
+   "approved": {
+    "at": "2026-09-20",
+    "by": "владелец",
+    "how": "выпуск 0.7.0, предпроверка 10"
+   },
+   "binding": {
+    "cr_key": null,
+    "file": "cdpm/data_checks.py",
+    "note": "спецификацию судит validate_spec",
+    "state": "есть",
+    "symbol": "run_spec_ex"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "check_template",
+   "product": "CDPM",
+   "record_id": "rolling_rest",
+   "section": "families",
+   "stand": {
+    "at": "2026-09-20T06:00:50+00:00",
+    "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "failed": 0,
+    "passed": 2,
+    "skipped": 0,
+    "tasks": [
+     "st-rolling-rest-0",
+     "st-rolling-rest-1"
+    ]
+   },
+   "state": "есть"
+  },
+  {
+   "approved": null,
+   "binding": {
+    "cr_key": null,
+    "file": null,
+    "note": "исполнитель — линия данных CDPM (cdpm/data_checks.py); имя проверки кода COSMOS совпадает с именем шаблона, но это проверка кодом, а не шаблоном",
+    "state": "нет",
+    "symbol": null
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "check_template",
+   "product": "COSMOS",
+   "record_id": "rolling_rest",
+   "section": "families",
+   "stand": {
+    "at": "2026-09-20T06:00:50+00:00",
+    "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "failed": 0,
+    "passed": 0,
+    "skipped": 2,
+    "tasks": [
+     "st-rolling-rest-0",
+     "st-rolling-rest-1"
+    ]
+   },
+   "state": "нет"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "kotlin_logic_form",
+   "product": "CDPM",
+   "record_id": "rolling_rest",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": null,
+   "binding": {
+    "cr_key": null,
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/LogicForms.kt",
+    "note": null,
+    "state": "есть",
+    "symbol": "LogicForms.restInRollingWindow"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "kotlin_logic_form",
+   "product": "COSMOS",
+   "record_id": "rolling_rest",
+   "section": "families",
+   "stand": null,
+   "state": "не проверено"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "builder_method",
+   "product": "CDPM",
+   "record_id": "span_accumulators",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": {
+    "at": "2026-09-20",
+    "by": "владелец",
+    "how": "выпуск 0.7.0, предпроверка 10"
+   },
+   "binding": {
+    "cr_key": null,
+    "file": "_pairing_builder.py",
+    "note": "размах командировки в сутках по CosRules.max_pairing_days — параметру семьи duty_limits; месячный и недельный налёт построитель не судит (vmp/pairing_input.py ставит monthly_flight_time_limit_min в None)",
+    "state": "есть",
+    "symbol": "Builder.pairing_span_ok"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "builder_method",
+   "product": "COSMOS",
+   "record_id": "span_accumulators",
+   "section": "families",
+   "stand": {
+    "at": "2026-09-20T06:00:50+00:00",
+    "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "failed": 0,
+    "passed": 1,
+    "skipped": 0,
+    "tasks": [
+     "st-span-1"
+    ]
+   },
+   "state": "есть"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "check_code",
+   "product": "CDPM",
+   "record_id": "span_accumulators",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": {
+    "at": "2026-09-20",
+    "by": "владелец",
+    "how": "выпуск 0.7.0, предпроверка 10"
+   },
+   "binding": {
+    "cr_key": null,
+    "file": "vmp/run/fit_checks.py",
+    "note": null,
+    "state": "есть",
+    "symbol": "_monthly_block"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "check_code",
+   "product": "COSMOS",
+   "record_id": "span_accumulators",
+   "section": "families",
+   "stand": {
+    "at": "2026-09-20T06:00:50+00:00",
+    "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "failed": 0,
+    "passed": 1,
+    "skipped": 0,
+    "tasks": [
+     "st-span-1"
+    ]
+   },
+   "state": "есть"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "kotlin_constraint",
+   "product": "CDPM",
+   "record_id": "span_accumulators",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": null,
+   "binding": {
+    "cr_key": null,
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+    "note": null,
+    "state": "есть",
+    "symbol": "FlightCrewSchedulingConstraintProvider.maxMonthlyFlightHours"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "kotlin_constraint",
+   "product": "COSMOS",
+   "record_id": "span_accumulators",
+   "section": "families",
+   "stand": null,
+   "state": "не проверено"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "kotlin_knob",
+   "product": "CDPM",
+   "record_id": "span_accumulators",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": null,
+   "binding": {
+    "cr_key": null,
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+    "note": null,
+    "state": "есть",
+    "symbol": "RunThresholds.KNOBS"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "kotlin_knob",
+   "product": "COSMOS",
+   "record_id": "span_accumulators",
+   "section": "families",
+   "stand": null,
+   "state": "не проверено"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "builder_method",
+   "product": "CDPM",
+   "record_id": "time_scale",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": {
+    "at": "2026-09-20",
+    "by": "владелец",
+    "how": "выпуск 0.7.0, предпроверка 10"
+   },
+   "binding": {
+    "cr_key": null,
+    "file": "_pairing_builder.py",
+    "note": null,
+    "state": "есть",
+    "symbol": "resolve_time_scale"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "builder_method",
+   "product": "COSMOS",
+   "record_id": "time_scale",
+   "section": "families",
+   "stand": {
+    "at": "2026-09-20T06:00:50+00:00",
+    "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "failed": 0,
+    "passed": 1,
+    "skipped": 0,
+    "tasks": [
+     "st-scale-0"
+    ]
+   },
+   "state": "есть"
+  },
+  {
+   "approved": null,
+   "binding": {
+    "cr_key": null,
+    "file": null,
+    "note": "шаблон сертификата — исполнитель COSMOS (vmp/run/roster_certify.py)",
+    "state": "нет",
+    "symbol": null
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "check_template",
+   "product": "CDPM",
+   "record_id": "time_scale",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": {
+    "at": "2026-09-20",
+    "by": "владелец",
+    "how": "выпуск 0.7.0, предпроверка 10"
+   },
+   "binding": {
+    "cr_key": null,
+    "file": "vmp/run/roster_certify.py",
+    "note": "запись «применена конфигурацией прогона», построчного исхода нет по замыслу",
+    "state": "есть",
+    "symbol": "world_param_checks"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "check_template",
+   "product": "COSMOS",
+   "record_id": "time_scale",
+   "section": "families",
+   "stand": {
+    "at": "2026-09-20T06:00:50+00:00",
+    "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "failed": 0,
+    "passed": 1,
+    "skipped": 0,
+    "tasks": [
+     "st-scale-0"
+    ]
+   },
+   "state": "есть"
+  },
+  {
+   "approved": null,
+   "binding": null,
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18",
+    "sha256": "5ce51592aa37daa23555f33bf5e430df2ba66c6412ac30ec54e3eb3b7a8cf8f2"
+   },
+   "kind": "kotlin_knob",
+   "product": "CDPM",
+   "record_id": "time_scale",
+   "section": "families",
+   "stand": null,
+   "state": "нет"
+  },
+  {
+   "approved": null,
+   "binding": {
+    "cr_key": null,
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+    "note": "законно только значение 0: шкала мира, а не предел",
+    "state": "есть",
+    "symbol": "RunThresholds.KNOBS"
+   },
+   "bindings_file": {
+    "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+    "catalog_version": "0.7.0",
+    "generated_at": "2026-09-20T06:00:50+00:00",
+    "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+    "product_version": "1.18.5",
+    "sha256": "58edae9a2edf2451ab98d301f9d79a49532513c87dbc53223afd97af9735017c"
+   },
+   "kind": "kotlin_knob",
+   "product": "COSMOS",
+   "record_id": "time_scale",
+   "section": "families",
+   "stand": null,
+   "state": "не проверено"
+  }
+ ],
+ "computed_at": "2026-09-20T08:03:45+02:00",
+ "computed_by": "служба",
+ "form_version": 1,
+ "schema_version": "support/1"
+}

@@ -1,0 +1,575 @@
+{
+ "form_version": 1,
+ "versions": [
+  {
+   "changes": [
+    {
+     "id": "balanced_workload",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "families"
+    },
+    {
+     "id": "calendar_windows",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "families"
+    },
+    {
+     "id": "connection_windows",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "families"
+    },
+    {
+     "id": "crew_composition",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "families"
+    },
+    {
+     "id": "days_off_floor",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "families"
+    },
+    {
+     "id": "deadhead_rules",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "families"
+    },
+    {
+     "id": "duty_extension_penalty",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "families"
+    },
+    {
+     "id": "duty_limits",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "families"
+    },
+    {
+     "id": "fleet_exclusions",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "families"
+    },
+    {
+     "id": "layover_penalty",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "families"
+    },
+    {
+     "id": "night_series",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "families"
+    },
+    {
+     "id": "reserve_floors",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "families"
+    },
+    {
+     "id": "rest_floors",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "families"
+    },
+    {
+     "id": "rolling_rest",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "families"
+    },
+    {
+     "id": "span_accumulators",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "families"
+    },
+    {
+     "id": "time_scale",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "families"
+    },
+    {
+     "id": "credit_hours_spread",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "criteria"
+    },
+    {
+     "id": "layover_nights_total",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "criteria"
+    },
+    {
+     "id": "min_person_days",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "criteria"
+    },
+    {
+     "id": "positioning_cost",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "criteria"
+    },
+    {
+     "id": "preferred_days_off_violations",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "criteria"
+    },
+    {
+     "id": "rank_normalized_cost",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "criteria"
+    },
+    {
+     "id": "total_pairing_cost",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "criteria"
+    },
+    {
+     "id": "uncovered_seats",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "criteria"
+    },
+    {
+     "id": "acceptance_default",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "dictionaries"
+    },
+    {
+     "id": "actors",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "dictionaries"
+    },
+    {
+     "id": "area_qualifiers",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "dictionaries"
+    },
+    {
+     "id": "check_template_groups",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "dictionaries"
+    },
+    {
+     "id": "check_templates",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "dictionaries"
+    },
+    {
+     "id": "classes",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "dictionaries"
+    },
+    {
+     "id": "code_units",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "dictionaries"
+    },
+    {
+     "id": "condition_relations",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "dictionaries"
+    },
+    {
+     "id": "condition_units",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "dictionaries"
+    },
+    {
+     "id": "executor_kinds",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "dictionaries"
+    },
+    {
+     "id": "executor_states",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "dictionaries"
+    },
+    {
+     "id": "family_natures",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "dictionaries"
+    },
+    {
+     "id": "fit_categories",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "dictionaries"
+    },
+    {
+     "id": "history_kinds",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "dictionaries"
+    },
+    {
+     "id": "kinds",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "dictionaries"
+    },
+    {
+     "id": "languages",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "dictionaries"
+    },
+    {
+     "id": "lexicon_order",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "dictionaries"
+    },
+    {
+     "id": "origin_kinds",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "dictionaries"
+    },
+    {
+     "id": "param_relations",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "dictionaries"
+    },
+    {
+     "id": "param_sources",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "dictionaries"
+    },
+    {
+     "id": "param_tz",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "dictionaries"
+    },
+    {
+     "id": "param_units",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "dictionaries"
+    },
+    {
+     "id": "products",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "dictionaries"
+    },
+    {
+     "id": "qualifier_kinds",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "dictionaries"
+    },
+    {
+     "id": "rates_policies",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "dictionaries"
+    },
+    {
+     "id": "record_statuses",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "dictionaries"
+    },
+    {
+     "id": "request_source_kinds",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "dictionaries"
+    },
+    {
+     "id": "request_states",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "dictionaries"
+    },
+    {
+     "id": "request_submitters",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "dictionaries"
+    },
+    {
+     "id": "stand_results",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "dictionaries"
+    },
+    {
+     "id": "stand_task_kinds",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "dictionaries"
+    },
+    {
+     "id": "synthetic_codes",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "dictionaries"
+    },
+    {
+     "id": "task_kinds",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "dictionaries"
+    },
+    {
+     "id": "unbound_params",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "dictionaries"
+    },
+    {
+     "id": "violation_units",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "dictionaries"
+    },
+    {
+     "id": "weekdays",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "dictionaries"
+    },
+    {
+     "id": "world_forms",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "dictionaries"
+    },
+    {
+     "id": "zones",
+     "kind": "добавлена",
+     "note": "первый выпуск службой; до него каталог собирался инструментом извлечения",
+     "section": "dictionaries"
+    }
+   ],
+   "code": "2137a85c2506c50a6dc6903c6cea5ebee7986bd2",
+   "fingerprint": "5c9d26c1dfcac9f9de12771f0ede271a27f65a95b817048c1c853961b7dd8f78",
+   "released_at": "2026-09-08",
+   "released_by": "владелец",
+   "version": "0.2.0"
+  },
+  {
+   "changes": [
+    {
+     "id": "connection_windows",
+     "kind": "изменена",
+     "note": "поля: history; param_sets: +sit, +turnaround",
+     "section": "families"
+    },
+    {
+     "id": "deadhead_rules",
+     "kind": "изменена",
+     "note": "поля: history; param_sets: +per_day, +per_flight",
+     "section": "families"
+    },
+    {
+     "id": "duty_limits",
+     "kind": "изменена",
+     "note": "поля: history; param_sets: +duration, +landings, +pairing_days",
+     "section": "families"
+    },
+    {
+     "id": "fleet_exclusions",
+     "kind": "изменена",
+     "note": "поля: history; param_sets: +several, +single",
+     "section": "families"
+    },
+    {
+     "id": "span_accumulators",
+     "kind": "изменена",
+     "note": "поля: history; param_sets: +monthly, +weekly",
+     "section": "families"
+    }
+   ],
+   "code": "d7d2745f2b1d8fa0b7f17576796ca86af34dfe59",
+   "fingerprint": "2dd8037b1fd6fd5c6cb17950f818cc5b4a94f5c7cb2fda1029a6bfdac1234c1d",
+   "released_at": "2026-09-09",
+   "released_by": "владелец",
+   "version": "0.3.0"
+  },
+  {
+   "changes": [
+    {
+     "id": "duty_series_limit",
+     "kind": "добавлена",
+     "note": "новая запись: Лимит серии рабочих смен подряд и обязательный день отдыха после неё",
+     "section": "families"
+    }
+   ],
+   "code": "50ade0480df6ecf80e8fcd5e5bc9d0d13e7283bc",
+   "fingerprint": "ca6999759dc499261c652afc82a0f88a57f5024e6f2307b37072974a6d6a36bc",
+   "released_at": "2026-09-09",
+   "released_by": "владелец",
+   "version": "0.4.0"
+  },
+  {
+   "changes": [
+    {
+     "id": "balanced_workload",
+     "kind": "изменена",
+     "note": "поля: nature_confirmed_by, reads_history, violation_size",
+     "section": "families"
+    },
+    {
+     "id": "calendar_windows",
+     "kind": "изменена",
+     "note": "поля: nature_confirmed_by, reads_history, violation_size",
+     "section": "families"
+    },
+    {
+     "id": "connection_windows",
+     "kind": "изменена",
+     "note": "поля: nature_confirmed_by",
+     "section": "families"
+    },
+    {
+     "id": "crew_composition",
+     "kind": "изменена",
+     "note": "поля: nature_confirmed_by",
+     "section": "families"
+    },
+    {
+     "id": "days_off_floor",
+     "kind": "изменена",
+     "note": "поля: nature_confirmed_by, reads_history",
+     "section": "families"
+    },
+    {
+     "id": "deadhead_rules",
+     "kind": "изменена",
+     "note": "поля: nature_confirmed_by",
+     "section": "families"
+    },
+    {
+     "id": "duty_extension_penalty",
+     "kind": "изменена",
+     "note": "поля: nature_confirmed_by, violation_size",
+     "section": "families"
+    },
+    {
+     "id": "duty_limits",
+     "kind": "изменена",
+     "note": "поля: nature_confirmed_by",
+     "section": "families"
+    },
+    {
+     "id": "duty_series_limit",
+     "kind": "изменена",
+     "note": "поля: nature_confirmed_by, reads_history",
+     "section": "families"
+    },
+    {
+     "id": "fleet_exclusions",
+     "kind": "изменена",
+     "note": "поля: nature_confirmed_by",
+     "section": "families"
+    },
+    {
+     "id": "layover_penalty",
+     "kind": "изменена",
+     "note": "поля: nature_confirmed_by, violation_size",
+     "section": "families"
+    },
+    {
+     "id": "night_series",
+     "kind": "изменена",
+     "note": "поля: nature_confirmed_by, reads_history",
+     "section": "families"
+    },
+    {
+     "id": "reserve_floors",
+     "kind": "изменена",
+     "note": "поля: nature_confirmed_by",
+     "section": "families"
+    },
+    {
+     "id": "rest_floors",
+     "kind": "изменена",
+     "note": "поля: nature_confirmed_by, reads_history",
+     "section": "families"
+    },
+    {
+     "id": "rolling_rest",
+     "kind": "изменена",
+     "note": "поля: nature_confirmed_by, reads_history",
+     "section": "families"
+    },
+    {
+     "id": "span_accumulators",
+     "kind": "изменена",
+     "note": "поля: nature_confirmed_by, reads_history",
+     "section": "families"
+    },
+    {
+     "id": "time_scale",
+     "kind": "изменена",
+     "note": "поля: nature_confirmed_by",
+     "section": "families"
+    },
+    {
+     "id": "history_read_kinds",
+     "kind": "добавлена",
+     "note": "новый ключ словарей: перечень из 4 значений",
+     "section": "dictionaries"
+    },
+    {
+     "id": "nature_witnesses",
+     "kind": "добавлена",
+     "note": "новый ключ словарей: перечень из 4 значений",
+     "section": "dictionaries"
+    },
+    {
+     "id": "violation_sizes",
+     "kind": "добавлена",
+     "note": "новый ключ словарей: перечень из 2 значений",
+     "section": "dictionaries"
+    },
+    {
+     "id": "violation_units",
+     "kind": "изменена",
+     "note": "[\"day\", \"duty\", \"event\", \"hour\", \"minute\", \"night\"] → {\"day\": \"сутки\", \"duty\": \"смена\", \"event\": \"событие\", \"hour\": \"час\", \"minute\": \"минута\", \"night\": \"ночь\"}",
+     "section": "dictionaries"
+    }
+   ],
+   "code": "fa271b16d852160ac8949e332f3b0a8dcd35318c",
+   "fingerprint": "5534196f824aff80156e33cd5fa741c869c5fd8d23e48b39e295d15d73e8b7d9",
+   "released_at": "2026-09-11",
+   "released_by": "владелец",
+   "version": "0.5.0"
+  }
+ ]
+}

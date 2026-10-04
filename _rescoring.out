@@ -1,0 +1,46 @@
+[08:30:37] === RE-SCORING: honest single vs two-stage ===
+[08:30:37] Stage 1 (pinned) ...
+  full=6824 slots, synthetic=3031 slots, 551 pairings (OPTIMAL)
+
+[08:31:22] SOLVE all_at_once (LA, seed 11, 1200s) ...
+[08:31:23]   spawning JVM on port 9091 ...
+[08:31:26]   JVM on port 9091 ready
+  solve score: 0hard/-1639021soft (unassigned slots: 0)
+
+[08:51:27] SOLVE two-stage ensemble (seeds base 1000, 1200s, FULL-solutions-only tracking) ...
+[08:51:28]   spawning JVM on port 9091 ...
+[08:51:28]   spawning JVM on port 9092 ...
+[08:51:28]   spawning JVM on port 9093 ...
+[08:51:28]   spawning JVM on port 9094 ...
+[08:51:31]   JVM on port 9091 ready
+[08:51:31]   JVM on port 9092 ready
+[08:51:31]   JVM on port 9093 ready
+[08:51:32]   JVM on port 9094 ready
+    interval 1/8: best FULL=none yet; warm-seed nulls=1535
+    interval 2/8: best FULL=none yet; warm-seed nulls=270
+    interval 3/8: best FULL=0hard/-991846soft; warm-seed nulls=0
+    interval 4/8: best FULL=0hard/-991838soft; warm-seed nulls=0
+    interval 5/8: best FULL=0hard/-991831soft; warm-seed nulls=0
+    interval 6/8: best FULL=0hard/-991826soft; warm-seed nulls=0
+    interval 7/8: best FULL=0hard/-991818soft; warm-seed nulls=0
+    interval 8/8: best FULL=0hard/-991816soft; warm-seed nulls=0
+  ensemble best FULL score (synthetic scale): 0hard/-991816soft (unassigned: 0)
+
+[09:11:41] EXPAND pairing roster onto real flights ...
+  coverage: 6824/6824 real slots filled (100.0%), 978 pairing crew dropped (over-crewed multi-leg pairings)
+
+[09:11:42] SCORE-ONLY both rosters with ORIGINAL rules ...
+[09:11:43]   spawning JVM on port 9099 ...
+[09:11:45]   JVM on port 9099 ready
+  sanity all_at_once re-score: 0hard/-1639021soft  [OK]
+  EXPANDED two-stage on ORIGINAL rules: -10570995hard/-1092293soft
+
+[09:11:48] HARD breakdown of expanded roster (Python mirror):
+  Min rest (5x shortfall)            matches=  4037  hard=  10322770
+  Max daily duty (5x excess)         matches=   160  hard=    248225
+  TOTAL (approx, w/o language)                      hard=  10570995
+
+[09:11:48] === SUMMARY (single scale: ORIGINAL rules) ===
+  all_at_once   : 0hard/-1639021soft  (slots 6824/6824)
+  two-stage exp.: -10570995hard/-1092293soft  (slots 6824/6824, dropped 978)
+[09:11:48] DONE.

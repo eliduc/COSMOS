@@ -1,0 +1,63 @@
+{
+ "customer": "Полярис-H0 (ВМП H0 комплекта)",
+ "stage": "ИД H0-ВМП (форма)",
+ "catalog": {
+  "version": "0.6.0",
+  "fingerprint": "7dc0626d4ce85eb0b7a26ca385953ac03a2dce68557bb2e040a614f1584ad549"
+ },
+ "data_class": "synthetic",
+ "llm_scope": "any",
+ "llm_scope_basis": "набор синтетический: вымышленная авиакомпания, генератор в репозитории (build_vmp_nano.py, build_data_h0.py); решение владельца 03.09.2026 — для синтетических и открытых данных любые модели, включая облачные",
+ "rules_files": [
+  "docs/ID-H0-VMP-1.docx",
+  "docs/ID-H0-VMP-2.xlsx",
+  "docs/ID-H0-VMP-3.jpg"
+ ],
+ "data_files": [
+  "data/ID-H0-DATA.xlsx"
+ ],
+ "answer_book": "etalon/ANSWER-BOOK-MACHINE.json",
+ "agents_layout_from_repo": "open-bench/polyaris-h0/agents-layout-h0.json",
+ "strict_questions": false,
+ "expect": {
+  "questions": [
+   "Q-3b-история-accumulator",
+   "Q-3b-история-boundary"
+  ],
+  "objectives": 2,
+  "readiness_ladder": {
+   "pairing": "optimization",
+   "rostering": "optimization"
+  },
+  "cosmos_numbers": {
+   "pairing": "10/0",
+   "rostering": "13/0",
+   "_note": "по чтению ИДАК каналом api; строки ok+soft_info+not_checkable / нарушений"
+  },
+  "stage_verdicts": {
+   "extract": "EQUIVALENT",
+   "answers": "EQUIVALENT",
+   "package": "EQUIVALENT",
+   "pairing": "пейринг построен",
+   "rostering": "допустимо",
+   "source-check": "без нарушений",
+   "_note": "ожидаемые вердикты стадий набора. Извлечение эквивалентно эталону: вопросов анкеты при извлечении у набора нет — вопросы об истории рождаются линией данных (стадия cycle) и закрываются книгой ответов; после ответов и в пакете ВМП эквивалентна. Вердикты стадий COSMOS (пейринг, ростер, сверка с ИДАК) судятся только с машинным отчётом нажатий (--cosmos-press); без него — предупреждение, а не краснота."
+  },
+  "consistency": "sat",
+  "record_stitched": {
+   "cosmos_stages": [
+    "pairing",
+    "rostering",
+    "source-check"
+   ],
+   "_note": "запись о прогоне сшита: у хозяина записи стоят этапы COSMOS по каждой нажатой задаче и по сверке с ИДАК; судится только с машинным отчётом нажатий (--cosmos-press)"
+  },
+  "golden_by_owner_only": {
+   "runner_sets_golden": false,
+   "_note": "признак золотого прогона ставит ТОЛЬКО владелец словом после приёмки на Prod: раннер не ставит его никогда, а признак у хозяина записи без подписи (кто, когда, какими словами) — красная строка; судится только с машинным отчётом нажатий (--cosmos-press)"
+  }
+ },
+ "etalon_vmp": "open-bench/polyaris-h0/etalon/VMP-H0.json",
+ "etalon_form": "open-bench/polyaris-h0/etalon/VMP-H0-form.json",
+ "note": "Форма ВМП H0 буква в букву в трёх файлах правил: docx — заголовок, общий раздел, часть 1 а/б; xlsx — часть 2 а/б; jpg — разделы в) обеих частей. Записи — render_row_line формы без служебных полей; книга ответов пуста. Вторая часть набора — книга данных ID-H0-DATA.xlsx (генератор build_data_h0.py)."
+}

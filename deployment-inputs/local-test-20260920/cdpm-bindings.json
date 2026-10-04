@@ -1,0 +1,344 @@
+{
+ "bindings": [
+  {
+   "executors": [
+    {
+     "cr_key": null,
+     "file": null,
+     "kind": "check_template",
+     "lang": null,
+     "note": "шаблон сертификата — исполнитель COSMOS (vmp/run/roster_certify.py)",
+     "state": "нет",
+     "symbol": null,
+     "template": "мера-мягкого-правила"
+    }
+   ],
+   "id": "balanced_workload",
+   "section": "families",
+   "stand_verified": []
+  },
+  {
+   "executors": [
+    {
+     "cr_key": null,
+     "file": null,
+     "kind": "check_template",
+     "lang": null,
+     "note": "шаблон сертификата — исполнитель COSMOS (vmp/run/roster_certify.py)",
+     "state": "нет",
+     "symbol": null,
+     "template": "мера-мягкого-правила"
+    }
+   ],
+   "id": "calendar_windows",
+   "section": "families",
+   "stand_verified": []
+  },
+  {
+   "executors": [
+    {
+     "cr_key": null,
+     "file": "cdpm/data_checks.py",
+     "kind": "check_template",
+     "lang": "python",
+     "note": "спецификацию судит validate_spec",
+     "state": "есть",
+     "symbol": "run_spec_ex",
+     "template": "счёт-состава-группы"
+    }
+   ],
+   "id": "crew_composition",
+   "section": "families",
+   "stand_verified": [
+    {
+     "at": "2026-09-20T06:00:50+00:00",
+     "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+     "executor_kind": "check_template",
+     "note": "получено 0, ожидалось 0 (run_spec_ex)",
+     "result": "passed",
+     "task": "st-crew-count-0"
+    },
+    {
+     "at": "2026-09-20T06:00:50+00:00",
+     "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+     "executor_kind": "check_template",
+     "note": "получено 2, ожидалось 2 (run_spec_ex)",
+     "result": "passed",
+     "task": "st-crew-count-2"
+    }
+   ]
+  },
+  {
+   "executors": [
+    {
+     "cr_key": null,
+     "file": "cdpm/data_checks.py",
+     "kind": "check_template",
+     "lang": "python",
+     "note": "спецификацию судит validate_spec",
+     "state": "есть",
+     "symbol": "run_spec_ex",
+     "template": "выходных-в-месяце"
+    }
+   ],
+   "id": "days_off_floor",
+   "section": "families",
+   "stand_verified": [
+    {
+     "at": "2026-09-20T06:00:50+00:00",
+     "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+     "executor_kind": "check_template",
+     "note": "получено 0, ожидалось 0 (run_spec_ex)",
+     "result": "passed",
+     "task": "st-daysoff-month-0"
+    },
+    {
+     "at": "2026-09-20T06:00:50+00:00",
+     "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+     "executor_kind": "check_template",
+     "note": "получено 1, ожидалось 1 (run_spec_ex)",
+     "result": "passed",
+     "task": "st-daysoff-month-1"
+    }
+   ]
+  },
+  {
+   "executors": [
+    {
+     "cr_key": null,
+     "file": null,
+     "kind": "check_template",
+     "lang": null,
+     "note": "шаблон сертификата — исполнитель COSMOS (vmp/run/roster_certify.py)",
+     "state": "нет",
+     "symbol": null,
+     "template": "мера-мягкого-правила"
+    }
+   ],
+   "id": "duty_extension_penalty",
+   "section": "families",
+   "stand_verified": []
+  },
+  {
+   "executors": [
+    {
+     "cr_key": null,
+     "file": "cdpm/data_checks.py",
+     "kind": "check_template",
+     "lang": "python",
+     "note": "спецификацию судит validate_spec",
+     "state": "есть",
+     "symbol": "run_spec_ex",
+     "template": "максимальная-длительность-часов"
+    }
+   ],
+   "id": "duty_limits",
+   "section": "families",
+   "stand_verified": [
+    {
+     "at": "2026-09-20T06:00:50+00:00",
+     "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+     "executor_kind": "check_template",
+     "note": "получено 0, ожидалось 0 (run_spec_ex)",
+     "result": "passed",
+     "task": "st-duty-hours-0"
+    },
+    {
+     "at": "2026-09-20T06:00:50+00:00",
+     "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+     "executor_kind": "check_template",
+     "note": "получено 2, ожидалось 2 (run_spec_ex)",
+     "result": "passed",
+     "task": "st-duty-hours-2"
+    }
+   ]
+  },
+  {
+   "executors": [
+    {
+     "cr_key": null,
+     "file": "cdpm/data_checks.py",
+     "kind": "check_template",
+     "lang": "python",
+     "note": "спецификацию судит validate_spec",
+     "state": "есть",
+     "symbol": "run_spec_ex",
+     "template": "действительность-на-дату"
+    }
+   ],
+   "id": "fleet_exclusions",
+   "section": "families",
+   "stand_verified": [
+    {
+     "at": "2026-09-20T06:00:50+00:00",
+     "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+     "executor_kind": "check_template",
+     "note": "получено 0, ожидалось 0 (run_spec_ex); подтверждает исполнителя шаблона по одному ключу; пара табельный × тип шаблоном не выражается",
+     "result": "passed",
+     "task": "st-fleet-valid-0"
+    },
+    {
+     "at": "2026-09-20T06:00:50+00:00",
+     "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+     "executor_kind": "check_template",
+     "note": "получено 2, ожидалось 2 (run_spec_ex); подтверждает исполнителя шаблона по одному ключу; пара табельный × тип шаблоном не выражается",
+     "result": "passed",
+     "task": "st-fleet-valid-2"
+    }
+   ]
+  },
+  {
+   "executors": [
+    {
+     "cr_key": null,
+     "file": null,
+     "kind": "check_template",
+     "lang": null,
+     "note": "шаблон сертификата — исполнитель COSMOS (vmp/run/roster_certify.py)",
+     "state": "нет",
+     "symbol": null,
+     "template": "мера-мягкого-правила"
+    }
+   ],
+   "id": "layover_penalty",
+   "section": "families",
+   "stand_verified": []
+  },
+  {
+   "executors": [
+    {
+     "cr_key": null,
+     "file": "cdpm/data_checks.py",
+     "kind": "check_template",
+     "lang": "python",
+     "note": "спецификацию судит validate_spec",
+     "state": "есть",
+     "symbol": "run_spec_ex",
+     "template": "серия-ночных-смен"
+    }
+   ],
+   "id": "night_series",
+   "section": "families",
+   "stand_verified": [
+    {
+     "at": "2026-09-20T06:00:50+00:00",
+     "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+     "executor_kind": "check_template",
+     "note": "получено 0, ожидалось 0 (run_spec_ex)",
+     "result": "passed",
+     "task": "st-night-run-0"
+    },
+    {
+     "at": "2026-09-20T06:00:50+00:00",
+     "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+     "executor_kind": "check_template",
+     "note": "получено 1, ожидалось 1 (run_spec_ex)",
+     "result": "passed",
+     "task": "st-night-run-1"
+    }
+   ]
+  },
+  {
+   "executors": [
+    {
+     "cr_key": null,
+     "file": "cdpm/data_checks.py",
+     "kind": "check_template",
+     "lang": "python",
+     "note": "спецификацию судит validate_spec",
+     "state": "есть",
+     "symbol": "run_spec_ex",
+     "template": "минимальный-разрыв-часов"
+    }
+   ],
+   "id": "rest_floors",
+   "section": "families",
+   "stand_verified": [
+    {
+     "at": "2026-09-20T06:00:50+00:00",
+     "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+     "executor_kind": "check_template",
+     "note": "получено 1, ожидалось 1 (run_spec_ex)",
+     "result": "passed",
+     "task": "st-rest-away-1"
+    },
+    {
+     "at": "2026-09-20T06:00:50+00:00",
+     "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+     "executor_kind": "check_template",
+     "note": "получено 0, ожидалось 0 (run_spec_ex)",
+     "result": "passed",
+     "task": "st-rest-gap-0"
+    },
+    {
+     "at": "2026-09-20T06:00:50+00:00",
+     "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+     "executor_kind": "check_template",
+     "note": "получено 1, ожидалось 1 (run_spec_ex)",
+     "result": "passed",
+     "task": "st-rest-home-1"
+    }
+   ]
+  },
+  {
+   "executors": [
+    {
+     "cr_key": null,
+     "file": "cdpm/data_checks.py",
+     "kind": "check_template",
+     "lang": "python",
+     "note": "спецификацию судит validate_spec",
+     "state": "есть",
+     "symbol": "run_spec_ex",
+     "template": "отдых-в-скользящем-окне"
+    }
+   ],
+   "id": "rolling_rest",
+   "section": "families",
+   "stand_verified": [
+    {
+     "at": "2026-09-20T06:00:50+00:00",
+     "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+     "executor_kind": "check_template",
+     "note": "получено 0, ожидалось 0 (run_spec_ex)",
+     "result": "passed",
+     "task": "st-rolling-rest-0"
+    },
+    {
+     "at": "2026-09-20T06:00:50+00:00",
+     "commit": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+     "executor_kind": "check_template",
+     "note": "получено 1, ожидалось 1 (run_spec_ex)",
+     "result": "passed",
+     "task": "st-rolling-rest-1"
+    }
+   ]
+  },
+  {
+   "executors": [
+    {
+     "cr_key": null,
+     "file": null,
+     "kind": "check_template",
+     "lang": null,
+     "note": "шаблон сертификата — исполнитель COSMOS (vmp/run/roster_certify.py)",
+     "state": "нет",
+     "symbol": null,
+     "template": "параметр-мира-применён"
+    }
+   ],
+   "id": "time_scale",
+   "section": "families",
+   "stand_verified": []
+  }
+ ],
+ "catalog_fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+ "catalog_version": "0.7.0",
+ "executor_kinds": [
+  "check_template"
+ ],
+ "generated_at": "2026-09-20T06:00:50+00:00",
+ "generated_from": "6edecaa86ededcf083f91ac9c43265e27853c59b",
+ "product": "CDPM",
+ "product_version": "1.18"
+}

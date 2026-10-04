@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Named solver "gerad2p" — GERAD phase-2 STAGE-2 profile: rostering over
+     synthetic pairing-flights (pairing-aware constraint surface).
+     Registered so the Timefold Quarkus processor accepts the extra
+     ConstraintProvider on the classpath; per-request configs are still
+     built programmatically in solveSingleSync (rules=GERAD2P). -->
+<solver xmlns="https://timefold.ai/xsd/solver">
+  <solutionClass>org.acme.flighcrewscheduling.domain.FlightCrewSchedule</solutionClass>
+  <entityClass>org.acme.flighcrewscheduling.domain.FlightAssignment</entityClass>
+  <scoreDirectorFactory>
+    <constraintProviderClass>org.acme.flighcrewscheduling.solver.GeradPairingRosterConstraintProvider</constraintProviderClass>
+  </scoreDirectorFactory>
+</solver>

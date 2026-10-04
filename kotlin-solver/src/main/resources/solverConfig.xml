@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Pins the Quarkus-auto-wired solver to the crew domain. Needed because a
+     second @PlanningSolution (spp.SppSolution, the Timefold-on-SPP thesis
+     experiment) now exists on the classpath and the Timefold Quarkus
+     extension refuses to auto-pick between two. The SPP endpoint builds its
+     own SolverConfig programmatically and is unaffected by this file.
+     application.properties overrides (termination, random-seed,
+     environment-mode) still apply on top. -->
+<solver xmlns="https://timefold.ai/xsd/solver">
+  <solutionClass>org.acme.flighcrewscheduling.domain.FlightCrewSchedule</solutionClass>
+  <entityClass>org.acme.flighcrewscheduling.domain.FlightAssignment</entityClass>
+  <scoreDirectorFactory>
+    <constraintProviderClass>org.acme.flighcrewscheduling.solver.FlightCrewSchedulingConstraintProvider</constraintProviderClass>
+  </scoreDirectorFactory>
+</solver>

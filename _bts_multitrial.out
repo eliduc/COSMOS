@@ -1,0 +1,326 @@
+[16:57:27] === BTS MULTI-TRIAL VARIANCE STUDY ===
+  schedule:  DL_ATL_2024-08-15.json
+  budget:    1200s per run
+  trials:    5 per method (3 methods → 15 runs)
+  est. wall-clock: ~308 min
+
+[16:57:27] Source: 1358 flights, 9097 crew, 6824 crew-slots
+
+[16:57:27] STAGE 1A: enumerate pairings ...
+  44660 pairings in 45.4s
+[16:58:13] STAGE 1B: CP-SAT set-partitioning (num_workers=1, pinned) ...
+  551 pairings selected (OPTIMAL) in 9.2s
+  synthetic (PINNED): 551 pairings, 3031 crew-slots
+
+========== [16:58:22] BLOCK 1/5 order=['trips_no_exchange', 'all_at_once', 'trips_with_exchange'] ==========
+
+----- [16:58:22] trips_no_exchange trial 1 -----
+[16:58:26] firing classic LA budget=1200s ...
+  [+  227s] best=0hard/-991841soft
+  [+  300s] best=0hard/-991824soft
+  [+  397s] best=0hard/-991822soft
+  [+  613s] best=0hard/-991820soft
+  [+  742s] best=0hard/-991818soft
+  [+  820s] best=0hard/-991817soft
+  [+ 1202s] best=0hard/-991817soft
+  [17:18:28] trips_no_exchange t1: 0hard/-991817soft (-327.22/slot) first_feas=227.8s elapsed=1202s
+  [17:18:28] cooldown 30s ...
+
+----- [17:18:58] all_at_once trial 1 -----
+[17:19:02] firing classic LA budget=1200s ...
+  [+  603s] best=0hard/-1640958soft
+  [+  663s] best=0hard/-1640416soft
+  [+  723s] best=0hard/-1639759soft
+  [+  783s] best=0hard/-1639285soft
+  [+  848s] best=0hard/-1638692soft
+  [+  917s] best=0hard/-1637861soft
+  [+  996s] best=0hard/-1637004soft
+  [+ 1058s] best=0hard/-1636151soft
+  [+ 1118s] best=0hard/-1635534soft
+  [+ 1179s] best=0hard/-1635065soft
+  [17:39:04] all_at_once t1: 0hard/-1634893soft (-239.58/slot) first_feas=603.1s elapsed=1202s
+  [17:39:04] cooldown 30s ...
+
+----- [17:39:34] trips_with_exchange trial 1 -----
+[17:39:34] iso fleet boot: ports=[9091, 9092, 9093, 9094], acceptors=['LA', 'DLA', 'SA', 'SCHC'], intervals=8 × 150s ...
+[17:39:35]   spawning JVM on port 9091 ...
+[17:39:35]   spawning JVM on port 9092 ...
+[17:39:35]   spawning JVM on port 9093 ...
+[17:39:35]   spawning JVM on port 9094 ...
+[17:39:38]   JVM on port 9091 ready
+[17:39:38]   JVM on port 9092 ready
+[17:39:38]   JVM on port 9093 ready
+[17:39:39]   JVM on port 9094 ready
+  [17:39:39] interval 1/8 (best=None) ...
+  [17:42:11] interval 1/8 done; interval_winner=LA score=0hard/-991817soft; globalBest=0hard/-991817soft
+  [17:42:11] interval 2/8 (best=0hard/-991817soft) ...
+  [17:44:43] interval 2/8 done; interval_winner=LA score=0hard/-991817soft; globalBest=0hard/-991817soft
+  [17:44:43] interval 3/8 (best=0hard/-991817soft) ...
+  [17:47:14] interval 3/8 done; interval_winner=LA score=0hard/-991817soft; globalBest=0hard/-991817soft
+  [17:47:14] interval 4/8 (best=0hard/-991817soft) ...
+  [17:49:44] interval 4/8 done; interval_winner=LA score=0hard/-991817soft; globalBest=0hard/-991817soft
+  [17:49:44] interval 5/8 (best=0hard/-991817soft) ...
+  [17:52:15] interval 5/8 done; interval_winner=LA score=0hard/-991817soft; globalBest=0hard/-991817soft
+  [17:52:15] interval 6/8 (best=0hard/-991817soft) ...
+  [17:54:46] interval 6/8 done; interval_winner=LA score=0hard/-991817soft; globalBest=0hard/-991817soft
+  [17:54:46] interval 7/8 (best=0hard/-991817soft) ...
+  [17:57:17] interval 7/8 done; interval_winner=LA score=0hard/-991817soft; globalBest=0hard/-991817soft
+  [17:57:17] interval 8/8 (best=0hard/-991817soft) ...
+  [17:59:49] interval 8/8 done; interval_winner=LA score=0hard/-991817soft; globalBest=0hard/-991817soft
+  [17:59:49] trips_with_exchange t1: 0hard/-991817soft (-327.22/slot) first_feas=157.5s elapsed=1215s
+  [17:59:49] cooldown 30s ...
+
+[18:00:19] block cooldown 60s ...
+
+========== [18:01:19] BLOCK 2/5 order=['trips_with_exchange', 'trips_no_exchange', 'all_at_once'] ==========
+
+----- [18:01:19] trips_with_exchange trial 2 -----
+[18:01:19] iso fleet boot: ports=[9091, 9092, 9093, 9094], acceptors=['LA', 'DLA', 'SA', 'SCHC'], intervals=8 × 150s ...
+[18:01:21]   spawning JVM on port 9091 ...
+[18:01:21]   spawning JVM on port 9092 ...
+[18:01:21]   spawning JVM on port 9093 ...
+[18:01:21]   spawning JVM on port 9094 ...
+[18:01:23]   JVM on port 9091 ready
+[18:01:24]   JVM on port 9092 ready
+[18:01:24]   JVM on port 9093 ready
+[18:01:25]   JVM on port 9094 ready
+  [18:01:25] interval 1/8 (best=None) ...
+  [18:03:58] interval 1/8 done; interval_winner=LA score=0hard/-991817soft; globalBest=0hard/-991817soft
+  [18:03:58] interval 2/8 (best=0hard/-991817soft) ...
+  [18:06:29] interval 2/8 done; interval_winner=LA score=0hard/-991817soft; globalBest=0hard/-991817soft
+  [18:06:29] interval 3/8 (best=0hard/-991817soft) ...
+  [18:09:00] interval 3/8 done; interval_winner=LA score=0hard/-991817soft; globalBest=0hard/-991817soft
+  [18:09:00] interval 4/8 (best=0hard/-991817soft) ...
+  [18:11:31] interval 4/8 done; interval_winner=LA score=0hard/-991817soft; globalBest=0hard/-991817soft
+  [18:11:31] interval 5/8 (best=0hard/-991817soft) ...
+  [18:14:02] interval 5/8 done; interval_winner=LA score=0hard/-991817soft; globalBest=0hard/-991817soft
+  [18:14:02] interval 6/8 (best=0hard/-991817soft) ...
+  [18:16:33] interval 6/8 done; interval_winner=LA score=0hard/-991817soft; globalBest=0hard/-991817soft
+  [18:16:33] interval 7/8 (best=0hard/-991817soft) ...
+  [18:19:05] interval 7/8 done; interval_winner=LA score=0hard/-991817soft; globalBest=0hard/-991817soft
+  [18:19:05] interval 8/8 (best=0hard/-991817soft) ...
+  [18:21:36] interval 8/8 done; interval_winner=LA score=0hard/-991817soft; globalBest=0hard/-991817soft
+  [18:21:36] trips_with_exchange t2: 0hard/-991817soft (-327.22/slot) first_feas=158.3s elapsed=1217s
+  [18:21:36] cooldown 30s ...
+
+----- [18:22:06] trips_no_exchange trial 2 -----
+[18:22:10] firing classic LA budget=1200s ...
+  [+  406s] best=0hard/-991813soft
+  [+ 1202s] best=0hard/-991813soft
+  [18:42:13] trips_no_exchange t2: 0hard/-991813soft (-327.22/slot) first_feas=2.0s elapsed=1203s
+  [18:42:13] cooldown 30s ...
+
+----- [18:42:43] all_at_once trial 2 -----
+[18:42:46] firing classic LA budget=1200s ...
+  [+   62s] best=0hard/-1634493soft
+  [+  123s] best=0hard/-1634144soft
+  [+  183s] best=0hard/-1633662soft
+  [+  259s] best=0hard/-1633134soft
+  [+  323s] best=0hard/-1632265soft
+  [+  384s] best=0hard/-1632227soft
+  [+  444s] best=0hard/-1632011soft
+  [+  504s] best=0hard/-1631639soft
+  [+  604s] best=0hard/-1630586soft
+  [+  690s] best=0hard/-1630565soft
+  [+  753s] best=0hard/-1630222soft
+  [+  874s] best=0hard/-1629463soft
+  [+  938s] best=0hard/-1629028soft
+  [+ 1000s] best=0hard/-1628745soft
+  [+ 1061s] best=0hard/-1628380soft
+  [+ 1125s] best=0hard/-1628195soft
+  [+ 1192s] best=0hard/-1627860soft
+  [19:02:49] all_at_once t2: 0hard/-1627844soft (-238.55/slot) first_feas=2.0s elapsed=1203s
+  [19:02:49] cooldown 30s ...
+
+[19:03:19] block cooldown 60s ...
+
+========== [19:04:19] BLOCK 3/5 order=['trips_no_exchange', 'trips_with_exchange', 'all_at_once'] ==========
+
+----- [19:04:19] trips_no_exchange trial 3 -----
+[19:04:23] firing classic LA budget=1200s ...
+  [+ 1087s] best=0hard/-991812soft
+  [+ 1202s] best=0hard/-991812soft
+  [19:24:26] trips_no_exchange t3: 0hard/-991812soft (-327.22/slot) first_feas=2.0s elapsed=1203s
+  [19:24:26] cooldown 30s ...
+
+----- [19:24:56] trips_with_exchange trial 3 -----
+[19:24:56] iso fleet boot: ports=[9091, 9092, 9093, 9094], acceptors=['LA', 'DLA', 'SA', 'SCHC'], intervals=8 × 150s ...
+[19:24:57]   spawning JVM on port 9091 ...
+[19:24:57]   spawning JVM on port 9092 ...
+[19:24:57]   spawning JVM on port 9093 ...
+[19:24:57]   spawning JVM on port 9094 ...
+[19:25:00]   JVM on port 9091 ready
+[19:25:00]   JVM on port 9092 ready
+[19:25:00]   JVM on port 9093 ready
+[19:25:01]   JVM on port 9094 ready
+  [19:25:01] interval 1/8 (best=None) ...
+  [19:27:34] interval 1/8 done; interval_winner=LA score=0hard/-991812soft; globalBest=0hard/-991812soft
+  [19:27:34] interval 2/8 (best=0hard/-991812soft) ...
+  [19:30:05] interval 2/8 done; interval_winner=LA score=0hard/-991812soft; globalBest=0hard/-991812soft
+  [19:30:05] interval 3/8 (best=0hard/-991812soft) ...
+  [19:32:36] interval 3/8 done; interval_winner=LA score=0hard/-991812soft; globalBest=0hard/-991812soft
+  [19:32:36] interval 4/8 (best=0hard/-991812soft) ...
+  [19:35:07] interval 4/8 done; interval_winner=LA score=0hard/-991812soft; globalBest=0hard/-991812soft
+  [19:35:07] interval 5/8 (best=0hard/-991812soft) ...
+  [19:37:38] interval 5/8 done; interval_winner=LA score=0hard/-991812soft; globalBest=0hard/-991812soft
+  [19:37:38] interval 6/8 (best=0hard/-991812soft) ...
+  [19:40:10] interval 6/8 done; interval_winner=LA score=0hard/-991812soft; globalBest=0hard/-991812soft
+  [19:40:10] interval 7/8 (best=0hard/-991812soft) ...
+  [19:42:41] interval 7/8 done; interval_winner=LA score=0hard/-991812soft; globalBest=0hard/-991812soft
+  [19:42:41] interval 8/8 (best=0hard/-991812soft) ...
+  [19:45:12] interval 8/8 done; interval_winner=LA score=0hard/-991812soft; globalBest=0hard/-991812soft
+  [19:45:12] trips_with_exchange t3: 0hard/-991812soft (-327.22/slot) first_feas=158.0s elapsed=1217s
+  [19:45:12] cooldown 30s ...
+
+----- [19:45:42] all_at_once trial 3 -----
+[19:45:46] firing classic LA budget=1200s ...
+  [+   61s] best=0hard/-1627568soft
+  [+  126s] best=0hard/-1627323soft
+  [+  189s] best=0hard/-1627152soft
+  [+  249s] best=0hard/-1626901soft
+  [+  314s] best=0hard/-1626656soft
+  [+  495s] best=0hard/-1626178soft
+  [+  557s] best=0hard/-1625995soft
+  [+  618s] best=0hard/-1625758soft
+  [+  762s] best=0hard/-1625248soft
+  [+  822s] best=0hard/-1625121soft
+  [+  884s] best=0hard/-1624978soft
+  [+  950s] best=0hard/-1624841soft
+  [+ 1011s] best=0hard/-1624755soft
+  [+ 1088s] best=0hard/-1624694soft
+  [+ 1149s] best=0hard/-1624573soft
+  [20:05:50] all_at_once t3: 0hard/-1624419soft (-238.04/slot) first_feas=2.0s elapsed=1203s
+  [20:05:50] cooldown 30s ...
+
+[20:06:20] block cooldown 60s ...
+
+========== [20:07:20] BLOCK 4/5 order=['trips_no_exchange', 'trips_with_exchange', 'all_at_once'] ==========
+
+----- [20:07:20] trips_no_exchange trial 4 -----
+[20:07:23] firing classic LA budget=1200s ...
+  [+ 1202s] best=0hard/-991812soft
+  [20:27:26] trips_no_exchange t4: 0hard/-991812soft (-327.22/slot) first_feas=2.0s elapsed=1202s
+  [20:27:26] cooldown 30s ...
+
+----- [20:27:56] trips_with_exchange trial 4 -----
+[20:27:56] iso fleet boot: ports=[9091, 9092, 9093, 9094], acceptors=['LA', 'DLA', 'SA', 'SCHC'], intervals=8 × 150s ...
+[20:27:57]   spawning JVM on port 9091 ...
+[20:27:57]   spawning JVM on port 9092 ...
+[20:27:57]   spawning JVM on port 9093 ...
+[20:27:57]   spawning JVM on port 9094 ...
+[20:28:00]   JVM on port 9091 ready
+[20:28:00]   JVM on port 9092 ready
+[20:28:00]   JVM on port 9093 ready
+[20:28:01]   JVM on port 9094 ready
+  [20:28:01] interval 1/8 (best=None) ...
+  [20:30:34] interval 1/8 done; interval_winner=LA score=0hard/-991812soft; globalBest=0hard/-991812soft
+  [20:30:34] interval 2/8 (best=0hard/-991812soft) ...
+  [20:33:05] interval 2/8 done; interval_winner=LA score=0hard/-991812soft; globalBest=0hard/-991812soft
+  [20:33:05] interval 3/8 (best=0hard/-991812soft) ...
+  [20:35:37] interval 3/8 done; interval_winner=LA score=0hard/-991812soft; globalBest=0hard/-991812soft
+  [20:35:37] interval 4/8 (best=0hard/-991812soft) ...
+  [20:38:07] interval 4/8 done; interval_winner=LA score=0hard/-991812soft; globalBest=0hard/-991812soft
+  [20:38:07] interval 5/8 (best=0hard/-991812soft) ...
+  [20:40:39] interval 5/8 done; interval_winner=LA score=0hard/-991812soft; globalBest=0hard/-991812soft
+  [20:40:39] interval 6/8 (best=0hard/-991812soft) ...
+  [20:43:10] interval 6/8 done; interval_winner=LA score=0hard/-991812soft; globalBest=0hard/-991812soft
+  [20:43:10] interval 7/8 (best=0hard/-991812soft) ...
+  [20:45:41] interval 7/8 done; interval_winner=LA score=0hard/-991812soft; globalBest=0hard/-991812soft
+  [20:45:41] interval 8/8 (best=0hard/-991812soft) ...
+  [20:48:12] interval 8/8 done; interval_winner=LA score=0hard/-991812soft; globalBest=0hard/-991812soft
+  [20:48:13] trips_with_exchange t4: 0hard/-991812soft (-327.22/slot) first_feas=158.1s elapsed=1217s
+  [20:48:13] cooldown 30s ...
+
+----- [20:48:43] all_at_once trial 4 -----
+[20:48:46] firing classic LA budget=1200s ...
+  [+   65s] best=0hard/-1624315soft
+  [+  129s] best=0hard/-1624230soft
+  [+  192s] best=0hard/-1624122soft
+  [+  254s] best=0hard/-1623918soft
+  [+  321s] best=0hard/-1623841soft
+  [+  386s] best=0hard/-1623746soft
+  [+  448s] best=0hard/-1623583soft
+  [+  509s] best=0hard/-1623421soft
+  [+  572s] best=0hard/-1623329soft
+  [+  632s] best=0hard/-1623241soft
+  [+  695s] best=0hard/-1623136soft
+  [+  757s] best=0hard/-1623032soft
+  [+  821s] best=0hard/-1622919soft
+  [+  895s] best=0hard/-1622830soft
+  [+  966s] best=0hard/-1622757soft
+  [+ 1030s] best=0hard/-1622707soft
+  [+ 1095s] best=0hard/-1622602soft
+  [+ 1158s] best=0hard/-1622528soft
+  [21:08:49] all_at_once t4: 0hard/-1622486soft (-237.76/slot) first_feas=2.1s elapsed=1203s
+  [21:08:49] cooldown 30s ...
+
+[21:09:19] block cooldown 60s ...
+
+========== [21:10:19] BLOCK 5/5 order=['trips_no_exchange', 'all_at_once', 'trips_with_exchange'] ==========
+
+----- [21:10:19] trips_no_exchange trial 5 -----
+[21:10:23] firing classic LA budget=1200s ...
+  [+ 1202s] best=0hard/-991812soft
+  [21:30:26] trips_no_exchange t5: 0hard/-991812soft (-327.22/slot) first_feas=1.9s elapsed=1203s
+  [21:30:26] cooldown 30s ...
+
+----- [21:30:56] all_at_once trial 5 -----
+[21:31:00] firing classic LA budget=1200s ...
+  [+   63s] best=0hard/-1622415soft
+  [+  125s] best=0hard/-1622304soft
+  [+  198s] best=0hard/-1622220soft
+  [+  259s] best=0hard/-1622140soft
+  [+  320s] best=0hard/-1622071soft
+  [+  383s] best=0hard/-1621921soft
+  [+  460s] best=0hard/-1621850soft
+  [+  520s] best=0hard/-1621781soft
+  [+  583s] best=0hard/-1621693soft
+  [+  654s] best=0hard/-1621644soft
+  [+  715s] best=0hard/-1621509soft
+  [+  783s] best=0hard/-1621382soft
+  [+  848s] best=0hard/-1621268soft
+  [+  915s] best=0hard/-1621165soft
+  [+  999s] best=0hard/-1620984soft
+  [+ 1083s] best=0hard/-1620895soft
+  [+ 1144s] best=0hard/-1620881soft
+  [+ 1216s] best=0hard/-1620816soft
+  [21:51:03] all_at_once t5: 0hard/-1620816soft (-237.52/slot) first_feas=2.1s elapsed=1216s
+  [21:51:03] cooldown 30s ...
+
+----- [21:51:33] trips_with_exchange trial 5 -----
+[21:51:33] iso fleet boot: ports=[9091, 9092, 9093, 9094], acceptors=['LA', 'DLA', 'SA', 'SCHC'], intervals=8 × 150s ...
+[21:51:35]   spawning JVM on port 9091 ...
+[21:51:35]   spawning JVM on port 9092 ...
+[21:51:35]   spawning JVM on port 9093 ...
+[21:51:35]   spawning JVM on port 9094 ...
+[21:51:37]   JVM on port 9091 ready
+[21:51:38]   JVM on port 9092 ready
+[21:51:38]   JVM on port 9093 ready
+[21:51:39]   JVM on port 9094 ready
+  [21:51:39] interval 1/8 (best=None) ...
+  [21:54:11] interval 1/8 done; interval_winner=LA score=0hard/-991812soft; globalBest=0hard/-991812soft
+  [21:54:11] interval 2/8 (best=0hard/-991812soft) ...
+  [21:56:43] interval 2/8 done; interval_winner=LA score=0hard/-991812soft; globalBest=0hard/-991812soft
+  [21:56:43] interval 3/8 (best=0hard/-991812soft) ...
+  [21:59:14] interval 3/8 done; interval_winner=LA score=0hard/-991812soft; globalBest=0hard/-991812soft
+  [21:59:14] interval 4/8 (best=0hard/-991812soft) ...
+  [22:01:45] interval 4/8 done; interval_winner=LA score=0hard/-991812soft; globalBest=0hard/-991812soft
+  [22:01:45] interval 5/8 (best=0hard/-991812soft) ...
+  [22:04:17] interval 5/8 done; interval_winner=LA score=0hard/-991812soft; globalBest=0hard/-991812soft
+  [22:04:17] interval 6/8 (best=0hard/-991812soft) ...
+  [22:06:48] interval 6/8 done; interval_winner=LA score=0hard/-991812soft; globalBest=0hard/-991812soft
+  [22:06:48] interval 7/8 (best=0hard/-991812soft) ...
+  [22:09:19] interval 7/8 done; interval_winner=LA score=0hard/-991812soft; globalBest=0hard/-991812soft
+  [22:09:19] interval 8/8 (best=0hard/-991812soft) ...
+  [22:11:50] interval 8/8 done; interval_winner=LA score=0hard/-991812soft; globalBest=0hard/-991812soft
+  [22:11:50] trips_with_exchange t5: 0hard/-991812soft (-327.22/slot) first_feas=158.0s elapsed=1217s
+
+
+========== [22:11:50] AGGREGATE (n=5) ==========
+method                 n_feas  median/slot  best/slot  worst/slot    range    stdev
+all_at_once                 5       -238.0     -237.5      -239.6      2.1      0.8
+trips_no_exchange           5       -327.2     -327.2      -327.2      0.0      0.0
+trips_with_exchange         5       -327.2     -327.2      -327.2      0.0      0.0
+
+[22:11:50] CSV: C:\work\Sandbox\Testing\TimeFold\crew-demo\data\bts_multitrial_results.csv
+[22:11:50] DONE.

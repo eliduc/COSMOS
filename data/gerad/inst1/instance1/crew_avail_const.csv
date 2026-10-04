@@ -1,0 +1,34 @@
+"Number of crews available at each base for each day of the period.  9.19881% slack added."
+
+base  , BASE1 , BASE2 , BASE3
+Day1  , 4     , 6     , 1    
+Day2  , 3     , 8     , 2    
+Day3  , 4     , 8     , 2    
+Day4  , 5     , 8     , 1    
+Day5  , 4     , 6     , 1    
+Day6  , 4     , 7     , 1    
+Day7  , 4     , 8     , 2    
+Day8  , 3     , 8     , 2    
+Day9  , 3     , 10    , 2    
+Day10 , 2     , 10    , 2    
+Day11 , 1     , 11    , 1    
+Day12 , 1     , 8     , 1    
+Day13 , 2     , 8     , 2    
+Day14 , 1     , 9     , 2    
+Day15 , 1     , 9     , 2    
+Day16 , 1     , 8     , 2    
+Day17 , 1     , 8     , 2    
+Day18 , 2     , 7     , 1    
+Day19 , 1     , 7     , 2    
+Day20 , 2     , 7     , 1    
+Day21 , 1     , 8     , 1    
+Day22 , 0     , 8     , 1    
+Day23 , 0     , 8     , 2    
+Day24 , 0     , 9     , 3    
+Day25 , 1     , 8     , 2    
+Day26 , 3     , 8     , 2    
+Day27 , 2     , 10    , 1    
+Day28 , 3     , 10    , 0    
+Day29 , 2     , 9     , 0    
+Day30 , 2     , 10    , 1    
+Day31 , 1     , 7     , 3    

@@ -1,0 +1,35 @@
+# окружение
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# каталог данных приложения (результаты расчётов живут вне репозитория)
+*-data/
+# справочник координат аэропортов мира — код продукта, не каталог данных
+# (урок 2026-08-30: *-data/ молча проглотил его, и CI среза покраснел
+# на FileNotFoundError четырёх гео-тестов)
+!webapp/geo-data/
+
+# сборка решателя и вендорские инструменты
+kotlin-solver/target/
+.tools/
+
+# настройки среды разработчика и агентов
+.claude/
+.codex/
+.codex-cache/
+.idea/
+.vscode/
+
+# локальные секреты и учётные записи
+.env
+*.env
+webapp/users.db
+webapp/config/airline_default.json
+
+# журналы прогонов и пусковые файлы контуров
+*.log
+webapp-server.log
+run-webapp*.cmd

@@ -1,0 +1,2110 @@
+{
+ "bindings": [
+  {
+   "executors": [
+    {
+     "cr_key": null,
+     "file": "vmp/run/roster_certify.py",
+     "kind": "check_template",
+     "lang": "python",
+     "note": "находок нет по замыслу: мера правила — measure.value",
+     "state": "есть",
+     "symbol": "measure_soft_rules",
+     "template": "мера-мягкого-правила"
+    },
+    {
+     "constraint": "Credit hours spread over threshold",
+     "cr_key": null,
+     "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+     "kind": "kotlin_constraint",
+     "label": null,
+     "lang": "kotlin",
+     "note": null,
+     "state": "есть",
+     "symbol": "FlightCrewSchedulingConstraintProvider.creditHoursSpreadOverThreshold"
+    },
+    {
+     "accepts": [],
+     "cr_key": null,
+     "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+     "keyed": false,
+     "kind": "kotlin_knob",
+     "lang": "kotlin",
+     "note": "запись в часах, ручка в минутах (умножение на 60 — TaskPackage.workloadSpreadOf); relation записи держится null до слова владельца",
+     "param": "workload_spread_threshold",
+     "relation": "max",
+     "state": "есть",
+     "symbol": "RunThresholds.applyWorkloadSpread",
+     "threshold": "workload_spread_threshold_min",
+     "unit": "duration_minutes"
+    }
+   ],
+   "id": "balanced_workload",
+   "section": "families",
+   "stand_verified": [
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "check_template",
+     "note": "получено findings=0, measure=2, params.workload_spread_threshold=5, template='мера-мягкого-правила', ожидалось findings=0, measure=2, params.workload_spread_threshold=5, template='мера-мягкого-правила' (мера-мягкого-правила)",
+     "result": "passed",
+     "task": "st-spread-1"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "kotlin_constraint",
+     "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+     "result": "skipped",
+     "task": "st-spread-1"
+    }
+   ]
+  },
+  {
+   "executors": [
+    {
+     "cr_key": null,
+     "file": "_pairing_builder.py",
+     "kind": "builder_method",
+     "lang": "python",
+     "note": "ключи w_weekend_night и weekend_days превращаются в правило семьи (rules_from_weights)",
+     "params": [],
+     "state": "есть",
+     "symbol": "Builder.soft_rules"
+    },
+    {
+     "cr_key": null,
+     "file": "vmp/chain_price.py",
+     "kind": "builder_method",
+     "lang": "python",
+     "note": null,
+     "params": [],
+     "state": "есть",
+     "symbol": "measure"
+    },
+    {
+     "cr_key": null,
+     "file": "vmp/run/roster_certify.py",
+     "kind": "check_template",
+     "lang": "python",
+     "note": null,
+     "state": "есть",
+     "symbol": "measure_soft_rules",
+     "template": "мера-мягкого-правила"
+    },
+    {
+     "constraint": "Calendar window layover penalty",
+     "cr_key": null,
+     "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+     "kind": "kotlin_constraint",
+     "label": null,
+     "lang": "kotlin",
+     "note": null,
+     "state": "есть",
+     "symbol": "FlightCrewSchedulingConstraintProvider.calendarWindowLayovers"
+    },
+    {
+     "cr_key": null,
+     "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/TaskPackage.kt",
+     "form": "calendar_window_penalties",
+     "kind": "kotlin_form",
+     "lang": "kotlin",
+     "note": null,
+     "params": [],
+     "state": "есть",
+     "symbol": "TaskPackage.calendarWindowsOf"
+    }
+   ],
+   "id": "calendar_windows",
+   "section": "families",
+   "stand_verified": [
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "builder_method",
+     "note": "получено 1, ожидалось 1 (measure)",
+     "result": "passed",
+     "task": "st-window-1"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "check_template",
+     "note": "получено findings=1, params.days=['thursday'], template='мера-мягкого-правила', ожидалось findings=1, measure=None, params.days=['thursday'], template='мера-мягкого-правила' (мера-мягкого-правила)",
+     "result": "passed",
+     "task": "st-window-1"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "kotlin_constraint",
+     "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+     "result": "skipped",
+     "task": "st-window-1"
+    }
+   ]
+  },
+  {
+   "executors": [
+    {
+     "cr_key": null,
+     "file": "_pairing_builder.py",
+     "kind": "builder_method",
+     "lang": "python",
+     "note": "низ окна — порог стыковки sit_min при генерации смен: пауза короче порога смену не продолжает",
+     "params": [
+      "min_turnaround"
+     ],
+     "state": "есть",
+     "symbol": "Builder.build_duties"
+    },
+    {
+     "cr_key": null,
+     "file": "_pairing_builder.py",
+     "kind": "builder_method",
+     "lang": "python",
+     "note": "судит цепочку по правилам вне таблицы отдыха — смешение чартера, суд каждой смены, серии ночных; порога стыковки НЕ читает, прежняя строка описи с параметром min_turnaround была неточна",
+     "params": [],
+     "state": "есть",
+     "symbol": "Builder.chain_ok"
+    },
+    {
+     "cr_key": null,
+     "file": "_pairing_builder.py",
+     "kind": "builder_method",
+     "lang": "python",
+     "note": "верх окна — пауза между периодами не короче пола отдыха (rest_floor_after, параметры семьи rest_floors), иначе цепочка недопустима; именно он отвергает зазор «ни стыковка, ни отдых»",
+     "params": [],
+     "state": "есть",
+     "symbol": "Builder.periods_tiers"
+    },
+    {
+     "cr_key": null,
+     "file": "_pairing_builder.py",
+     "kind": "builder_method",
+     "lang": "python",
+     "note": "верх окна на станции — пол отдыха либо ключ --sit-max от vmp/sit_boundary.derive",
+     "params": [],
+     "state": "есть",
+     "symbol": "Builder.sit_cap_at"
+    },
+    {
+     "cr_key": null,
+     "file": "vmp/run/fit_checks.py",
+     "kind": "check_code",
+     "lang": "python",
+     "note": null,
+     "params": [
+      "min_turnaround"
+     ],
+     "state": "есть",
+     "symbol": "_turnaround"
+    },
+    {
+     "constraint": "Minimum turnaround",
+     "cr_key": null,
+     "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+     "kind": "kotlin_constraint",
+     "label": "Minimum turnaround (per minute)",
+     "lang": "kotlin",
+     "note": "имя ограничения — аргумент perEmployeeAdjacency",
+     "state": "есть",
+     "symbol": "FlightCrewSchedulingConstraintProvider.minimumTurnaround"
+    },
+    {
+     "accepts": [],
+     "cr_key": null,
+     "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+     "keyed": false,
+     "kind": "kotlin_knob",
+     "lang": "kotlin",
+     "note": "порог мёртвой зоны стыковки; имя получило семью connection_windows в каталоге 0.2.0-draft.2 — предупреждения B03 «ручка семьи без параметра в записи» больше нет",
+     "param": "max_sit_duration",
+     "relation": "max",
+     "state": "есть",
+     "symbol": "RunThresholds.KNOBS",
+     "threshold": "day_break_threshold_min",
+     "unit": "duration_minutes"
+    },
+    {
+     "accepts": [],
+     "cr_key": null,
+     "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+     "keyed": false,
+     "kind": "kotlin_knob",
+     "lang": "kotlin",
+     "note": "область по уточнителю; без уточнителя требование ко всей сети — обе ручки разом",
+     "param": "min_turnaround",
+     "relation": "min",
+     "state": "есть",
+     "symbol": "RunThresholds.SIT_KNOBS",
+     "threshold": [
+      "min_sit_home_min",
+      "min_sit_outstation_min"
+     ],
+     "unit": "duration_minutes"
+    }
+   ],
+   "id": "connection_windows",
+   "section": "families",
+   "stand_verified": [
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "builder_method",
+     "note": "получено 1, ожидалось 1 (Builder.periods_tiers)",
+     "result": "passed",
+     "task": "st-sit-1"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "check_code",
+     "note": "получено 1, ожидалось 1 (_turnaround)",
+     "result": "passed",
+     "task": "st-sit-1"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "kotlin_constraint",
+     "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+     "result": "skipped",
+     "task": "st-sit-1"
+    }
+   ]
+  },
+  {
+   "executors": [
+    {
+     "cr_key": null,
+     "file": "_pairing_builder.py",
+     "kind": "builder_method",
+     "lang": "python",
+     "note": null,
+     "params": [],
+     "state": "есть",
+     "symbol": "Builder.crew_size"
+    },
+    {
+     "cr_key": null,
+     "file": null,
+     "kind": "check_template",
+     "lang": null,
+     "note": "исполнитель — линия данных CDPM (cdpm/data_checks.py, run_spec_ex); спецификацию по посадке в сертификате COSMOS строит vmp/run/fit_checks.fit_code_checks, исполняет та же библиотека",
+     "state": "нет",
+     "symbol": null,
+     "template": "счёт-состава-группы"
+    },
+    {
+     "constraint": "Crew size",
+     "cr_key": null,
+     "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+     "kind": "kotlin_constraint",
+     "label": "Crew size (per person)",
+     "lang": "kotlin",
+     "note": "на местах рейса — различные люди; пустое место уменьшает счёт",
+     "state": "есть",
+     "symbol": "FlightCrewSchedulingConstraintProvider.crewSizePerFlight"
+    },
+    {
+     "accepts": [],
+     "cr_key": null,
+     "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+     "keyed": false,
+     "kind": "kotlin_knob",
+     "lang": "kotlin",
+     "note": null,
+     "param": "crew_size",
+     "relation": "eq",
+     "state": "есть",
+     "symbol": "RunThresholds.KNOBS",
+     "threshold": "crew_size",
+     "unit": "count"
+    }
+   ],
+   "id": "crew_composition",
+   "section": "families",
+   "stand_verified": [
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "builder_method",
+     "note": "получено 2, ожидалось 2 (Builder.crew_size)",
+     "result": "passed",
+     "task": "st-crew-1"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "kotlin_constraint",
+     "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+     "result": "skipped",
+     "task": "st-crew-1"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "check_template",
+     "note": "мир формы «tables» стенд COSMOS не строит: задачу судит стенд линии данных CDPM",
+     "result": "skipped",
+     "task": "st-crew-count-0"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "check_template",
+     "note": "мир формы «tables» стенд COSMOS не строит: задачу судит стенд линии данных CDPM",
+     "result": "skipped",
+     "task": "st-crew-count-2"
+    }
+   ]
+  },
+  {
+   "executors": [
+    {
+     "cr_key": null,
+     "file": "vmp/source_check.py",
+     "kind": "check_code",
+     "lang": "python",
+     "note": null,
+     "params": [],
+     "state": "есть",
+     "symbol": "_run_unavailability"
+    },
+    {
+     "constraint": "Employee unavailable",
+     "cr_key": null,
+     "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+     "kind": "kotlin_constraint",
+     "label": null,
+     "lang": "kotlin",
+     "note": "недоступные дни сотрудника (Employee.unavailableDays) — отпуск и иные отсутствия; дни приходят листом «Отпуска» пакета постановки",
+     "state": "есть",
+     "symbol": "FlightCrewSchedulingConstraintProvider.employeeUnavailability"
+    }
+   ],
+   "id": "crew_unavailability",
+   "section": "families",
+   "stand_verified": [
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "kotlin_constraint",
+     "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+     "result": "skipped",
+     "task": "st-unavail-0"
+    }
+   ]
+  },
+  {
+   "executors": [
+    {
+     "cr_key": null,
+     "file": "vmp/run/logic_checks.py",
+     "kind": "check_code",
+     "lang": "python",
+     "note": null,
+     "params": [
+      "min_days_off"
+     ],
+     "state": "есть",
+     "symbol": "_days_off"
+    },
+    {
+     "cr_key": null,
+     "file": "vmp/run/logic_checks.py",
+     "kind": "check_code",
+     "lang": "python",
+     "note": null,
+     "params": [
+      "min_days_off_in_window",
+      "days_off_window_days"
+     ],
+     "state": "есть",
+     "symbol": "_days_off_window"
+    },
+    {
+     "cr_key": null,
+     "file": null,
+     "kind": "check_template",
+     "lang": null,
+     "note": "исполнитель — линия данных CDPM (cdpm/data_checks.py, группа data)",
+     "state": "нет",
+     "symbol": null,
+     "template": "выходных-в-месяце"
+    },
+    {
+     "constraint_id_rule": "logic <sha256(rule_id)[:8]>",
+     "cr_key": null,
+     "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/LogicForms.kt",
+     "form": "DAYS_OFF_IN_ROLLING_WINDOW_MIN",
+     "kind": "kotlin_logic_form",
+     "lang": "kotlin",
+     "note": null,
+     "param_set": "rolling_window",
+     "params": [
+      "min_days_off_in_window",
+      "days_off_window_days"
+     ],
+     "state": "есть",
+     "symbol": "LogicForms.daysOffInRollingWindow"
+    },
+    {
+     "constraint_id_rule": "logic <sha256(rule_id)[:8]>",
+     "cr_key": null,
+     "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/LogicForms.kt",
+     "form": "DAYS_OFF_PER_MONTH_MIN",
+     "kind": "kotlin_logic_form",
+     "lang": "kotlin",
+     "note": null,
+     "param_set": "monthly",
+     "params": [
+      "min_days_off"
+     ],
+     "state": "есть",
+     "symbol": "LogicForms.daysOffPerMonthMin"
+    }
+   ],
+   "id": "days_off_floor",
+   "section": "families",
+   "stand_verified": [
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "check_template",
+     "note": "мир формы «tables» стенд COSMOS не строит: задачу судит стенд линии данных CDPM",
+     "result": "skipped",
+     "task": "st-daysoff-month-0"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "check_template",
+     "note": "мир формы «tables» стенд COSMOS не строит: задачу судит стенд линии данных CDPM",
+     "result": "skipped",
+     "task": "st-daysoff-month-1"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "check_code",
+     "note": "получено 1, ожидалось 1 (_days_off)",
+     "result": "passed",
+     "task": "st-off-1"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "kotlin_logic_form",
+     "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+     "result": "skipped",
+     "task": "st-off-1"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "check_code",
+     "note": "получено 1, ожидалось 1 (_days_off_window)",
+     "result": "passed",
+     "task": "st-off-2"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "kotlin_logic_form",
+     "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+     "result": "skipped",
+     "task": "st-off-2"
+    }
+   ]
+  },
+  {
+   "executors": [
+    {
+     "cr_key": null,
+     "file": "_pairing_builder.py",
+     "kind": "builder_method",
+     "lang": "python",
+     "note": "минимум между перегоном и рабочим участком — порог стыковки построителя; минимум между соседними перегонами — из условий (adjacent_dh_min)",
+     "params": [],
+     "state": "есть",
+     "symbol": "Builder.adjacent_dh_ok"
+    },
+    {
+     "cr_key": null,
+     "file": "_pairing_builder.py",
+     "kind": "builder_method",
+     "lang": "python",
+     "note": "ПРОБЕЛ: vmp/pairing_input.py ставит max_dh_per_flight и max_dh_per_day в None, ручки пакета до построителя не доходят (заявка владельцу, §11 проекта)",
+     "params": [],
+     "state": "есть",
+     "symbol": "Builder.dh_limit_groups"
+    },
+    {
+     "cr_key": null,
+     "file": "_pairing_builder.py",
+     "kind": "builder_method",
+     "lang": "python",
+     "note": null,
+     "params": [],
+     "state": "есть",
+     "symbol": "Builder.periods_of"
+    },
+    {
+     "constraint": "Deadheads per day",
+     "cr_key": null,
+     "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+     "kind": "kotlin_constraint",
+     "label": "Deadheads per day (per extra)",
+     "lang": "kotlin",
+     "note": "живёт при обеих ручках больше нуля",
+     "state": "есть",
+     "symbol": "FlightCrewSchedulingConstraintProvider.deadheadsPerDay"
+    },
+    {
+     "accepts": [],
+     "cr_key": null,
+     "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+     "keyed": false,
+     "kind": "kotlin_knob",
+     "lang": "kotlin",
+     "note": null,
+     "param": "max_deadheads_per_day",
+     "relation": "max",
+     "state": "есть",
+     "symbol": "RunThresholds.KNOBS",
+     "threshold": "max_deadheads_per_day",
+     "unit": "count"
+    },
+    {
+     "accepts": [],
+     "cr_key": null,
+     "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+     "keyed": false,
+     "kind": "kotlin_knob",
+     "lang": "kotlin",
+     "note": null,
+     "param": "max_deadheads_per_flight",
+     "relation": "max",
+     "state": "есть",
+     "symbol": "RunThresholds.KNOBS",
+     "threshold": "max_deadheads_per_flight",
+     "unit": "count"
+    }
+   ],
+   "id": "deadhead_rules",
+   "section": "families",
+   "stand_verified": [
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "builder_method",
+     "note": "получено 1, ожидалось 1 (Builder.adjacent_dh_ok)",
+     "result": "passed",
+     "task": "st-dh-1"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "kotlin_constraint",
+     "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+     "result": "skipped",
+     "task": "st-dh-1"
+    }
+   ]
+  },
+  {
+   "executors": [
+    {
+     "cr_key": null,
+     "file": "_pairing_builder.py",
+     "kind": "builder_method",
+     "lang": "python",
+     "note": null,
+     "params": [],
+     "state": "есть",
+     "symbol": "Builder.soft_rules"
+    },
+    {
+     "cr_key": null,
+     "file": "vmp/chain_price.py",
+     "kind": "builder_method",
+     "lang": "python",
+     "note": "мера семьи в цене цепочки; единица «смена»",
+     "params": [
+      "long_duty_threshold"
+     ],
+     "state": "есть",
+     "symbol": "measure"
+    },
+    {
+     "cr_key": null,
+     "file": "vmp/run/roster_certify.py",
+     "kind": "check_code",
+     "lang": "python",
+     "note": "адресный потолок продления по условиям EXTENSION_CONDITIONS (extension_bases in, extension_consent yes); исход строки даёт _run_cap_check",
+     "params": [
+      "duty_extension_cap"
+     ],
+     "state": "есть",
+     "symbol": "apply_extension_caps"
+    },
+    {
+     "cr_key": null,
+     "file": "vmp/run/roster_certify.py",
+     "kind": "check_template",
+     "lang": "python",
+     "note": null,
+     "state": "есть",
+     "symbol": "measure_soft_rules",
+     "template": "мера-мягкого-правила"
+    },
+    {
+     "constraint": "Duty extension over threshold",
+     "cr_key": null,
+     "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+     "kind": "kotlin_constraint",
+     "label": null,
+     "lang": "kotlin",
+     "note": null,
+     "state": "есть",
+     "symbol": "FlightCrewSchedulingConstraintProvider.dutyExtensionOverThreshold"
+    },
+    {
+     "accepts": [],
+     "cr_key": null,
+     "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+     "keyed": false,
+     "kind": "kotlin_knob",
+     "lang": "kotlin",
+     "note": "применяется только при потолке И базовом пределе max_duty_duration семьи duty_limits, причём потолок строже базового (RunThresholds.kt:676-702)",
+     "param": "duty_extension_cap",
+     "relation": "max",
+     "state": "есть",
+     "symbol": "RunThresholds.applyDutyExtension",
+     "threshold": [
+      "max_duty_span_min",
+      "duty_extension_threshold_min"
+     ],
+     "unit": "duration_minutes"
+    },
+    {
+     "cr_key": null,
+     "file": null,
+     "kind": "kotlin_knob",
+     "lang": null,
+     "note": "ручки решателя нет — мягкий порог решателя равен базовому пределу смены семьи duty_limits; параметр читают построитель (chain_price.measure) и сертификат (measure_soft_rules)",
+     "param": "long_duty_threshold",
+     "state": "нет",
+     "symbol": null
+    }
+   ],
+   "id": "duty_extension_penalty",
+   "section": "families",
+   "stand_verified": [
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "builder_method",
+     "note": "получено 1, ожидалось 1 (measure)",
+     "result": "passed",
+     "task": "st-extension-1"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "check_code",
+     "note": "получено 0, ожидалось 0 (apply_extension_caps)",
+     "result": "passed",
+     "task": "st-extension-1"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "check_template",
+     "note": "получено findings=1, params.long_duty_threshold=720, template='мера-мягкого-правила', ожидалось findings=1, measure=None, params.long_duty_threshold=720, template='мера-мягкого-правила' (мера-мягкого-правила)",
+     "result": "passed",
+     "task": "st-extension-1"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "kotlin_constraint",
+     "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+     "result": "skipped",
+     "task": "st-extension-1"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "check_code",
+     "note": "получено 1, ожидалось 1 (apply_extension_caps)",
+     "result": "passed",
+     "task": "st-extension-2"
+    }
+   ]
+  },
+  {
+   "executors": [
+    {
+     "cr_key": null,
+     "file": "_pairing_builder.py",
+     "kind": "builder_method",
+     "lang": "python",
+     "note": null,
+     "params": [
+      "max_duty_duration",
+      "max_landings_per_duty"
+     ],
+     "state": "есть",
+     "symbol": "Builder.duty_limit_ok"
+    },
+    {
+     "cr_key": null,
+     "file": "_pairing_builder.py",
+     "kind": "builder_method",
+     "lang": "python",
+     "note": null,
+     "params": [
+      "max_pairing_days"
+     ],
+     "state": "есть",
+     "symbol": "Builder.pairing_days_ok"
+    },
+    {
+     "cr_key": null,
+     "file": "vmp/run/fit_checks.py",
+     "kind": "check_code",
+     "lang": "python",
+     "note": null,
+     "params": [
+      "max_landings_per_duty"
+     ],
+     "state": "есть",
+     "symbol": "_landings_per_duty"
+    },
+    {
+     "cr_key": null,
+     "file": "vmp/run/fit_checks.py",
+     "kind": "check_code",
+     "lang": "python",
+     "note": null,
+     "params": [
+      "max_pairing_days"
+     ],
+     "state": "есть",
+     "symbol": "_pairing_days"
+    },
+    {
+     "cr_key": null,
+     "file": null,
+     "kind": "check_template",
+     "lang": null,
+     "note": "исполнитель — линия данных CDPM (cdpm/data_checks.py); при потолке продления спецификация заменяется кодом apply_extension_caps",
+     "state": "нет",
+     "symbol": null,
+     "template": "максимальная-длительность-часов"
+    },
+    {
+     "cr_key": null,
+     "file": "vmp/conditions_export.py",
+     "kind": "export_form",
+     "lang": "python",
+     "note": "точная ярусная форма worktime_exact словаря условий; прежняя строка описи _conditions.worktime_exact — символа нет",
+     "params": [],
+     "state": "есть",
+     "symbol": "build_conditions"
+    },
+    {
+     "constraint": "Max duty period (rest-segmented)",
+     "cr_key": null,
+     "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+     "kind": "kotlin_constraint",
+     "label": "Max duty period (rest-segmented) (per minute)",
+     "lang": "kotlin",
+     "note": null,
+     "state": "есть",
+     "symbol": "FlightCrewSchedulingConstraintProvider.maxDutyPeriodRestSegmented"
+    },
+    {
+     "constraint": "Max landings per duty",
+     "cr_key": null,
+     "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+     "kind": "kotlin_constraint",
+     "label": "Max landings per duty (per extra landing)",
+     "lang": "kotlin",
+     "note": null,
+     "state": "есть",
+     "symbol": "FlightCrewSchedulingConstraintProvider.maxLandingsPerDuty"
+    },
+    {
+     "accepts": [],
+     "cr_key": null,
+     "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+     "keyed": false,
+     "kind": "kotlin_knob",
+     "lang": "kotlin",
+     "note": null,
+     "param": "max_duty_duration",
+     "relation": "max",
+     "state": "есть",
+     "symbol": "RunThresholds.KNOBS",
+     "threshold": "max_duty_span_min",
+     "unit": "duration_minutes"
+    },
+    {
+     "accepts": [],
+     "cr_key": null,
+     "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+     "keyed": false,
+     "kind": "kotlin_knob",
+     "lang": "kotlin",
+     "note": null,
+     "param": "max_landings_per_duty",
+     "relation": "max",
+     "state": "есть",
+     "symbol": "RunThresholds.KNOBS",
+     "threshold": "max_landings_per_duty",
+     "unit": "count"
+    },
+    {
+     "accepts": [],
+     "cr_key": null,
+     "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+     "keyed": false,
+     "kind": "kotlin_knob",
+     "lang": "kotlin",
+     "note": "транзитная ручка (externalExecutor): ограничения провайдера нет, исполнитель — Builder.pairing_days_ok",
+     "param": "max_pairing_days",
+     "relation": "max",
+     "state": "есть",
+     "symbol": "RunThresholds.KNOBS",
+     "threshold": "max_pairing_days",
+     "unit": "count"
+    }
+   ],
+   "id": "duty_limits",
+   "section": "families",
+   "stand_verified": [
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "builder_method",
+     "note": "получено 1, ожидалось 1 (Builder.duty_limit_ok)",
+     "result": "passed",
+     "task": "st-duty-1"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "check_code",
+     "note": "получено 0, ожидалось 0 (_landings_per_duty)",
+     "result": "passed",
+     "task": "st-duty-1"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "kotlin_constraint",
+     "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+     "result": "skipped",
+     "task": "st-duty-1"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "check_code",
+     "note": "получено 1, ожидалось 1 (_landings_per_duty)",
+     "result": "passed",
+     "task": "st-duty-2"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "kotlin_constraint",
+     "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+     "result": "skipped",
+     "task": "st-duty-2"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "builder_method",
+     "note": "получено 1, ожидалось 1 (Builder.pairing_days_ok)",
+     "result": "passed",
+     "task": "st-duty-3"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "check_code",
+     "note": "получено 1, ожидалось 1 (_pairing_days)",
+     "result": "passed",
+     "task": "st-duty-3"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "check_template",
+     "note": "мир формы «tables» стенд COSMOS не строит: задачу судит стенд линии данных CDPM",
+     "result": "skipped",
+     "task": "st-duty-hours-0"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "check_template",
+     "note": "мир формы «tables» стенд COSMOS не строит: задачу судит стенд линии данных CDPM",
+     "result": "skipped",
+     "task": "st-duty-hours-2"
+    }
+   ]
+  },
+  {
+   "executors": [
+    {
+     "cr_key": null,
+     "file": "vmp/run/logic_checks.py",
+     "kind": "check_code",
+     "lang": "python",
+     "note": null,
+     "params": [
+      "max_duty_series_length",
+      "post_series_days_off"
+     ],
+     "state": "есть",
+     "symbol": "_duty_series"
+    },
+    {
+     "constraint_id_rule": "logic <sha256(rule_id)[:8]>",
+     "cr_key": null,
+     "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/LogicForms.kt",
+     "form": "DUTY_SERIES_LIMIT",
+     "kind": "kotlin_logic_form",
+     "lang": "kotlin",
+     "note": null,
+     "param_set": null,
+     "params": [
+      "max_duty_series_length",
+      "post_series_days_off"
+     ],
+     "state": "есть",
+     "symbol": "LogicForms.dutySeriesLimit"
+    }
+   ],
+   "id": "duty_series_limit",
+   "section": "families",
+   "stand_verified": [
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "check_code",
+     "note": "получено 0, ожидалось 0 (_duty_series)",
+     "result": "passed",
+     "task": "st-series-0"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "kotlin_logic_form",
+     "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+     "result": "skipped",
+     "task": "st-series-0"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "check_code",
+     "note": "получено 1, ожидалось 1 (_duty_series)",
+     "result": "passed",
+     "task": "st-series-1"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "kotlin_logic_form",
+     "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+     "result": "skipped",
+     "task": "st-series-1"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "check_code",
+     "note": "получено 1, ожидалось 1 (_duty_series)",
+     "result": "passed",
+     "task": "st-series-2"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "kotlin_logic_form",
+     "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+     "result": "skipped",
+     "task": "st-series-2"
+    }
+   ]
+  },
+  {
+   "executors": [
+    {
+     "cr_key": null,
+     "file": "vmp/run/fit_checks.py",
+     "kind": "check_code",
+     "lang": "python",
+     "note": null,
+     "params": [
+      "fleet_types"
+     ],
+     "state": "есть",
+     "symbol": "_fleet_qualification"
+    },
+    {
+     "cr_key": null,
+     "file": null,
+     "kind": "check_template",
+     "lang": null,
+     "note": "исполнитель — линия данных CDPM (cdpm/data_checks.py); при исходной книге сертификат COSMOS судит кодом fit_checks._fleet_qualification",
+     "state": "нет",
+     "symbol": null,
+     "template": "действительность-на-дату"
+    },
+    {
+     "cr_key": null,
+     "file": "vmp/conditions_export.py",
+     "kind": "export_form",
+     "lang": "python",
+     "note": "условия fleet_auto_plan_excluded, crew_min_by_fleet, crew_std_by_fleet",
+     "params": [],
+     "state": "есть",
+     "symbol": "build_conditions"
+    },
+    {
+     "constraint": "Type rating currency",
+     "cr_key": null,
+     "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+     "kind": "kotlin_constraint",
+     "label": null,
+     "lang": "kotlin",
+     "note": "судит только при датированных окнах допусков (qualificationWindows)",
+     "state": "есть",
+     "symbol": "FlightCrewSchedulingConstraintProvider.typeRatingCurrency"
+    },
+    {
+     "constraint": "Type rating required",
+     "cr_key": null,
+     "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+     "kind": "kotlin_constraint",
+     "label": null,
+     "lang": "kotlin",
+     "note": "судит только типы из fleetTypes()",
+     "state": "есть",
+     "symbol": "FlightCrewSchedulingConstraintProvider.typeRatingRequired"
+    },
+    {
+     "accepts": [],
+     "cr_key": null,
+     "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+     "keyed": false,
+     "kind": "kotlin_knob",
+     "lang": "kotlin",
+     "note": "синоним перечня — один код; имя получило семью fleet_exclusions в каталоге 0.2.0-draft.2 — предупреждения B03 больше нет",
+     "param": "fleet_type",
+     "relation": "in",
+     "state": "есть",
+     "symbol": "RunThresholds.FLEET_THRESHOLD",
+     "threshold": "fleet_types",
+     "unit": "code"
+    },
+    {
+     "accepts": [],
+     "cr_key": null,
+     "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+     "keyed": false,
+     "kind": "kotlin_knob",
+     "lang": "kotlin",
+     "note": "ручка-перечень (FLEET_PARAMS); словарь param_relations отношения перечня не имеет — здесь стоит отношение исполнителя in из condition_relations, а запись каталога держит relation null",
+     "param": "fleet_types",
+     "relation": "in",
+     "state": "есть",
+     "symbol": "RunThresholds.FLEET_THRESHOLD",
+     "threshold": "fleet_types",
+     "unit": "code_list"
+    }
+   ],
+   "id": "fleet_exclusions",
+   "section": "families",
+   "stand_verified": [
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "check_code",
+     "note": "получено 1, ожидалось 1 (_fleet_qualification)",
+     "result": "passed",
+     "task": "st-fleet-1"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "kotlin_constraint",
+     "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+     "result": "skipped",
+     "task": "st-fleet-1"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "check_template",
+     "note": "мир формы «tables» стенд COSMOS не строит: задачу судит стенд линии данных CDPM",
+     "result": "skipped",
+     "task": "st-fleet-valid-0"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "check_template",
+     "note": "мир формы «tables» стенд COSMOS не строит: задачу судит стенд линии данных CDPM",
+     "result": "skipped",
+     "task": "st-fleet-valid-2"
+    }
+   ]
+  },
+  {
+   "executors": [
+    {
+     "cr_key": null,
+     "file": "_pairing_builder.py",
+     "kind": "builder_method",
+     "lang": "python",
+     "note": "композиция цены: критерий + сумма мера×вес×состав; правила части — Builder.soft_rules",
+     "params": [],
+     "state": "есть",
+     "symbol": "Builder.price"
+    },
+    {
+     "cr_key": null,
+     "file": "vmp/chain_price.py",
+     "kind": "builder_method",
+     "lang": "python",
+     "note": "мера семьи в цене цепочки; единица «ночь» (словарь UNITS)",
+     "params": [],
+     "state": "есть",
+     "symbol": "measure"
+    },
+    {
+     "cr_key": null,
+     "file": "vmp/run/roster_certify.py",
+     "kind": "check_template",
+     "lang": "python",
+     "note": null,
+     "state": "есть",
+     "symbol": "measure_soft_rules",
+     "template": "мера-мягкого-правила"
+    },
+    {
+     "constraint": "Layover nights away from home",
+     "cr_key": null,
+     "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+     "kind": "kotlin_constraint",
+     "label": null,
+     "lang": "kotlin",
+     "note": null,
+     "state": "есть",
+     "symbol": "FlightCrewSchedulingConstraintProvider.layoverNights"
+    }
+   ],
+   "id": "layover_penalty",
+   "section": "families",
+   "stand_verified": [
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "builder_method",
+     "note": "получено 1, ожидалось 1 (measure)",
+     "result": "passed",
+     "task": "st-layover-1"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "check_template",
+     "note": "получено findings=1, template='мера-мягкого-правила', ожидалось findings=1, measure=None, template='мера-мягкого-правила' (мера-мягкого-правила)",
+     "result": "passed",
+     "task": "st-layover-1"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "kotlin_constraint",
+     "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+     "result": "skipped",
+     "task": "st-layover-1"
+    }
+   ]
+  },
+  {
+   "executors": [
+    {
+     "cr_key": null,
+     "file": "vmp/run/logic_checks.py",
+     "kind": "check_code",
+     "lang": "python",
+     "note": null,
+     "params": [
+      "max_consecutive_night_duties",
+      "night_duty_start",
+      "night_duty_end"
+     ],
+     "state": "есть",
+     "symbol": "_night_series"
+    },
+    {
+     "cr_key": null,
+     "file": "vmp/run/logic_checks.py",
+     "kind": "check_code",
+     "lang": "python",
+     "note": null,
+     "params": [
+      "max_night_duties_in_window",
+      "night_window_days",
+      "night_duty_start",
+      "night_duty_end"
+     ],
+     "state": "есть",
+     "symbol": "_night_window"
+    },
+    {
+     "cr_key": null,
+     "file": null,
+     "kind": "check_template",
+     "lang": null,
+     "note": "исполнитель — линия данных CDPM (cdpm/history_section.py, группа history_form)",
+     "state": "нет",
+     "symbol": null,
+     "template": "серия-ночных-смен"
+    },
+    {
+     "constraint_id_rule": "logic <sha256(rule_id)[:8]>",
+     "cr_key": null,
+     "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/LogicForms.kt",
+     "form": "CONSECUTIVE_NIGHT_DUTIES_MAX",
+     "kind": "kotlin_logic_form",
+     "lang": "kotlin",
+     "note": null,
+     "param_set": "consecutive",
+     "params": [
+      "max_consecutive_night_duties",
+      "night_duty_start",
+      "night_duty_end"
+     ],
+     "state": "есть",
+     "symbol": "LogicForms.consecutiveNightDuties"
+    },
+    {
+     "constraint_id_rule": "logic <sha256(rule_id)[:8]>",
+     "cr_key": null,
+     "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/LogicForms.kt",
+     "form": "NIGHT_DUTIES_IN_ROLLING_WINDOW_MAX",
+     "kind": "kotlin_logic_form",
+     "lang": "kotlin",
+     "note": null,
+     "param_set": "rolling_window",
+     "params": [
+      "max_night_duties_in_window",
+      "night_window_days",
+      "night_duty_start",
+      "night_duty_end"
+     ],
+     "state": "есть",
+     "symbol": "LogicForms.nightDutiesInRollingWindow"
+    }
+   ],
+   "id": "night_series",
+   "section": "families",
+   "stand_verified": [
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "check_code",
+     "note": "получено 1, ожидалось 1 (_night_series)",
+     "result": "passed",
+     "task": "st-night-1"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "kotlin_logic_form",
+     "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+     "result": "skipped",
+     "task": "st-night-1"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "check_code",
+     "note": "получено 1, ожидалось 1 (_night_window)",
+     "result": "passed",
+     "task": "st-night-2"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "kotlin_logic_form",
+     "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+     "result": "skipped",
+     "task": "st-night-2"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "check_template",
+     "note": "мир формы «tables» стенд COSMOS не строит: задачу судит стенд линии данных CDPM",
+     "result": "skipped",
+     "task": "st-night-run-0"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "check_template",
+     "note": "мир формы «tables» стенд COSMOS не строит: задачу судит стенд линии данных CDPM",
+     "result": "skipped",
+     "task": "st-night-run-1"
+    }
+   ]
+  },
+  {
+   "executors": [
+    {
+     "constraint": "Reserve crews",
+     "cr_key": null,
+     "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+     "kind": "kotlin_constraint",
+     "label": "Reserve crews (per crew-day)",
+     "lang": "kotlin",
+     "note": "клетка база × роль × сутки по нормам; без норм выключено",
+     "state": "есть",
+     "symbol": "FlightCrewSchedulingConstraintProvider.reserveCrewsPerBase"
+    },
+    {
+     "accepts": [
+      "eq"
+     ],
+     "cr_key": null,
+     "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+     "keyed": true,
+     "kind": "kotlin_knob",
+     "lang": "kotlin",
+     "note": "семейство ключей reserve_crews_min[<база>], константа DefaultProviderRules.RESERVE_FAMILY",
+     "param": "reserve_crews",
+     "relation": "min",
+     "state": "есть",
+     "symbol": "RunThresholds.KNOBS",
+     "threshold": "reserve_crews_min",
+     "unit": "count"
+    }
+   ],
+   "id": "reserve_floors",
+   "section": "families",
+   "stand_verified": [
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "kotlin_constraint",
+     "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+     "result": "skipped",
+     "task": "st-reserve-1"
+    }
+   ]
+  },
+  {
+   "executors": [
+    {
+     "cr_key": null,
+     "file": "_pairing_builder.py",
+     "kind": "builder_method",
+     "lang": "python",
+     "note": null,
+     "params": [
+      "min_rest_home",
+      "min_rest_outstation"
+     ],
+     "state": "есть",
+     "symbol": "Builder.rest_floor_after"
+    },
+    {
+     "cr_key": null,
+     "file": "_duty_periods.py",
+     "kind": "builder_method",
+     "lang": "python",
+     "note": null,
+     "params": [],
+     "state": "есть",
+     "symbol": "build_periods"
+    },
+    {
+     "cr_key": null,
+     "file": "vmp/run/fit_checks.py",
+     "kind": "check_code",
+     "lang": "python",
+     "note": null,
+     "params": [
+      "min_rest_home",
+      "min_rest_outstation"
+     ],
+     "state": "есть",
+     "symbol": "_rest_floor"
+    },
+    {
+     "cr_key": null,
+     "file": null,
+     "kind": "check_template",
+     "lang": null,
+     "note": "исполнитель — линия данных CDPM (cdpm/data_checks.py); сертификат COSMOS судит пол отдыха кодом fit_checks._rest_floor",
+     "state": "нет",
+     "symbol": null,
+     "template": "минимальный-разрыв-часов"
+    },
+    {
+     "cr_key": null,
+     "file": "vmp/conditions_export.py",
+     "kind": "export_form",
+     "lang": "python",
+     "note": "лестницы отдыха (_ladder); прежняя строка описи _conditions.rest_floor — символа нет",
+     "params": [],
+     "state": "есть",
+     "symbol": "build_conditions"
+    },
+    {
+     "constraint": "Rest before horizon (history)",
+     "cr_key": null,
+     "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+     "kind": "kotlin_constraint",
+     "label": null,
+     "lang": "kotlin",
+     "note": null,
+     "state": "есть",
+     "symbol": "FlightCrewSchedulingConstraintProvider.restBeforeHorizon"
+    },
+    {
+     "constraint": "Rest between duty periods",
+     "cr_key": null,
+     "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+     "kind": "kotlin_constraint",
+     "label": "Rest between duty periods (per minute)",
+     "lang": "kotlin",
+     "note": "имя ограничения — аргумент perEmployeeAdjacency; судит только при day_break_threshold_min больше нуля, то есть при ручке max_sit_duration пакета",
+     "state": "есть",
+     "symbol": "FlightCrewSchedulingConstraintProvider.restBetweenDutyPeriods"
+    },
+    {
+     "accepts": [],
+     "cr_key": null,
+     "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+     "keyed": false,
+     "kind": "kotlin_knob",
+     "lang": "kotlin",
+     "note": null,
+     "param": "min_rest_home",
+     "relation": "min",
+     "state": "есть",
+     "symbol": "RunThresholds.KNOBS",
+     "threshold": "min_rest_home_min",
+     "unit": "duration_minutes"
+    },
+    {
+     "accepts": [],
+     "cr_key": null,
+     "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+     "keyed": false,
+     "kind": "kotlin_knob",
+     "lang": "kotlin",
+     "note": null,
+     "param": "min_rest_outstation",
+     "relation": "min",
+     "state": "есть",
+     "symbol": "RunThresholds.KNOBS",
+     "threshold": "min_rest_outstation_min",
+     "unit": "duration_minutes"
+    }
+   ],
+   "id": "rest_floors",
+   "section": "families",
+   "stand_verified": [
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "builder_method",
+     "note": "получено 700, ожидалось 700 (Builder.rest_floor_after)",
+     "result": "passed",
+     "task": "st-rest-1"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "check_code",
+     "note": "получено 2, ожидалось 2 (_rest_floor)",
+     "result": "passed",
+     "task": "st-rest-1"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "kotlin_constraint",
+     "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+     "result": "skipped",
+     "task": "st-rest-1"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "check_template",
+     "note": "мир формы «tables» стенд COSMOS не строит: задачу судит стенд линии данных CDPM",
+     "result": "skipped",
+     "task": "st-rest-away-1"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "check_template",
+     "note": "мир формы «tables» стенд COSMOS не строит: задачу судит стенд линии данных CDPM",
+     "result": "skipped",
+     "task": "st-rest-gap-0"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "check_template",
+     "note": "мир формы «tables» стенд COSMOS не строит: задачу судит стенд линии данных CDPM",
+     "result": "skipped",
+     "task": "st-rest-home-1"
+    }
+   ]
+  },
+  {
+   "executors": [
+    {
+     "cr_key": null,
+     "file": "vmp/run/logic_checks.py",
+     "kind": "check_code",
+     "lang": "python",
+     "note": null,
+     "params": [
+      "weekly_rest_required",
+      "weekly_rest_period"
+     ],
+     "state": "есть",
+     "symbol": "_rolling_rest"
+    },
+    {
+     "cr_key": null,
+     "file": null,
+     "kind": "check_template",
+     "lang": null,
+     "note": "исполнитель — линия данных CDPM (cdpm/data_checks.py); имя проверки кода COSMOS совпадает с именем шаблона, но это проверка кодом, а не шаблоном",
+     "state": "нет",
+     "symbol": null,
+     "template": "отдых-в-скользящем-окне"
+    },
+    {
+     "constraint_id_rule": "logic <sha256(rule_id)[:8]>",
+     "cr_key": null,
+     "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/LogicForms.kt",
+     "form": "REST_IN_ROLLING_WINDOW",
+     "kind": "kotlin_logic_form",
+     "lang": "kotlin",
+     "note": null,
+     "param_set": null,
+     "params": [
+      "weekly_rest_required",
+      "weekly_rest_period"
+     ],
+     "state": "есть",
+     "symbol": "LogicForms.restInRollingWindow"
+    }
+   ],
+   "id": "rolling_rest",
+   "section": "families",
+   "stand_verified": [
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "check_code",
+     "note": "получено 1, ожидалось 1 (_rolling_rest)",
+     "result": "passed",
+     "task": "st-roll-1"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "kotlin_logic_form",
+     "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+     "result": "skipped",
+     "task": "st-roll-1"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "check_template",
+     "note": "мир формы «tables» стенд COSMOS не строит: задачу судит стенд линии данных CDPM",
+     "result": "skipped",
+     "task": "st-rolling-rest-0"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "check_template",
+     "note": "мир формы «tables» стенд COSMOS не строит: задачу судит стенд линии данных CDPM",
+     "result": "skipped",
+     "task": "st-rolling-rest-1"
+    }
+   ]
+  },
+  {
+   "executors": [
+    {
+     "cr_key": null,
+     "file": "_pairing_builder.py",
+     "kind": "builder_method",
+     "lang": "python",
+     "note": "размах командировки в сутках по CosRules.max_pairing_days — параметру семьи duty_limits; месячный и недельный налёт построитель не судит (vmp/pairing_input.py ставит monthly_flight_time_limit_min в None)",
+     "params": [],
+     "state": "есть",
+     "symbol": "Builder.pairing_span_ok"
+    },
+    {
+     "cr_key": null,
+     "file": "vmp/run/fit_checks.py",
+     "kind": "check_code",
+     "lang": "python",
+     "note": null,
+     "params": [
+      "max_monthly_block"
+     ],
+     "state": "есть",
+     "symbol": "_monthly_block"
+    },
+    {
+     "constraint": "Max monthly flight hours",
+     "cr_key": null,
+     "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+     "kind": "kotlin_constraint",
+     "label": "Max monthly flight hours (per minute)",
+     "lang": "kotlin",
+     "note": null,
+     "state": "есть",
+     "symbol": "FlightCrewSchedulingConstraintProvider.maxMonthlyFlightHours"
+    },
+    {
+     "constraint": "Max weekly flight hours",
+     "cr_key": null,
+     "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+     "kind": "kotlin_constraint",
+     "label": "Max weekly flight hours (per minute)",
+     "lang": "kotlin",
+     "note": null,
+     "state": "есть",
+     "symbol": "FlightCrewSchedulingConstraintProvider.maxWeeklyFlightHours"
+    },
+    {
+     "accepts": [],
+     "cr_key": null,
+     "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+     "keyed": false,
+     "kind": "kotlin_knob",
+     "lang": "kotlin",
+     "note": null,
+     "param": "max_monthly_block",
+     "relation": "max",
+     "state": "есть",
+     "symbol": "RunThresholds.KNOBS",
+     "threshold": "max_monthly_block_min",
+     "unit": "duration_minutes"
+    },
+    {
+     "accepts": [],
+     "cr_key": null,
+     "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+     "keyed": false,
+     "kind": "kotlin_knob",
+     "lang": "kotlin",
+     "note": "недельный налёт; имя словаря решателя получило семью span_accumulators в каталоге 0.2.0-draft.2 — предупреждения B03 больше нет",
+     "param": "max_weekly_block",
+     "relation": "max",
+     "state": "есть",
+     "symbol": "RunThresholds.KNOBS",
+     "threshold": "max_weekly_block_min",
+     "unit": "duration_minutes"
+    }
+   ],
+   "id": "span_accumulators",
+   "section": "families",
+   "stand_verified": [
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "builder_method",
+     "note": "получено 1, ожидалось 1 (Builder.pairing_span_ok)",
+     "result": "passed",
+     "task": "st-span-1"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "check_code",
+     "note": "получено 1, ожидалось 1 (_monthly_block)",
+     "result": "passed",
+     "task": "st-span-1"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "kotlin_constraint",
+     "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+     "result": "skipped",
+     "task": "st-span-1"
+    }
+   ]
+  },
+  {
+   "executors": [
+    {
+     "cr_key": null,
+     "file": "_pairing_builder.py",
+     "kind": "builder_method",
+     "lang": "python",
+     "note": null,
+     "params": [
+      "base_tz_offset_min"
+     ],
+     "state": "есть",
+     "symbol": "resolve_time_scale"
+    },
+    {
+     "cr_key": null,
+     "file": "vmp/run/roster_certify.py",
+     "kind": "check_template",
+     "lang": "python",
+     "note": "запись «применена конфигурацией прогона», построчного исхода нет по замыслу",
+     "state": "есть",
+     "symbol": "world_param_checks",
+     "template": "параметр-мира-применён"
+    },
+    {
+     "accepts": [],
+     "cr_key": null,
+     "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+     "keyed": false,
+     "kind": "kotlin_knob",
+     "lang": "kotlin",
+     "note": "законно только значение 0: шкала мира, а не предел",
+     "param": "base_tz_offset_min",
+     "relation": "eq",
+     "state": "есть",
+     "symbol": "RunThresholds.KNOBS",
+     "threshold": "base_tz_offset_min",
+     "unit": "duration_minutes"
+    }
+   ],
+   "id": "time_scale",
+   "section": "families",
+   "stand_verified": [
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "builder_method",
+     "note": "получено 0, ожидалось 0 (resolve_time_scale)",
+     "result": "passed",
+     "task": "st-scale-0"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "check_template",
+     "note": "получено findings=0, params.base_tz_offset_min=0, template='параметр-мира-применён', ожидалось findings=0, measure=None, params.base_tz_offset_min=0, template='параметр-мира-применён' (параметр-мира-применён)",
+     "result": "passed",
+     "task": "st-scale-0"
+    }
+   ]
+  },
+  {
+   "executors": [
+    {
+     "approximation": "ПРОЧТЕНИЕ (решение владельца 2026-09-03): разброс кредитных часов = √Σ(xᵢ−x̄)² по ВСЕМУ штату (сотрудник без назначений — 0 часов) в ЦЕЛЫХ часах (минуты налёта / 60, усечение); кредитный час = час налёта по назначению (определение общего раздела ВМП), перелёт пассажиром не засчитывается. Целевая берёт разброс целиком; порог существенности судит только правило семьи balanced_workload (ограничение «Credit hours spread over threshold»)",
+     "constraint": "Credit hours spread",
+     "cr_key": null,
+     "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/TaskModes.kt",
+     "kind": "kotlin_metric",
+     "lang": "kotlin",
+     "metric": "credit_hours_spread",
+     "note": null,
+     "refusal": null,
+     "state": "есть",
+     "symbol": "METRIC_EXECUTORS",
+     "tasks": [
+      "rostering"
+     ]
+    }
+   ],
+   "id": "credit_hours_spread",
+   "section": "criteria",
+   "stand_verified": [
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "kotlin_metric",
+     "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+     "result": "skipped",
+     "task": "st-chs-1"
+    }
+   ]
+  },
+  {
+   "executors": [
+    {
+     "approximation": null,
+     "constraint": "Layover nights away from home",
+     "cr_key": null,
+     "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/TaskModes.kt",
+     "kind": "kotlin_metric",
+     "lang": "kotlin",
+     "metric": "layover_nights_total",
+     "note": null,
+     "refusal": null,
+     "state": "есть",
+     "symbol": "METRIC_EXECUTORS",
+     "tasks": [
+      "pairing",
+      "rostering"
+     ]
+    }
+   ],
+   "id": "layover_nights_total",
+   "section": "criteria",
+   "stand_verified": [
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "kotlin_metric",
+     "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+     "result": "skipped",
+     "task": "st-lnt-1"
+    }
+   ]
+  },
+  {
+   "executors": [
+    {
+     "cr_key": null,
+     "file": "vmp/criteria.py",
+     "kind": "builder_method",
+     "lang": "python",
+     "note": "счёт — Builder.span_days в ветке весов Builder.price, ключ --w-span-day",
+     "params": [],
+     "state": "есть",
+     "symbol": "_exec_min_person_days"
+    }
+   ],
+   "id": "min_person_days",
+   "section": "criteria",
+   "stand_verified": [
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "builder_method",
+     "note": "получено 14, ожидалось 14 (_exec_min_person_days)",
+     "result": "passed",
+     "task": "st-mpd-1"
+    }
+   ]
+  },
+  {
+   "executors": [
+    {
+     "approximation": "имя метрики шире исполнителя: считает число сотрудников, чьё первое назначение вылетает не из базы приписки (перегон из базы к первому рейсу решением не выражен), по одному на сотрудника",
+     "constraint": "Positioning deadhead cost",
+     "cr_key": null,
+     "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/TaskModes.kt",
+     "kind": "kotlin_metric",
+     "lang": "kotlin",
+     "metric": "positioning_cost",
+     "note": null,
+     "refusal": null,
+     "state": "есть",
+     "symbol": "METRIC_EXECUTORS",
+     "tasks": [
+      "pairing",
+      "rostering"
+     ]
+    }
+   ],
+   "id": "positioning_cost",
+   "section": "criteria",
+   "stand_verified": [
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "kotlin_metric",
+     "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+     "result": "skipped",
+     "task": "st-pos-1"
+    }
+   ]
+  },
+  {
+   "executors": [
+    {
+     "approximation": "имя метрики шире исполнителя: считает назначения на дни, объявленные сотрудником желательными выходными; вклад в целевую взвешен стажем, а число назначений — число совпадений",
+     "constraint": "Preferred day off violation",
+     "cr_key": null,
+     "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/TaskModes.kt",
+     "kind": "kotlin_metric",
+     "lang": "kotlin",
+     "metric": "preferred_days_off_violations",
+     "note": null,
+     "refusal": null,
+     "state": "есть",
+     "symbol": "METRIC_EXECUTORS",
+     "tasks": [
+      "rostering"
+     ]
+    }
+   ],
+   "id": "preferred_days_off_violations",
+   "section": "criteria",
+   "stand_verified": [
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "kotlin_metric",
+     "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+     "result": "skipped",
+     "task": "st-pdo-1"
+    }
+   ]
+  },
+  {
+   "executors": [
+    {
+     "cr_key": null,
+     "file": "vmp/criteria.py",
+     "kind": "builder_method",
+     "lang": "python",
+     "note": "счёт — Builder.cost_0096; исполнитель сверяет контрольную пару файла контура (vmp-criterion-control-pairs.json): путь в него не передаётся, файла нет — исход «silent»; у стенда свой файл пары, его сверяет судья той же check_control_pair",
+     "params": [],
+     "state": "есть",
+     "symbol": "_exec_rank_normalized_cost"
+    }
+   ],
+   "id": "rank_normalized_cost",
+   "section": "criteria",
+   "stand_verified": [
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "builder_method",
+     "note": "получено 14400, ожидалось 14400 (_exec_rank_normalized_cost); контрольная пара мира: ok",
+     "result": "passed",
+     "task": "st-rnc-1"
+    }
+   ]
+  },
+  {
+   "executors": [
+    {
+     "cr_key": null,
+     "file": "_pairing_builder.py",
+     "kind": "builder_method",
+     "lang": "python",
+     "note": "композиция целевой пейринга: критерий блока criterion пакета плюс сумма мера×вес×состав; движок отбора — _select_engines.solve",
+     "params": [],
+     "state": "есть",
+     "symbol": "Builder.price"
+    },
+    {
+     "approximation": null,
+     "cr_key": null,
+     "file": null,
+     "kind": "kotlin_metric",
+     "lang": null,
+     "metric": "total_pairing_cost",
+     "note": "метрика total_pairing_cost вычислима только раздельным прогоном пейринга; на объединённой модели назначения стоимости пейрингов нет, а похожую величину подставлять нельзя",
+     "refusal": "метрика total_pairing_cost вычислима только раздельным прогоном пейринга; на объединённой модели назначения стоимости пейрингов нет, а похожую величину подставлять нельзя",
+     "state": "нет",
+     "symbol": null
+    }
+   ],
+   "id": "total_pairing_cost",
+   "section": "criteria",
+   "stand_verified": [
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "builder_method",
+     "note": "получено 15, ожидалось 15 (Builder.price)",
+     "result": "passed",
+     "task": "st-tpc-1"
+    },
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "kotlin_metric",
+     "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+     "result": "skipped",
+     "task": "st-tpc-1"
+    }
+   ]
+  },
+  {
+   "executors": [
+    {
+     "approximation": null,
+     "constraint": "Unassigned slot",
+     "cr_key": null,
+     "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/TaskModes.kt",
+     "kind": "kotlin_metric",
+     "lang": "kotlin",
+     "metric": "uncovered_seats",
+     "note": null,
+     "refusal": null,
+     "state": "есть",
+     "symbol": "METRIC_EXECUTORS",
+     "tasks": [
+      "pairing",
+      "rostering"
+     ]
+    }
+   ],
+   "id": "uncovered_seats",
+   "section": "criteria",
+   "stand_verified": [
+    {
+     "at": "2026-09-16T23:04:51+00:00",
+     "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+     "executor_kind": "kotlin_metric",
+     "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+     "result": "skipped",
+     "task": "st-unc-1"
+    }
+   ]
+  }
+ ],
+ "catalog_fingerprint": "7dc0626d4ce85eb0b7a26ca385953ac03a2dce68557bb2e040a614f1584ad549",
+ "catalog_version": "0.6.0",
+ "executor_kinds": [
+  "builder_method",
+  "check_code",
+  "check_template",
+  "condition_fn",
+  "export_form",
+  "kotlin_constraint",
+  "kotlin_form",
+  "kotlin_knob",
+  "kotlin_logic_form",
+  "kotlin_metric"
+ ],
+ "generated_at": "2026-09-17T01:04:51+02:00",
+ "generated_from": "737e35a3c2906af10007c0f87b533ab38323055f",
+ "product": "COSMOS",
+ "product_version": "1.18.5"
+}

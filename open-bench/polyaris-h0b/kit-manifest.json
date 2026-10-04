@@ -1,0 +1,73 @@
+{
+ "customer": "Полярис-H0-B (ВМП H0 с неполным шаблоном отдыха)",
+ "catalog": {
+  "version": "0.6.0",
+  "fingerprint": "7dc0626d4ce85eb0b7a26ca385953ac03a2dce68557bb2e040a614f1584ad549"
+ },
+ "stage": "ИД H0-B (форма H0 без второго параметра семьи полов отдыха)",
+ "data_class": "synthetic",
+ "llm_scope": "any",
+ "llm_scope_basis": "набор синтетический: вымышленная авиакомпания, генератор в репозитории (build_kit_h0b.py поверх build_kit_h0.py); решение владельца 03.09.2026 — для синтетических и открытых данных любые модели, включая облачные",
+ "rules_files": [
+  "docs/ID-H0B-VMP-1.docx",
+  "docs/ID-H0B-VMP-2.xlsx",
+  "docs/ID-H0B-VMP-3.jpg"
+ ],
+ "data_files": [
+  "data/ID-H0-DATA.xlsx"
+ ],
+ "answer_book": "etalon/ANSWER-BOOK-MACHINE.json",
+ "agents_layout_from_repo": "open-bench/polyaris-h0/agents-layout-h0.json",
+ "agents_layout": "../polyaris-h0/agents-layout-h0.json",
+ "strict_questions": false,
+ "etalon_vmp": "open-bench/polyaris-h0b/etalon/VMP-H0B.json",
+ "etalon_form": "open-bench/polyaris-h0b/etalon/VMP-H0B-form.json",
+ "expect": {
+  "_comment": "Ожидание прогона H0-B (владелец 09.09.2026, вариант B): у семьи rest_floors два параметра, документы задают один (min_rest_home); обработчик обязан спросить второй (min_rest_outstation) анкетой; после ответа всё садится на шаблон — ВМП по содержанию равна H0 (15 правил: ответ дополняет VN-023 второй ячейкой, отдельного VN-024 не возникает — 16.09.2026, доказано ходом применения ответа; обе целевые), готовность «в», числа COSMOS = H0. Раннер сверяет ключи ниже с пакетом.",
+  "questions": [
+   "Q-3b-параметр-rest_floors-min_rest_outstation",
+   "Q-3b-история-accumulator",
+   "Q-3b-история-boundary"
+  ],
+  "_history_question": "вопрос линии данных 1.17.2 (решение владельца 05.09.2026): у правил ростеринга есть остатки истории, а истории в книге нет — «б»",
+  "readiness_ladder": {
+   "pairing": "optimization",
+   "rostering": "optimization"
+  },
+  "objectives": 2,
+  "family_complete": {
+   "rest_floors": [
+    "min_rest_home",
+    "min_rest_outstation"
+   ]
+  },
+  "cosmos_numbers": {
+   "pairing": "9/0",
+   "rostering": "12/0",
+   "_note": "как у H0 по чтению ИДАК каналом api"
+  },
+  "stage_verdicts": {
+   "extract": "NOT_EQUIVALENT",
+   "answers": "EQUIVALENT",
+   "package": "EQUIVALENT",
+   "pairing": "пейринг построен",
+   "rostering": "допустимо",
+   "source-check": "без нарушений",
+   "_note": "ожидаемые вердикты стадий варианта B. Извлечение НЕ ЭКВИВАЛЕНТНО ДО ОТВЕТОВ — в этом весь замысел набора: документы задают один параметр семьи rest_floors, второй приходит ответом анкеты, и до ответа ВМП эталону не равна; красная строка тут была бы неправдой. После ответов и в пакете — эквивалентно. Вердикты стадий COSMOS судятся только с машинным отчётом нажатий (--cosmos-press)."
+  },
+  "consistency": "sat",
+  "record_stitched": {
+   "cosmos_stages": [
+    "pairing",
+    "rostering",
+    "source-check"
+   ],
+   "_note": "запись о прогоне сшита: у хозяина записи стоят этапы COSMOS по каждой нажатой задаче и по сверке с ИДАК; судится только с машинным отчётом нажатий (--cosmos-press)"
+  },
+  "golden_by_owner_only": {
+   "runner_sets_golden": false,
+   "_note": "признак золотого прогона ставит ТОЛЬКО владелец словом после приёмки на Prod: раннер не ставит его никогда, а признак у хозяина записи без подписи (кто, когда, какими словами) — красная строка; судится только с машинным отчётом нажатий (--cosmos-press)"
+  }
+ },
+ "note": "ИДАК H0-B = H0 без правила VN-024 «Отдых вне базы» (владелец 09.09.2026, вариант B): семья rest_floors с двумя параметрами, документами задан один — второй обязан прийти вопросом анкеты и ответом авиакомпании; после ответа ВМП по содержанию равна H0. Три файла правил как у H0; книга ответов закрывает вопрос о параметре и вопрос об истории; ожидания — ключ expect и EXPECTED.md. Книга данных — ID-H0-DATA.xlsx набора H0."
+}

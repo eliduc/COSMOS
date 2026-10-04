@@ -1,0 +1,940 @@
+{
+ "form_version": 1,
+ "pending_note": "Записи, которые посев несёт ВПЕРЁД каталога. Пока записи в каталоге нет, строк по ней файл не несёт (иначе B02 читателя — «записи в каталоге нет»), и генератор называет её словами в печати. Запись посева, которой нет ни в каталоге, ни здесь, — отказ генератора. Перечень обязан оставаться пустым, когда каталог называет все записи посева: шесть критериев-метрик решателя, ради которых он заводился, каталог 0.2.0-draft.1 уже объявил (§4.2 проекта). Адрес, который есть в каталоге, здесь держать нельзя: он прятал бы переименование записи вместо отказа. crew_unavailability ожидается при каталоге 0.5; после перехода на каталог, который её называет, --prune-pending снимает отметку с посева этой сборки.",
+ "pending_records": [
+  "families/crew_unavailability"
+ ],
+ "purpose": "Посев привязок COSMOS: курируемая таблица «запись каталога → исполнители кода» (шаг 4 каталога, §1.3 проекта final-report/KATALOG-SHAG-4-PROEKT-CLD.md). Правится РУКАМИ и только здесь; файл vmp/bindings.json собирает из него генератор vmp/bindings_build.py. Поля threshold/unit/relation/keyed/accepts у ручек с символами RunThresholds.KNOBS и RunThresholds.SIT_KNOBS в посеве НЕ пишутся — их берёт из Kotlin генератор; у именованных констант (FLEET_THRESHOLD, applyDutyExtension, applyWorkloadSpread) они стоят здесь, и гейт сверяет литералы. У строк kotlin_metric ограничение, задачи, отказ и приближение берутся из TaskModes.METRIC_EXECUTORS дословно; приближение стоит в посеве только там, где у Kotlin его нет. Пути файлов — от корня репозитория, прямыми косыми.",
+ "records": {
+  "families/crew_unavailability": [
+   {
+    "constraint": "Employee unavailable",
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+    "kind": "kotlin_constraint",
+    "label": null,
+    "note": "недоступные дни сотрудника (Employee.unavailableDays) — отпуск и иные отсутствия; дни приходят листом «Отпуска» пакета постановки",
+    "state": "есть",
+    "symbol": "FlightCrewSchedulingConstraintProvider.employeeUnavailability"
+   },
+   {
+    "file": "vmp/source_check.py",
+    "kind": "check_code",
+    "params": [],
+    "state": "есть",
+    "symbol": "_run_unavailability"
+   }
+  ],
+  "criteria/credit_hours_spread": [
+   {
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/TaskModes.kt",
+    "kind": "kotlin_metric",
+    "metric": "credit_hours_spread",
+    "state": "есть",
+    "symbol": "METRIC_EXECUTORS"
+   }
+  ],
+  "criteria/layover_nights_total": [
+   {
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/TaskModes.kt",
+    "kind": "kotlin_metric",
+    "metric": "layover_nights_total",
+    "state": "есть",
+    "symbol": "METRIC_EXECUTORS"
+   }
+  ],
+  "criteria/min_person_days": [
+   {
+    "file": "vmp/criteria.py",
+    "kind": "builder_method",
+    "note": "счёт — Builder.span_days в ветке весов Builder.price, ключ --w-span-day",
+    "params": [],
+    "state": "есть",
+    "symbol": "_exec_min_person_days"
+   }
+  ],
+  "criteria/positioning_cost": [
+   {
+    "approximation": "имя метрики шире исполнителя: считает число сотрудников, чьё первое назначение вылетает не из базы приписки (перегон из базы к первому рейсу решением не выражен), по одному на сотрудника",
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/TaskModes.kt",
+    "kind": "kotlin_metric",
+    "metric": "positioning_cost",
+    "state": "есть",
+    "symbol": "METRIC_EXECUTORS"
+   }
+  ],
+  "criteria/preferred_days_off_violations": [
+   {
+    "approximation": "имя метрики шире исполнителя: считает назначения на дни, объявленные сотрудником желательными выходными; вклад в целевую взвешен стажем, а число назначений — число совпадений",
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/TaskModes.kt",
+    "kind": "kotlin_metric",
+    "metric": "preferred_days_off_violations",
+    "state": "есть",
+    "symbol": "METRIC_EXECUTORS"
+   }
+  ],
+  "criteria/rank_normalized_cost": [
+   {
+    "file": "vmp/criteria.py",
+    "kind": "builder_method",
+    "note": "счёт — Builder.cost_0096; исполнитель сверяет контрольную пару файла контура (vmp-criterion-control-pairs.json): путь в него не передаётся, файла нет — исход «silent»; у стенда свой файл пары, его сверяет судья той же check_control_pair",
+    "params": [],
+    "state": "есть",
+    "symbol": "_exec_rank_normalized_cost"
+   }
+  ],
+  "criteria/total_pairing_cost": [
+   {
+    "file": "_pairing_builder.py",
+    "kind": "builder_method",
+    "note": "композиция целевой пейринга: критерий блока criterion пакета плюс сумма мера×вес×состав; движок отбора — _select_engines.solve",
+    "params": [],
+    "state": "есть",
+    "symbol": "Builder.price"
+   },
+   {
+    "kind": "kotlin_metric",
+    "metric": "total_pairing_cost",
+    "state": "нет"
+   }
+  ],
+  "criteria/uncovered_seats": [
+   {
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/TaskModes.kt",
+    "kind": "kotlin_metric",
+    "metric": "uncovered_seats",
+    "state": "есть",
+    "symbol": "METRIC_EXECUTORS"
+   }
+  ],
+  "families/balanced_workload": [
+   {
+    "constraint": "Credit hours spread over threshold",
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+    "kind": "kotlin_constraint",
+    "label": null,
+    "state": "есть",
+    "symbol": "FlightCrewSchedulingConstraintProvider.creditHoursSpreadOverThreshold"
+   },
+   {
+    "accepts": [],
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+    "kind": "kotlin_knob",
+    "note": "запись в часах, ручка в минутах (умножение на 60 — TaskPackage.workloadSpreadOf); relation записи держится null до слова владельца",
+    "param": "workload_spread_threshold",
+    "relation": "max",
+    "state": "есть",
+    "symbol": "RunThresholds.applyWorkloadSpread",
+    "threshold": "workload_spread_threshold_min",
+    "unit": "duration_minutes"
+   },
+   {
+    "file": "vmp/run/roster_certify.py",
+    "kind": "check_template",
+    "note": "находок нет по замыслу: мера правила — measure.value",
+    "state": "есть",
+    "symbol": "measure_soft_rules",
+    "template": "мера-мягкого-правила"
+   }
+  ],
+  "families/calendar_windows": [
+   {
+    "constraint": "Calendar window layover penalty",
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+    "kind": "kotlin_constraint",
+    "label": null,
+    "state": "есть",
+    "symbol": "FlightCrewSchedulingConstraintProvider.calendarWindowLayovers"
+   },
+   {
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/TaskPackage.kt",
+    "form": "calendar_window_penalties",
+    "kind": "kotlin_form",
+    "params": [],
+    "state": "есть",
+    "symbol": "TaskPackage.calendarWindowsOf"
+   },
+   {
+    "file": "vmp/chain_price.py",
+    "kind": "builder_method",
+    "params": [],
+    "state": "есть",
+    "symbol": "measure"
+   },
+   {
+    "file": "_pairing_builder.py",
+    "kind": "builder_method",
+    "note": "ключи w_weekend_night и weekend_days превращаются в правило семьи (rules_from_weights)",
+    "params": [],
+    "state": "есть",
+    "symbol": "Builder.soft_rules"
+   },
+   {
+    "file": "vmp/run/roster_certify.py",
+    "kind": "check_template",
+    "state": "есть",
+    "symbol": "measure_soft_rules",
+    "template": "мера-мягкого-правила"
+   }
+  ],
+  "families/connection_windows": [
+   {
+    "constraint": "Minimum turnaround",
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+    "kind": "kotlin_constraint",
+    "label": "Minimum turnaround (per minute)",
+    "note": "имя ограничения — аргумент perEmployeeAdjacency",
+    "state": "есть",
+    "symbol": "FlightCrewSchedulingConstraintProvider.minimumTurnaround"
+   },
+   {
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+    "kind": "kotlin_knob",
+    "note": "область по уточнителю; без уточнителя требование ко всей сети — обе ручки разом",
+    "param": "min_turnaround",
+    "state": "есть",
+    "symbol": "RunThresholds.SIT_KNOBS"
+   },
+   {
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+    "kind": "kotlin_knob",
+    "note": "порог мёртвой зоны стыковки; имя получило семью connection_windows в каталоге 0.2.0-draft.2 — предупреждения B03 «ручка семьи без параметра в записи» больше нет",
+    "param": "max_sit_duration",
+    "state": "есть",
+    "symbol": "RunThresholds.KNOBS"
+   },
+   {
+    "file": "_pairing_builder.py",
+    "kind": "builder_method",
+    "note": "низ окна — порог стыковки sit_min при генерации смен: пауза короче порога смену не продолжает",
+    "params": [
+     "min_turnaround"
+    ],
+    "state": "есть",
+    "symbol": "Builder.build_duties"
+   },
+   {
+    "file": "_pairing_builder.py",
+    "kind": "builder_method",
+    "note": "верх окна — пауза между периодами не короче пола отдыха (rest_floor_after, параметры семьи rest_floors), иначе цепочка недопустима; именно он отвергает зазор «ни стыковка, ни отдых»",
+    "params": [],
+    "state": "есть",
+    "symbol": "Builder.periods_tiers"
+   },
+   {
+    "file": "_pairing_builder.py",
+    "kind": "builder_method",
+    "note": "судит цепочку по правилам вне таблицы отдыха — смешение чартера, суд каждой смены, серии ночных; порога стыковки НЕ читает, прежняя строка описи с параметром min_turnaround была неточна",
+    "params": [],
+    "state": "есть",
+    "symbol": "Builder.chain_ok"
+   },
+   {
+    "file": "_pairing_builder.py",
+    "kind": "builder_method",
+    "note": "верх окна на станции — пол отдыха либо ключ --sit-max от vmp/sit_boundary.derive",
+    "params": [],
+    "state": "есть",
+    "symbol": "Builder.sit_cap_at"
+   },
+   {
+    "file": "vmp/run/fit_checks.py",
+    "kind": "check_code",
+    "params": [
+     "min_turnaround"
+    ],
+    "state": "есть",
+    "symbol": "_turnaround"
+   }
+  ],
+  "families/crew_composition": [
+   {
+    "constraint": "Crew size",
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+    "kind": "kotlin_constraint",
+    "label": "Crew size (per person)",
+    "note": "на местах рейса — различные люди; пустое место уменьшает счёт",
+    "state": "есть",
+    "symbol": "FlightCrewSchedulingConstraintProvider.crewSizePerFlight"
+   },
+   {
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+    "kind": "kotlin_knob",
+    "param": "crew_size",
+    "state": "есть",
+    "symbol": "RunThresholds.KNOBS"
+   },
+   {
+    "kind": "check_template",
+    "note": "исполнитель — линия данных CDPM (cdpm/data_checks.py, run_spec_ex); спецификацию по посадке в сертификате COSMOS строит vmp/run/fit_checks.fit_code_checks, исполняет та же библиотека",
+    "state": "нет",
+    "template": "счёт-состава-группы"
+   },
+   {
+    "file": "_pairing_builder.py",
+    "kind": "builder_method",
+    "params": [],
+    "state": "есть",
+    "symbol": "Builder.crew_size"
+   }
+  ],
+  "families/crew_unavailability": [
+   {
+    "constraint": "Employee unavailable",
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+    "kind": "kotlin_constraint",
+    "label": null,
+    "note": "недоступные дни сотрудника (Employee.unavailableDays) — отпуск и иные отсутствия; дни приходят листом «Отпуска» пакета постановки",
+    "state": "есть",
+    "symbol": "FlightCrewSchedulingConstraintProvider.employeeUnavailability"
+   },
+   {
+    "file": "vmp/source_check.py",
+    "kind": "check_code",
+    "params": [],
+    "state": "есть",
+    "symbol": "_run_unavailability"
+   }
+  ],
+  "families/days_off_floor": [
+   {
+    "constraint_id_rule": "logic <sha256(rule_id)[:8]>",
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/LogicForms.kt",
+    "form": "DAYS_OFF_PER_MONTH_MIN",
+    "kind": "kotlin_logic_form",
+    "param_set": "monthly",
+    "params": [
+     "min_days_off"
+    ],
+    "state": "есть",
+    "symbol": "LogicForms.daysOffPerMonthMin"
+   },
+   {
+    "constraint_id_rule": "logic <sha256(rule_id)[:8]>",
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/LogicForms.kt",
+    "form": "DAYS_OFF_IN_ROLLING_WINDOW_MIN",
+    "kind": "kotlin_logic_form",
+    "param_set": "rolling_window",
+    "params": [
+     "min_days_off_in_window",
+     "days_off_window_days"
+    ],
+    "state": "есть",
+    "symbol": "LogicForms.daysOffInRollingWindow"
+   },
+   {
+    "file": "vmp/run/logic_checks.py",
+    "kind": "check_code",
+    "params": [
+     "min_days_off"
+    ],
+    "state": "есть",
+    "symbol": "_days_off"
+   },
+   {
+    "file": "vmp/run/logic_checks.py",
+    "kind": "check_code",
+    "params": [
+     "min_days_off_in_window",
+     "days_off_window_days"
+    ],
+    "state": "есть",
+    "symbol": "_days_off_window"
+   },
+   {
+    "kind": "check_template",
+    "note": "исполнитель — линия данных CDPM (cdpm/data_checks.py, группа data)",
+    "state": "нет",
+    "template": "выходных-в-месяце"
+   }
+  ],
+  "families/deadhead_rules": [
+   {
+    "constraint": "Deadheads per day",
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+    "kind": "kotlin_constraint",
+    "label": "Deadheads per day (per extra)",
+    "note": "живёт при обеих ручках больше нуля",
+    "state": "есть",
+    "symbol": "FlightCrewSchedulingConstraintProvider.deadheadsPerDay"
+   },
+   {
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+    "kind": "kotlin_knob",
+    "param": "max_deadheads_per_flight",
+    "state": "есть",
+    "symbol": "RunThresholds.KNOBS"
+   },
+   {
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+    "kind": "kotlin_knob",
+    "param": "max_deadheads_per_day",
+    "state": "есть",
+    "symbol": "RunThresholds.KNOBS"
+   },
+   {
+    "file": "_pairing_builder.py",
+    "kind": "builder_method",
+    "note": "минимум между перегоном и рабочим участком — порог стыковки построителя; минимум между соседними перегонами — из условий (adjacent_dh_min)",
+    "params": [],
+    "state": "есть",
+    "symbol": "Builder.adjacent_dh_ok"
+   },
+   {
+    "file": "_pairing_builder.py",
+    "kind": "builder_method",
+    "params": [],
+    "state": "есть",
+    "symbol": "Builder.periods_of"
+   },
+   {
+    "file": "_pairing_builder.py",
+    "kind": "builder_method",
+    "note": "ПРОБЕЛ: vmp/pairing_input.py ставит max_dh_per_flight и max_dh_per_day в None, ручки пакета до построителя не доходят (заявка владельцу, §11 проекта)",
+    "params": [],
+    "state": "есть",
+    "symbol": "Builder.dh_limit_groups"
+   }
+  ],
+  "families/duty_extension_penalty": [
+   {
+    "constraint": "Duty extension over threshold",
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+    "kind": "kotlin_constraint",
+    "label": null,
+    "state": "есть",
+    "symbol": "FlightCrewSchedulingConstraintProvider.dutyExtensionOverThreshold"
+   },
+   {
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+    "kind": "kotlin_knob",
+    "note": "применяется только при потолке И базовом пределе max_duty_duration семьи duty_limits, причём потолок строже базового (RunThresholds.kt:676-702)",
+    "param": "duty_extension_cap",
+    "relation": "max",
+    "state": "есть",
+    "symbol": "RunThresholds.applyDutyExtension",
+    "threshold": [
+     "max_duty_span_min",
+     "duty_extension_threshold_min"
+    ],
+    "unit": "duration_minutes"
+   },
+   {
+    "kind": "kotlin_knob",
+    "note": "ручки решателя нет — мягкий порог решателя равен базовому пределу смены семьи duty_limits; параметр читают построитель (chain_price.measure) и сертификат (measure_soft_rules)",
+    "param": "long_duty_threshold",
+    "state": "нет"
+   },
+   {
+    "file": "vmp/chain_price.py",
+    "kind": "builder_method",
+    "note": "мера семьи в цене цепочки; единица «смена»",
+    "params": [
+     "long_duty_threshold"
+    ],
+    "state": "есть",
+    "symbol": "measure"
+   },
+   {
+    "file": "_pairing_builder.py",
+    "kind": "builder_method",
+    "params": [],
+    "state": "есть",
+    "symbol": "Builder.soft_rules"
+   },
+   {
+    "file": "vmp/run/roster_certify.py",
+    "kind": "check_template",
+    "state": "есть",
+    "symbol": "measure_soft_rules",
+    "template": "мера-мягкого-правила"
+   },
+   {
+    "file": "vmp/run/roster_certify.py",
+    "kind": "check_code",
+    "note": "адресный потолок продления по условиям EXTENSION_CONDITIONS (extension_bases in, extension_consent yes); исход строки даёт _run_cap_check",
+    "params": [
+     "duty_extension_cap"
+    ],
+    "state": "есть",
+    "symbol": "apply_extension_caps"
+   }
+  ],
+  "families/duty_limits": [
+   {
+    "constraint": "Max duty period (rest-segmented)",
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+    "kind": "kotlin_constraint",
+    "label": "Max duty period (rest-segmented) (per minute)",
+    "state": "есть",
+    "symbol": "FlightCrewSchedulingConstraintProvider.maxDutyPeriodRestSegmented"
+   },
+   {
+    "constraint": "Max landings per duty",
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+    "kind": "kotlin_constraint",
+    "label": "Max landings per duty (per extra landing)",
+    "state": "есть",
+    "symbol": "FlightCrewSchedulingConstraintProvider.maxLandingsPerDuty"
+   },
+   {
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+    "kind": "kotlin_knob",
+    "param": "max_duty_duration",
+    "state": "есть",
+    "symbol": "RunThresholds.KNOBS"
+   },
+   {
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+    "kind": "kotlin_knob",
+    "param": "max_landings_per_duty",
+    "state": "есть",
+    "symbol": "RunThresholds.KNOBS"
+   },
+   {
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+    "kind": "kotlin_knob",
+    "note": "транзитная ручка (externalExecutor): ограничения провайдера нет, исполнитель — Builder.pairing_days_ok",
+    "param": "max_pairing_days",
+    "state": "есть",
+    "symbol": "RunThresholds.KNOBS"
+   },
+   {
+    "file": "_pairing_builder.py",
+    "kind": "builder_method",
+    "params": [
+     "max_duty_duration",
+     "max_landings_per_duty"
+    ],
+    "state": "есть",
+    "symbol": "Builder.duty_limit_ok"
+   },
+   {
+    "file": "_pairing_builder.py",
+    "kind": "builder_method",
+    "params": [
+     "max_pairing_days"
+    ],
+    "state": "есть",
+    "symbol": "Builder.pairing_days_ok"
+   },
+   {
+    "kind": "check_template",
+    "note": "исполнитель — линия данных CDPM (cdpm/data_checks.py); при потолке продления спецификация заменяется кодом apply_extension_caps",
+    "state": "нет",
+    "template": "максимальная-длительность-часов"
+   },
+   {
+    "file": "vmp/run/fit_checks.py",
+    "kind": "check_code",
+    "params": [
+     "max_landings_per_duty"
+    ],
+    "state": "есть",
+    "symbol": "_landings_per_duty"
+   },
+   {
+    "file": "vmp/run/fit_checks.py",
+    "kind": "check_code",
+    "params": [
+     "max_pairing_days"
+    ],
+    "state": "есть",
+    "symbol": "_pairing_days"
+   },
+   {
+    "file": "vmp/conditions_export.py",
+    "kind": "export_form",
+    "note": "точная ярусная форма worktime_exact словаря условий; прежняя строка описи _conditions.worktime_exact — символа нет",
+    "params": [],
+    "state": "есть",
+    "symbol": "build_conditions"
+   }
+  ],
+  "families/duty_series_limit": [
+   {
+    "constraint_id_rule": "logic <sha256(rule_id)[:8]>",
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/LogicForms.kt",
+    "form": "DUTY_SERIES_LIMIT",
+    "kind": "kotlin_logic_form",
+    "param_set": null,
+    "params": [
+     "max_duty_series_length",
+     "post_series_days_off"
+    ],
+    "state": "есть",
+    "symbol": "LogicForms.dutySeriesLimit"
+   },
+   {
+    "file": "vmp/run/logic_checks.py",
+    "kind": "check_code",
+    "params": [
+     "max_duty_series_length",
+     "post_series_days_off"
+    ],
+    "state": "есть",
+    "symbol": "_duty_series"
+   }
+  ],
+  "families/fleet_exclusions": [
+   {
+    "constraint": "Type rating required",
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+    "kind": "kotlin_constraint",
+    "label": null,
+    "note": "судит только типы из fleetTypes()",
+    "state": "есть",
+    "symbol": "FlightCrewSchedulingConstraintProvider.typeRatingRequired"
+   },
+   {
+    "constraint": "Type rating currency",
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+    "kind": "kotlin_constraint",
+    "label": null,
+    "note": "судит только при датированных окнах допусков (qualificationWindows)",
+    "state": "есть",
+    "symbol": "FlightCrewSchedulingConstraintProvider.typeRatingCurrency"
+   },
+   {
+    "accepts": [],
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+    "kind": "kotlin_knob",
+    "note": "ручка-перечень (FLEET_PARAMS); словарь param_relations отношения перечня не имеет — здесь стоит отношение исполнителя in из condition_relations, а запись каталога держит relation null",
+    "param": "fleet_types",
+    "relation": "in",
+    "state": "есть",
+    "symbol": "RunThresholds.FLEET_THRESHOLD",
+    "threshold": "fleet_types",
+    "unit": "code_list"
+   },
+   {
+    "accepts": [],
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+    "kind": "kotlin_knob",
+    "note": "синоним перечня — один код; имя получило семью fleet_exclusions в каталоге 0.2.0-draft.2 — предупреждения B03 больше нет",
+    "param": "fleet_type",
+    "relation": "in",
+    "state": "есть",
+    "symbol": "RunThresholds.FLEET_THRESHOLD",
+    "threshold": "fleet_types",
+    "unit": "code"
+   },
+   {
+    "file": "vmp/conditions_export.py",
+    "kind": "export_form",
+    "note": "условия fleet_auto_plan_excluded, crew_min_by_fleet, crew_std_by_fleet",
+    "params": [],
+    "state": "есть",
+    "symbol": "build_conditions"
+   },
+   {
+    "kind": "check_template",
+    "note": "исполнитель — линия данных CDPM (cdpm/data_checks.py); при исходной книге сертификат COSMOS судит кодом fit_checks._fleet_qualification",
+    "state": "нет",
+    "template": "действительность-на-дату"
+   },
+   {
+    "file": "vmp/run/fit_checks.py",
+    "kind": "check_code",
+    "params": [
+     "fleet_types"
+    ],
+    "state": "есть",
+    "symbol": "_fleet_qualification"
+   }
+  ],
+  "families/layover_penalty": [
+   {
+    "constraint": "Layover nights away from home",
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+    "kind": "kotlin_constraint",
+    "label": null,
+    "state": "есть",
+    "symbol": "FlightCrewSchedulingConstraintProvider.layoverNights"
+   },
+   {
+    "file": "vmp/chain_price.py",
+    "kind": "builder_method",
+    "note": "мера семьи в цене цепочки; единица «ночь» (словарь UNITS)",
+    "params": [],
+    "state": "есть",
+    "symbol": "measure"
+   },
+   {
+    "file": "_pairing_builder.py",
+    "kind": "builder_method",
+    "note": "композиция цены: критерий + сумма мера×вес×состав; правила части — Builder.soft_rules",
+    "params": [],
+    "state": "есть",
+    "symbol": "Builder.price"
+   },
+   {
+    "file": "vmp/run/roster_certify.py",
+    "kind": "check_template",
+    "state": "есть",
+    "symbol": "measure_soft_rules",
+    "template": "мера-мягкого-правила"
+   }
+  ],
+  "families/night_series": [
+   {
+    "constraint_id_rule": "logic <sha256(rule_id)[:8]>",
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/LogicForms.kt",
+    "form": "CONSECUTIVE_NIGHT_DUTIES_MAX",
+    "kind": "kotlin_logic_form",
+    "param_set": "consecutive",
+    "params": [
+     "max_consecutive_night_duties",
+     "night_duty_start",
+     "night_duty_end"
+    ],
+    "state": "есть",
+    "symbol": "LogicForms.consecutiveNightDuties"
+   },
+   {
+    "constraint_id_rule": "logic <sha256(rule_id)[:8]>",
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/LogicForms.kt",
+    "form": "NIGHT_DUTIES_IN_ROLLING_WINDOW_MAX",
+    "kind": "kotlin_logic_form",
+    "param_set": "rolling_window",
+    "params": [
+     "max_night_duties_in_window",
+     "night_window_days",
+     "night_duty_start",
+     "night_duty_end"
+    ],
+    "state": "есть",
+    "symbol": "LogicForms.nightDutiesInRollingWindow"
+   },
+   {
+    "file": "vmp/run/logic_checks.py",
+    "kind": "check_code",
+    "params": [
+     "max_consecutive_night_duties",
+     "night_duty_start",
+     "night_duty_end"
+    ],
+    "state": "есть",
+    "symbol": "_night_series"
+   },
+   {
+    "file": "vmp/run/logic_checks.py",
+    "kind": "check_code",
+    "params": [
+     "max_night_duties_in_window",
+     "night_window_days",
+     "night_duty_start",
+     "night_duty_end"
+    ],
+    "state": "есть",
+    "symbol": "_night_window"
+   },
+   {
+    "kind": "check_template",
+    "note": "исполнитель — линия данных CDPM (cdpm/history_section.py, группа history_form)",
+    "state": "нет",
+    "template": "серия-ночных-смен"
+   }
+  ],
+  "families/reserve_floors": [
+   {
+    "constraint": "Reserve crews",
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+    "kind": "kotlin_constraint",
+    "label": "Reserve crews (per crew-day)",
+    "note": "клетка база × роль × сутки по нормам; без норм выключено",
+    "state": "есть",
+    "symbol": "FlightCrewSchedulingConstraintProvider.reserveCrewsPerBase"
+   },
+   {
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+    "kind": "kotlin_knob",
+    "note": "семейство ключей reserve_crews_min[<база>], константа DefaultProviderRules.RESERVE_FAMILY",
+    "param": "reserve_crews",
+    "state": "есть",
+    "symbol": "RunThresholds.KNOBS"
+   }
+  ],
+  "families/rest_floors": [
+   {
+    "constraint": "Rest between duty periods",
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+    "kind": "kotlin_constraint",
+    "label": "Rest between duty periods (per minute)",
+    "note": "имя ограничения — аргумент perEmployeeAdjacency; судит только при day_break_threshold_min больше нуля, то есть при ручке max_sit_duration пакета",
+    "state": "есть",
+    "symbol": "FlightCrewSchedulingConstraintProvider.restBetweenDutyPeriods"
+   },
+   {
+    "constraint": "Rest before horizon (history)",
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+    "kind": "kotlin_constraint",
+    "label": null,
+    "state": "есть",
+    "symbol": "FlightCrewSchedulingConstraintProvider.restBeforeHorizon"
+   },
+   {
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+    "kind": "kotlin_knob",
+    "param": "min_rest_home",
+    "state": "есть",
+    "symbol": "RunThresholds.KNOBS"
+   },
+   {
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+    "kind": "kotlin_knob",
+    "param": "min_rest_outstation",
+    "state": "есть",
+    "symbol": "RunThresholds.KNOBS"
+   },
+   {
+    "file": "_pairing_builder.py",
+    "kind": "builder_method",
+    "params": [
+     "min_rest_home",
+     "min_rest_outstation"
+    ],
+    "state": "есть",
+    "symbol": "Builder.rest_floor_after"
+   },
+   {
+    "file": "_duty_periods.py",
+    "kind": "builder_method",
+    "params": [],
+    "state": "есть",
+    "symbol": "build_periods"
+   },
+   {
+    "kind": "check_template",
+    "note": "исполнитель — линия данных CDPM (cdpm/data_checks.py); сертификат COSMOS судит пол отдыха кодом fit_checks._rest_floor",
+    "state": "нет",
+    "template": "минимальный-разрыв-часов"
+   },
+   {
+    "file": "vmp/run/fit_checks.py",
+    "kind": "check_code",
+    "params": [
+     "min_rest_home",
+     "min_rest_outstation"
+    ],
+    "state": "есть",
+    "symbol": "_rest_floor"
+   },
+   {
+    "file": "vmp/conditions_export.py",
+    "kind": "export_form",
+    "note": "лестницы отдыха (_ladder); прежняя строка описи _conditions.rest_floor — символа нет",
+    "params": [],
+    "state": "есть",
+    "symbol": "build_conditions"
+   }
+  ],
+  "families/rolling_rest": [
+   {
+    "constraint_id_rule": "logic <sha256(rule_id)[:8]>",
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/LogicForms.kt",
+    "form": "REST_IN_ROLLING_WINDOW",
+    "kind": "kotlin_logic_form",
+    "param_set": null,
+    "params": [
+     "weekly_rest_required",
+     "weekly_rest_period"
+    ],
+    "state": "есть",
+    "symbol": "LogicForms.restInRollingWindow"
+   },
+   {
+    "file": "vmp/run/logic_checks.py",
+    "kind": "check_code",
+    "params": [
+     "weekly_rest_required",
+     "weekly_rest_period"
+    ],
+    "state": "есть",
+    "symbol": "_rolling_rest"
+   },
+   {
+    "kind": "check_template",
+    "note": "исполнитель — линия данных CDPM (cdpm/data_checks.py); имя проверки кода COSMOS совпадает с именем шаблона, но это проверка кодом, а не шаблоном",
+    "state": "нет",
+    "template": "отдых-в-скользящем-окне"
+   }
+  ],
+  "families/span_accumulators": [
+   {
+    "constraint": "Max monthly flight hours",
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+    "kind": "kotlin_constraint",
+    "label": "Max monthly flight hours (per minute)",
+    "state": "есть",
+    "symbol": "FlightCrewSchedulingConstraintProvider.maxMonthlyFlightHours"
+   },
+   {
+    "constraint": "Max weekly flight hours",
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+    "kind": "kotlin_constraint",
+    "label": "Max weekly flight hours (per minute)",
+    "state": "есть",
+    "symbol": "FlightCrewSchedulingConstraintProvider.maxWeeklyFlightHours"
+   },
+   {
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+    "kind": "kotlin_knob",
+    "param": "max_monthly_block",
+    "state": "есть",
+    "symbol": "RunThresholds.KNOBS"
+   },
+   {
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+    "kind": "kotlin_knob",
+    "note": "недельный налёт; имя словаря решателя получило семью span_accumulators в каталоге 0.2.0-draft.2 — предупреждения B03 больше нет",
+    "param": "max_weekly_block",
+    "state": "есть",
+    "symbol": "RunThresholds.KNOBS"
+   },
+   {
+    "file": "_pairing_builder.py",
+    "kind": "builder_method",
+    "note": "размах командировки в сутках по CosRules.max_pairing_days — параметру семьи duty_limits; месячный и недельный налёт построитель не судит (vmp/pairing_input.py ставит monthly_flight_time_limit_min в None)",
+    "params": [],
+    "state": "есть",
+    "symbol": "Builder.pairing_span_ok"
+   },
+   {
+    "file": "vmp/run/fit_checks.py",
+    "kind": "check_code",
+    "params": [
+     "max_monthly_block"
+    ],
+    "state": "есть",
+    "symbol": "_monthly_block"
+   }
+  ],
+  "families/time_scale": [
+   {
+    "file": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+    "kind": "kotlin_knob",
+    "note": "законно только значение 0: шкала мира, а не предел",
+    "param": "base_tz_offset_min",
+    "state": "есть",
+    "symbol": "RunThresholds.KNOBS"
+   },
+   {
+    "file": "_pairing_builder.py",
+    "kind": "builder_method",
+    "params": [
+     "base_tz_offset_min"
+    ],
+    "state": "есть",
+    "symbol": "resolve_time_scale"
+   },
+   {
+    "file": "vmp/run/roster_certify.py",
+    "kind": "check_template",
+    "note": "запись «применена конфигурацией прогона», построчного исхода нет по замыслу",
+    "state": "есть",
+    "symbol": "world_param_checks",
+    "template": "параметр-мира-применён"
+   }
+  ]
+ }
+}

@@ -1,0 +1,67 @@
+{
+ "customer": "Полярис-H0-К (ВМП H0 без критерия оптимизации)",
+ "catalog": {
+  "version": "0.5.0",
+  "fingerprint": "5534196f824aff80156e33cd5fa741c869c5fd8d23e48b39e295d15d73e8b7d9"
+ },
+ "stage": "ИД H0-КИ (H0-К + история сотрудников, спецификация 1.17)",
+ "data_class": "synthetic",
+ "llm_scope": "any",
+ "llm_scope_basis": "набор синтетический: вымышленная авиакомпания, генератор в репозитории (build_kit_h0k.py поверх build_kit_h0.py, build_data_h0.py); решение владельца 03.09.2026 — для синтетических и открытых данных любые модели, включая облачные; генератор build_data_h0kh.py",
+ "rules_files": [
+  "docs/ID-H0K-VMP-1.docx",
+  "docs/ID-H0K-VMP-2.xlsx",
+  "docs/ID-H0K-VMP-3.jpg"
+ ],
+ "data_files": [
+  "data/ID-H0KH-DATA.xlsx"
+ ],
+ "answer_book": "etalon/ANSWER-BOOK-MACHINE.json",
+ "agents_layout": "../polyaris-h0/agents-layout-h0.json",
+ "strict_questions": false,
+ "etalon_vmp": "open-bench/polyaris-h0kh/etalon/VMP-H0K.json",
+ "etalon_form": "open-bench/polyaris-h0kh/etalon/VMP-H0K-form.json",
+ "expect": {
+  "_comment": "Ожидание прогона H0-К (владелец 04.09.2026): сообщение, что критерия оптимизации нет и возможен только поиск feasibility-soft — оптимальное решение, удовлетворяющее всем жёстким ограничениям, с критерием, равным взвешенной сумме штрафов. Раннер сверяет ключи ниже с пакетом.",
+  "questions": [
+   "Q-3a-GOAL",
+   "Q-3b-GOAL",
+   "Q-3b-история-accumulator",
+   "Q-3b-история-boundary"
+  ],
+  "allowed_modes": {
+   "pairing": [
+    "feasibility-soft",
+    "feasibility-hard"
+   ],
+   "rostering": [
+    "feasibility-soft",
+    "feasibility-hard"
+   ]
+  },
+  "readiness_ladder": {
+   "pairing": "feasible_soft",
+   "rostering": "feasible_soft"
+  },
+  "optimization_state": "отказ подтверждён",
+  "note_contains": "критерия оптимизации нет",
+  "objectives": 0,
+  "cosmos_default_mode": "feasibility-soft",
+  "stage_verdicts": {
+   "extract": "NOT_EQUIVALENT",
+   "answers": "EQUIVALENT",
+   "package": "EQUIVALENT",
+   "_note": "ожидаемые вердикты стадий H0-КИ — те же, что у H0-К: извлечение не эквивалентно до ответов (открытые вопросы о целевой и об истории), ответы и пакет эквивалентны. Стадии COSMOS не объявлены: по замыслу набора кнопка ростеринга ОСТАНАВЛИВАЕТСЯ словами (у H14 нет истории), и вердикта задачи здесь не ждут."
+  },
+  "consistency": "sat",
+  "history": {
+   "present": true,
+   "employees_total": 24,
+   "with_history": 23,
+   "no_history_row": "H14",
+   "cosmos_expected": "остановка кнопки ростеринга словами: у H14 нет истории при assume_zero_when_missing=false; после добавления строки H14 — красный сертификата по полу отдыха дома 720 у H13 (конец смены за 6 ч до горизонта)"
+  },
+  "_history_question": "вопрос линии данных 1.17.2 (решение владельца 05.09.2026): у правил ростеринга есть остатки истории — авиакомпания решает; ответ «б» в книге ответов"
+ },
+ "note": "Набор H0-К с листами «История» (23 строки: H01–H12 остатки месяца, H13 короткий отдых дома, H15–H24 отдыхали весь месяц; H14 без строки) и «Утверждённые назначения» (H01 → PL101 04.09). Документы и эталон правил — копии H0-К; книга данных — build_data_h0kh.py."
+}

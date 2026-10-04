@@ -1,0 +1,955 @@
+{
+ "criteria": [
+  {
+   "acceptance": null,
+   "class": "extension",
+   "computable_by": [
+    "kotlin_metric"
+   ],
+   "direction": "minimize",
+   "history": [
+    {
+     "by": "сессия COSMOS",
+     "date": "2026-09-03",
+     "kind": "инвентаризация",
+     "note": "метрика в словаре решателя",
+     "ref": null
+    },
+    {
+     "by": "сессия COSMOS",
+     "date": "2026-09-08",
+     "kind": "создание",
+     "note": "запись критерия-метрики решателя (шаг 4)",
+     "ref": null
+    }
+   ],
+   "id": "credit_hours_spread",
+   "instance_form": null,
+   "needs": null,
+   "note": null,
+   "origin": {
+    "confirmed_by": "владелец",
+    "date": "2026-09-03",
+    "kind": "инвентаризация",
+    "note": "словарь метрик решателя TaskModes.METRIC_EXECUTORS (ревизия литералов 03.09)"
+   },
+   "refusal": null,
+   "semantics": {
+    "formula": null,
+    "rates_form": null,
+    "text": "корень из суммы квадратов отклонений часов налёта каждого сотрудника от среднего по всему штату (сотрудник без назначений — ноль), в целых часах; перелёт пассажиром не в счёт; порог существенности судит семья balanced_workload"
+   },
+   "stand_tasks": [
+    {
+     "expected": {
+      "kotlin_metric": {
+       "matches": 1,
+       "refusal": false,
+       "value": 7
+      }
+     },
+     "id": "st-chs-1",
+     "note": "разброс кредитных часов целиком, без порога существенности",
+     "world": {
+      "assignments": [
+       {
+        "crew": "P1",
+        "flight": "F1",
+        "seat": 0
+       },
+       {
+        "crew": "P1",
+        "flight": "F2",
+        "seat": 0
+       }
+      ],
+      "crews": [
+       {
+        "base": "ST1",
+        "id": "P1",
+        "rank": "CP",
+        "ratings": [
+         "T1"
+        ]
+       },
+       {
+        "base": "ST1",
+        "id": "P2",
+        "rank": "CP",
+        "ratings": [
+         "T1"
+        ]
+       }
+      ],
+      "flights": [
+       {
+        "arr": "2026-10-01T11:00",
+        "dep": "2026-10-01T06:00",
+        "fleet_type": "T1",
+        "from": "ST1",
+        "id": "F1",
+        "to": "ST2"
+       },
+       {
+        "arr": "2026-10-02T11:00",
+        "dep": "2026-10-02T06:00",
+        "fleet_type": "T1",
+        "from": "ST2",
+        "id": "F2",
+        "to": "ST1"
+       }
+      ],
+      "form": "schedule",
+      "history": null,
+      "horizon": {
+       "from": "2026-10-01",
+       "to": "2026-10-31"
+      },
+      "objective_rate": {
+       "as_written": "ставка 1 условная единица за час разброса кредитных часов",
+       "per": "час разброса кредитных часов",
+       "value": 1
+      },
+      "params": {
+       "min_rest_home": 660,
+       "min_rest_outstation": 700,
+       "workload_spread_threshold": 5
+      },
+      "stand": {
+       "nights_per_layover": 2,
+       "w_night": 1
+      }
+     }
+    },
+    {
+     "expected": {
+      "kotlin_metric": {
+       "matches": 1,
+       "refusal": false,
+       "value": 0
+      }
+     },
+     "id": "st-chs-healthy-1",
+     "note": "Самостоятельный здоровый контроль полного разброса кредитных часов: второй рейс назначен второму сотруднику, у каждого по пять часов, отклонения от среднего равны нулю. Порог существенности не вычитается из метрики. Ставка одна условная единица за час явно объявлена в мире; общий контекст отдыха и все остальные факты сохранены.",
+     "world": {
+      "assignments": [
+       {
+        "crew": "P1",
+        "flight": "F1",
+        "seat": 0
+       },
+       {
+        "crew": "P2",
+        "flight": "F2",
+        "seat": 0
+       }
+      ],
+      "crews": [
+       {
+        "base": "ST1",
+        "id": "P1",
+        "rank": "CP",
+        "ratings": [
+         "T1"
+        ]
+       },
+       {
+        "base": "ST1",
+        "id": "P2",
+        "rank": "CP",
+        "ratings": [
+         "T1"
+        ]
+       }
+      ],
+      "flights": [
+       {
+        "arr": "2026-10-01T11:00",
+        "dep": "2026-10-01T06:00",
+        "fleet_type": "T1",
+        "from": "ST1",
+        "id": "F1",
+        "to": "ST2"
+       },
+       {
+        "arr": "2026-10-02T11:00",
+        "dep": "2026-10-02T06:00",
+        "fleet_type": "T1",
+        "from": "ST2",
+        "id": "F2",
+        "to": "ST1"
+       }
+      ],
+      "form": "schedule",
+      "history": null,
+      "horizon": {
+       "from": "2026-10-01",
+       "to": "2026-10-31"
+      },
+      "objective_rate": {
+       "as_written": "ставка 1 условная единица за час разброса кредитных часов",
+       "per": "час разброса кредитных часов",
+       "value": 1
+      },
+      "params": {
+       "min_rest_home": 660,
+       "min_rest_outstation": 700,
+       "workload_spread_threshold": 5
+      },
+      "stand": {
+       "nights_per_layover": 2,
+       "w_night": 1
+      }
+     }
+    }
+   ],
+   "status": "есть",
+   "title": "разброс кредитных часов по штату",
+   "zone": "ROSTERING"
+  },
+  {
+   "acceptance": null,
+   "class": "extension",
+   "computable_by": [
+    "kotlin_metric"
+   ],
+   "direction": "minimize",
+   "history": [
+    {
+     "by": "сессия COSMOS",
+     "date": "2026-09-03",
+     "kind": "инвентаризация",
+     "note": "метрика в словаре решателя",
+     "ref": null
+    },
+    {
+     "by": "сессия COSMOS",
+     "date": "2026-09-08",
+     "kind": "создание",
+     "note": "запись критерия-метрики решателя (шаг 4)",
+     "ref": null
+    }
+   ],
+   "id": "layover_nights_total",
+   "instance_form": null,
+   "needs": null,
+   "note": null,
+   "origin": {
+    "confirmed_by": "владелец",
+    "date": "2026-09-03",
+    "kind": "инвентаризация",
+    "note": "словарь метрик решателя TaskModes.METRIC_EXECUTORS (ревизия литералов 03.09)"
+   },
+   "refusal": null,
+   "semantics": {
+    "formula": null,
+    "rates_form": null,
+    "text": "сумма календарных ночей вне базы приписки по назначениям всех сотрудников (ночь — дата вне базы между сменами)"
+   },
+   "stand_tasks": [
+    {
+     "expected": {
+      "kotlin_metric": {
+       "matches": 1,
+       "refusal": false,
+       "value": 1
+      }
+     },
+     "id": "st-lnt-1",
+     "note": "метрика ночей вне базы под целевой прогона",
+     "world": {
+      "crews": [
+       {
+        "base": "ST1",
+        "id": "P1",
+        "rank": "CP",
+        "ratings": [
+         "T1"
+        ]
+       }
+      ],
+      "flights": [
+       {
+        "arr": "2026-10-01T08:00",
+        "dep": "2026-10-01T06:00",
+        "fleet_type": "T1",
+        "from": "ST1",
+        "id": "F1",
+        "to": "ST2"
+       },
+       {
+        "arr": "2026-10-02T12:00",
+        "dep": "2026-10-02T10:00",
+        "fleet_type": "T1",
+        "from": "ST2",
+        "id": "F2",
+        "to": "ST1"
+       }
+      ],
+      "form": "schedule",
+      "history": null,
+      "horizon": {
+       "from": "2026-10-01",
+       "to": "2026-10-31"
+      },
+      "params": {
+       "base_tz_offset_min": 0,
+       "max_duty_duration": 780,
+       "max_pairing_days": 7,
+       "min_rest_home": 660,
+       "min_rest_outstation": 700,
+       "min_turnaround": 45
+      },
+      "stand": {
+       "nights_per_layover": 2,
+       "w_night": 1
+      }
+     }
+    }
+   ],
+   "status": "есть",
+   "title": "суммарное число ночей вне базы",
+   "zone": "BOTH"
+  },
+  {
+   "acceptance": null,
+   "class": "core",
+   "computable_by": [
+    "builder_method"
+   ],
+   "direction": "minimize",
+   "history": [
+    {
+     "by": "сессия COSMOS",
+     "date": "2026-08-26",
+     "kind": "замечание",
+     "note": "урок первого канонического прогона: цена за смену делала простойные дни бесплатными — ставка за календарный день",
+     "ref": null
+    },
+    {
+     "by": "владелец",
+     "date": "2026-08-29",
+     "kind": "решение владельца",
+     "note": "критерии классифицированы в реестре типов (ядро)",
+     "ref": null
+    },
+    {
+     "by": "сессия COSMOS",
+     "date": "2026-09-07",
+     "kind": "изменение",
+     "note": "перенесена в каталог шаблонов извлечением из кода (шаг 1)",
+     "ref": null
+    }
+   ],
+   "id": "min_person_days",
+   "instance_form": {
+    "fields": [
+     {
+      "name": "rate_per_duty",
+      "note": "целое больше нуля; читается как ставка за календарный день; переименование — следующей ревизией спецификации",
+      "required": true
+     }
+    ],
+    "note": null
+   },
+   "needs": null,
+   "note": null,
+   "origin": {
+    "confirmed_by": "владелец",
+    "date": "2026-08-29",
+    "kind": "решение владельца",
+    "note": "критерии классифицированы в реестре типов (ядро)"
+   },
+   "refusal": "у решателя ростеринга критерий пейринга не вычислим — честный отказ",
+   "semantics": {
+    "formula": null,
+    "rates_form": null,
+    "text": "человеко-день командировки — календарный день в отъезде от первого вылета до последнего прилёта, дни отдыха внутри цепочки и перегоны включены; целевая построителя равна критерию, прочие веса нулевые"
+   },
+   "stand_tasks": [
+    {
+     "expected": {
+      "builder_method": {
+       "symbol": "_exec_min_person_days",
+       "unit": "criterion",
+       "value": 14
+      }
+     },
+     "id": "st-mpd-1",
+     "note": "два календарных дня командировки по ставке за день",
+     "world": {
+      "crews": [
+       {
+        "base": "ST1",
+        "id": "P1",
+        "rank": "CP",
+        "ratings": [
+         "T1"
+        ]
+       }
+      ],
+      "criterion": {
+       "kind": "min_person_days",
+       "rate_per_duty": 7
+      },
+      "flights": [
+       {
+        "arr": "2026-10-01T08:00",
+        "dep": "2026-10-01T06:00",
+        "fleet_type": "T1",
+        "from": "ST1",
+        "id": "F1",
+        "to": "ST2"
+       },
+       {
+        "arr": "2026-10-02T12:00",
+        "dep": "2026-10-02T10:00",
+        "fleet_type": "T1",
+        "from": "ST2",
+        "id": "F2",
+        "to": "ST1"
+       }
+      ],
+      "form": "schedule",
+      "history": null,
+      "horizon": {
+       "from": "2026-10-01",
+       "to": "2026-10-31"
+      },
+      "params": {
+       "base_tz_offset_min": 0,
+       "max_duty_duration": 780,
+       "max_pairing_days": 7,
+       "min_rest_home": 660,
+       "min_rest_outstation": 700,
+       "min_turnaround": 45
+      },
+      "stand": {
+       "nights_per_layover": 2,
+       "w_night": 1
+      }
+     }
+    }
+   ],
+   "status": "есть",
+   "title": "минимум человеко-дней командировки",
+   "zone": "PAIRING"
+  },
+  {
+   "acceptance": null,
+   "class": "extension",
+   "computable_by": [
+    "kotlin_metric"
+   ],
+   "direction": "minimize",
+   "history": [
+    {
+     "by": "сессия COSMOS",
+     "date": "2026-09-03",
+     "kind": "инвентаризация",
+     "note": "метрика в словаре решателя",
+     "ref": null
+    },
+    {
+     "by": "сессия COSMOS",
+     "date": "2026-09-08",
+     "kind": "создание",
+     "note": "запись критерия-метрики решателя (шаг 4)",
+     "ref": null
+    }
+   ],
+   "id": "positioning_cost",
+   "instance_form": null,
+   "needs": null,
+   "note": null,
+   "origin": {
+    "confirmed_by": "владелец",
+    "date": "2026-09-03",
+    "kind": "инвентаризация",
+    "note": "словарь метрик решателя TaskModes.METRIC_EXECUTORS (ревизия литералов 03.09)"
+   },
+   "refusal": null,
+   "semantics": {
+    "formula": null,
+    "rates_form": null,
+    "text": "число сотрудников, чьё первое назначение вылетает не из базы приписки (перегон из базы к первому рейсу решением не выражен); вклад в целевую — по одному на сотрудника"
+   },
+   "stand_tasks": [
+    {
+     "expected": {
+      "kotlin_metric": {
+       "matches": 1,
+       "refusal": false,
+       "value": 1
+      }
+     },
+     "id": "st-pos-1",
+     "note": "первое назначение сотрудника вылетает не из базы приписки (перегон из базы к первому рейсу решением не выражен); последнее вылетает из базы — ограничение судит именно первое",
+     "world": {
+      "crews": [
+       {
+        "base": "ST1",
+        "id": "P1",
+        "rank": "CP",
+        "ratings": [
+         "T1"
+        ]
+       }
+      ],
+      "flights": [
+       {
+        "arr": "2026-10-01T08:00",
+        "dep": "2026-10-01T06:00",
+        "fleet_type": "T1",
+        "from": "ST2",
+        "id": "F1",
+        "to": "ST1"
+       },
+       {
+        "arr": "2026-10-02T12:00",
+        "dep": "2026-10-02T10:00",
+        "fleet_type": "T1",
+        "from": "ST1",
+        "id": "F2",
+        "to": "ST2"
+       }
+      ],
+      "form": "schedule",
+      "history": null,
+      "horizon": {
+       "from": "2026-10-01",
+       "to": "2026-10-31"
+      },
+      "params": {
+       "base_tz_offset_min": 0,
+       "max_duty_duration": 780,
+       "max_pairing_days": 7,
+       "min_rest_home": 660,
+       "min_rest_outstation": 700,
+       "min_turnaround": 45
+      },
+      "stand": {
+       "nights_per_layover": 2,
+       "w_night": 1
+      }
+     }
+    }
+   ],
+   "status": "есть",
+   "title": "число сотрудников, начинающих работу вне базы",
+   "zone": "BOTH"
+  },
+  {
+   "acceptance": null,
+   "class": "extension",
+   "computable_by": [
+    "kotlin_metric"
+   ],
+   "direction": "minimize",
+   "history": [
+    {
+     "by": "сессия COSMOS",
+     "date": "2026-09-03",
+     "kind": "инвентаризация",
+     "note": "метрика в словаре решателя",
+     "ref": null
+    },
+    {
+     "by": "сессия COSMOS",
+     "date": "2026-09-08",
+     "kind": "создание",
+     "note": "запись критерия-метрики решателя (шаг 4)",
+     "ref": null
+    }
+   ],
+   "id": "preferred_days_off_violations",
+   "instance_form": null,
+   "needs": null,
+   "note": null,
+   "origin": {
+    "confirmed_by": "владелец",
+    "date": "2026-09-03",
+    "kind": "инвентаризация",
+    "note": "словарь метрик решателя TaskModes.METRIC_EXECUTORS (ревизия литералов 03.09)"
+   },
+   "refusal": null,
+   "semantics": {
+    "formula": null,
+    "rates_form": null,
+    "text": "назначения на дни, объявленные сотрудником желательными выходными; вклад в целевую взвешен стажем, число назначений — число совпадений"
+   },
+   "stand_tasks": [
+    {
+     "expected": {
+      "kotlin_metric": {
+       "matches": 1,
+       "refusal": false,
+       "value": 70
+      }
+     },
+     "id": "st-pdo-1",
+     "note": "назначение выпало на объявленный желательным выходной; вклад в целевую взвешен стажем",
+     "world": {
+      "crews": [
+       {
+        "base": "ST1",
+        "id": "P1",
+        "preferred_days_off": [
+         "2026-10-01"
+        ],
+        "rank": "CP",
+        "ratings": [
+         "T1"
+        ],
+        "seniority": 500
+       }
+      ],
+      "flights": [
+       {
+        "arr": "2026-10-01T08:00",
+        "dep": "2026-10-01T06:00",
+        "fleet_type": "T1",
+        "from": "ST1",
+        "id": "F1",
+        "to": "ST2"
+       },
+       {
+        "arr": "2026-10-02T12:00",
+        "dep": "2026-10-02T10:00",
+        "fleet_type": "T1",
+        "from": "ST2",
+        "id": "F2",
+        "to": "ST1"
+       }
+      ],
+      "form": "schedule",
+      "history": null,
+      "horizon": {
+       "from": "2026-10-01",
+       "to": "2026-10-31"
+      },
+      "params": {
+       "base_tz_offset_min": 0,
+       "max_duty_duration": 780,
+       "max_pairing_days": 7,
+       "min_rest_home": 660,
+       "min_rest_outstation": 700,
+       "min_turnaround": 45
+      },
+      "stand": {
+       "nights_per_layover": 2,
+       "w_night": 1
+      }
+     }
+    }
+   ],
+   "status": "есть",
+   "title": "нарушения желательных выходных",
+   "zone": "ROSTERING"
+  },
+  {
+   "acceptance": null,
+   "class": "core",
+   "computable_by": [
+    "builder_method"
+   ],
+   "direction": "minimize",
+   "history": [
+    {
+     "by": "владелец",
+     "date": "2026-08-29",
+     "kind": "решение владельца",
+     "note": "критерии классифицированы в реестре типов (ядро)",
+     "ref": null
+    },
+    {
+     "by": "сессия COSMOS",
+     "date": "2026-09-07",
+     "kind": "изменение",
+     "note": "перенесена в каталог шаблонов извлечением из кода (шаг 1)",
+     "ref": null
+    }
+   ],
+   "id": "rank_normalized_cost",
+   "instance_form": {
+    "fields": [
+     {
+      "name": "label",
+      "note": "метка семантики из данных пакета",
+      "required": true
+     },
+     {
+      "name": "rates",
+      "note": "ставки полёта и работы: положительные, кратность 0,1",
+      "required": true
+     },
+     {
+      "name": "rates_version",
+      "note": "источник, версия и дата действия ставок",
+      "required": true
+     }
+    ],
+    "note": null
+   },
+   "needs": null,
+   "note": null,
+   "origin": {
+    "confirmed_by": "владелец",
+    "date": "2026-08-29",
+    "kind": "решение владельца",
+    "note": "критерии классифицированы в реестре типов (ядро)"
+   },
+   "refusal": "у решателя ростеринга критерий пейринга не вычислим — честный отказ",
+   "semantics": {
+    "formula": "стоимость цепочки = Σ по рангам состава [полётное×ставка_полёт + рабочее×ставка_работа]; времена ПО ПЕРЕЛЁТАМ (не по размаху смен): рабочий перелёт входит в обе суммы, перегон/эстафета — только в рабочее; умножение на число людей каждого ранга (расширенный состав платится)",
+    "rates_form": {
+     "fields": [
+      "flight",
+      "work"
+     ],
+     "note": "значения — только из данных пакета; код валидирует форму (числа > 0, кратность 0,1), не значения",
+     "policy": "MUST_BE_EXTERNAL"
+    },
+    "text": "стоимость цепочки по рангам состава: полётное и рабочее время по перелётам, умноженные на ставки и на число людей ранга; ставки, ранги и контрольные пары — данные контура, код проверяет только форму"
+   },
+   "stand_tasks": [
+    {
+     "expected": {
+      "builder_method": {
+       "symbol": "_exec_rank_normalized_cost",
+       "unit": "deci",
+       "value": 14400
+      }
+     },
+     "id": "st-rnc-1",
+     "note": "контрольная пара ставок: судья сверяет её своим временным файлом пары; файл контура в исполнитель не передаётся и сверка внутри исполнителя молчит",
+     "world": {
+      "crew": 3,
+      "dh_min": 0,
+      "flight_min": 240,
+      "form": "cost_pair",
+      "rates_deci": {
+       "flight": 12,
+       "work": 8
+      }
+     }
+    }
+   ],
+   "status": "есть",
+   "title": "нормированная стоимость по рангам",
+   "zone": "PAIRING"
+  },
+  {
+   "acceptance": null,
+   "class": "extension",
+   "computable_by": [
+    "builder_method",
+    "kotlin_metric"
+   ],
+   "direction": "minimize",
+   "history": [
+    {
+     "by": "сессия COSMOS",
+     "date": "2026-09-03",
+     "kind": "инвентаризация",
+     "note": "метрика в словаре решателя",
+     "ref": null
+    },
+    {
+     "by": "сессия COSMOS",
+     "date": "2026-09-08",
+     "kind": "создание",
+     "note": "запись критерия-метрики решателя (шаг 4)",
+     "ref": null
+    }
+   ],
+   "id": "total_pairing_cost",
+   "instance_form": null,
+   "needs": null,
+   "note": null,
+   "origin": {
+    "confirmed_by": "владелец",
+    "date": "2026-09-03",
+    "kind": "инвентаризация",
+    "note": "словарь метрик решателя TaskModes.METRIC_EXECUTORS (ревизия литералов 03.09)"
+   },
+   "refusal": "метрика total_pairing_cost вычислима только раздельным прогоном пейринга; на объединённой модели назначения стоимости пейрингов нет, а похожую величину подставлять нельзя",
+   "semantics": {
+    "formula": null,
+    "rates_form": null,
+    "text": "стоимость отобранных цепочек: критерий блока criterion пакета плюс штрафы мягких правил построителя; вычислима только раздельным прогоном пейринга"
+   },
+   "stand_tasks": [
+    {
+     "expected": {
+      "builder_method": {
+       "symbol": "Builder.price",
+       "unit": "criterion",
+       "value": 15
+      },
+      "kotlin_metric": {
+       "matches": null,
+       "refusal": true,
+       "value": null
+      }
+     },
+     "id": "st-tpc-1",
+     "note": "целевая пейринга: критерий плюс штраф ночёвки; у решателя объединённой модели метрика отказывает словами",
+     "world": {
+      "crews": [
+       {
+        "base": "ST1",
+        "id": "P1",
+        "rank": "CP",
+        "ratings": [
+         "T1"
+        ]
+       }
+      ],
+      "criterion": {
+       "kind": "min_person_days",
+       "rate_per_duty": 7
+      },
+      "flights": [
+       {
+        "arr": "2026-10-01T08:00",
+        "dep": "2026-10-01T06:00",
+        "fleet_type": "T1",
+        "from": "ST1",
+        "id": "F1",
+        "to": "ST2"
+       },
+       {
+        "arr": "2026-10-02T12:00",
+        "dep": "2026-10-02T10:00",
+        "fleet_type": "T1",
+        "from": "ST2",
+        "id": "F2",
+        "to": "ST1"
+       }
+      ],
+      "form": "schedule",
+      "history": null,
+      "horizon": {
+       "from": "2026-10-01",
+       "to": "2026-10-31"
+      },
+      "params": {
+       "base_tz_offset_min": 0,
+       "max_duty_duration": 780,
+       "max_pairing_days": 7,
+       "min_rest_home": 660,
+       "min_rest_outstation": 700,
+       "min_turnaround": 45
+      },
+      "stand": {
+       "w_night": 1
+      }
+     }
+    }
+   ],
+   "status": "есть",
+   "title": "суммарная стоимость пейрингов",
+   "zone": "PAIRING"
+  },
+  {
+   "acceptance": null,
+   "class": "extension",
+   "computable_by": [
+    "kotlin_metric"
+   ],
+   "direction": "minimize",
+   "history": [
+    {
+     "by": "сессия COSMOS",
+     "date": "2026-09-03",
+     "kind": "инвентаризация",
+     "note": "метрика в словаре решателя",
+     "ref": null
+    },
+    {
+     "by": "сессия COSMOS",
+     "date": "2026-09-08",
+     "kind": "создание",
+     "note": "запись критерия-метрики решателя (шаг 4)",
+     "ref": null
+    }
+   ],
+   "id": "uncovered_seats",
+   "instance_form": null,
+   "needs": null,
+   "note": null,
+   "origin": {
+    "confirmed_by": "владелец",
+    "date": "2026-09-03",
+    "kind": "инвентаризация",
+    "note": "словарь метрик решателя TaskModes.METRIC_EXECUTORS (ревизия литералов 03.09)"
+   },
+   "refusal": null,
+   "semantics": {
+    "formula": null,
+    "rates_form": null,
+    "text": "число мест рейсов (кроме перегонных) без назначенного сотрудника"
+   },
+   "stand_tasks": [
+    {
+     "expected": {
+      "kotlin_metric": {
+       "matches": 1,
+       "refusal": false,
+       "value": 1
+      }
+     },
+     "id": "st-unc-1",
+     "note": "одно место рейса осталось без сотрудника",
+     "world": {
+      "assignments": [
+       {
+        "crew": "P1",
+        "flight": "F1",
+        "seat": 0
+       }
+      ],
+      "crews": [
+       {
+        "base": "ST1",
+        "id": "P1",
+        "rank": "CP",
+        "ratings": [
+         "T1"
+        ]
+       }
+      ],
+      "flights": [
+       {
+        "arr": "2026-10-01T08:00",
+        "dep": "2026-10-01T06:00",
+        "fleet_type": "T1",
+        "from": "ST1",
+        "id": "F1",
+        "to": "ST2"
+       }
+      ],
+      "form": "schedule",
+      "history": null,
+      "horizon": {
+       "from": "2026-10-01",
+       "to": "2026-10-31"
+      },
+      "params": {
+       "crew_size": 2
+      },
+      "stand": {
+       "nights_per_layover": 2,
+       "w_night": 1
+      }
+     }
+    }
+   ],
+   "status": "есть",
+   "title": "число непокрытых мест",
+   "zone": "BOTH"
+  }
+ ],
+ "form_version": 1
+}

@@ -1,0 +1,585 @@
+Schedule 1(BASE2) : 
+--------> credited hours     : 84.3
+--------> schedule cost      : 5273.67
+--------> number of vacations: 18
+Schedule 2(BASE2) : 
+--------> credited hours     : 64.05
+--------> schedule cost      : 6419
+--------> number of vacations: 22
+Schedule 3(BASE2) : 
+--------> credited hours     : 43.1333
+--------> schedule cost      : 3988
+--------> number of vacations: 24
+Schedule 4(BASE2) : 
+--------> credited hours     : 81.7833
+--------> schedule cost      : 3895.67
+--------> number of vacations: 21
+Schedule 5(BASE3) : 
+--------> credited hours     : 83.1667
+--------> schedule cost      : 5723.67
+--------> number of vacations: 15
+Schedule 6(BASE2) : 
+--------> credited hours     : 81.4333
+--------> schedule cost      : 4412.33
+--------> number of vacations: 19
+Schedule 7(BASE1) : 
+--------> credited hours     : 73.4667
+--------> schedule cost      : 5671.33
+--------> number of vacations: 21
+Schedule 8(BASE2) : 
+--------> credited hours     : 84.3167
+--------> schedule cost      : 6131.67
+--------> number of vacations: 20
+Schedule 9(BASE2) : 
+--------> credited hours     : 57.8167
+--------> schedule cost      : 3822.33
+--------> number of vacations: 14
+Schedule 10(BASE2) : 
+--------> credited hours     : 84.8333
+--------> schedule cost      : 5058.67
+--------> number of vacations: 19
+Schedule 11(BASE1) : 
+--------> credited hours     : 54.4833
+--------> schedule cost      : 3614.33
+--------> number of vacations: 23
+Schedule 12(BASE2) : 
+--------> credited hours     : 51.9167
+--------> schedule cost      : 3489
+--------> number of vacations: 24
+Schedule 13(BASE1) : 
+--------> credited hours     : 83.85
+--------> schedule cost      : 4028
+--------> number of vacations: 19
+Schedule 14(BASE3) : 
+--------> credited hours     : 69.1833
+--------> schedule cost      : 5356.67
+--------> number of vacations: 11
+Schedule 15(BASE1) : 
+--------> credited hours     : 76.6
+--------> schedule cost      : 4243
+--------> number of vacations: 20
+Schedule 16(BASE2) : 
+--------> credited hours     : 80.4
+--------> schedule cost      : 2848.33
+--------> number of vacations: 21
+Schedule 17(BASE2) : 
+--------> credited hours     : 82.1333
+--------> schedule cost      : 5705.33
+--------> number of vacations: 20
+Schedule 18(BASE2) : 
+--------> credited hours     : 67.25
+--------> schedule cost      : 4643.33
+--------> number of vacations: 22
+Schedule 19(BASE2) : 
+--------> credited hours     : 66.3333
+--------> schedule cost      : 4961
+--------> number of vacations: 21
+Schedule 20(BASE3) : 
+--------> credited hours     : 65.2667
+--------> schedule cost      : 6763
+--------> number of vacations: 19
+Schedule 21(BASE2) : 
+--------> credited hours     : 78.4167
+--------> schedule cost      : 6470
+--------> number of vacations: 20
+Schedule 22(BASE2) : 
+--------> credited hours     : 64.3
+--------> schedule cost      : 4570
+--------> number of vacations: 17
+Schedule 23(BASE1) : 
+--------> credited hours     : 82.1833
+--------> schedule cost      : 7094
+--------> number of vacations: 19
+Schedule 24(BASE2) : 
+--------> credited hours     : 51.5833
+--------> schedule cost      : 5857.33
+--------> number of vacations: 23
+Schedule 25(BASE2) : 
+--------> credited hours     : 81.75
+--------> schedule cost      : 4218.33
+--------> number of vacations: 21
+Schedule 26(BASE2) : 
+--------> credited hours     : 78.6667
+--------> schedule cost      : 6691.67
+--------> number of vacations: 19
+Schedule 27(BASE2) : 
+--------> credited hours     : 84.3
+--------> schedule cost      : 5984
+--------> number of vacations: 20
+Schedule 28(BASE1) : 
+--------> credited hours     : 74.0667
+--------> schedule cost      : 4376.67
+--------> number of vacations: 19
+Schedule 29(BASE2) : 
+--------> credited hours     : 74.6667
+--------> schedule cost      : 7010.67
+--------> number of vacations: 19
+Schedule 30(BASE1) : 
+--------> credited hours     : 50.6
+--------> schedule cost      : 4284.33
+--------> number of vacations: 17
+Schedule 31(BASE2) : 
+--------> credited hours     : 23.6833
+--------> schedule cost      : 2225
+--------> number of vacations: 19
+Schedule 32(BASE2) : 
+--------> credited hours     : 83.4333
+--------> schedule cost      : 8506.33
+--------> number of vacations: 18
+Schedule 33(BASE3) : 
+--------> credited hours     : 84.8667
+--------> schedule cost      : 7382.33
+--------> number of vacations: 11
+Schedule 34(BASE2) : 
+--------> credited hours     : 71.6167
+--------> schedule cost      : 5815.33
+--------> number of vacations: 21
+Schedule 35(BASE1) : 
+--------> credited hours     : 73.9333
+--------> schedule cost      : 4046.67
+--------> number of vacations: 22
+Schedule 36(BASE3) : 
+--------> credited hours     : 78.1833
+--------> schedule cost      : 8488.33
+--------> number of vacations: 16
+Schedule 37(BASE1) : 
+--------> credited hours     : 70.0333
+--------> schedule cost      : 3981.67
+--------> number of vacations: 22
+Schedule 38(BASE2) : 
+--------> credited hours     : 83.65
+--------> schedule cost      : 5804
+--------> number of vacations: 20
+Schedule 39(BASE2) : 
+--------> credited hours     : 75.95
+--------> schedule cost      : 4833.33
+--------> number of vacations: 21
+Schedule 40(BASE1) : 
+--------> credited hours     : 83.8667
+--------> schedule cost      : 5858
+--------> number of vacations: 19
+Schedule 41(BASE3) : 
+--------> credited hours     : 84.1333
+--------> schedule cost      : 7081.67
+--------> number of vacations: 15
+Schedule 42(BASE3) : 
+--------> credited hours     : 76.5833
+--------> schedule cost      : 6312.33
+--------> number of vacations: 18
+Schedule 43(BASE1) : 
+--------> credited hours     : 81.4833
+--------> schedule cost      : 5848
+--------> number of vacations: 15
+Schedule 44(BASE2) : 
+--------> credited hours     : 63.1667
+--------> schedule cost      : 6641.67
+--------> number of vacations: 21
+Schedule 45(BASE1) : 
+--------> credited hours     : 60.7667
+--------> schedule cost      : 5563
+--------> number of vacations: 23
+Schedule 46(BASE3) : 
+--------> credited hours     : 84
+--------> schedule cost      : 9723.33
+--------> number of vacations: 16
+Schedule 47(BASE3) : 
+--------> credited hours     : 64.7833
+--------> schedule cost      : 6504
+--------> number of vacations: 13
+Schedule 48(BASE2) : 
+--------> credited hours     : 81.0333
+--------> schedule cost      : 7959.33
+--------> number of vacations: 15
+Schedule 49(BASE1) : 
+--------> credited hours     : 79.4
+--------> schedule cost      : 7470.67
+--------> number of vacations: 20
+Schedule 50(BASE1) : 
+--------> credited hours     : 77.1
+--------> schedule cost      : 3581
+--------> number of vacations: 22
+Schedule 51(BASE2) : 
+--------> credited hours     : 83.6667
+--------> schedule cost      : 4773.67
+--------> number of vacations: 20
+Schedule 52(BASE3) : 
+--------> credited hours     : 84.2833
+--------> schedule cost      : 6090
+--------> number of vacations: 16
+Schedule 53(BASE2) : 
+--------> credited hours     : 78.5667
+--------> schedule cost      : 6669.67
+--------> number of vacations: 20
+Schedule 54(BASE2) : 
+--------> credited hours     : 83.6833
+--------> schedule cost      : 4283
+--------> number of vacations: 20
+Schedule 55(BASE1) : 
+--------> credited hours     : 67.1333
+--------> schedule cost      : 3060
+--------> number of vacations: 20
+Schedule 56(BASE3) : 
+--------> credited hours     : 59.4667
+--------> schedule cost      : 5070
+--------> number of vacations: 13
+Schedule 57(BASE1) : 
+--------> credited hours     : 49.5333
+--------> schedule cost      : 3483
+--------> number of vacations: 23
+Schedule 58(BASE2) : 
+--------> credited hours     : 82.2333
+--------> schedule cost      : 5676.67
+--------> number of vacations: 19
+Schedule 59(BASE2) : 
+--------> credited hours     : 74.9667
+--------> schedule cost      : 4868
+--------> number of vacations: 20
+Schedule 60(BASE1) : 
+--------> credited hours     : 49.4
+--------> schedule cost      : 3195
+--------> number of vacations: 18
+Schedule 61(BASE2) : 
+--------> credited hours     : 83.05
+--------> schedule cost      : 6091.67
+--------> number of vacations: 19
+Schedule 62(BASE1) : 
+--------> credited hours     : 84.85
+--------> schedule cost      : 6231
+--------> number of vacations: 16
+Schedule 63(BASE1) : 
+--------> credited hours     : 82.2
+--------> schedule cost      : 5647.33
+--------> number of vacations: 16
+Schedule 64(BASE2) : 
+--------> credited hours     : 84.3
+--------> schedule cost      : 5176
+--------> number of vacations: 20
+Schedule 65(BASE2) : 
+--------> credited hours     : 79.05
+--------> schedule cost      : 7276.33
+--------> number of vacations: 20
+Schedule 66(BASE3) : 
+--------> credited hours     : 48.3
+--------> schedule cost      : 4535
+--------> number of vacations: 11
+Schedule 67(BASE1) : 
+--------> credited hours     : 51.7333
+--------> schedule cost      : 3954.67
+--------> number of vacations: 23
+Schedule 68(BASE1) : 
+--------> credited hours     : 80.2
+--------> schedule cost      : 5557.67
+--------> number of vacations: 20
+Schedule 69(BASE1) : 
+--------> credited hours     : 84.5333
+--------> schedule cost      : 2948.33
+--------> number of vacations: 18
+Schedule 70(BASE2) : 
+--------> credited hours     : 67.15
+--------> schedule cost      : 4203.67
+--------> number of vacations: 22
+Schedule 71(BASE2) : 
+--------> credited hours     : 84.7167
+--------> schedule cost      : 4675
+--------> number of vacations: 20
+Schedule 72(BASE2) : 
+--------> credited hours     : 68.2667
+--------> schedule cost      : 7680
+--------> number of vacations: 20
+Schedule 73(BASE2) : 
+--------> credited hours     : 83.9
+--------> schedule cost      : 4976
+--------> number of vacations: 20
+Schedule 74(BASE2) : 
+--------> credited hours     : 83.25
+--------> schedule cost      : 3670.67
+--------> number of vacations: 21
+Schedule 75(BASE1) : 
+--------> credited hours     : 73
+--------> schedule cost      : 2518
+--------> number of vacations: 21
+Schedule 76(BASE1) : 
+--------> credited hours     : 71.9
+--------> schedule cost      : 4540.33
+--------> number of vacations: 22
+Schedule 77(BASE2) : 
+--------> credited hours     : 49.9333
+--------> schedule cost      : 3944.33
+--------> number of vacations: 24
+Schedule 78(BASE1) : 
+--------> credited hours     : 71.9
+--------> schedule cost      : 2480.33
+--------> number of vacations: 21
+Schedule 79(BASE2) : 
+--------> credited hours     : 53
+--------> schedule cost      : 4558.67
+--------> number of vacations: 22
+Schedule 80(BASE2) : 
+--------> credited hours     : 83.8
+--------> schedule cost      : 4837
+--------> number of vacations: 18
+Schedule 81(BASE2) : 
+--------> credited hours     : 84.8167
+--------> schedule cost      : 8169.33
+--------> number of vacations: 16
+Schedule 82(BASE1) : 
+--------> credited hours     : 76.4833
+--------> schedule cost      : 3489
+--------> number of vacations: 21
+Schedule 83(BASE1) : 
+--------> credited hours     : 74.65
+--------> schedule cost      : 4020.33
+--------> number of vacations: 20
+Schedule 84(BASE2) : 
+--------> credited hours     : 84.2167
+--------> schedule cost      : 2514.67
+--------> number of vacations: 21
+Schedule 85(BASE2) : 
+--------> credited hours     : 80.2333
+--------> schedule cost      : 3847
+--------> number of vacations: 21
+Schedule 86(BASE2) : 
+--------> credited hours     : 83.35
+--------> schedule cost      : 4269
+--------> number of vacations: 21
+Schedule 87(BASE3) : 
+--------> credited hours     : 75.9167
+--------> schedule cost      : 6124
+--------> number of vacations: 17
+Schedule 88(BASE1) : 
+--------> credited hours     : 70.3667
+--------> schedule cost      : 5669.67
+--------> number of vacations: 21
+Schedule 89(BASE1) : 
+--------> credited hours     : 82.05
+--------> schedule cost      : 5295.67
+--------> number of vacations: 20
+Schedule 90(BASE2) : 
+--------> credited hours     : 78.9
+--------> schedule cost      : 3658.67
+--------> number of vacations: 18
+Schedule 91(BASE1) : 
+--------> credited hours     : 80.3167
+--------> schedule cost      : 4338.33
+--------> number of vacations: 13
+Schedule 92(BASE2) : 
+--------> credited hours     : 70.55
+--------> schedule cost      : 4990.33
+--------> number of vacations: 22
+Schedule 93(BASE2) : 
+--------> credited hours     : 81.3667
+--------> schedule cost      : 7035.33
+--------> number of vacations: 19
+Schedule 94(BASE2) : 
+--------> credited hours     : 80.6833
+--------> schedule cost      : 4872.67
+--------> number of vacations: 20
+Schedule 95(BASE2) : 
+--------> credited hours     : 65.9667
+--------> schedule cost      : 6227
+--------> number of vacations: 22
+Schedule 96(BASE2) : 
+--------> credited hours     : 75.5333
+--------> schedule cost      : 6481
+--------> number of vacations: 20
+Schedule 97(BASE3) : 
+--------> credited hours     : 78.55
+--------> schedule cost      : 7892.67
+--------> number of vacations: 17
+Schedule 98(BASE2) : 
+--------> credited hours     : 75.4333
+--------> schedule cost      : 3652.67
+--------> number of vacations: 22
+Schedule 99(BASE2) : 
+--------> credited hours     : 67.5
+--------> schedule cost      : 4903
+--------> number of vacations: 22
+Schedule 100(BASE2) : 
+--------> credited hours     : 80.15
+--------> schedule cost      : 4748
+--------> number of vacations: 20
+Schedule 101(BASE2) : 
+--------> credited hours     : 79.7167
+--------> schedule cost      : 6248.33
+--------> number of vacations: 19
+Schedule 102(BASE1) : 
+--------> credited hours     : 84.95
+--------> schedule cost      : 5779.33
+--------> number of vacations: 20
+Schedule 103(BASE2) : 
+--------> credited hours     : 82.4667
+--------> schedule cost      : 5465.33
+--------> number of vacations: 15
+Schedule 104(BASE2) : 
+--------> credited hours     : 68.65
+--------> schedule cost      : 3411.67
+--------> number of vacations: 22
+Schedule 105(BASE3) : 
+--------> credited hours     : 80.65
+--------> schedule cost      : 9659.67
+--------> number of vacations: 16
+Schedule 106(BASE2) : 
+--------> credited hours     : 73.4833
+--------> schedule cost      : 5226.33
+--------> number of vacations: 21
+Schedule 107(BASE3) : 
+--------> credited hours     : 83.0333
+--------> schedule cost      : 6003.33
+--------> number of vacations: 15
+Schedule 108(BASE1) : 
+--------> credited hours     : 82.05
+--------> schedule cost      : 3475.67
+--------> number of vacations: 20
+Schedule 109(BASE1) : 
+--------> credited hours     : 76.7333
+--------> schedule cost      : 5413.33
+--------> number of vacations: 13
+Schedule 110(BASE3) : 
+--------> credited hours     : 81.1
+--------> schedule cost      : 5159
+--------> number of vacations: 15
+Schedule 111(BASE1) : 
+--------> credited hours     : 66.55
+--------> schedule cost      : 5167.33
+--------> number of vacations: 22
+Schedule 112(BASE2) : 
+--------> credited hours     : 78.1167
+--------> schedule cost      : 4346
+--------> number of vacations: 20
+Schedule 113(BASE1) : 
+--------> credited hours     : 71.2333
+--------> schedule cost      : 5290.67
+--------> number of vacations: 18
+Schedule 114(BASE2) : 
+--------> credited hours     : 68.6167
+--------> schedule cost      : 3883
+--------> number of vacations: 22
+Schedule 115(BASE3) : 
+--------> credited hours     : 84.0667
+--------> schedule cost      : 4356.67
+--------> number of vacations: 16
+Schedule 116(BASE2) : 
+--------> credited hours     : 69.1
+--------> schedule cost      : 6138
+--------> number of vacations: 21
+Schedule 117(BASE3) : 
+--------> credited hours     : 73.7667
+--------> schedule cost      : 6521
+--------> number of vacations: 16
+Schedule 118(BASE2) : 
+--------> credited hours     : 77.6
+--------> schedule cost      : 2293.33
+--------> number of vacations: 22
+Schedule 119(BASE1) : 
+--------> credited hours     : 80.15
+--------> schedule cost      : 6664.33
+--------> number of vacations: 19
+Schedule 120(BASE1) : 
+--------> credited hours     : 81.1333
+--------> schedule cost      : 7471
+--------> number of vacations: 19
+Schedule 121(BASE3) : 
+--------> credited hours     : 64.7667
+--------> schedule cost      : 5301.33
+--------> number of vacations: 9
+Schedule 122(BASE3) : 
+--------> credited hours     : 74.6167
+--------> schedule cost      : 6704.67
+--------> number of vacations: 17
+Schedule 123(BASE2) : 
+--------> credited hours     : 84.6
+--------> schedule cost      : 3536.33
+--------> number of vacations: 21
+Schedule 124(BASE3) : 
+--------> credited hours     : 81.1167
+--------> schedule cost      : 9315
+--------> number of vacations: 15
+Schedule 125(BASE2) : 
+--------> credited hours     : 78.2667
+--------> schedule cost      : 4358.33
+--------> number of vacations: 21
+Schedule 126(BASE2) : 
+--------> credited hours     : 82.55
+--------> schedule cost      : 4686.67
+--------> number of vacations: 20
+Schedule 127(BASE3) : 
+--------> credited hours     : 84.1667
+--------> schedule cost      : 5736.33
+--------> number of vacations: 16
+Schedule 128(BASE2) : 
+--------> credited hours     : 77.5833
+--------> schedule cost      : 6773.67
+--------> number of vacations: 19
+Schedule 129(BASE2) : 
+--------> credited hours     : 79.9667
+--------> schedule cost      : 6740
+--------> number of vacations: 20
+Schedule 130(BASE2) : 
+--------> credited hours     : 66.15
+--------> schedule cost      : 3993.33
+--------> number of vacations: 22
+Schedule 131(BASE3) : 
+--------> credited hours     : 84.4833
+--------> schedule cost      : 8210
+--------> number of vacations: 16
+Schedule 132(BASE2) : 
+--------> credited hours     : 84.9
+--------> schedule cost      : 4615
+--------> number of vacations: 20
+Schedule 133(BASE2) : 
+--------> credited hours     : 68.3667
+--------> schedule cost      : 3701
+--------> number of vacations: 22
+Schedule 134(BASE2) : 
+--------> credited hours     : 84.8333
+--------> schedule cost      : 4489
+--------> number of vacations: 19
+Schedule 135(BASE2) : 
+--------> credited hours     : 67.5333
+--------> schedule cost      : 3999
+--------> number of vacations: 21
+Schedule 136(BASE1) : 
+--------> credited hours     : 59.7833
+--------> schedule cost      : 4031
+--------> number of vacations: 21
+Schedule 137(BASE1) : 
+--------> credited hours     : 70.9667
+--------> schedule cost      : 4942
+--------> number of vacations: 22
+Schedule 138(BASE2) : 
+--------> credited hours     : 80.5333
+--------> schedule cost      : 6821.33
+--------> number of vacations: 20
+Schedule 139(BASE2) : 
+--------> credited hours     : 72
+--------> schedule cost      : 6055.33
+--------> number of vacations: 21
+Schedule 140(BASE2) : 
+--------> credited hours     : 74.7833
+--------> schedule cost      : 4239.67
+--------> number of vacations: 21
+Schedule 141(BASE1) : 
+--------> credited hours     : 73.0833
+--------> schedule cost      : 5236.67
+--------> number of vacations: 22
+Schedule 142(BASE1) : 
+--------> credited hours     : 83.5333
+--------> schedule cost      : 5242
+--------> number of vacations: 20
+Schedule 143(BASE1) : 
+--------> credited hours     : 82.5333
+--------> schedule cost      : 4077
+--------> number of vacations: 20
+Schedule 144(BASE3) : 
+--------> credited hours     : 81.2
+--------> schedule cost      : 5179.33
+--------> number of vacations: 18
+--------------------------------------------------------------
+--------------------------------------------------------------
+The average of the credited hours for this instance :74.6694
+The average of the days off for this instance :19.1944
+The minimum of the credited hours for this instance :23.6833
+The maximum of the credited hours for this instance :84.95
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------

@@ -1,0 +1,19 @@
+[09:54:54] === RULES v2: fresh all_at_once solve (LA, seed 11, 1200s) ===
+[09:54:55]   spawning JVM on port 9091 ...
+[09:54:57]   JVM on port 9091 ready
+  score: 0hard/-939150soft  (unassigned: 0)
+
+[10:14:59] gap structure of the NEW direct roster:
+  <60m (illegal)          0
+  60m-6h (sit)         2582
+  6-8h (dead zone)        0
+  >=8h (rest)           352
+  legs per crew-duty-day: {1: 2931, 2: 1027, 3: 381, 4: 164, 5: 8}
+
+[10:14:59] hard breakdown (mirror, should be ~0):
+  (no hard violations)
+
+[10:14:59] === RULES v2 COMPARISON (single scale) ===
+  all_at_once (fresh, rules v2): 0hard/-939150soft
+  pairing roster (expanded):     -248225hard/-1092293soft
+[10:14:59] DONE.

@@ -1,0 +1,20 @@
+{
+  "fingerprint": "fa03a128b42536c7d59696d57382a9d0c50430f20f3efa0f2f526bbe9d83cb11",
+  "form_version": 1,
+  "gates": {
+    "stand_tasks_required": false,
+    "subject_words_required": false
+  },
+  "legacy_registry_rev": "07f945deecdc",
+  "name": "template-catalog",
+ "note": "Unreleased Local/TEST native component-proof candidate; no approval or deployment.",
+ "released_at": "2026-09-20",
+ "released_by": "аналитик",
+  "sections": {
+    "criteria": "criteria.json",
+    "dictionaries": "dictionaries.json",
+    "families": "families.json",
+    "requests": "requests.json"
+  },
+  "version": "0.8.0-draft.1"
+}

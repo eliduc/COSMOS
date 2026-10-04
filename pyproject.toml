@@ -1,0 +1,81 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "flight_crew_scheduling"
+version = "1.0.0"
+# Audit fix 2026-07-10: the range said <3.13 while the working .venv runs
+# 3.14; widened to match reality. timefold python (legacy engine) is the
+# only 3.13+-sensitive dependency and is not part of the results pipeline.
+requires-python = ">=3.11,<3.15"
+dependencies = [
+    "fastapi>=0.110",
+    "pydantic>=2.7",
+    "uvicorn[standard]>=0.27",
+    "httpx>=0.27",
+    # Audit fix 2026-07-10: solvers used across the results pipeline were
+    # not declared as runtime dependencies.
+    "ortools>=9.15",
+    "highspy>=1.7",
+    "pyscipopt>=5",
+    "numpy>=2",
+    "markdown>=3.6",
+    # СМТ-1 (2026-08-21): машинная проверка непротиворечивости свода.
+    "z3-solver>=4.13",
+    # Universal data import (2026-07-14): .xlsx parsing for the file adapter.
+    "openpyxl>=3.1",
+    # Найдено установкой на чистую машину 2026-08-15: эти пакеты
+    # импортируются рабочим кодом напрямую, но объявлены не были. На машине
+    # разработчика они стояли давно, поэтому недостача не проявлялась; на
+    # свежей установке приложение не импортировалось вовсе
+    # (ModuleNotFoundError: No module named 'jsonschema').
+    #
+    # jsonschema  — проверка канонического набора по схеме: webapp/registry.py
+    #               и три адаптера импорта (SSIM, Meridian, выгрузка решателя);
+    # starlette   — webapp/app.py работает с ним напрямую (ответы, тестовый
+    #               клиент), а не только через FastAPI;
+    # cryptography — webapp/access_jwt.py: проверка пропусков Cloudflare Access;
+    # bokeh, pandas — webapp/runs_dashboard.py: витрина «Прогоны» внутри
+    #               процесса. Оба приходят и как зависимости panel, но код
+    #               обращается к ним напрямую — значит объявляем сами.
+    "jsonschema>=4.21",
+    "starlette>=0.37",
+    "cryptography>=42",
+    "bokeh>=3.4",
+    "pandas>=2.2",
+    # «Прогоны» rich view (2026-07-15): in-process dashboard mounted into
+    # FastAPI. bokeh-fastapi is the in-process bridge; both pure-Python,
+    # offline via pn.config.inline. No external services (internal contour).
+    "panel>=1.8",
+    "bokeh-fastapi>=0.1.8",
+    # CDPM П-2 (2026-08-17): чтение docx при заморозке источников; пакет
+    # стоял в окружении не объявленным — класс «работает у разработчика,
+    # падает на чистой установке» уже ловили 2026-08-15.
+    "python-docx>=1.1",
+    # CDPM П-УИ (2026-08-17): загрузка файлов в автономном
+    # браузер-интерфейсе (FastAPI multipart).
+    "python-multipart>=0.0.9",
+    # ПИ-1 (2026-08-20): изображения документов в заморозке — тестовые
+    # изображения (tests/test_cdpm_freeze_image.py) и генератор стенда
+    # «Полярис» (open-bench/polyaris) рендерят страницы через Pillow.
+    "pillow>=10",
+    # PDF-вход заморозки (отмашка владельца 2026-08-26): текстовый
+    # слой и рендер страниц-сканов для зрительного канала — PyMuPDF
+    # (модуль fitz, cdpm/freeze.py).
+    "pymupdf>=1.24",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+# Вспомогательные сценарии, не входящие в приложение: импорт публичной
+# статистики полётов США (нужен справочник аэропортов) и построение
+# графиков для отчётов. Приложение без них работает полностью.
+tools = ["airportsdata>=2024", "matplotlib>=3.8"]
+# Audit fix 2026-07-12: the legacy Python-Timefold engine is optional —
+# it does not install on Python 3.14 and is not part of the results
+# pipeline (the active Timefold engine is the Kotlin 2.0 service).
+timefold-legacy = ["timefold==1.24.0b0"]
+
+[project.scripts]
+crew-demo = "flight_crew_scheduling:main"

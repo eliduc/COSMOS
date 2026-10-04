@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Named solver "spp" — satisfies the Timefold Quarkus processor's
+     requirement that every @PlanningSolution on the classpath be wired to
+     a solver. The actual SPP experiment endpoint builds its SolverConfig
+     programmatically (per-request termination/seed); this file only
+     registers the domain at build time. -->
+<solver xmlns="https://timefold.ai/xsd/solver">
+  <solutionClass>org.acme.flighcrewscheduling.spp.SppSolution</solutionClass>
+  <entityClass>org.acme.flighcrewscheduling.spp.SppColumn</entityClass>
+  <scoreDirectorFactory>
+    <constraintProviderClass>org.acme.flighcrewscheduling.spp.SppConstraintProvider</constraintProviderClass>
+  </scoreDirectorFactory>
+</solver>

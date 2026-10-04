@@ -1,0 +1,18 @@
+=== instance A (32 GiB, 12 threads):
+MEM ERROR thread=11 block=9 word=16000862 expect=6f91dc4f212c14f3 got=6f91dc4a212c14f3 xor=0000000500000000
+MEM ERROR thread=9 block=1 word=3438682 expect=78b26ab6dd24b538 got=78b27bb6dd24b538 xor=0000110000000000
+MEM ERROR thread=11 block=16 word=5800802 expect=bacb64acd68b967d got=bacb64bdd68b967d xor=0000001100000000
+MEM ERROR thread=0 block=0 word=15796314 expect=f61e7f7ab2e15eb3 got=f61e2a7ab2e15eb3 xor=0000550000000000
+DONE passes=1333 errors=4
+
+=== instance B (32 GiB, 12 threads):
+MEM ERROR thread=0 block=19 word=494434 expect=6bbaef7590e7beed got=6bbaef4d90e7beed xor=0000003800000000
+MEM ERROR thread=0 block=19 word=494436 expect=3460f58ec246335e got=3460f58fc246335e xor=0000000100000000
+MEM ERROR thread=10 block=15 word=5398618 expect=d9c1a130cc084d03 got=d9c1b030cc084d03 xor=0000110000000000
+MEM ERROR thread=5 block=4 word=1031010 expect=7adab1e05dba4510 got=7adab1f25dba4510 xor=0000001200000000
+MEM ERROR thread=5 block=4 word=1031012 expect=764c8aa03cbb37c2 got=764c8aa63cbb37c2 xor=0000000600000000
+MEM ERROR thread=6 block=19 word=11981666 expect=fe7f1dc186c99c66 got=fe7f1dc486c99c66 xor=0000000500000000
+MEM ERROR thread=5 block=7 word=7002978 expect=84205bd7139c8cbb got=84205bc5139c8cbb xor=0000001200000000
+MEM ERROR thread=5 block=7 word=7002980 expect=196ab524cbe18bf9 got=196ab522cbe18bf9 xor=0000000600000000
+MEM ERROR thread=8 block=14 word=4965218 expect=e8ce39f97b8fb633 got=e8fe39eb7b8fb633 xor=0030001200000000
+DONE passes=979 errors=9

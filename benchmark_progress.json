@@ -1,0 +1,1510 @@
+{
+  "cursor": 150,
+  "total": 150,
+  "started_at": "2026-04-26T21:55:04",
+  "finished_at": "2026-04-27T08:55:09",
+  "stop_requested": false,
+  "running": false,
+  "plan": [
+    {
+      "run_index": 0,
+      "timeout_s": 60,
+      "dataset_idx": 0,
+      "dataset_label": "S1 (tiny)",
+      "count_flights": 14,
+      "teams_per_airport": 2,
+      "seed": 1,
+      "engine": "timefold_python"
+    },
+    {
+      "run_index": 1,
+      "timeout_s": 60,
+      "dataset_idx": 0,
+      "dataset_label": "S1 (tiny)",
+      "count_flights": 14,
+      "teams_per_airport": 2,
+      "seed": 1,
+      "engine": "ortools"
+    },
+    {
+      "run_index": 2,
+      "timeout_s": 60,
+      "dataset_idx": 0,
+      "dataset_label": "S1 (tiny)",
+      "count_flights": 14,
+      "teams_per_airport": 2,
+      "seed": 1,
+      "engine": "timefold_java"
+    },
+    {
+      "run_index": 3,
+      "timeout_s": 60,
+      "dataset_idx": 0,
+      "dataset_label": "S1 (tiny)",
+      "count_flights": 14,
+      "teams_per_airport": 2,
+      "seed": 1,
+      "engine": "timefold_kotlin"
+    },
+    {
+      "run_index": 4,
+      "timeout_s": 60,
+      "dataset_idx": 0,
+      "dataset_label": "S1 (tiny)",
+      "count_flights": 14,
+      "teams_per_airport": 2,
+      "seed": 1,
+      "engine": "solverforge"
+    },
+    {
+      "run_index": 5,
+      "timeout_s": 60,
+      "dataset_idx": 1,
+      "dataset_label": "S2 (small)",
+      "count_flights": 21,
+      "teams_per_airport": 2,
+      "seed": 2,
+      "engine": "timefold_python"
+    },
+    {
+      "run_index": 6,
+      "timeout_s": 60,
+      "dataset_idx": 1,
+      "dataset_label": "S2 (small)",
+      "count_flights": 21,
+      "teams_per_airport": 2,
+      "seed": 2,
+      "engine": "ortools"
+    },
+    {
+      "run_index": 7,
+      "timeout_s": 60,
+      "dataset_idx": 1,
+      "dataset_label": "S2 (small)",
+      "count_flights": 21,
+      "teams_per_airport": 2,
+      "seed": 2,
+      "engine": "timefold_java"
+    },
+    {
+      "run_index": 8,
+      "timeout_s": 60,
+      "dataset_idx": 1,
+      "dataset_label": "S2 (small)",
+      "count_flights": 21,
+      "teams_per_airport": 2,
+      "seed": 2,
+      "engine": "timefold_kotlin"
+    },
+    {
+      "run_index": 9,
+      "timeout_s": 60,
+      "dataset_idx": 1,
+      "dataset_label": "S2 (small)",
+      "count_flights": 21,
+      "teams_per_airport": 2,
+      "seed": 2,
+      "engine": "solverforge"
+    },
+    {
+      "run_index": 10,
+      "timeout_s": 60,
+      "dataset_idx": 2,
+      "dataset_label": "S3 (small-med)",
+      "count_flights": 28,
+      "teams_per_airport": 2,
+      "seed": 3,
+      "engine": "timefold_python"
+    },
+    {
+      "run_index": 11,
+      "timeout_s": 60,
+      "dataset_idx": 2,
+      "dataset_label": "S3 (small-med)",
+      "count_flights": 28,
+      "teams_per_airport": 2,
+      "seed": 3,
+      "engine": "ortools"
+    },
+    {
+      "run_index": 12,
+      "timeout_s": 60,
+      "dataset_idx": 2,
+      "dataset_label": "S3 (small-med)",
+      "count_flights": 28,
+      "teams_per_airport": 2,
+      "seed": 3,
+      "engine": "timefold_java"
+    },
+    {
+      "run_index": 13,
+      "timeout_s": 60,
+      "dataset_idx": 2,
+      "dataset_label": "S3 (small-med)",
+      "count_flights": 28,
+      "teams_per_airport": 2,
+      "seed": 3,
+      "engine": "timefold_kotlin"
+    },
+    {
+      "run_index": 14,
+      "timeout_s": 60,
+      "dataset_idx": 2,
+      "dataset_label": "S3 (small-med)",
+      "count_flights": 28,
+      "teams_per_airport": 2,
+      "seed": 3,
+      "engine": "solverforge"
+    },
+    {
+      "run_index": 15,
+      "timeout_s": 60,
+      "dataset_idx": 3,
+      "dataset_label": "S4 (medium)",
+      "count_flights": 42,
+      "teams_per_airport": 2,
+      "seed": 4,
+      "engine": "timefold_python"
+    },
+    {
+      "run_index": 16,
+      "timeout_s": 60,
+      "dataset_idx": 3,
+      "dataset_label": "S4 (medium)",
+      "count_flights": 42,
+      "teams_per_airport": 2,
+      "seed": 4,
+      "engine": "ortools"
+    },
+    {
+      "run_index": 17,
+      "timeout_s": 60,
+      "dataset_idx": 3,
+      "dataset_label": "S4 (medium)",
+      "count_flights": 42,
+      "teams_per_airport": 2,
+      "seed": 4,
+      "engine": "timefold_java"
+    },
+    {
+      "run_index": 18,
+      "timeout_s": 60,
+      "dataset_idx": 3,
+      "dataset_label": "S4 (medium)",
+      "count_flights": 42,
+      "teams_per_airport": 2,
+      "seed": 4,
+      "engine": "timefold_kotlin"
+    },
+    {
+      "run_index": 19,
+      "timeout_s": 60,
+      "dataset_idx": 3,
+      "dataset_label": "S4 (medium)",
+      "count_flights": 42,
+      "teams_per_airport": 2,
+      "seed": 4,
+      "engine": "solverforge"
+    },
+    {
+      "run_index": 20,
+      "timeout_s": 60,
+      "dataset_idx": 4,
+      "dataset_label": "S5 (medium-lg)",
+      "count_flights": 56,
+      "teams_per_airport": 3,
+      "seed": 5,
+      "engine": "timefold_python"
+    },
+    {
+      "run_index": 21,
+      "timeout_s": 60,
+      "dataset_idx": 4,
+      "dataset_label": "S5 (medium-lg)",
+      "count_flights": 56,
+      "teams_per_airport": 3,
+      "seed": 5,
+      "engine": "ortools"
+    },
+    {
+      "run_index": 22,
+      "timeout_s": 60,
+      "dataset_idx": 4,
+      "dataset_label": "S5 (medium-lg)",
+      "count_flights": 56,
+      "teams_per_airport": 3,
+      "seed": 5,
+      "engine": "timefold_java"
+    },
+    {
+      "run_index": 23,
+      "timeout_s": 60,
+      "dataset_idx": 4,
+      "dataset_label": "S5 (medium-lg)",
+      "count_flights": 56,
+      "teams_per_airport": 3,
+      "seed": 5,
+      "engine": "timefold_kotlin"
+    },
+    {
+      "run_index": 24,
+      "timeout_s": 60,
+      "dataset_idx": 4,
+      "dataset_label": "S5 (medium-lg)",
+      "count_flights": 56,
+      "teams_per_airport": 3,
+      "seed": 5,
+      "engine": "solverforge"
+    },
+    {
+      "run_index": 25,
+      "timeout_s": 60,
+      "dataset_idx": 5,
+      "dataset_label": "S6 (large)",
+      "count_flights": 70,
+      "teams_per_airport": 4,
+      "seed": 6,
+      "engine": "timefold_python"
+    },
+    {
+      "run_index": 26,
+      "timeout_s": 60,
+      "dataset_idx": 5,
+      "dataset_label": "S6 (large)",
+      "count_flights": 70,
+      "teams_per_airport": 4,
+      "seed": 6,
+      "engine": "ortools"
+    },
+    {
+      "run_index": 27,
+      "timeout_s": 60,
+      "dataset_idx": 5,
+      "dataset_label": "S6 (large)",
+      "count_flights": 70,
+      "teams_per_airport": 4,
+      "seed": 6,
+      "engine": "timefold_java"
+    },
+    {
+      "run_index": 28,
+      "timeout_s": 60,
+      "dataset_idx": 5,
+      "dataset_label": "S6 (large)",
+      "count_flights": 70,
+      "teams_per_airport": 4,
+      "seed": 6,
+      "engine": "timefold_kotlin"
+    },
+    {
+      "run_index": 29,
+      "timeout_s": 60,
+      "dataset_idx": 5,
+      "dataset_label": "S6 (large)",
+      "count_flights": 70,
+      "teams_per_airport": 4,
+      "seed": 6,
+      "engine": "solverforge"
+    },
+    {
+      "run_index": 30,
+      "timeout_s": 150,
+      "dataset_idx": 0,
+      "dataset_label": "S1 (tiny)",
+      "count_flights": 14,
+      "teams_per_airport": 2,
+      "seed": 1,
+      "engine": "timefold_python"
+    },
+    {
+      "run_index": 31,
+      "timeout_s": 150,
+      "dataset_idx": 0,
+      "dataset_label": "S1 (tiny)",
+      "count_flights": 14,
+      "teams_per_airport": 2,
+      "seed": 1,
+      "engine": "ortools"
+    },
+    {
+      "run_index": 32,
+      "timeout_s": 150,
+      "dataset_idx": 0,
+      "dataset_label": "S1 (tiny)",
+      "count_flights": 14,
+      "teams_per_airport": 2,
+      "seed": 1,
+      "engine": "timefold_java"
+    },
+    {
+      "run_index": 33,
+      "timeout_s": 150,
+      "dataset_idx": 0,
+      "dataset_label": "S1 (tiny)",
+      "count_flights": 14,
+      "teams_per_airport": 2,
+      "seed": 1,
+      "engine": "timefold_kotlin"
+    },
+    {
+      "run_index": 34,
+      "timeout_s": 150,
+      "dataset_idx": 0,
+      "dataset_label": "S1 (tiny)",
+      "count_flights": 14,
+      "teams_per_airport": 2,
+      "seed": 1,
+      "engine": "solverforge"
+    },
+    {
+      "run_index": 35,
+      "timeout_s": 150,
+      "dataset_idx": 1,
+      "dataset_label": "S2 (small)",
+      "count_flights": 21,
+      "teams_per_airport": 2,
+      "seed": 2,
+      "engine": "timefold_python"
+    },
+    {
+      "run_index": 36,
+      "timeout_s": 150,
+      "dataset_idx": 1,
+      "dataset_label": "S2 (small)",
+      "count_flights": 21,
+      "teams_per_airport": 2,
+      "seed": 2,
+      "engine": "ortools"
+    },
+    {
+      "run_index": 37,
+      "timeout_s": 150,
+      "dataset_idx": 1,
+      "dataset_label": "S2 (small)",
+      "count_flights": 21,
+      "teams_per_airport": 2,
+      "seed": 2,
+      "engine": "timefold_java"
+    },
+    {
+      "run_index": 38,
+      "timeout_s": 150,
+      "dataset_idx": 1,
+      "dataset_label": "S2 (small)",
+      "count_flights": 21,
+      "teams_per_airport": 2,
+      "seed": 2,
+      "engine": "timefold_kotlin"
+    },
+    {
+      "run_index": 39,
+      "timeout_s": 150,
+      "dataset_idx": 1,
+      "dataset_label": "S2 (small)",
+      "count_flights": 21,
+      "teams_per_airport": 2,
+      "seed": 2,
+      "engine": "solverforge"
+    },
+    {
+      "run_index": 40,
+      "timeout_s": 150,
+      "dataset_idx": 2,
+      "dataset_label": "S3 (small-med)",
+      "count_flights": 28,
+      "teams_per_airport": 2,
+      "seed": 3,
+      "engine": "timefold_python"
+    },
+    {
+      "run_index": 41,
+      "timeout_s": 150,
+      "dataset_idx": 2,
+      "dataset_label": "S3 (small-med)",
+      "count_flights": 28,
+      "teams_per_airport": 2,
+      "seed": 3,
+      "engine": "ortools"
+    },
+    {
+      "run_index": 42,
+      "timeout_s": 150,
+      "dataset_idx": 2,
+      "dataset_label": "S3 (small-med)",
+      "count_flights": 28,
+      "teams_per_airport": 2,
+      "seed": 3,
+      "engine": "timefold_java"
+    },
+    {
+      "run_index": 43,
+      "timeout_s": 150,
+      "dataset_idx": 2,
+      "dataset_label": "S3 (small-med)",
+      "count_flights": 28,
+      "teams_per_airport": 2,
+      "seed": 3,
+      "engine": "timefold_kotlin"
+    },
+    {
+      "run_index": 44,
+      "timeout_s": 150,
+      "dataset_idx": 2,
+      "dataset_label": "S3 (small-med)",
+      "count_flights": 28,
+      "teams_per_airport": 2,
+      "seed": 3,
+      "engine": "solverforge"
+    },
+    {
+      "run_index": 45,
+      "timeout_s": 150,
+      "dataset_idx": 3,
+      "dataset_label": "S4 (medium)",
+      "count_flights": 42,
+      "teams_per_airport": 2,
+      "seed": 4,
+      "engine": "timefold_python"
+    },
+    {
+      "run_index": 46,
+      "timeout_s": 150,
+      "dataset_idx": 3,
+      "dataset_label": "S4 (medium)",
+      "count_flights": 42,
+      "teams_per_airport": 2,
+      "seed": 4,
+      "engine": "ortools"
+    },
+    {
+      "run_index": 47,
+      "timeout_s": 150,
+      "dataset_idx": 3,
+      "dataset_label": "S4 (medium)",
+      "count_flights": 42,
+      "teams_per_airport": 2,
+      "seed": 4,
+      "engine": "timefold_java"
+    },
+    {
+      "run_index": 48,
+      "timeout_s": 150,
+      "dataset_idx": 3,
+      "dataset_label": "S4 (medium)",
+      "count_flights": 42,
+      "teams_per_airport": 2,
+      "seed": 4,
+      "engine": "timefold_kotlin"
+    },
+    {
+      "run_index": 49,
+      "timeout_s": 150,
+      "dataset_idx": 3,
+      "dataset_label": "S4 (medium)",
+      "count_flights": 42,
+      "teams_per_airport": 2,
+      "seed": 4,
+      "engine": "solverforge"
+    },
+    {
+      "run_index": 50,
+      "timeout_s": 150,
+      "dataset_idx": 4,
+      "dataset_label": "S5 (medium-lg)",
+      "count_flights": 56,
+      "teams_per_airport": 3,
+      "seed": 5,
+      "engine": "timefold_python"
+    },
+    {
+      "run_index": 51,
+      "timeout_s": 150,
+      "dataset_idx": 4,
+      "dataset_label": "S5 (medium-lg)",
+      "count_flights": 56,
+      "teams_per_airport": 3,
+      "seed": 5,
+      "engine": "ortools"
+    },
+    {
+      "run_index": 52,
+      "timeout_s": 150,
+      "dataset_idx": 4,
+      "dataset_label": "S5 (medium-lg)",
+      "count_flights": 56,
+      "teams_per_airport": 3,
+      "seed": 5,
+      "engine": "timefold_java"
+    },
+    {
+      "run_index": 53,
+      "timeout_s": 150,
+      "dataset_idx": 4,
+      "dataset_label": "S5 (medium-lg)",
+      "count_flights": 56,
+      "teams_per_airport": 3,
+      "seed": 5,
+      "engine": "timefold_kotlin"
+    },
+    {
+      "run_index": 54,
+      "timeout_s": 150,
+      "dataset_idx": 4,
+      "dataset_label": "S5 (medium-lg)",
+      "count_flights": 56,
+      "teams_per_airport": 3,
+      "seed": 5,
+      "engine": "solverforge"
+    },
+    {
+      "run_index": 55,
+      "timeout_s": 150,
+      "dataset_idx": 5,
+      "dataset_label": "S6 (large)",
+      "count_flights": 70,
+      "teams_per_airport": 4,
+      "seed": 6,
+      "engine": "timefold_python"
+    },
+    {
+      "run_index": 56,
+      "timeout_s": 150,
+      "dataset_idx": 5,
+      "dataset_label": "S6 (large)",
+      "count_flights": 70,
+      "teams_per_airport": 4,
+      "seed": 6,
+      "engine": "ortools"
+    },
+    {
+      "run_index": 57,
+      "timeout_s": 150,
+      "dataset_idx": 5,
+      "dataset_label": "S6 (large)",
+      "count_flights": 70,
+      "teams_per_airport": 4,
+      "seed": 6,
+      "engine": "timefold_java"
+    },
+    {
+      "run_index": 58,
+      "timeout_s": 150,
+      "dataset_idx": 5,
+      "dataset_label": "S6 (large)",
+      "count_flights": 70,
+      "teams_per_airport": 4,
+      "seed": 6,
+      "engine": "timefold_kotlin"
+    },
+    {
+      "run_index": 59,
+      "timeout_s": 150,
+      "dataset_idx": 5,
+      "dataset_label": "S6 (large)",
+      "count_flights": 70,
+      "teams_per_airport": 4,
+      "seed": 6,
+      "engine": "solverforge"
+    },
+    {
+      "run_index": 60,
+      "timeout_s": 300,
+      "dataset_idx": 0,
+      "dataset_label": "S1 (tiny)",
+      "count_flights": 14,
+      "teams_per_airport": 2,
+      "seed": 1,
+      "engine": "timefold_python"
+    },
+    {
+      "run_index": 61,
+      "timeout_s": 300,
+      "dataset_idx": 0,
+      "dataset_label": "S1 (tiny)",
+      "count_flights": 14,
+      "teams_per_airport": 2,
+      "seed": 1,
+      "engine": "ortools"
+    },
+    {
+      "run_index": 62,
+      "timeout_s": 300,
+      "dataset_idx": 0,
+      "dataset_label": "S1 (tiny)",
+      "count_flights": 14,
+      "teams_per_airport": 2,
+      "seed": 1,
+      "engine": "timefold_java"
+    },
+    {
+      "run_index": 63,
+      "timeout_s": 300,
+      "dataset_idx": 0,
+      "dataset_label": "S1 (tiny)",
+      "count_flights": 14,
+      "teams_per_airport": 2,
+      "seed": 1,
+      "engine": "timefold_kotlin"
+    },
+    {
+      "run_index": 64,
+      "timeout_s": 300,
+      "dataset_idx": 0,
+      "dataset_label": "S1 (tiny)",
+      "count_flights": 14,
+      "teams_per_airport": 2,
+      "seed": 1,
+      "engine": "solverforge"
+    },
+    {
+      "run_index": 65,
+      "timeout_s": 300,
+      "dataset_idx": 1,
+      "dataset_label": "S2 (small)",
+      "count_flights": 21,
+      "teams_per_airport": 2,
+      "seed": 2,
+      "engine": "timefold_python"
+    },
+    {
+      "run_index": 66,
+      "timeout_s": 300,
+      "dataset_idx": 1,
+      "dataset_label": "S2 (small)",
+      "count_flights": 21,
+      "teams_per_airport": 2,
+      "seed": 2,
+      "engine": "ortools"
+    },
+    {
+      "run_index": 67,
+      "timeout_s": 300,
+      "dataset_idx": 1,
+      "dataset_label": "S2 (small)",
+      "count_flights": 21,
+      "teams_per_airport": 2,
+      "seed": 2,
+      "engine": "timefold_java"
+    },
+    {
+      "run_index": 68,
+      "timeout_s": 300,
+      "dataset_idx": 1,
+      "dataset_label": "S2 (small)",
+      "count_flights": 21,
+      "teams_per_airport": 2,
+      "seed": 2,
+      "engine": "timefold_kotlin"
+    },
+    {
+      "run_index": 69,
+      "timeout_s": 300,
+      "dataset_idx": 1,
+      "dataset_label": "S2 (small)",
+      "count_flights": 21,
+      "teams_per_airport": 2,
+      "seed": 2,
+      "engine": "solverforge"
+    },
+    {
+      "run_index": 70,
+      "timeout_s": 300,
+      "dataset_idx": 2,
+      "dataset_label": "S3 (small-med)",
+      "count_flights": 28,
+      "teams_per_airport": 2,
+      "seed": 3,
+      "engine": "timefold_python"
+    },
+    {
+      "run_index": 71,
+      "timeout_s": 300,
+      "dataset_idx": 2,
+      "dataset_label": "S3 (small-med)",
+      "count_flights": 28,
+      "teams_per_airport": 2,
+      "seed": 3,
+      "engine": "ortools"
+    },
+    {
+      "run_index": 72,
+      "timeout_s": 300,
+      "dataset_idx": 2,
+      "dataset_label": "S3 (small-med)",
+      "count_flights": 28,
+      "teams_per_airport": 2,
+      "seed": 3,
+      "engine": "timefold_java"
+    },
+    {
+      "run_index": 73,
+      "timeout_s": 300,
+      "dataset_idx": 2,
+      "dataset_label": "S3 (small-med)",
+      "count_flights": 28,
+      "teams_per_airport": 2,
+      "seed": 3,
+      "engine": "timefold_kotlin"
+    },
+    {
+      "run_index": 74,
+      "timeout_s": 300,
+      "dataset_idx": 2,
+      "dataset_label": "S3 (small-med)",
+      "count_flights": 28,
+      "teams_per_airport": 2,
+      "seed": 3,
+      "engine": "solverforge"
+    },
+    {
+      "run_index": 75,
+      "timeout_s": 300,
+      "dataset_idx": 3,
+      "dataset_label": "S4 (medium)",
+      "count_flights": 42,
+      "teams_per_airport": 2,
+      "seed": 4,
+      "engine": "timefold_python"
+    },
+    {
+      "run_index": 76,
+      "timeout_s": 300,
+      "dataset_idx": 3,
+      "dataset_label": "S4 (medium)",
+      "count_flights": 42,
+      "teams_per_airport": 2,
+      "seed": 4,
+      "engine": "ortools"
+    },
+    {
+      "run_index": 77,
+      "timeout_s": 300,
+      "dataset_idx": 3,
+      "dataset_label": "S4 (medium)",
+      "count_flights": 42,
+      "teams_per_airport": 2,
+      "seed": 4,
+      "engine": "timefold_java"
+    },
+    {
+      "run_index": 78,
+      "timeout_s": 300,
+      "dataset_idx": 3,
+      "dataset_label": "S4 (medium)",
+      "count_flights": 42,
+      "teams_per_airport": 2,
+      "seed": 4,
+      "engine": "timefold_kotlin"
+    },
+    {
+      "run_index": 79,
+      "timeout_s": 300,
+      "dataset_idx": 3,
+      "dataset_label": "S4 (medium)",
+      "count_flights": 42,
+      "teams_per_airport": 2,
+      "seed": 4,
+      "engine": "solverforge"
+    },
+    {
+      "run_index": 80,
+      "timeout_s": 300,
+      "dataset_idx": 4,
+      "dataset_label": "S5 (medium-lg)",
+      "count_flights": 56,
+      "teams_per_airport": 3,
+      "seed": 5,
+      "engine": "timefold_python"
+    },
+    {
+      "run_index": 81,
+      "timeout_s": 300,
+      "dataset_idx": 4,
+      "dataset_label": "S5 (medium-lg)",
+      "count_flights": 56,
+      "teams_per_airport": 3,
+      "seed": 5,
+      "engine": "ortools"
+    },
+    {
+      "run_index": 82,
+      "timeout_s": 300,
+      "dataset_idx": 4,
+      "dataset_label": "S5 (medium-lg)",
+      "count_flights": 56,
+      "teams_per_airport": 3,
+      "seed": 5,
+      "engine": "timefold_java"
+    },
+    {
+      "run_index": 83,
+      "timeout_s": 300,
+      "dataset_idx": 4,
+      "dataset_label": "S5 (medium-lg)",
+      "count_flights": 56,
+      "teams_per_airport": 3,
+      "seed": 5,
+      "engine": "timefold_kotlin"
+    },
+    {
+      "run_index": 84,
+      "timeout_s": 300,
+      "dataset_idx": 4,
+      "dataset_label": "S5 (medium-lg)",
+      "count_flights": 56,
+      "teams_per_airport": 3,
+      "seed": 5,
+      "engine": "solverforge"
+    },
+    {
+      "run_index": 85,
+      "timeout_s": 300,
+      "dataset_idx": 5,
+      "dataset_label": "S6 (large)",
+      "count_flights": 70,
+      "teams_per_airport": 4,
+      "seed": 6,
+      "engine": "timefold_python"
+    },
+    {
+      "run_index": 86,
+      "timeout_s": 300,
+      "dataset_idx": 5,
+      "dataset_label": "S6 (large)",
+      "count_flights": 70,
+      "teams_per_airport": 4,
+      "seed": 6,
+      "engine": "ortools"
+    },
+    {
+      "run_index": 87,
+      "timeout_s": 300,
+      "dataset_idx": 5,
+      "dataset_label": "S6 (large)",
+      "count_flights": 70,
+      "teams_per_airport": 4,
+      "seed": 6,
+      "engine": "timefold_java"
+    },
+    {
+      "run_index": 88,
+      "timeout_s": 300,
+      "dataset_idx": 5,
+      "dataset_label": "S6 (large)",
+      "count_flights": 70,
+      "teams_per_airport": 4,
+      "seed": 6,
+      "engine": "timefold_kotlin"
+    },
+    {
+      "run_index": 89,
+      "timeout_s": 300,
+      "dataset_idx": 5,
+      "dataset_label": "S6 (large)",
+      "count_flights": 70,
+      "teams_per_airport": 4,
+      "seed": 6,
+      "engine": "solverforge"
+    },
+    {
+      "run_index": 90,
+      "timeout_s": 600,
+      "dataset_idx": 0,
+      "dataset_label": "S1 (tiny)",
+      "count_flights": 14,
+      "teams_per_airport": 2,
+      "seed": 1,
+      "engine": "timefold_python"
+    },
+    {
+      "run_index": 91,
+      "timeout_s": 600,
+      "dataset_idx": 0,
+      "dataset_label": "S1 (tiny)",
+      "count_flights": 14,
+      "teams_per_airport": 2,
+      "seed": 1,
+      "engine": "ortools"
+    },
+    {
+      "run_index": 92,
+      "timeout_s": 600,
+      "dataset_idx": 0,
+      "dataset_label": "S1 (tiny)",
+      "count_flights": 14,
+      "teams_per_airport": 2,
+      "seed": 1,
+      "engine": "timefold_java"
+    },
+    {
+      "run_index": 93,
+      "timeout_s": 600,
+      "dataset_idx": 0,
+      "dataset_label": "S1 (tiny)",
+      "count_flights": 14,
+      "teams_per_airport": 2,
+      "seed": 1,
+      "engine": "timefold_kotlin"
+    },
+    {
+      "run_index": 94,
+      "timeout_s": 600,
+      "dataset_idx": 0,
+      "dataset_label": "S1 (tiny)",
+      "count_flights": 14,
+      "teams_per_airport": 2,
+      "seed": 1,
+      "engine": "solverforge"
+    },
+    {
+      "run_index": 95,
+      "timeout_s": 600,
+      "dataset_idx": 1,
+      "dataset_label": "S2 (small)",
+      "count_flights": 21,
+      "teams_per_airport": 2,
+      "seed": 2,
+      "engine": "timefold_python"
+    },
+    {
+      "run_index": 96,
+      "timeout_s": 600,
+      "dataset_idx": 1,
+      "dataset_label": "S2 (small)",
+      "count_flights": 21,
+      "teams_per_airport": 2,
+      "seed": 2,
+      "engine": "ortools"
+    },
+    {
+      "run_index": 97,
+      "timeout_s": 600,
+      "dataset_idx": 1,
+      "dataset_label": "S2 (small)",
+      "count_flights": 21,
+      "teams_per_airport": 2,
+      "seed": 2,
+      "engine": "timefold_java"
+    },
+    {
+      "run_index": 98,
+      "timeout_s": 600,
+      "dataset_idx": 1,
+      "dataset_label": "S2 (small)",
+      "count_flights": 21,
+      "teams_per_airport": 2,
+      "seed": 2,
+      "engine": "timefold_kotlin"
+    },
+    {
+      "run_index": 99,
+      "timeout_s": 600,
+      "dataset_idx": 1,
+      "dataset_label": "S2 (small)",
+      "count_flights": 21,
+      "teams_per_airport": 2,
+      "seed": 2,
+      "engine": "solverforge"
+    },
+    {
+      "run_index": 100,
+      "timeout_s": 600,
+      "dataset_idx": 2,
+      "dataset_label": "S3 (small-med)",
+      "count_flights": 28,
+      "teams_per_airport": 2,
+      "seed": 3,
+      "engine": "timefold_python"
+    },
+    {
+      "run_index": 101,
+      "timeout_s": 600,
+      "dataset_idx": 2,
+      "dataset_label": "S3 (small-med)",
+      "count_flights": 28,
+      "teams_per_airport": 2,
+      "seed": 3,
+      "engine": "ortools"
+    },
+    {
+      "run_index": 102,
+      "timeout_s": 600,
+      "dataset_idx": 2,
+      "dataset_label": "S3 (small-med)",
+      "count_flights": 28,
+      "teams_per_airport": 2,
+      "seed": 3,
+      "engine": "timefold_java"
+    },
+    {
+      "run_index": 103,
+      "timeout_s": 600,
+      "dataset_idx": 2,
+      "dataset_label": "S3 (small-med)",
+      "count_flights": 28,
+      "teams_per_airport": 2,
+      "seed": 3,
+      "engine": "timefold_kotlin"
+    },
+    {
+      "run_index": 104,
+      "timeout_s": 600,
+      "dataset_idx": 2,
+      "dataset_label": "S3 (small-med)",
+      "count_flights": 28,
+      "teams_per_airport": 2,
+      "seed": 3,
+      "engine": "solverforge"
+    },
+    {
+      "run_index": 105,
+      "timeout_s": 600,
+      "dataset_idx": 3,
+      "dataset_label": "S4 (medium)",
+      "count_flights": 42,
+      "teams_per_airport": 2,
+      "seed": 4,
+      "engine": "timefold_python"
+    },
+    {
+      "run_index": 106,
+      "timeout_s": 600,
+      "dataset_idx": 3,
+      "dataset_label": "S4 (medium)",
+      "count_flights": 42,
+      "teams_per_airport": 2,
+      "seed": 4,
+      "engine": "ortools"
+    },
+    {
+      "run_index": 107,
+      "timeout_s": 600,
+      "dataset_idx": 3,
+      "dataset_label": "S4 (medium)",
+      "count_flights": 42,
+      "teams_per_airport": 2,
+      "seed": 4,
+      "engine": "timefold_java"
+    },
+    {
+      "run_index": 108,
+      "timeout_s": 600,
+      "dataset_idx": 3,
+      "dataset_label": "S4 (medium)",
+      "count_flights": 42,
+      "teams_per_airport": 2,
+      "seed": 4,
+      "engine": "timefold_kotlin"
+    },
+    {
+      "run_index": 109,
+      "timeout_s": 600,
+      "dataset_idx": 3,
+      "dataset_label": "S4 (medium)",
+      "count_flights": 42,
+      "teams_per_airport": 2,
+      "seed": 4,
+      "engine": "solverforge"
+    },
+    {
+      "run_index": 110,
+      "timeout_s": 600,
+      "dataset_idx": 4,
+      "dataset_label": "S5 (medium-lg)",
+      "count_flights": 56,
+      "teams_per_airport": 3,
+      "seed": 5,
+      "engine": "timefold_python"
+    },
+    {
+      "run_index": 111,
+      "timeout_s": 600,
+      "dataset_idx": 4,
+      "dataset_label": "S5 (medium-lg)",
+      "count_flights": 56,
+      "teams_per_airport": 3,
+      "seed": 5,
+      "engine": "ortools"
+    },
+    {
+      "run_index": 112,
+      "timeout_s": 600,
+      "dataset_idx": 4,
+      "dataset_label": "S5 (medium-lg)",
+      "count_flights": 56,
+      "teams_per_airport": 3,
+      "seed": 5,
+      "engine": "timefold_java"
+    },
+    {
+      "run_index": 113,
+      "timeout_s": 600,
+      "dataset_idx": 4,
+      "dataset_label": "S5 (medium-lg)",
+      "count_flights": 56,
+      "teams_per_airport": 3,
+      "seed": 5,
+      "engine": "timefold_kotlin"
+    },
+    {
+      "run_index": 114,
+      "timeout_s": 600,
+      "dataset_idx": 4,
+      "dataset_label": "S5 (medium-lg)",
+      "count_flights": 56,
+      "teams_per_airport": 3,
+      "seed": 5,
+      "engine": "solverforge"
+    },
+    {
+      "run_index": 115,
+      "timeout_s": 600,
+      "dataset_idx": 5,
+      "dataset_label": "S6 (large)",
+      "count_flights": 70,
+      "teams_per_airport": 4,
+      "seed": 6,
+      "engine": "timefold_python"
+    },
+    {
+      "run_index": 116,
+      "timeout_s": 600,
+      "dataset_idx": 5,
+      "dataset_label": "S6 (large)",
+      "count_flights": 70,
+      "teams_per_airport": 4,
+      "seed": 6,
+      "engine": "ortools"
+    },
+    {
+      "run_index": 117,
+      "timeout_s": 600,
+      "dataset_idx": 5,
+      "dataset_label": "S6 (large)",
+      "count_flights": 70,
+      "teams_per_airport": 4,
+      "seed": 6,
+      "engine": "timefold_java"
+    },
+    {
+      "run_index": 118,
+      "timeout_s": 600,
+      "dataset_idx": 5,
+      "dataset_label": "S6 (large)",
+      "count_flights": 70,
+      "teams_per_airport": 4,
+      "seed": 6,
+      "engine": "timefold_kotlin"
+    },
+    {
+      "run_index": 119,
+      "timeout_s": 600,
+      "dataset_idx": 5,
+      "dataset_label": "S6 (large)",
+      "count_flights": 70,
+      "teams_per_airport": 4,
+      "seed": 6,
+      "engine": "solverforge"
+    },
+    {
+      "run_index": 120,
+      "timeout_s": 900,
+      "dataset_idx": 0,
+      "dataset_label": "S1 (tiny)",
+      "count_flights": 14,
+      "teams_per_airport": 2,
+      "seed": 1,
+      "engine": "timefold_python"
+    },
+    {
+      "run_index": 121,
+      "timeout_s": 900,
+      "dataset_idx": 0,
+      "dataset_label": "S1 (tiny)",
+      "count_flights": 14,
+      "teams_per_airport": 2,
+      "seed": 1,
+      "engine": "ortools"
+    },
+    {
+      "run_index": 122,
+      "timeout_s": 900,
+      "dataset_idx": 0,
+      "dataset_label": "S1 (tiny)",
+      "count_flights": 14,
+      "teams_per_airport": 2,
+      "seed": 1,
+      "engine": "timefold_java"
+    },
+    {
+      "run_index": 123,
+      "timeout_s": 900,
+      "dataset_idx": 0,
+      "dataset_label": "S1 (tiny)",
+      "count_flights": 14,
+      "teams_per_airport": 2,
+      "seed": 1,
+      "engine": "timefold_kotlin"
+    },
+    {
+      "run_index": 124,
+      "timeout_s": 900,
+      "dataset_idx": 0,
+      "dataset_label": "S1 (tiny)",
+      "count_flights": 14,
+      "teams_per_airport": 2,
+      "seed": 1,
+      "engine": "solverforge"
+    },
+    {
+      "run_index": 125,
+      "timeout_s": 900,
+      "dataset_idx": 1,
+      "dataset_label": "S2 (small)",
+      "count_flights": 21,
+      "teams_per_airport": 2,
+      "seed": 2,
+      "engine": "timefold_python"
+    },
+    {
+      "run_index": 126,
+      "timeout_s": 900,
+      "dataset_idx": 1,
+      "dataset_label": "S2 (small)",
+      "count_flights": 21,
+      "teams_per_airport": 2,
+      "seed": 2,
+      "engine": "ortools"
+    },
+    {
+      "run_index": 127,
+      "timeout_s": 900,
+      "dataset_idx": 1,
+      "dataset_label": "S2 (small)",
+      "count_flights": 21,
+      "teams_per_airport": 2,
+      "seed": 2,
+      "engine": "timefold_java"
+    },
+    {
+      "run_index": 128,
+      "timeout_s": 900,
+      "dataset_idx": 1,
+      "dataset_label": "S2 (small)",
+      "count_flights": 21,
+      "teams_per_airport": 2,
+      "seed": 2,
+      "engine": "timefold_kotlin"
+    },
+    {
+      "run_index": 129,
+      "timeout_s": 900,
+      "dataset_idx": 1,
+      "dataset_label": "S2 (small)",
+      "count_flights": 21,
+      "teams_per_airport": 2,
+      "seed": 2,
+      "engine": "solverforge"
+    },
+    {
+      "run_index": 130,
+      "timeout_s": 900,
+      "dataset_idx": 2,
+      "dataset_label": "S3 (small-med)",
+      "count_flights": 28,
+      "teams_per_airport": 2,
+      "seed": 3,
+      "engine": "timefold_python"
+    },
+    {
+      "run_index": 131,
+      "timeout_s": 900,
+      "dataset_idx": 2,
+      "dataset_label": "S3 (small-med)",
+      "count_flights": 28,
+      "teams_per_airport": 2,
+      "seed": 3,
+      "engine": "ortools"
+    },
+    {
+      "run_index": 132,
+      "timeout_s": 900,
+      "dataset_idx": 2,
+      "dataset_label": "S3 (small-med)",
+      "count_flights": 28,
+      "teams_per_airport": 2,
+      "seed": 3,
+      "engine": "timefold_java"
+    },
+    {
+      "run_index": 133,
+      "timeout_s": 900,
+      "dataset_idx": 2,
+      "dataset_label": "S3 (small-med)",
+      "count_flights": 28,
+      "teams_per_airport": 2,
+      "seed": 3,
+      "engine": "timefold_kotlin"
+    },
+    {
+      "run_index": 134,
+      "timeout_s": 900,
+      "dataset_idx": 2,
+      "dataset_label": "S3 (small-med)",
+      "count_flights": 28,
+      "teams_per_airport": 2,
+      "seed": 3,
+      "engine": "solverforge"
+    },
+    {
+      "run_index": 135,
+      "timeout_s": 900,
+      "dataset_idx": 3,
+      "dataset_label": "S4 (medium)",
+      "count_flights": 42,
+      "teams_per_airport": 2,
+      "seed": 4,
+      "engine": "timefold_python"
+    },
+    {
+      "run_index": 136,
+      "timeout_s": 900,
+      "dataset_idx": 3,
+      "dataset_label": "S4 (medium)",
+      "count_flights": 42,
+      "teams_per_airport": 2,
+      "seed": 4,
+      "engine": "ortools"
+    },
+    {
+      "run_index": 137,
+      "timeout_s": 900,
+      "dataset_idx": 3,
+      "dataset_label": "S4 (medium)",
+      "count_flights": 42,
+      "teams_per_airport": 2,
+      "seed": 4,
+      "engine": "timefold_java"
+    },
+    {
+      "run_index": 138,
+      "timeout_s": 900,
+      "dataset_idx": 3,
+      "dataset_label": "S4 (medium)",
+      "count_flights": 42,
+      "teams_per_airport": 2,
+      "seed": 4,
+      "engine": "timefold_kotlin"
+    },
+    {
+      "run_index": 139,
+      "timeout_s": 900,
+      "dataset_idx": 3,
+      "dataset_label": "S4 (medium)",
+      "count_flights": 42,
+      "teams_per_airport": 2,
+      "seed": 4,
+      "engine": "solverforge"
+    },
+    {
+      "run_index": 140,
+      "timeout_s": 900,
+      "dataset_idx": 4,
+      "dataset_label": "S5 (medium-lg)",
+      "count_flights": 56,
+      "teams_per_airport": 3,
+      "seed": 5,
+      "engine": "timefold_python"
+    },
+    {
+      "run_index": 141,
+      "timeout_s": 900,
+      "dataset_idx": 4,
+      "dataset_label": "S5 (medium-lg)",
+      "count_flights": 56,
+      "teams_per_airport": 3,
+      "seed": 5,
+      "engine": "ortools"
+    },
+    {
+      "run_index": 142,
+      "timeout_s": 900,
+      "dataset_idx": 4,
+      "dataset_label": "S5 (medium-lg)",
+      "count_flights": 56,
+      "teams_per_airport": 3,
+      "seed": 5,
+      "engine": "timefold_java"
+    },
+    {
+      "run_index": 143,
+      "timeout_s": 900,
+      "dataset_idx": 4,
+      "dataset_label": "S5 (medium-lg)",
+      "count_flights": 56,
+      "teams_per_airport": 3,
+      "seed": 5,
+      "engine": "timefold_kotlin"
+    },
+    {
+      "run_index": 144,
+      "timeout_s": 900,
+      "dataset_idx": 4,
+      "dataset_label": "S5 (medium-lg)",
+      "count_flights": 56,
+      "teams_per_airport": 3,
+      "seed": 5,
+      "engine": "solverforge"
+    },
+    {
+      "run_index": 145,
+      "timeout_s": 900,
+      "dataset_idx": 5,
+      "dataset_label": "S6 (large)",
+      "count_flights": 70,
+      "teams_per_airport": 4,
+      "seed": 6,
+      "engine": "timefold_python"
+    },
+    {
+      "run_index": 146,
+      "timeout_s": 900,
+      "dataset_idx": 5,
+      "dataset_label": "S6 (large)",
+      "count_flights": 70,
+      "teams_per_airport": 4,
+      "seed": 6,
+      "engine": "ortools"
+    },
+    {
+      "run_index": 147,
+      "timeout_s": 900,
+      "dataset_idx": 5,
+      "dataset_label": "S6 (large)",
+      "count_flights": 70,
+      "teams_per_airport": 4,
+      "seed": 6,
+      "engine": "timefold_java"
+    },
+    {
+      "run_index": 148,
+      "timeout_s": 900,
+      "dataset_idx": 5,
+      "dataset_label": "S6 (large)",
+      "count_flights": 70,
+      "teams_per_airport": 4,
+      "seed": 6,
+      "engine": "timefold_kotlin"
+    },
+    {
+      "run_index": 149,
+      "timeout_s": 900,
+      "dataset_idx": 5,
+      "dataset_label": "S6 (large)",
+      "count_flights": 70,
+      "teams_per_airport": 4,
+      "seed": 6,
+      "engine": "solverforge"
+    }
+  ]
+}

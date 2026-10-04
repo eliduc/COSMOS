@@ -1,0 +1,20 @@
+{
+ "fingerprint": "ca6999759dc499261c652afc82a0f88a57f5024e6f2307b37072974a6d6a36bc",
+ "form_version": 1,
+ "gates": {
+  "stand_tasks_required": false,
+  "subject_words_required": false
+ },
+ "legacy_registry_rev": "d4426bc03dea",
+ "name": "template-catalog",
+ "note": "0.4.0: семья duty_series_limit («серия смен»: предел рабочих смен подряд и свободные дни после серии) — заявка CDPM по набору Н0-C, слово владельца 09.09.2026 «Пункт 1 — согласен», кандидат конвейера CR cr5872c504",
+ "released_at": "2026-09-09",
+ "released_by": "владелец",
+ "sections": {
+  "criteria": "criteria.json",
+  "dictionaries": "dictionaries.json",
+  "families": "families.json",
+  "requests": "requests.json"
+ },
+ "version": "0.4.0"
+}

@@ -1,0 +1,133 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://fregene.ai/schemas/catalog-service-draft-1.json",
+ "title": "Черновик службы каталога шаблонов (форма файла)",
+ "description": "Файл рабочей папки службы: <CATALOG_WORK_DIR>/drafts/<раздел>/<id|ключ>.json. Форму файла судит эта схема, СМЫСЛ записи — validate() читателя над собранным телом. Своя схема нужна потому, что $defs/family_draft читателя запрещает stand_tasks, status и history, а черновик службы их несёт (кроме history: её дописывает сборка).",
+ "oneOf": [
+  {
+   "$ref": "#/$defs/record_draft"
+  },
+  {
+   "$ref": "#/$defs/dictionary_draft"
+  }
+ ],
+ "$defs": {
+  "nonempty": {
+   "type": "string",
+   "minLength": 1
+  },
+  "datetime": {
+   "type": "string",
+   "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}(:\\d{2})?(Z|[+-]\\d{2}:\\d{2})$"
+  },
+  "record_draft": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "form_version",
+    "section",
+    "id",
+    "record",
+    "note",
+    "by",
+    "saved_at",
+    "request_id"
+   ],
+   "properties": {
+    "form_version": {
+     "const": 1
+    },
+    "section": {
+     "enum": [
+      "families",
+      "criteria"
+     ]
+    },
+    "id": {
+     "type": "string",
+     "pattern": "^[a-z][a-z0-9_]{2,40}$"
+    },
+    "record": {
+     "type": "object",
+     "description": "полная запись по схеме читателя ($defs/family | $defs/criterion) БЕЗ поля history; status и stand_tasks присутствуют",
+     "required": [
+      "id",
+      "status"
+     ],
+     "properties": {
+      "id": {
+       "type": "string",
+       "pattern": "^[a-z][a-z0-9_]{2,40}$"
+      },
+      "status": {
+       "$ref": "#/$defs/nonempty"
+      },
+      "history": false
+     }
+    },
+    "note": {
+     "$ref": "#/$defs/nonempty"
+    },
+    "by": {
+     "$ref": "#/$defs/nonempty"
+    },
+    "saved_at": {
+     "$ref": "#/$defs/datetime"
+    },
+    "request_id": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "pattern": "^req-\\d{4,}$"
+    },
+    "from_candidate": {
+     "description": "Тело черновика взято из файла-кандидата конвейера (catalog/candidates/<раздел>/<id>.json). Только по этому признаку сборка удаляет файл кандидата: перевод заявки в записи БЕЗ кандидата чужой файл не трогает. Ключ необязателен — черновик без него считается написанным в службе.",
+     "type": "boolean"
+    }
+   }
+  },
+  "dictionary_draft": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "form_version",
+    "section",
+    "key",
+    "value",
+    "note",
+    "by",
+    "saved_at"
+   ],
+   "properties": {
+    "form_version": {
+     "const": 1
+    },
+    "section": {
+     "const": "dictionaries"
+    },
+    "key": {
+     "$ref": "#/$defs/nonempty"
+    },
+    "value": {
+     "description": "значение ключа словаря целиком: перечень, объект, текст либо порядок"
+    },
+    "note": {
+     "$ref": "#/$defs/nonempty"
+    },
+    "by": {
+     "$ref": "#/$defs/nonempty"
+    },
+    "saved_at": {
+     "$ref": "#/$defs/datetime"
+    },
+    "request_id": {
+     "type": [
+      "string",
+      "null"
+     ]
+    }
+   }
+  }
+ }
+}

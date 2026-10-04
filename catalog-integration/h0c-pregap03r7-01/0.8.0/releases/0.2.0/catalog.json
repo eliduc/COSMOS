@@ -1,0 +1,20 @@
+{
+ "fingerprint": "5c9d26c1dfcac9f9de12771f0ede271a27f65a95b817048c1c853961b7dd8f78",
+ "form_version": 1,
+ "gates": {
+  "stand_tasks_required": false,
+  "subject_words_required": false
+ },
+ "legacy_registry_rev": "d9b12d93d9b7",
+ "name": "template-catalog",
+ "note": "первый выпуск каталога шаблонов по слову владельца 07.09 (решение 8 §11 проекта шага 4): тело черновика 0.2.0-draft.2 — привязки продуктов, стендовые задачи, критерии-метрики решателя, раздача шести имён словарей семьям, отношение «не больше» у трёх порогов, разбор двух красных строк живого стенда (полы отдыха мира посадок за смену, порядок рейсов задачи перегона) и текст записи стоимости перегона по настоящему поведению решателя",
+ "released_at": "2026-09-08",
+ "released_by": "владелец",
+ "sections": {
+  "criteria": "criteria.json",
+  "dictionaries": "dictionaries.json",
+  "families": "families.json",
+  "requests": "requests.json"
+ },
+ "version": "0.2.0"
+}

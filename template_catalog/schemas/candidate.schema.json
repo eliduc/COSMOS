@@ -1,0 +1,160 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://fregene.ai/schemas/catalog-candidate-1.json",
+ "title": "Файл-кандидат записи каталога шаблонов (шаг 6, конвейер пополнения)",
+ "description": "Файл catalog/candidates/<раздел>/<id>.json: запись, которую предлагает конвейер самоулучшения по принятой заявке. Форма — черновик службы (form_version, section, id, record, note, by, saved_at) ⊕ request_id ⊕ cr_key ⊕ evidence. Вне отпечатка каталога и вне отметки читателя. СМЫСЛ записи судит validate() читателя на каталоге в памяти (template_catalog.candidates.validate_with_candidate) — здесь только форма файла: два судьи не заводятся. Поле history у записи запрещено: историю пишет сборка службой, а не агент.",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "form_version",
+  "section",
+  "id",
+  "record",
+  "note",
+  "by",
+  "saved_at",
+  "request_id",
+  "cr_key"
+ ],
+ "properties": {
+  "form_version": {
+   "const": 1
+  },
+  "section": {
+   "enum": [
+    "families",
+    "criteria"
+   ]
+  },
+  "id": {
+   "$ref": "#/$defs/id"
+  },
+  "record": {
+   "type": "object",
+   "description": "полная запись по схеме читателя ($defs/family | $defs/criterion) со status и stand_tasks, БЕЗ history",
+   "required": [
+    "id",
+    "status",
+    "stand_tasks"
+   ],
+   "properties": {
+    "id": {
+     "$ref": "#/$defs/id"
+    },
+    "status": {
+     "$ref": "#/$defs/nonempty"
+    },
+    "stand_tasks": {
+     "type": "array"
+    },
+    "history": false
+   }
+  },
+  "note": {
+   "$ref": "#/$defs/nonempty"
+  },
+  "by": {
+   "$ref": "#/$defs/nonempty"
+  },
+  "saved_at": {
+   "$ref": "#/$defs/datetime"
+  },
+  "request_id": {
+   "type": "string",
+   "pattern": "^req-\\d{20}$"
+  },
+  "cr_key": {
+   "type": "string",
+   "pattern": "^cr[0-9a-f]{8}$"
+  },
+  "evidence": {
+   "$ref": "#/$defs/evidence"
+  }
+ },
+ "$defs": {
+  "nonempty": {
+   "type": "string",
+   "minLength": 1
+  },
+  "id": {
+   "type": "string",
+   "pattern": "^[a-z][a-z0-9_]{2,40}$"
+  },
+  "datetime": {
+   "type": "string",
+   "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}(:\\d{2})?(Z|[+-]\\d{2}:\\d{2})$"
+  },
+  "evidence": {
+   "type": "object",
+   "description": "отчёт конвейера о гейтах (не подпись: подписанное свидетельство — очередь укрепления). Пишет конвейер COSMOS после гейтов, читает служба при adopt.",
+   "additionalProperties": false,
+   "required": [
+    "cr_key",
+    "branch",
+    "at",
+    "gates",
+    "executors"
+   ],
+   "properties": {
+    "cr_key": {
+     "type": "string",
+     "pattern": "^cr[0-9a-f]{8}$"
+    },
+    "branch": {
+     "$ref": "#/$defs/nonempty"
+    },
+    "commit": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "evidence_commit": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "at": {
+     "$ref": "#/$defs/datetime"
+    },
+    "gates": {
+     "type": "object"
+    },
+    "executors": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "kind",
+       "state",
+       "file",
+       "symbol"
+      ],
+      "properties": {
+       "kind": {
+        "$ref": "#/$defs/nonempty"
+       },
+       "state": {
+        "$ref": "#/$defs/nonempty"
+       },
+       "file": {
+        "$ref": "#/$defs/nonempty"
+       },
+       "symbol": {
+        "$ref": "#/$defs/nonempty"
+       }
+      }
+     }
+    },
+    "isolation": {
+     "type": [
+      "string",
+      "null"
+     ]
+    }
+   }
+  }
+ }
+}

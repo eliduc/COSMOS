@@ -1,0 +1,5 @@
+{
+ "catalog_version": "0.7.0-draft.3",
+ "schema_contract": "catalog-0.7.schema.json",
+ "schema_file": "catalog.schema.json"
+}

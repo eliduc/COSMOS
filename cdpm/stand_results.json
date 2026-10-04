@@ -1,0 +1,400 @@
+{
+ "at": "2026-09-17T01:04:52+02:00",
+ "catalog_fingerprint": "7dc0626d4ce85eb0b7a26ca385953ac03a2dce68557bb2e040a614f1584ad549",
+ "catalog_version": "0.6.0",
+ "code": {
+  "cdpm/data_checks.py": "bfcd7a4dd28de1abff055bd87cec0ca8297bd69f7b5efec33b568ba0f95968f2",
+  "cdpm/data_report.py": "3667b9b3db6503f383c9b032361ff6306540bffdc22e960cd8f844ad896c01ab",
+  "cdpm/history_journal.py": "aa1ede79f395e3a11d7ab82f53eba32b4d050f622877ab8fb223c8511c98df6e",
+  "cdpm/history_section.py": "8286081aeefb6ad743b7684287f9128e223e5b86f78734566cf20a94439ff299",
+  "cdpm/model.py": "a7557db809a61907e2a4da4cb5b9ae4b3fc27fc959bab5190058366fc9a2e07c",
+  "cdpm/stand_tables.py": "072366f8536e98842528c7aa20e01cf87b9e0ac4b2616e4de6990fcdde845429",
+  "cdpm/stand_tables_seed.json": "7133d9c51ad953e00091a0fbac8ba393bacf9a07a33d3e4c47868d0365670223"
+ },
+ "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+ "form_version": 1,
+ "results": [
+  {
+   "executor_kind": "check_template",
+   "expected": {
+    "findings": 0,
+    "params": {
+     "count": 2,
+     "distinct_column": "Табельный номер",
+     "group_column": "Рейс",
+     "relation": "eq",
+     "sheet": "S1/Назначения"
+    },
+    "template": "счёт-состава-группы"
+   },
+   "got": {
+    "findings": 0,
+    "rows_checked": 5,
+    "status": "прогнана"
+   },
+   "note": "получено 0, ожидалось 0 (run_spec_ex)",
+   "record": "families/crew_composition",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-crew-count-0"
+  },
+  {
+   "executor_kind": "check_template",
+   "expected": {
+    "findings": 2,
+    "params": {
+     "count": 2,
+     "distinct_column": "Табельный номер",
+     "group_column": "Рейс",
+     "relation": "eq",
+     "sheet": "S1/Назначения"
+    },
+    "template": "счёт-состава-группы"
+   },
+   "got": {
+    "findings": 2,
+    "rows_checked": 6,
+    "status": "прогнана"
+   },
+   "note": "получено 2, ожидалось 2 (run_spec_ex)",
+   "record": "families/crew_composition",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-crew-count-2"
+  },
+  {
+   "executor_kind": "check_template",
+   "expected": {
+    "findings": 0,
+    "params": {
+     "end_column": "Конец",
+     "group_column": "Табельный номер",
+     "min_days_off": 6,
+     "sheet": "S1/Смены",
+     "start_column": "Начало"
+    },
+    "template": "выходных-в-месяце"
+   },
+   "got": {
+    "findings": 0,
+    "rows_checked": 7,
+    "status": "прогнана"
+   },
+   "note": "получено 0, ожидалось 0 (run_spec_ex)",
+   "record": "families/days_off_floor",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-daysoff-month-0"
+  },
+  {
+   "executor_kind": "check_template",
+   "expected": {
+    "findings": 1,
+    "params": {
+     "end_column": "Конец",
+     "group_column": "Табельный номер",
+     "min_days_off": 7,
+     "sheet": "S1/Смены",
+     "start_column": "Начало"
+    },
+    "template": "выходных-в-месяце"
+   },
+   "got": {
+    "findings": 1,
+    "rows_checked": 7,
+    "status": "прогнана"
+   },
+   "note": "получено 1, ожидалось 1 (run_spec_ex)",
+   "record": "families/days_off_floor",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-daysoff-month-1"
+  },
+  {
+   "executor_kind": "check_template",
+   "expected": {
+    "findings": 0,
+    "params": {
+     "end_column": "Конец",
+     "max_hours": 13,
+     "sheet": "S1/Смены",
+     "start_column": "Начало"
+    },
+    "template": "максимальная-длительность-часов"
+   },
+   "got": {
+    "findings": 0,
+    "rows_checked": 3,
+    "status": "прогнана"
+   },
+   "note": "получено 0, ожидалось 0 (run_spec_ex)",
+   "record": "families/duty_limits",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-duty-hours-0"
+  },
+  {
+   "executor_kind": "check_template",
+   "expected": {
+    "findings": 2,
+    "params": {
+     "end_column": "Конец",
+     "max_hours": 13,
+     "sheet": "S1/Смены",
+     "start_column": "Начало"
+    },
+    "template": "максимальная-длительность-часов"
+   },
+   "got": {
+    "findings": 2,
+    "rows_checked": 3,
+    "status": "прогнана"
+   },
+   "note": "получено 2, ожидалось 2 (run_spec_ex)",
+   "record": "families/duty_limits",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-duty-hours-2"
+  },
+  {
+   "executor_kind": "check_template",
+   "expected": {
+    "findings": 0,
+    "params": {
+     "date_column": "Дата",
+     "key_column": "Табельный номер",
+     "ref_key_column": "Табельный номер",
+     "ref_sheet": "S1/Допуски",
+     "ref_until_column": "Действует до",
+     "sheet": "S2/Назначения"
+    },
+    "template": "действительность-на-дату"
+   },
+   "got": {
+    "findings": 0,
+    "rows_checked": 3,
+    "status": "прогнана"
+   },
+   "note": "получено 0, ожидалось 0 (run_spec_ex); подтверждает исполнителя шаблона по одному ключу; пара табельный × тип шаблоном не выражается",
+   "record": "families/fleet_exclusions",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-fleet-valid-0"
+  },
+  {
+   "executor_kind": "check_template",
+   "expected": {
+    "findings": 2,
+    "params": {
+     "date_column": "Дата",
+     "key_column": "Табельный номер",
+     "ref_key_column": "Табельный номер",
+     "ref_sheet": "S1/Допуски",
+     "ref_until_column": "Действует до",
+     "sheet": "S2/Назначения"
+    },
+    "template": "действительность-на-дату"
+   },
+   "got": {
+    "findings": 2,
+    "rows_checked": 3,
+    "status": "прогнана"
+   },
+   "note": "получено 2, ожидалось 2 (run_spec_ex); подтверждает исполнителя шаблона по одному ключу; пара табельный × тип шаблоном не выражается",
+   "record": "families/fleet_exclusions",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-fleet-valid-2"
+  },
+  {
+   "executor_kind": "check_template",
+   "expected": {
+    "findings": 0,
+    "params": {
+     "employee_column": "Табельный номер",
+     "end_column": "Конец",
+     "max_consecutive": 2,
+     "night_from_min": 1320,
+     "night_to_min": 360,
+     "sheet": "S1/Смены",
+     "start_column": "Начало"
+    },
+    "template": "серия-ночных-смен"
+   },
+   "got": {
+    "findings": 0,
+    "rows_checked": 6,
+    "status": "прогнана"
+   },
+   "note": "получено 0, ожидалось 0 (run_spec_ex)",
+   "record": "families/night_series",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-night-run-0"
+  },
+  {
+   "executor_kind": "check_template",
+   "expected": {
+    "findings": 1,
+    "params": {
+     "employee_column": "Табельный номер",
+     "end_column": "Конец",
+     "max_consecutive": 2,
+     "night_from_min": 1320,
+     "night_to_min": 360,
+     "sheet": "S1/Смены",
+     "start_column": "Начало"
+    },
+    "template": "серия-ночных-смен"
+   },
+   "got": {
+    "findings": 1,
+    "rows_checked": 4,
+    "status": "прогнана"
+   },
+   "note": "получено 1, ожидалось 1 (run_spec_ex)",
+   "record": "families/night_series",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-night-run-1"
+  },
+  {
+   "executor_kind": "check_template",
+   "expected": {
+    "findings": 1,
+    "params": {
+     "area": "вне базы",
+     "base_column": "База приписки",
+     "end_column": "Конец",
+     "group_column": "Табельный номер",
+     "min_hours": 12,
+     "place_column": "Место отдыха",
+     "sheet": "S1/Смены",
+     "start_column": "Начало"
+    },
+    "template": "минимальный-разрыв-часов"
+   },
+   "got": {
+    "findings": 1,
+    "rows_checked": 5,
+    "status": "прогнана"
+   },
+   "note": "получено 1, ожидалось 1 (run_spec_ex)",
+   "record": "families/rest_floors",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-rest-away-1"
+  },
+  {
+   "executor_kind": "check_template",
+   "expected": {
+    "findings": 0,
+    "params": {
+     "end_column": "Конец",
+     "group_column": "Табельный номер",
+     "min_hours": 9,
+     "sheet": "S1/Смены",
+     "start_column": "Начало"
+    },
+    "template": "минимальный-разрыв-часов"
+   },
+   "got": {
+    "findings": 0,
+    "rows_checked": 5,
+    "status": "прогнана"
+   },
+   "note": "получено 0, ожидалось 0 (run_spec_ex)",
+   "record": "families/rest_floors",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-rest-gap-0"
+  },
+  {
+   "executor_kind": "check_template",
+   "expected": {
+    "findings": 1,
+    "params": {
+     "area": "база",
+     "base_column": "База приписки",
+     "end_column": "Конец",
+     "group_column": "Табельный номер",
+     "min_hours": 12,
+     "place_column": "Место отдыха",
+     "sheet": "S1/Смены",
+     "start_column": "Начало"
+    },
+    "template": "минимальный-разрыв-часов"
+   },
+   "got": {
+    "findings": 1,
+    "rows_checked": 5,
+    "status": "прогнана"
+   },
+   "note": "получено 1, ожидалось 1 (run_spec_ex)",
+   "record": "families/rest_floors",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-rest-home-1"
+  },
+  {
+   "executor_kind": "check_template",
+   "expected": {
+    "findings": 0,
+    "params": {
+     "employee_column": "Табельный номер",
+     "end_column": "Конец",
+     "min_rest_min": 1440,
+     "sheet": "S1/Смены",
+     "start_column": "Начало",
+     "window_days": 7
+    },
+    "template": "отдых-в-скользящем-окне"
+   },
+   "got": {
+    "findings": 0,
+    "rows_checked": 4,
+    "status": "прогнана"
+   },
+   "note": "получено 0, ожидалось 0 (run_spec_ex)",
+   "record": "families/rolling_rest",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-rolling-rest-0"
+  },
+  {
+   "executor_kind": "check_template",
+   "expected": {
+    "findings": 1,
+    "params": {
+     "employee_column": "Табельный номер",
+     "end_column": "Конец",
+     "min_rest_min": 1440,
+     "sheet": "S1/Смены",
+     "start_column": "Начало",
+     "window_days": 7
+    },
+    "template": "отдых-в-скользящем-окне"
+   },
+   "got": {
+    "findings": 1,
+    "rows_checked": 7,
+    "status": "прогнана"
+   },
+   "note": "получено 1, ожидалось 1 (run_spec_ex)",
+   "record": "families/rolling_rest",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-rolling-rest-1"
+  }
+ ],
+ "solver": null,
+ "tasks_source": {
+  "families/crew_composition": "catalog",
+  "families/days_off_floor": "catalog",
+  "families/duty_limits": "catalog",
+  "families/fleet_exclusions": "catalog",
+  "families/night_series": "catalog",
+  "families/rest_floors": "catalog",
+  "families/rolling_rest": "catalog"
+ }
+}

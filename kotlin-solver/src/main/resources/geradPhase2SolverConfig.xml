@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Named solver "gerad2" — GERAD/Kasirzadeh PHASE 2 profile: core legality
+     plus personalization (vacations, preferred flights, uncovered-flight
+     cost). Registered so the Timefold Quarkus processor accepts the extra
+     ConstraintProvider on the classpath; per-request configs are still
+     built programmatically in solveSingleSync (rules=GERAD2). -->
+<solver xmlns="https://timefold.ai/xsd/solver">
+  <solutionClass>org.acme.flighcrewscheduling.domain.FlightCrewSchedule</solutionClass>
+  <entityClass>org.acme.flighcrewscheduling.domain.FlightAssignment</entityClass>
+  <scoreDirectorFactory>
+    <constraintProviderClass>org.acme.flighcrewscheduling.solver.GeradPhase2ConstraintProvider</constraintProviderClass>
+  </scoreDirectorFactory>
+</solver>

@@ -1,0 +1,237 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Токены темы (визуальный язык CodeForge) ──
+   Светлая палитра задаётся на :root; в .dark переопределяются ТОЛЬКО
+   переменные. У body — явный фон из токена. */
+:root {
+  --cf-bg: #f1f5f9;
+  --cf-panel: #ffffff;
+  --cf-border: #e2e8f0;
+  --cf-text: #1e293b;
+  --cf-text-muted: #475569;
+  --cf-input-bg: #f8fafc;
+  --cf-hover: #f1f5f9;
+  --cf-code-bg: #f1f5f9;
+  --cf-scrollbar-track: #f1f5f9;
+  --cf-scrollbar-thumb: #cbd5e1;
+  --cf-scrollbar-hover: #6366f1;
+  /* Токены общего движка карты сети (webapp/static/net-map.js): движок
+     красит дуги, узлы и подсветку маршрута переменными COSMOS; без них
+     в панели CDPM дуги рисовались невидимыми (живой случай карты ростера
+     04.09). Значения — те же, что в webapp/static/style.css. */
+  --ink: #1c2430;
+  --muted: #67717e;
+  --card-bg: #ffffff;
+  --accent: #1565c0;
+  --rv-duty: #0072B2;
+  --rv-bad: #D55E00;
+}
+
+.dark {
+  --cf-bg: #0f1419;
+  --cf-panel: #1a1f2e;
+  --cf-border: #2d3748;
+  --cf-text: #e2e8f0;
+  --cf-text-muted: #94a3b8;
+  --cf-input-bg: #1a1f2e;
+  --cf-hover: #2d3748;
+  --cf-code-bg: #1a1f2e;
+  --cf-scrollbar-track: #1a1f2e;
+  --cf-scrollbar-thumb: #4a5568;
+  --cf-scrollbar-hover: #6366f1;
+}
+
+body {
+  background-color: var(--cf-bg);
+  color: var(--cf-text);
+}
+
+/* Скроллбары */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--cf-scrollbar-thumb) transparent;
+}
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--cf-scrollbar-track);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--cf-scrollbar-thumb);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cf-scrollbar-hover);
+}
+
+/* Анимации живут здесь, не в инлайновых <style> внутри компонентов. */
+@keyframes cf-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+/* Пульс активного блока — НАМЕРЕННО броский (замечание владельца
+   2026-08-18: тонкая пульсация рамки на градиенте не читалась):
+   дышит и рамка, и свечение вокруг блока. Анимация побеждает
+   статичный inline box-shadow активного состояния по правилам
+   каскада — это ожидаемо. */
+/* Цвет пульса тематический (замечание владельца 2026-08-20: белый
+   пульс на СВЕТЛОМ холсте невидим — белое на белом): светлая тема —
+   индиго, тёмная — белый. Плюс дыхание размером — геометрию видно
+   на любом фоне. */
+:root { --cf-pulse: 79, 70, 229; }
+.dark { --cf-pulse: 255, 255, 255; }
+@keyframes cf-border-pulse {
+  0%, 100% {
+    border-color: rgba(var(--cf-pulse), 0.95);
+    box-shadow: 0 0 22px rgba(var(--cf-pulse), 0.7),
+                0 0 46px rgba(var(--cf-pulse), 0.4);
+    transform: scale(1.03);
+  }
+  50% {
+    border-color: rgba(var(--cf-pulse), 0.15);
+    box-shadow: 0 0 4px rgba(var(--cf-pulse), 0.08);
+    transform: scale(1.0);
+  }
+}
+.cf-glow-overlay {
+  background: rgba(var(--cf-pulse), 0.35);
+}
+@keyframes cf-border-glow {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 0.15; }
+}
+
+/* Windows с выключенными визуальными эффектами сообщает браузеру
+   «свести движение к минимуму» — и браузер с настройками строгого
+   следования глушит анимации. Индикатор работы — функциональный
+   сигнал, не украшение (замечание владельца 2026-08-18: «ничего не
+   мигает» при идущем прогоне), поэтому пульс и вращение включаются
+   здесь осознанно и при этой настройке. */
+@media (prefers-reduced-motion: reduce) {
+  .cf-force-motion {
+    animation-name: cf-border-pulse !important;
+    animation-timing-function: ease-in-out !important;
+    animation-duration: 1.5s !important;
+    animation-iteration-count: infinite !important;
+  }
+  .cf-force-motion .animate-spin,
+  .cf-force-motion .animate-pulse {
+    animation-duration: 1.5s !important;
+    animation-iteration-count: infinite !important;
+  }
+  .cf-force-motion .animate-spin {
+    animation-name: spin !important;
+    animation-timing-function: linear !important;
+    animation-duration: 1s !important;
+  }
+}
+
+/* Холст диаграммы: тёмная сцена с сеткой в обеих темах у самого
+   полотна регулируется токенами (светлая тема — светлый холст). */
+:root {
+  --cf-rf-bg: #f8fafc;
+  --cf-rf-dots: #cbd5e1;
+}
+.dark {
+  --cf-rf-bg: #0d1117;
+  --cf-rf-dots: #263041;
+}
+.react-flow {
+  background: var(--cf-rf-bg);
+}
+.react-flow__controls {
+  border-radius: 0.75rem;
+  overflow: hidden;
+  border: 1px solid var(--cf-border);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.react-flow__controls-button {
+  background: var(--cf-panel);
+  border-bottom: 1px solid var(--cf-border);
+}
+.react-flow__controls-button svg {
+  fill: var(--cf-text);
+}
+.react-flow__controls-button:hover {
+  background: #6366f1;
+}
+.react-flow__controls-button:hover svg {
+  fill: #ffffff;
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-cf-primary px-4
+      py-2 text-sm font-medium text-white transition-colors
+      hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border
+      border-cf-border bg-cf-panel px-4 py-2 text-sm font-medium
+      text-cf-text transition-colors hover:bg-cf-hover
+      disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-3 py-2 text-sm
+      font-medium text-cf-text-muted transition-colors hover:bg-cf-hover
+      hover:text-cf-text disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-danger {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-cf-error px-4
+      py-2 text-sm font-medium text-white transition-colors
+      hover:bg-red-600 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .input-field {
+    @apply w-full rounded-lg border border-cf-border bg-cf-input px-3
+      py-2 text-sm text-cf-text placeholder:text-cf-text-muted
+      focus:border-cf-primary focus:outline-none focus:ring-1
+      focus:ring-cf-primary;
+  }
+  .card {
+    @apply rounded-xl border border-cf-border bg-cf-panel p-4;
+  }
+  .status-badge {
+    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5
+      text-xs font-medium;
+  }
+  /* Серьёзности замечаний аудит-цикла */
+  .severity-block {
+    @apply bg-cf-error/15 text-cf-error;
+  }
+  .severity-crit {
+    @apply bg-cf-warning/15 text-cf-warning;
+  }
+  .severity-major {
+    @apply bg-cf-secondary/15 text-cf-secondary;
+  }
+  .severity-minor {
+    @apply bg-cf-hover text-cf-text-muted;
+  }
+}
+
+/* Стилизованная подсказка CodeForge (УИ-12): глобальный слой
+   TooltipLayer показывает содержимое title/data-tip в панели темы —
+   быстрее и читабельнее системной подсказки браузера. */
+.cf-tooltip {
+  position: fixed;
+  z-index: 9999;
+  padding: 7px 11px;
+  border: 1px solid var(--cf-border);
+  border-radius: 10px;
+  background: var(--cf-panel);
+  color: var(--cf-text);
+  font-size: 12px;
+  line-height: 1.5;
+  white-space: pre-line;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.38);
+  pointer-events: none;
+  animation: cf-tip-in 0.12s ease-out;
+}
+@keyframes cf-tip-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

@@ -1,0 +1,36 @@
+[00:12:44] === Parallel multi-trial: I_6wide ===
+  dataset_idx:    4
+  total_s:        1200
+  num_intervals:  8 (effective)
+  n_trials:       5
+  max_concurrent: 3
+  n_islands:      6 per trial (peak parallelism: 18 JVMs)
+
+[00:12:44] === wave: trials [1, 2, 3] (concurrent) ===
+  spawning trial 1 on port_base=9091 (ports 9091..9096)
+  spawning trial 2 on port_base=9101 (ports 9101..9106)
+  spawning trial 3 on port_base=9111 (ports 9111..9116)
+  [00:15:36] trial 2 done ok=False elapsed=171.7s score=?
+  [00:33:20] trial 3 done ok=True elapsed=1235.8s score=0h/-79738soft
+  [00:33:29] trial 1 done ok=True elapsed=1244.6s score=0h/-74247soft
+
+[00:33:29] cooldown 60s before next wave ...
+
+[00:34:29] === wave: trials [4, 5] (concurrent) ===
+  spawning trial 4 on port_base=9091 (ports 9091..9096)
+  spawning trial 5 on port_base=9101 (ports 9101..9106)
+  [00:54:55] trial 4 done ok=True elapsed=1225.6s score=0h/-77572soft
+  [00:54:56] trial 5 done ok=True elapsed=1226.7s score=0h/-64144soft
+
+[00:54:56] === DONE in 2531.3s (42.2 min) ===
+  trial  1: 0h/-74247soft (1245s)
+  trial  2: FAILED (172s) last=For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500
+  trial  3: 0h/-79738soft (1236s)
+  trial  4: 0h/-77572soft (1226s)
+  trial  5: 0h/-64144soft (1227s)
+
+  n trials feasible: 4/4
+  soft median: -75909.5
+  soft min/max: -79738/-64144
+  soft range:   15594
+  soft stdev:   6900.8

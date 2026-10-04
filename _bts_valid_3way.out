@@ -1,0 +1,63 @@
+[00:39:51] === BTS COMPARE ===
+  schedule:   DL_ATL_2024-08-15.json
+  budget:     1200s per algorithm
+  algorithms: ['ss_classic', 'ts_classic', 'ts_iso_I_8']
+
+[00:39:51] Source: 1358 flights, 9097 crew, 6824 crew-slot assignments
+
+[00:39:51] STAGE 1A: enumerate pairings ...
+  44660 pairings in 43.6s
+[00:40:35] STAGE 1B: CP-SAT set-partitioning ...
+  551 pairings selected (OPTIMAL) in 9.1s
+  synthetic: 551 pairings, 3031 crew-slots
+
+========= [00:40:44] [1/3] ss_classic =========
+[00:40:48] firing classic LA budget=1200s ...
+  [+  590s] best=0hard/-1641418soft
+  [+  651s] best=0hard/-1640410soft
+  [+  712s] best=0hard/-1639693soft
+  [+  772s] best=0hard/-1639153soft
+  [+  839s] best=0hard/-1638652soft
+  [+  899s] best=0hard/-1637847soft
+  [+  974s] best=0hard/-1637004soft
+  [+ 1035s] best=0hard/-1636151soft
+  [+ 1095s] best=0hard/-1635533soft
+  [+ 1156s] best=0hard/-1635022soft
+  [01:00:50] ss_classic DONE: 0hard/-1634572soft (first feas @ 590.8s) elapsed=1201.9s
+  [01:00:50] cooling 30s ...
+
+========= [01:01:20] [2/3] ts_classic =========
+[01:01:23] firing classic LA budget=1200s ...
+  [+  214s] best=0hard/-991841soft
+  [+  282s] best=0hard/-991824soft
+  [+  372s] best=0hard/-991822soft
+  [+  565s] best=0hard/-991820soft
+  [+  703s] best=0hard/-991818soft
+  [+  785s] best=0hard/-991817soft
+  [+ 1201s] best=0hard/-991817soft
+  [01:21:25] ts_classic DONE: 0hard/-991817soft (first feas @ 214.8s) elapsed=1201.8s
+  [01:21:25] cooling 30s ...
+
+========= [01:21:55] [3/3] ts_iso_I_8 =========
+[01:21:55] iso fleet boot: ports=[9091, 9092, 9093, 9094], acceptors=['LA', 'DLA', 'SA', 'SCHC'], intervals=8 × 150s ...
+[01:21:57]   spawning JVM on port 9091 ...
+[01:21:57]   spawning JVM on port 9092 ...
+[01:21:57]   spawning JVM on port 9093 ...
+[01:21:57]   spawning JVM on port 9094 ...
+[01:22:00]   JVM on port 9091 ready
+[01:22:01]   JVM on port 9092 ready
+[01:22:01]   JVM on port 9093 ready
+[01:22:02]   JVM on port 9094 ready
+  [01:22:02] interval 1/8 (best=None) ...
+  [01:24:37] interval 1/8 done; interval_winner=LA score=0hard/-991817soft; globalBest=0hard/-991817soft
+  [01:24:37] interval 2/8 (best=0hard/-991817soft) ...
+  [01:27:10] interval 2/8 done; interval_winner=LA score=0hard/-991817soft; globalBest=0hard/-991817soft
+  [01:27:10] interval 3/8 (best=0hard/-991817soft) ...
+  [01:29:42] interval 3/8 done; interval_winner=LA score=0hard/-991817soft; globalBest=0hard/-991817soft
+  [01:29:42] interval 4/8 (best=0hard/-991817soft) ...
+  [01:32:13] interval 4/8 done; interval_winner=LA score=0hard/-991817soft; globalBest=0hard/-991817soft
+  [01:32:13] interval 5/8 (best=0hard/-991817soft) ...
+  [01:34:45] interval 5/8 done; interval_winner=LA score=0hard/-991817soft; globalBest=0hard/-991817soft
+  [01:34:45] interval 6/8 (best=0hard/-991817soft) ...
+  [01:37:16] interval 6/8 done; interval_winner=LA score=0hard/-991817soft; globalBest=0hard/-991817soft
+  [01:37:16] interval 7/8 (best=0hard/-991817soft) ...

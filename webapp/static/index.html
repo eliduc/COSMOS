@@ -1,0 +1,2000 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>COSMOS — конвейер пейринг–ростеринг</title>
+<link rel="icon" type="image/svg+xml" href="logo.svg">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-title-row">
+      <!-- Logo sits OUTSIDE the h1: applyI18nDom rewrites the h1's
+           textContent on language switch and would wipe an inner <img>. -->
+      <div class="brand">
+        <img class="app-logo" src="logo.svg" alt="">
+        <h1 data-i18n="html.title">COSMOS — конвейер пейринг–ростеринг</h1>
+      </div>
+      <div class="identity" id="identity-box">
+        <span class="identity-email mono" id="me-email"></span>
+        <span class="chip chip-neutral hidden" id="me-role"></span>
+        <select class="lang-select" id="lang-select"
+                aria-label="Язык / Language / Til / Тіл / اللغة"></select>
+        <button class="btn btn-ghost btn-small" id="btn-tour"
+                data-i18n="ui.tourBtn">Тур</button>
+        <button class="btn btn-ghost btn-small" id="btn-logout"
+                data-i18n="html.logout" data-i18n-title="html.logoutTitle"
+                title="Завершить сессию">Выйти</button>
+      </div>
+    </div>
+    <!-- Two-tier nav: group row (#groups) + contextual sub-tab row
+         (#subtabs), both built in app.js renderNav(). -->
+    <nav class="tabs groups" id="groups" aria-label="sections"></nav>
+    <nav class="tabs subtabs" id="subtabs" aria-label="pages"></nav>
+  </div>
+</header>
+
+<main class="page">
+
+  <!-- ============ Главный экран: конвейер COSMOS ============ -->
+  <section class="tab-panel" id="panel-flow">
+    <div class="section-head">
+      <h2 data-i18n="html.flow.h">Конвейер COSMOS</h2>
+      <span class="chip chip-neutral small hidden" id="flow-active-chip"></span>
+      <!-- Текущий прогон COSMOS (слово владельца 07.09.2026): чип с именем,
+           переключатель и «Новый прогон»; заполняются из /api/flow и
+           /api/cosmos-runs в app.js (_flowRunHeader). -->
+      <span class="chip chip-neutral small hidden flow-run-chip" id="flow-run-chip"></span>
+      <select id="flow-run-select" class="flow-run-select hidden"
+              data-i18n-title="flow.run.select" title="Текущий прогон"></select>
+      <button class="btn btn-ghost btn-small" id="btn-flow-run-new" data-i18n="flow.run.new"
+              data-i18n-title="cruns.new.title" title="Создать прогон и сделать его текущим">Новый прогон</button>
+      <button class="btn btn-primary" id="btn-flow-all" data-i18n="flow.tb.all">▶ Весь конвейер</button>
+      <button class="btn btn-primary flow-map-btn" id="btn-flow-map" data-i18n="flow.map.btn">Карта сети и персонал</button>
+      <button class="btn btn-ghost" id="btn-flow-reset" data-i18n="flow.reset">Сбросить раскладку</button>
+    </div>
+    <details class="panel-help">
+      <summary data-i18n="html.flow.help.s">Как читать эту схему</summary>
+      <p data-i18n="html.flow.help.p">Блоки — этапы конвейера от постановки (ВМП) до решений по пейрингу и ростерингу. Активный этап пульсирует, на блоке — живые параметры хода (включая процент близости к оптимуму). Блок «Эскалация» связан с пулом возвратной стрелкой: непокрытые рейсы ступенями усиливают перебор до развязки — покрыт либо невозможность доказана. Щелчок по блоку открывает его рабочий экран.</p>
+    </details>
+    <!-- Полоса-подсказка над схемой: нет прогона и нет пакета (runs_hint_code)
+         либо идёт нажатие по прежнему пакету прогона; схема не прячется. -->
+    <div class="flow-run-hint hidden" id="flow-run-hint"></div>
+    <div class="flow-outer">
+      <div class="flow-canvas" id="flow-canvas"></div>
+      <div class="flow-zoombar" id="flow-zoombar"></div>
+    </div>
+  </section>
+
+  <!-- ============ Прогоны COSMOS (слово владельца 07.09.2026) ============
+       Список прогонов в форме списка CDPM; карточка прогона с паспортом —
+       модальное окно (app.js openCosmosRunCard). Ручки /api/cosmos-runs*. -->
+  <section class="tab-panel hidden" id="panel-cruns">
+    <div class="section-head">
+      <div>
+        <h2 data-i18n="cruns.h">Прогоны</h2>
+        <p class="hint cruns-sub" data-i18n="cruns.sub">Расчёт по пакету постановки: приём → пейринг → проверки → ростеринг → проверки → выгрузка</p>
+      </div>
+      <div class="inline-controls">
+        <button class="btn btn-ghost" id="btn-cruns-refresh" data-i18n="cruns.refresh">Обновить</button>
+        <button class="btn btn-primary" id="btn-cruns-new" data-i18n="cruns.new"
+                data-i18n-title="cruns.new.title" title="Создать прогон и сделать его текущим: следующий пакет постановки из CDPM ляжет в него">Новый прогон</button>
+      </div>
+    </div>
+    <details class="panel-help">
+      <summary data-i18n="cruns.help.s">Что такое прогон</summary>
+      <p data-i18n="cruns.help.p">Прогон — запись о расчёте по пакету постановки из CDPM: текущий прогон принимает пакет (каналом или загрузкой), хранит все попытки пейринга и ростеринга с проверками по ВМП и ИДАК и паспорт — чем и на чём считалось. Новый пакет в текущий прогон не стирает прежний: он остаётся в истории прогона вместе со своими попытками. Любую завершённую попытку можно повторить из журнала (байт в байт) или заново.</p>
+    </details>
+    <!-- Подразделы вкладки: список прогонов COSMOS и общий экран обеих
+         систем (слово владельца 11.09.2026). Общий экран — только
+         чтение: удаление и правка остаются у каждой системы в своём
+         списке. -->
+    <div class="cruns-views" id="cruns-views">
+      <button class="cruns-filter active" id="btn-cruns-view-runs" type="button"
+              aria-pressed="true" data-i18n="cruns.view.runs">Прогоны COSMOS</button>
+      <button class="cruns-filter" id="btn-cruns-view-all" type="button"
+              aria-pressed="false" data-i18n="cruns.view.all">Все прогоны</button>
+    </div>
+    <div class="cruns-storage hidden" id="cruns-storage"></div>
+    <div class="cruns-new-form hidden" id="cruns-new-form">
+      <input type="text" id="cruns-new-title" maxlength="120"
+             data-i18n-placeholder="cruns.new.ph" placeholder="Название прогона (необязательно)">
+      <button class="btn btn-primary" id="btn-cruns-create" data-i18n="cruns.create">Создать</button>
+      <button class="btn btn-ghost" id="btn-cruns-create-cancel" data-i18n="cruns.dlg.cancel">Отмена</button>
+    </div>
+    <div class="cruns-toolbar hidden" id="cruns-toolbar">
+      <div class="cruns-search">
+        <input type="search" id="cruns-search" data-i18n-placeholder="cruns.search.ph"
+               placeholder="Поиск по номеру прогона, названию, пакету, состоянию…"
+               data-i18n-title="cruns.search.aria" title="Поиск прогонов">
+      </div>
+      <div class="cruns-filters" id="cruns-filters"></div>
+      <span class="cruns-sep"></span>
+      <button class="cruns-filter" id="btn-cruns-sort" type="button"></button>
+      <button class="cruns-filter" id="btn-cruns-dir" type="button"></button>
+      <span class="cruns-sep"></span>
+      <button class="cruns-filter" id="btn-cruns-mark" type="button" aria-pressed="false"></button>
+      <button class="cruns-filter hidden" id="btn-cruns-mark-all" type="button"></button>
+      <button class="cruns-filter hidden" id="btn-cruns-mark-none" type="button"></button>
+      <button class="btn btn-danger btn-small hidden" id="btn-cruns-delete" type="button"></button>
+    </div>
+    <div class="cruns-list" id="cruns-list"></div>
+    <p class="hint cruns-footer hidden" id="cruns-footer" data-i18n="cruns.footer">Удаление переносит папку прогона в архив площадки (каталог cosmos-runs-archive рядом с прогонами) — вернуть можно переносом папки обратно; номера удалённых прогонов заново не выдаются.</p>
+    <!-- Общий экран «Все прогоны» обеих систем (GET /api/runs-all):
+         записи, которые знает COSMOS, плюс прогоны панели CDPM, которых
+         здесь ещё нет. Рисуется целиком в app.js (renderRunsAll). -->
+    <div class="runs-all hidden" id="runs-all"></div>
+  </section>
+
+  <!-- ============ Tab 1: Данные ============ -->
+  <section class="tab-panel hidden" id="panel-data">
+    <div class="section-head">
+      <h2 data-i18n="html.instances.h">Экземпляры задач</h2>
+      <button class="btn btn-ghost" id="btn-refresh-instances" data-i18n="html.refresh">Обновить</button>
+    </div>
+    <div class="table-wrap">
+      <table class="data-table" id="instances-table">
+        <thead>
+          <tr>
+            <th data-i18n="html.th.id">ID</th>
+            <th data-i18n="html.th.source">Источник</th>
+            <th data-i18n="html.th.dataScope" data-i18n-title="html.th.dataScopeTitle">Область данных</th>
+            <th class="hidden" id="instances-owner-th" data-i18n="html.th.owner">Владелец</th>
+            <th class="num" data-i18n="html.th.legs">Рейсы</th>
+            <th class="num" data-i18n="html.th.employees">Сотрудники</th>
+            <th class="num" data-i18n="html.th.slots">Слоты</th>
+            <th class="num" data-i18n="html.th.catalogObj">Целевая функция каталога</th>
+            <th data-i18n="html.th.lastVerdict">Вердикт последней проверки</th>
+            <th data-i18n="html.th.instRules" data-i18n-title="html.th.instRulesTitle">Правила набора</th>
+          </tr>
+        </thead>
+        <tbody id="instances-tbody">
+          <tr><td colspan="9" class="empty-row" data-i18n="html.loading">Загрузка…</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Правила КОНКРЕТНОГО набора: панель открывается щелчком по чипу в
+         столбце «Правила набора». Замечание аудита P1-10 — правила
+         принадлежат набору, а не установке. -->
+    <div class="card hidden" id="inst-rules-panel">
+      <div class="card-head">
+        <h3 id="inst-rules-title">Правила набора</h3>
+        <button class="btn btn-ghost" id="inst-rules-close" data-i18n="html.close">Закрыть</button>
+      </div>
+      <p class="muted" id="inst-rules-origin"></p>
+      <form id="inst-rules-form">
+        <div class="form-grid" id="inst-rules-grid"></div>
+        <div class="form-actions">
+          <button class="btn btn-primary" type="submit" data-i18n="html.save">Сохранить</button>
+          <button class="btn btn-ghost" type="button" id="inst-rules-reset"
+                  data-i18n="html.instRules.reset">Сбросить к шаблону установки</button>
+        </div>
+      </form>
+    </div>
+
+    <h1 class="zone-heading" data-i18n="html.zone.data">Зона 1 — импорт данных задачи</h1>
+    <p class="muted" data-i18n="html.zone.dataIntro">Рейсы, экипажи, допуски, недоступности —
+    всё, что описывает саму задачу планирования. Итог каждого пути — канонический экземпляр в реестре.</p>
+
+    <h2 data-i18n="html.upload.h">Загрузка нового экземпляра</h2>
+    <p class="muted">
+      <span data-i18n="html.upload.introPre">Канонический формат (слой 1) — см. вкладку </span><a href="#" id="link-to-schema" data-i18n="html.upload.introLink">«Формат и правила»</a><span data-i18n="html.upload.introPost">. Можно выбрать файл .json или вставить JSON в поле ниже.</span>
+    </p>
+    <!-- Документ постановки контура: правила и ответы одним файлом.
+         Расчёт читает его напрямую, поэтому ручная подготовка между
+         документом и расчётом исключена. -->
+    <form id="rules-form" class="card form-card">
+      <div class="form-row">
+        <label for="rules-file" data-i18n="html.label.rulesDoc">Документ постановки (.md)</label>
+        <input type="file" id="rules-file" accept=".md,.markdown,.json,text/markdown">
+      </div>
+      <div class="form-row form-actions">
+        <button type="submit" class="btn btn-primary" id="rules-submit"
+                data-i18n="html.btn.rulesUpload">Загрузить правила</button>
+      </div>
+    </form>
+    <div id="rules-state" class="card hidden"></div>
+
+
+    <form id="upload-form" class="card form-card">
+      <div class="form-row">
+        <label for="upload-format" data-i18n="html.label.dataFormat">Формат данных</label>
+        <select id="upload-format">
+          <option value="canonical" data-i18n="html.opt.fmtCanonical">Канонический набор COSMOS</option>
+          <option value="airline" data-i18n="html.opt.fmtAirline">Выгрузка авиакомпании (преобразуется)</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label for="upload-name" data-i18n="html.label.name">Название</label>
+        <input type="text" id="upload-name" required
+               data-i18n-placeholder="html.ph.uploadName"
+               placeholder="например: тест-август" autocomplete="off">
+      </div>
+      <div class="form-row">
+        <label for="upload-file" data-i18n="html.label.jsonFile">Файл .json</label>
+        <input type="file" id="upload-file" accept=".json,application/json">
+      </div>
+      <div class="form-row">
+        <label for="upload-text" data-i18n="html.label.jsonPaste">…или вставьте JSON</label>
+        <textarea id="upload-text" rows="8" spellcheck="false"
+                  placeholder='{"airports": [...], "employees": [...], "flights": [...], "flightAssignments": [...]}'></textarea>
+      </div>
+      <div class="form-row form-actions">
+        <button type="submit" class="btn btn-primary" id="upload-submit" data-i18n="html.upload.submit">Загрузить и проверить</button>
+        <div id="upload-progress" class="upload-progress hidden" aria-live="polite"></div>
+      </div>
+      <div id="upload-result" class="upload-result hidden"></div>
+    </form>
+
+    <h2 data-i18n="html.ssim.h">Импорт SSIM</h2>
+    <details class="panel-help">
+      <summary data-i18n="ui.how">Как работает этот экран</summary>
+      <p data-i18n="html.ssim.intro">Импорт расписания в формате IATA SSIM (глава 7, записи типа 3).
+      SSIM не содержит экипажей, поэтому базы экипажей задаются вручную.
+      Диапазон дат — необязателен (по умолчанию весь период файла).</p>
+    </details>
+    <form id="ssim-form" class="card form-card">
+      <div class="form-row">
+        <label for="ssim-name" data-i18n="html.label.name">Название</label>
+        <input type="text" id="ssim-name" required
+               data-i18n-placeholder="html.ph.ssimName"
+               placeholder="например: ssim-август" autocomplete="off">
+      </div>
+      <div class="form-row">
+        <label for="ssim-file" data-i18n="html.label.ssimFile">Файл SSIM</label>
+        <input type="file" id="ssim-file" accept=".ssim,.txt,text/plain">
+      </div>
+      <div class="form-row">
+        <label for="ssim-text" data-i18n="html.label.ssimPaste">…или вставьте содержимое SSIM</label>
+        <textarea id="ssim-text" rows="6" spellcheck="false"
+                  placeholder="1AIRLINE STANDARD SCHEDULE DATA SET…"></textarea>
+      </div>
+      <div class="form-row">
+        <label data-i18n="html.label.dateRange">Диапазон дат (необязательно)</label>
+        <div class="date-range">
+          <input type="date" id="ssim-date-from"
+                 data-i18n-title="html.title.dateFrom" title="с (YYYY-MM-DD)">
+          <span class="muted">—</span>
+          <input type="date" id="ssim-date-to"
+                 data-i18n-title="html.title.dateTo" title="по (YYYY-MM-DD)">
+        </div>
+      </div>
+      <div class="form-row">
+        <label data-i18n="html.label.bases">Базы экипажей (аэропорт и число пилотов)</label>
+        <div id="ssim-bases"></div>
+        <button type="button" class="btn btn-ghost btn-small"
+                id="ssim-add-base" data-i18n="html.ssim.addBase">+ добавить базу</button>
+      </div>
+      <div class="form-row form-actions">
+        <button type="submit" class="btn btn-primary" id="ssim-submit" data-i18n="html.ssim.submit">
+          Импортировать и проверить</button>
+      </div>
+      <div id="ssim-result" class="upload-result hidden"></div>
+    </form>
+
+    <h2 data-i18n="html.meridian.h">Импорт из «Меридиана»</h2>
+    <details class="panel-help">
+      <summary data-i18n="ui.how">Как работает этот экран</summary>
+      <p data-i18n="html.meridian.intro">Импорт выгрузки системы «Меридиан» (постановка задачи
+      ростеринга: рейсы, экипажи, допуски, наземные активности). Конвертация детерминированная,
+      без ИИ — данные не покидают сервер. Файл решения солвера — необязательный справочник
+      типов воздушных судов и географии. Персональные данные (ФИО, даты рождения)
+      отбрасываются при конвертации. Диапазон дат — по умолчанию плановое окно файла.</p>
+    </details>
+    <form id="meridian-form" class="card form-card">
+      <div class="form-row">
+        <label for="meridian-name" data-i18n="html.label.name">Название</label>
+        <input type="text" id="meridian-name" required
+               data-i18n-placeholder="html.ph.meridianName"
+               placeholder="например: расписание-август" autocomplete="off">
+      </div>
+      <div class="form-row">
+        <label for="meridian-file" data-i18n="html.label.meridianFile">Файл выгрузки «Меридиана» (JSON)</label>
+        <input type="file" id="meridian-file" accept=".json,application/json">
+      </div>
+      <div class="form-row">
+        <label for="meridian-solver-file" data-i18n="html.label.meridianSolver">Файл решения солвера (необязательный справочник)</label>
+        <input type="file" id="meridian-solver-file" accept=".json,application/json">
+      </div>
+      <div class="form-row">
+        <label data-i18n="html.label.dateRange">Диапазон дат (необязательно)</label>
+        <div class="date-range">
+          <input type="date" id="meridian-date-from"
+                 data-i18n-title="html.title.dateFrom" title="с (YYYY-MM-DD)">
+          <span class="muted">—</span>
+          <input type="date" id="meridian-date-to"
+                 data-i18n-title="html.title.dateTo" title="по (YYYY-MM-DD)">
+        </div>
+      </div>
+      <div class="form-row">
+        <label for="meridian-keep-structure">
+          <input type="checkbox" id="meridian-keep-structure">
+          <span data-i18n="html.label.keepStructure">Сохранить структуру авиакомпании (смены и цепочки)</span>
+        </label>
+        <p class="hint" data-i18n="html.hint.keepStructure">Нужна построителю цепочек для уровней свободы 1 и 2 — сравнить «как есть» с перестроенным вариантом.</p>
+      </div>
+      <div class="form-row form-actions">
+        <button type="submit" class="btn btn-primary" id="meridian-submit" data-i18n="html.meridian.submit">
+          Импортировать и проверить</button>
+      </div>
+      <div id="meridian-result" class="upload-result hidden"></div>
+    </form>
+
+    <h2 data-i18n="html.imp.h">Импорт из произвольных файлов</h2>
+    <details class="panel-help">
+      <summary data-i18n="ui.how">Как работает этот экран</summary>
+      <p data-i18n="html.imp.intro">Загрузите один или несколько файлов (CSV, Excel, JSON или текст) —
+      например, рейсы и экипажи по отдельности. Если формат не наш, модель ИИ
+      предложит соответствие полей; данные проверяются, а сохранение — после
+      вашего подтверждения. Модель выбирается по области данных набора.</p>
+    </details>
+    <form id="import-form" class="card form-card">
+      <div class="form-row">
+        <label for="import-name" data-i18n="html.label.name">Название</label>
+        <input type="text" id="import-name" required
+               data-i18n-placeholder="html.ph.importName"
+               placeholder="например: март-2026" autocomplete="off">
+      </div>
+      <div class="form-row">
+        <label for="import-files" data-i18n="html.imp.files">Файлы</label>
+        <input type="file" id="import-files" multiple
+               accept=".csv,.tsv,.txt,.json,.xlsx">
+      </div>
+      <div class="form-row">
+        <label for="import-scope" data-i18n="html.imp.scope">Область данных</label>
+        <select id="import-scope">
+          <option value="local-only" data-i18n="html.imp.scope.l">Только локально (данные заказчика)</option>
+          <option value="any" data-i18n="html.imp.scope.c">Любая модель (открытые данные)</option>
+        </select>
+      </div>
+      <div class="form-row form-actions">
+        <button type="submit" class="btn btn-primary" id="import-analyze"
+                data-i18n="html.imp.analyze">Проанализировать</button>
+      </div>
+      <div id="import-result" class="import-result hidden"></div>
+    </form>
+
+    <!-- Ф9: приём дельт (расписание ASM/SSM-подмножество + кадры) -->
+    <h2 data-i18n="html.delta.h">Дельта-обновления (эксплуатация)</h2>
+    <details class="panel-help">
+      <summary data-i18n="ui.how">Как работает этот экран</summary>
+      <p data-i18n="html.delta.p">Регулярные изменения без повторного полного импорта: сообщения об
+      изменении расписания (поддержанное подмножество ASM/SSM: NEW, CNL,
+      TIM, EQT) и инкрементальные кадровые выгрузки (CSV с каноническими
+      колонками; диф по табельному, без молчаливых удалений). Сначала
+      предпросмотр, затем применение; повтор той же дельты отклоняется по
+      отпечатку SHA-256; всё пишется в журнал.</p>
+    </details>
+    <div class="card form-card" id="delta-card">
+      <div class="form-row">
+        <label for="delta-instance" data-i18n="html.label.instance">Экземпляр</label>
+        <select id="delta-instance"></select>
+      </div>
+      <div class="form-row">
+        <label for="delta-text" data-i18n="html.delta.schedule">Дельта расписания</label>
+        <textarea id="delta-text" rows="5"
+                  data-i18n-placeholder="html.delta.schedulePh"
+                  placeholder="CNL&#10;SU100/01MAR26&#10;&#10;TIM&#10;SU100/02MAR26&#10;0900 1030"></textarea>
+      </div>
+      <div class="form-row inline-controls">
+        <button type="button" class="btn btn-small" id="delta-sched-preview"
+                data-i18n="html.delta.preview">Предпросмотр</button>
+        <button type="button" class="btn btn-primary btn-small"
+                id="delta-sched-apply" data-i18n="html.delta.apply">Применить</button>
+      </div>
+      <div class="form-row">
+        <label for="delta-crew-file" data-i18n="html.delta.crew">Кадровая дельта (CSV)</label>
+        <input type="file" id="delta-crew-file" accept=".csv,.tsv,.txt,.json">
+      </div>
+      <div class="form-row inline-controls">
+        <button type="button" class="btn btn-small" id="delta-crew-preview"
+                data-i18n="html.delta.preview">Предпросмотр</button>
+        <button type="button" class="btn btn-primary btn-small"
+                id="delta-crew-apply" data-i18n="html.delta.apply">Применить</button>
+        <button type="button" class="btn btn-ghost btn-small" id="delta-journal"
+                data-i18n="html.delta.journal">Журнал</button>
+      </div>
+      <div id="delta-result"></div>
+    </div>
+
+    <h1 class="zone-heading" data-i18n="html.zone.rules">Зона 2 — импорт правил</h1>
+    <p class="muted" data-i18n="html.zone.rulesIntro">Правила работы экипажей (лимиты, отдых,
+    ограничения) — отдельно от данных задачи. Итог — черновой Пакет правил с происхождением;
+    утверждение — вручную на вкладке «Пакеты правил». Конвертация детерминированная, без ИИ.</p>
+    <form id="rules-import-form" class="card form-card">
+      <div class="form-row">
+        <label for="rules-import-file" data-i18n="html.label.rulesFile">Файл правил</label>
+        <input type="file" id="rules-import-file"
+               accept=".json,.rave,.txt,.csv,.tsv,.xml,application/json,text/xml,text/csv">
+        <span class="chip chip-neutral small hidden" id="rules-format-chip"></span>
+      </div>
+      <div class="form-row">
+        <label for="rules-import-format" data-i18n="html.label.rulesFormat">Формат источника</label>
+        <select id="rules-import-format">
+          <option value="auto" data-i18n="html.rules.fmtAuto">автоопределение</option>
+          <optgroup label="Авиационные" data-i18n-label="html.rules.grpAviation">
+            <option value="solver-format5" data-i18n="html.rules.optSolver5">файл оптимизатора вендора (format:5)</option>
+            <option value="meridian-limits" data-i18n="html.rules.optMeridian">выгрузка «Меридиана» — лимиты</option>
+            <option value="jeppesen-rave" data-i18n="html.rules.optRave">Jeppesen Rave — подмножество языка</option>
+          </optgroup>
+          <optgroup label="Таблицы и контейнеры" data-i18n-label="html.rules.grpTables">
+            <option value="norm-table" data-i18n="html.rules.optNorm">таблица норм (CSV/JSON)</option>
+            <option value="roster-xml" data-i18n="html.rules.optXml">XML-контейнер ростеринга</option>
+          </optgroup>
+          <optgroup label="Формат COSMOS" data-i18n-label="html.rules.grpCosmos">
+            <option value="cosmos-rules-json" data-i18n="html.rules.optCosmos">обменный формат COSMOS (JSON)</option>
+          </optgroup>
+          <optgroup label="Ожидают образцов" data-i18n-label="html.rules.grpPending">
+            <option value="sabre-altitude">Sabre AirCentre</option>
+            <option value="netline-crew">Lufthansa Systems NetLine/Crew</option>
+            <option value="aims">AIMS</option>
+          </optgroup>
+        </select>
+      </div>
+      <div class="form-row">
+        <label for="rules-import-name" data-i18n="html.label.rulesName">Название пакета (необязательно)</label>
+        <input type="text" id="rules-import-name" autocomplete="off"
+               data-i18n-placeholder="html.ph.rulesName" placeholder="например: правила авиакомпании">
+      </div>
+      <div class="form-row">
+        <label for="rules-import-country" data-i18n="html.label.rulesCountry">Страна юрисдикции (INTL или ISO-2)</label>
+        <input type="text" id="rules-import-country" autocomplete="off" size="6"
+               data-i18n-placeholder="html.ph.rulesCountry" placeholder="например: UZ">
+      </div>
+      <div class="form-row form-actions">
+        <button type="submit" class="btn btn-primary" id="rules-import-submit"
+                data-i18n="html.rules.submit">Импортировать правила</button>
+      </div>
+      <details class="fmt-help" id="rules-format-help">
+        <summary data-i18n="html.rules.about">Подробнее о форматах</summary>
+        <ul class="muted small">
+          <li data-i18n="html.rules.fdRave">Jeppesen Rave — детерминированный разбор ядра языка (правила, параметры, сравнения); всё неразобранное честно считается, семантика не угадывается.</li>
+          <li data-i18n="html.rules.fdNorm">Таблица норм — колонки «имя, значение, единица, окно»; канонические имена сразу дают исполняемые правила.</li>
+          <li data-i18n="html.rules.fdXml">XML-контейнер — инвентаризация ограничений смежных областей (графики медсестёр, сменный ростеринг) в записи «ресурса».</li>
+          <li data-i18n="html.rules.fdSolver5">Файл оптимизатора вендора — параметры и веса правил (как в наборе крупного перевозчика).</li>
+          <li data-i18n="html.rules.fdMeridian">Выгрузка «Меридиана» — числовые лимиты на сотрудниках и переопределения отдыха.</li>
+          <li data-i18n="html.rules.fdCosmos">Обменный формат COSMOS — нейтральный JSON, экспортируемый любой стороной без кода.</li>
+          <li data-i18n="html.rules.fdPending">Sabre, NetLine/Crew, AIMS — форматы закрыты; приёмники ждут образцов, разбор по догадкам не выполняется.</li>
+        </ul>
+      </details>
+      <div id="rules-import-result" class="upload-result hidden"></div>
+    </form>
+  </section>
+
+  <!-- ============ Tab 2: Расчёты ============ -->
+  <section class="tab-panel hidden" id="panel-jobs">
+    <h2 data-i18n="html.jobs.h">Запуск этапов</h2>
+    <div class="card">
+      <div class="form-row">
+        <label for="job-instance" data-i18n="html.label.instance">Экземпляр</label>
+        <select id="job-instance"></select>
+      </div>
+
+      <!-- Solver advisor: an advisory recommendation the human confirms -->
+      <div class="advisor" id="advisor-box">
+        <div class="advisor-head">
+          <span class="advisor-title" data-i18n="html.advisor.h">Советник по решателям</span>
+          <span class="chip chip-neutral small" id="advisor-scope-chip"
+                data-i18n-title="html.advisor.scopeTitle" title=""></span>
+        </div>
+        <p class="hint" data-i18n="html.advisor.hint">
+          Рекомендация носит совещательный характер: система предлагает
+          решатели и параметры, но запуск выполняете вы после проверки.
+          Данные заказчика наружу не отправляются — только обезличенные
+          агрегаты.</p>
+        <div class="advisor-controls">
+          <label for="advisor-jobtype" class="small" data-i18n="html.advisor.forType">Для этапа</label>
+          <select id="advisor-jobtype">
+            <option value="complete" data-i18n="html.advisor.type.complete">Весь конвейер</option>
+            <option value="stage1" data-i18n="html.advisor.type.stage1">Этап 1 — пейринг</option>
+            <option value="stage2" data-i18n="html.advisor.type.stage2">Этап 2 — ростеринг</option>
+          </select>
+          <label for="advisor-backend" class="small" data-i18n="html.advisor.backend">LLM</label>
+          <select id="advisor-backend">
+            <option value="auto" data-i18n="html.advisor.backend.auto">Авто</option>
+            <option value="local" data-i18n="html.advisor.backend.local">Локальная</option>
+            <option value="cloud" data-i18n="html.advisor.backend.cloud">Облачная</option>
+          </select>
+          <button class="btn btn-ghost btn-small" id="btn-advise"
+                  data-i18n="html.advisor.getBtn">Получить рекомендацию</button>
+        </div>
+        <div id="advisor-result" class="advisor-result hidden"></div>
+      </div>
+
+      <div class="stage-grid">
+        <div class="stage-box">
+          <h3 data-i18n="html.stage1.h">Этап 1 — генерация колонок</h3>
+          <div class="form-row">
+            <label for="stage1-budget" data-i18n="html.label.budgetMin">Бюджет, мин</label>
+            <input type="number" id="stage1-budget" value="75" min="1" step="1">
+          </div>
+          <div class="form-row">
+            <label for="stage1-pairing-level" data-i18n="html.label.pairingLevel">Построение цепочек</label>
+            <select id="stage1-pairing-level">
+              <option value="" data-i18n="html.opt.pairingDefault">Генерация колонок (по умолчанию)</option>
+              <option value="1" data-i18n="html.opt.pairingL1">Уровень 1 — сохранить цепочки авиакомпании</option>
+              <option value="2" data-i18n="html.opt.pairingL2">Уровень 2 — сохранить смены, цепочки заново</option>
+              <!-- Уровень 3 предвыбирается НЕ здесь, а по факту: когда в
+                   контур загружен документ постановки, его правила
+                   содержат равнозначные станции, а колонная формулировка
+                   их не выражает и честно отказывается — умолчание,
+                   отказывающее всегда, обрекает первый запуск на ошибку.
+                   Без документа умолчание остаётся прежним (генерация
+                   колонок): на эталонных наборах отказа нет, и менять
+                   линию расчёта у всех порталов нельзя. См. renderRules
+                   в app.js. -->
+              <option value="3" data-i18n="html.opt.pairingL3">Уровень 3 — строить смены и цепочки заново</option>
+            </select>
+          </div>
+          <div class="form-row" id="stage1-pairing-method-row" hidden>
+            <label for="stage1-pairing-method" data-i18n="html.label.pairingMethod">Способ поиска</label>
+            <select id="stage1-pairing-method">
+              <option value="enumerate" data-i18n="html.opt.methodEnum">Перечисление вариантов</option>
+              <option value="columns" data-i18n="html.opt.methodCols">По двойственным оценкам (дешевле)</option>
+            </select>
+          </div>
+          <div class="form-row" id="stage1-select-engine-row">
+            <label for="stage1-select-engine" data-i18n="html.label.selectEngine">Движок отбора</label>
+            <select id="stage1-select-engine">
+              <option value="cpsat" data-i18n="html.opt.engCpsat">CP-SAT (встроенный)</option>
+              <option value="cplex" data-i18n="html.opt.engCplex">CPLEX (лицензия, при наличии)</option>
+              <option value="highs" data-i18n="html.opt.engHighs">HiGHS (открытый)</option>
+            </select>
+          </div>
+          <p class="hint" id="stage1-pairing-hint" hidden data-i18n="html.stage1.pairingHint">Уровни 1 и 2 требуют структуру авиакомпании рядом с набором; уровень 3 работает на любом наборе.</p>
+          <p class="hint warn-hint" data-i18n="html.stage1.warn">Внимание: длительный расчёт (десятки минут и более).</p>
+          <button class="btn btn-primary" id="btn-stage1" data-i18n="html.stage1.btn">Запустить этап 1</button>
+        </div>
+        <!-- Приёмка стоит рядом с расчётом, а не с загрузкой данных:
+             она проверяет РЕЗУЛЬТАТ, и место у неё там, где результат
+             получают. -->
+        <div class="stage-box">
+          <h3 data-i18n="html.audit.title">Приёмка пейринга</h3>
+          <p class="hint" data-i18n="html.audit.hint">15 проверок против данных и правил постановки. Показывает, сколько объектов рассмотрела каждая: ноль нарушений при нуле рассмотренного — это отказ, а не успех.</p>
+          <button type="button" class="btn" id="audit-run"
+                  data-i18n="html.btn.auditRun">Проверить пейринг</button>
+          <!-- Отклик рядом с кнопкой: результаты выводятся ниже во всю
+               ширину, и без этой строки нажатие выглядит как «ничего не
+               произошло». -->
+          <p class="hint" id="audit-inline"></p>
+        </div>
+        <div class="stage-box">
+          <h3 data-i18n="html.complete.h">Достройка каталога</h3>
+          <p class="hint" data-i18n="html.complete.hint">Доступно для gerad-5…gerad-7.</p>
+          <button class="btn" id="btn-complete" data-i18n="html.complete.btn">Запустить достройку</button>
+        </div>
+        <div class="stage-box">
+          <h3 data-i18n="html.stage2.h">Этап 2 — ростеринг</h3>
+          <div class="form-row">
+            <label for="stage2-roster-engine" data-i18n="html.label.rosterEngine">Движок ростеринга</label>
+            <select id="stage2-roster-engine">
+              <option value="timefold" data-i18n="html.opt.rengTf">Timefold (штатный)</option>
+              <option value="cpsat" data-i18n="html.opt.rengCpsat">CP-SAT v1 (прямая модель, объём в отчёте)</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label for="stage2-budget" data-i18n="html.label.budgetS">Бюджет, с</label>
+            <input type="number" id="stage2-budget" value="600" min="1" step="1">
+          </div>
+          <div class="form-row">
+            <label for="stage2-seed" data-i18n="html.label.seed">Зерно генератора</label>
+            <input type="number" id="stage2-seed" value="7" step="1">
+          </div>
+          <p class="hint" data-i18n="html.stage2.hint">Требуется каталог лучших пейрингов (gerad-1…7).</p>
+          <button class="btn btn-primary" id="btn-stage2" data-i18n="html.stage2.btn">Запустить этап 2</button>
+        </div>
+        <div class="stage-box">
+          <h3 data-i18n="html.validate.h">Валидация</h3>
+          <p class="hint" data-i18n="html.validate.hint">Проверка покрытия и траекторий по имеющимся артефактам.</p>
+          <button class="btn" id="btn-validate" data-i18n="html.validate.btn">Запустить валидацию</button>
+        </div>
+        <div class="stage-box">
+          <h3 data-i18n="html.multirole.h">Мультироль — раздельные ротации ролей</h3>
+          <p class="hint" data-i18n="html.multirole.hint">Для загруженных наборов с составом Captain+FirstOfficer: каждая роль получает свой независимый конвейер (этап 1 + этап 2), результаты сливаются с проверкой покрытия и физики. Использует бюджеты этапов 1 и 2 выше.</p>
+          <button class="btn" id="btn-multirole" data-i18n="html.multirole.btn">Запустить мультироль</button>
+        </div>
+      </div>
+      <!-- Результаты приёмки — во всю ширину, под рядом карточек:
+           таблица из пятнадцати строк в узкой колонке нечитаема, а
+           именно её и надо читать построчно. -->
+      <div id="audit-state" class="card"></div>
+    </div>
+
+  </section>
+
+  <!-- ============ Tab: Прогоны (проведённые расчёты) ============ -->
+  <section class="tab-panel hidden" id="panel-runs">
+    <h2 data-i18n="html.activeJob.h">Текущая задача</h2>
+    <div id="active-job" class="card">
+      <p class="muted" id="active-job-empty" data-i18n="html.activeJob.empty">Нет выбранной задачи. Запустите этап или выберите задачу из истории.</p>
+      <div id="active-job-body" class="hidden">
+        <div class="job-head">
+          <span id="active-job-title"></span>
+          <span id="active-job-status" class="chip" aria-live="polite"></span>
+          <button class="btn btn-danger btn-small hidden" id="btn-stop-job" data-i18n="html.activeJob.stop">Остановить</button>
+          <a id="active-job-log-link" class="btn btn-ghost btn-small" href="#" target="_blank" data-i18n="html.activeJob.fullLog">Полный журнал</a>
+        </div>
+        <div id="active-job-chart" class="hidden" aria-live="off"></div>
+        <pre id="active-job-log" class="log-tail"></pre>
+      </div>
+    </div>
+
+    <div class="section-head">
+      <h2 data-i18n="html.history.h">История задач</h2>
+      <button class="btn btn-ghost" id="btn-refresh-jobs" data-i18n="html.refresh">Обновить</button>
+    </div>
+    <div class="table-wrap">
+      <table class="data-table" id="jobs-table">
+        <thead>
+          <tr>
+            <th data-i18n="html.th.id">ID</th>
+            <th data-i18n="html.th.type">Тип</th>
+            <th data-i18n="html.th.instance">Экземпляр</th>
+            <th data-i18n="html.th.status">Статус</th>
+            <th data-i18n="html.th.started">Начало</th>
+            <th data-i18n="html.th.ended">Окончание</th>
+            <th class="num" data-i18n="html.th.exit">Код выхода</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="jobs-tbody">
+          <tr><td colspan="8" class="empty-row" data-i18n="html.loading">Загрузка…</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-head hidden" id="runs-rich-head">
+      <h2 data-i18n="html.runs.rich.h">Сравнение прогонов (расширенный вид)</h2>
+      <span class="chip chip-neutral small" data-i18n="html.runs.rich.admin">только для администраторов</span>
+    </div>
+    <iframe id="runs-dash-frame" class="runs-dash hidden" title="Прогоны"
+            data-i18n-title="html.tab.runs" src="about:blank" loading="lazy"></iframe>
+  </section>
+
+  <!-- ============ Tab 3: Результаты ============ -->
+  <section class="tab-panel hidden" id="panel-results">
+    <div class="section-head">
+      <h2 data-i18n="html.results.h">Результаты</h2>
+      <div class="inline-controls">
+        <select id="results-instance" data-i18n-title="html.label.instance" title="Экземпляр"></select>
+        <button class="btn btn-ghost" id="btn-refresh-results" data-i18n="html.refresh">Обновить</button>
+      </div>
+    </div>
+
+    <div id="results-body" class="hidden">
+      <div class="verdict-row">
+        <span class="verdict-label" data-i18n="html.results.verdict">Вердикт:</span>
+        <span id="results-verdict" class="badge">—</span>
+      </div>
+
+      <div class="cards-grid">
+        <div class="card" id="stage1-card">
+          <h3 data-i18n="html.results.stage1">Этап 1 — пейринги</h3>
+          <dl class="kv" id="stage1-kv"></dl>
+        </div>
+        <div class="card" id="stage2-card">
+          <h3 data-i18n="html.results.stage2">Этап 2 — ростер</h3>
+          <dl class="kv" id="stage2-kv"></dl>
+        </div>
+      </div>
+
+      <div class="card hidden" id="multirole-card">
+        <h3 data-i18n="html.results.multirole.h">Мультироль — раздельные ротации ролей</h3>
+        <dl class="kv" id="multirole-kv"></dl>
+        <h4 data-i18n="html.results.mrCompare.h">Сравнение с со-локацией</h4>
+        <p class="muted small" data-i18n="html.results.mrCompare.note">Со-локация — обычный этап 2 (обе роли летят одну ротацию); мультироль — независимые ротации на роль. Пустая колонка = этот режим ещё не запускался.</p>
+        <div class="table-wrap">
+          <table class="table">
+            <thead id="mr-compare-head"></thead>
+            <tbody id="mr-compare-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card hidden" id="costing-card">
+        <h3 data-i18n="html.cost.h">Стоимость и гостиницы</h3>
+        <p class="muted small" data-i18n="html.cost.note">
+          Оценка по ставкам из «Формат и правила»: оплата за блок-часы,
+          суточные за время вне базы, гостиницы за ночёвки по станциям.
+          Ночёвки считаются по границам суток UTC (без местных часовых
+          поясов); один пейринг = один экипаж. Полная модель оплаты труда
+          (гарантии, риги) — в дорожной карте.
+        </p>
+        <div id="costing-body"></div>
+      </div>
+
+      <div class="card hidden" id="pay-card">
+        <h3 data-i18n="html.pay.h">Оплата и кредитные часы (pay-and-credit)</h3>
+        <p class="muted small" data-i18n="html.pay.note">
+          Промышленная модель оплаты: кредит пейринга — максимум из налёта,
+          рига служебного времени (1 кредитный час за N часов на службе),
+          минимального кредита за служебный период и рига времени вне базы.
+          На уровне ростера каждому линейному члену экипажа платится не
+          меньше месячной гарантии. Коэффициент «кредит/налёт» — главная
+          метрика эффективности: всё сверх 1.00 — «мягкие затраты», которые
+          должен убирать оптимизатор. Параметры контракта — в «Формате и
+          правилах». Времена — UTC.
+        </p>
+        <div id="pay-body"></div>
+      </div>
+
+      <h3 class="sub-head" data-i18n="html.results.viz">Визуализация ростера и пейрингов</h3>
+      <p id="roster-viz-empty" class="muted hidden" data-i18n="html.results.vizEmpty">Визуализация появится после расчёта этапа 2.</p>
+      <div id="roster-viz" class="roster-viz hidden">
+
+        <div class="rv-panel">
+          <div class="rv-head">
+            <h4 data-i18n="html.viz.roster">Ростер месяца — экипаж × дни</h4>
+            <div class="rv-legend" id="rv-legend"></div>
+          </div>
+          <p class="muted small" data-i18n="html.viz.rosterCap">Строка — член экипажа, столбец — день. Дежурство сплошным, дедхед штриховкой, недоступность и выходные — отдельными состояниями. Справа — блок-часы за период. Наведите на ячейку.</p>
+          <div class="rv-controls" id="rv-sort"></div>
+          <div class="rv-gridscroll"><table class="rv-grid" id="rv-grid"></table></div>
+          <p class="muted small" id="rv-grid-note"></p>
+        </div>
+
+        <div class="rv-panel">
+          <h4 data-i18n="html.viz.fair">KPI и справедливость нагрузки</h4>
+          <p class="muted small" data-i18n="html.viz.fairCap">Распределение блок-часов по экипажу (сортировка по возрастанию; отмечены медиана, минимум и максимум) и удовлетворённость предпочтений — не среднее, а разброс.</p>
+          <div class="rv-split">
+            <div><svg class="rv-dist" id="rv-dist" dir="ltr" role="img" aria-label="Распределение блок-часов"></svg></div>
+            <div class="rv-gauges" id="rv-gauges"></div>
+          </div>
+        </div>
+
+        <div class="rv-panel">
+          <div class="rv-head">
+            <h4 data-i18n="html.viz.gantt">Пейринг — временнáя развёртка дежурств</h4>
+            <div class="rv-legend" id="rv-glegend"></div>
+          </div>
+          <p class="muted small" data-i18n="html.viz.ganttCap">Рейс — сплошной сегмент, дедхед — штриховка, между дежурствами сит или отдых (пунктир с длительностью и станцией). Ось — UTC. Ниже — пейринг-лист с точными числами.</p>
+          <div class="rv-pairpick" id="rv-pairpick"></div>
+          <svg class="rv-gantt" id="rv-gantt" dir="ltr" role="img" aria-label="Развёртка пейринга"></svg>
+          <div class="rv-sheet" id="rv-sheet"></div>
+        </div>
+
+        <div class="rv-panel">
+          <h4 data-i18n="html.viz.cover">Покрытие рейсов</h4>
+          <div class="rv-covbar" id="rv-covbar"></div>
+          <div class="rv-covnote" id="rv-covnote"></div>
+        </div>
+      </div>
+
+      <h3 class="sub-head" id="pairing-viz-head" data-i18n="html.pviz.h">Схема цепочек — лента и карта сети</h3>
+      <p id="pairing-viz-empty" class="muted hidden" data-i18n="html.pviz.empty">Схема цепочек появится после расчёта этапа 1 (пейринг).</p>
+      <div id="pairing-viz" class="pairing-viz hidden">
+
+        <div class="rv-panel">
+          <div class="rv-head">
+            <h4 data-i18n="html.pviz.gantt">Лента цепочек — время месяца × цепочки</h4>
+            <div class="rv-legend" id="pv-legend"></div>
+          </div>
+          <p class="muted small" data-i18n="html.pviz.ganttCap">Строка — цепочка (пейринг), горизонталь — время месяца (UTC). Смена — подложка, рейс — сплошной сегмент, перегон — штриховка, ночёвка — разрыв. Красная полоса сверху — непокрытые рейсы. Щелчок по строке подсвечивает маршрут на карте сети. Наведите на сегмент.</p>
+          <div class="rv-controls" id="pv-filters"></div>
+          <div class="pv-scroll"><svg class="pv-gantt" id="pv-gantt" dir="ltr" role="img" aria-label="Лента цепочек"></svg></div>
+          <p class="muted small" id="pv-gantt-note"></p>
+        </div>
+
+        <div class="rv-panel">
+          <div class="rv-head">
+            <h4 data-i18n="html.pviz.map">Карта сети — города и рейсы</h4>
+            <div class="rv-legend" id="pv-map-legend"></div>
+          </div>
+          <p class="muted small" data-i18n="html.pviz.mapCap">Узел — город, дуга — рейсы между городами (толщина — их число), базы выделены цветом акцента. Раскладка силовая, без географии — расстояния и направления условны. Красные дуги — непокрытые рейсы; маршрут выбранной в ленте цепочки подсвечен.</p>
+          <svg class="pv-map" id="pv-map" dir="ltr" role="img" aria-label="Карта сети"></svg>
+          <p class="muted small" id="pv-map-note"></p>
+        </div>
+      </div>
+
+      <h3 class="sub-head" data-i18n="html.results.validators">Валидаторы</h3>
+      <div class="table-wrap">
+        <table class="data-table" id="validators-table">
+          <thead>
+            <tr><th data-i18n="html.th.validator">Валидатор</th><th data-i18n="html.th.data">Данные</th></tr>
+          </thead>
+          <tbody id="validators-tbody"></tbody>
+        </table>
+      </div>
+
+      <h3 class="sub-head" data-i18n="html.results.downloads">Выгрузки</h3>
+      <div class="card">
+        <p id="roster-csv-row"></p>
+        <ul class="artifact-list" id="artifacts-list"></ul>
+      </div>
+    </div>
+    <p id="results-empty" class="muted" data-i18n="html.results.empty">Выберите экземпляр.</p>
+  </section>
+
+  <!-- ============ Tab: Сценарии «что если» ============ -->
+  <section class="tab-panel hidden" id="panel-scenarios">
+    <div class="section-head">
+      <h2 data-i18n="html.scen.h">Сценарии «что если»</h2>
+      <button class="btn btn-ghost" id="btn-refresh-scenarios" data-i18n="html.refresh">Обновить</button>
+    </div>
+    <details class="panel-help">
+      <summary data-i18n="ui.how">Как работает этот экран</summary>
+      <p data-i18n="html.scen.p">Сценарий — изолированная копия набора данных со своими правилами
+      (уровень 1) и, при желании, своими ставками. Он рассчитывается обычным
+      конвейером и не затрагивает исходный набор; результат сравнивается с
+      базой бок о бок.</p>
+    </details>
+
+    <div class="table-wrap">
+      <table class="data-table" id="scenarios-table">
+        <thead>
+          <tr>
+            <th data-i18n="html.scen.th.name">Название</th>
+            <th data-i18n="html.scen.th.base">База</th>
+            <th data-i18n="html.scen.th.changes">Изменения</th>
+            <th data-i18n="html.th.status">Статус</th>
+            <th data-i18n="html.scen.th.created">Создан</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="scenarios-tbody">
+          <tr><td colspan="7" class="empty-row" data-i18n="html.loading">Загрузка…</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="scen-compare" class="hidden">
+      <h2 id="scen-compare-title" data-i18n="html.scen.cmp.h">Сравнение с базой</h2>
+      <div id="scen-compare-body"></div>
+    </div>
+
+    <h2 data-i18n="html.scen.new.h">Новый сценарий</h2>
+    <form id="scenario-form" class="card form-card">
+      <div class="config-grid">
+        <div class="form-row">
+          <label for="scen-name" data-i18n="html.scen.name">Название</label>
+          <input type="text" id="scen-name" maxlength="60" autocomplete="off"
+                 placeholder="sit-45">
+        </div>
+        <div class="form-row">
+          <label for="scen-base" data-i18n="html.scen.base">Базовый экземпляр</label>
+          <select id="scen-base"></select>
+        </div>
+      </div>
+      <h3 class="sub-head" data-i18n="html.scen.rules.h">Правила сценария (уровень 1)</h3>
+      <p class="muted small" data-i18n="html.scen.rules.p">
+        Заполнены текущими глобальными значениями — измените то, что хотите
+        проверить. Правила действуют только на расчёты этого сценария.
+      </p>
+      <div class="config-grid" id="scen-rules-grid"></div>
+      <h3 class="sub-head" data-i18n="html.scen.cost.h">Ставки сценария (необязательно)</h3>
+      <p class="muted small" data-i18n="html.scen.cost.p">
+        Пустое поле — используется общая ставка из «Формат и правила».
+      </p>
+      <div class="config-grid">
+        <div class="form-row">
+          <label for="scen-cost-block" data-i18n="html.cost.block">Ставка блок-часа</label>
+          <input type="number" id="scen-cost-block" min="0" step="0.01">
+        </div>
+        <div class="form-row">
+          <label for="scen-cost-perdiem" data-i18n="html.cost.perdiem">Суточные, за час вне базы</label>
+          <input type="number" id="scen-cost-perdiem" min="0" step="0.01">
+        </div>
+        <div class="form-row">
+          <label for="scen-cost-hotel" data-i18n="html.cost.hotelDefault">Гостиница по умолчанию, за ночь</label>
+          <input type="number" id="scen-cost-hotel" min="0" step="0.01">
+        </div>
+      </div>
+      <div class="form-row form-actions">
+        <button type="submit" class="btn btn-primary" id="scenario-create" data-i18n="html.scen.create">Создать сценарий</button>
+        <span id="scenario-status" class="muted"></span>
+      </div>
+    </form>
+  </section>
+
+  <!-- ============ Tab: Торги отпусков ============ -->
+  <section class="tab-panel hidden" id="panel-vacation">
+    <div class="section-head">
+      <h2 data-i18n="html.vac.h">Торги отпусков</h2>
+      <div class="inline-controls">
+        <select id="vac-instance" data-i18n-title="html.label.instance" title="Экземпляр"></select>
+        <button class="btn btn-ghost" id="btn-refresh-vacation" data-i18n="html.refresh">Обновить</button>
+      </div>
+    </div>
+    <details class="panel-help">
+      <summary data-i18n="ui.how">Как работает этот экран</summary>
+      <p data-i18n="html.vac.p">Экипаж подаёт ранжированные заявки на окна отпуска; квота ограничивает
+      число отпускников в день; присуждение по стажу (CP-SAT) максимизирует
+      взвешенную по стажу удовлетворённость заявок. Победившие окна
+      записываются в жёсткую недоступность (unavailableDays) производного
+      экземпляра, на котором обычный ростер отрабатывает без изменений.</p>
+    </details>
+
+    <div id="vac-body" class="hidden">
+      <form id="vac-quota-form" class="card form-card">
+        <div class="config-grid">
+          <div class="form-row">
+            <label for="vac-quota" data-i18n="html.vac.quota">Квота (отпускников в день)</label>
+            <input type="number" id="vac-quota" min="0" step="1" value="1">
+          </div>
+        </div>
+        <div class="form-row form-actions">
+          <button type="submit" class="btn btn-primary" id="vac-quota-save" data-i18n="html.save">Сохранить</button>
+          <button type="button" class="btn btn-ghost" id="btn-vac-demo" data-i18n="html.vac.demo">Демо-заявки</button>
+          <button type="button" class="btn btn-ghost" id="btn-vac-clear" data-i18n="html.vac.clear">Очистить раунд</button>
+          <span id="vac-status" class="muted"></span>
+        </div>
+      </form>
+
+      <div class="section-head">
+        <h3 data-i18n="html.vac.bids.h">Заявки</h3>
+        <span class="muted small" id="vac-bids-count"></span>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table" id="vac-bids-table">
+          <thead>
+            <tr>
+              <th data-i18n="html.vac.th.emp">Сотрудник</th>
+              <th class="num" data-i18n="html.vac.th.sen">Стаж</th>
+              <th data-i18n="html.vac.th.windows">Окна (по приоритету)</th>
+            </tr>
+          </thead>
+          <tbody id="vac-bids-tbody">
+            <tr><td colspan="3" class="empty-row" data-i18n="html.vac.noBids">Заявок пока нет. Нажмите «Демо-заявки», чтобы сгенерировать пример.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="form-row form-actions">
+        <button type="button" class="btn btn-primary" id="btn-vac-award" data-i18n="html.vac.award">Присудить отпуска</button>
+        <button type="button" class="btn btn-ghost hidden" id="btn-vac-apply" data-i18n="html.vac.apply">Применить → новый экземпляр</button>
+      </div>
+
+      <div id="vac-award" class="hidden">
+        <h3 data-i18n="html.vac.award.h">Результат присуждения</h3>
+        <div id="vac-award-body"></div>
+      </div>
+    </div>
+    <p id="vac-empty" class="muted" data-i18n="html.vac.pickInstance">Выберите экземпляр с сотрудниками.</p>
+  </section>
+
+  <!-- ============ Tab: Квалификации и свежесть ============ -->
+  <section class="tab-panel hidden" id="panel-quals">
+    <div class="section-head">
+      <h2 data-i18n="html.qual.h">Квалификации и свежесть</h2>
+      <div class="inline-controls">
+        <select id="qual-instance" data-i18n-title="html.label.instance" title="Экземпляр"></select>
+        <button class="btn btn-ghost" id="btn-refresh-quals" data-i18n="html.refresh">Обновить</button>
+      </div>
+    </div>
+    <details class="panel-help">
+      <summary data-i18n="ui.how">Как работает этот экран</summary>
+      <p data-i18n="html.qual.p">Учёт сроков действия допусков (лицензия, медицина, виза, паспорт, тип
+      ВС) и свежести (recency: N недавних посадок в окне). Календарь
+      соответствия против планового месяца отмечает истёкшие, истекающие в
+      месяце и истекающие скоро допуски и даёт тревоги. Применение
+      записывает недоступность просроченного экипажа с даты истечения в
+      unavailableDays производного экземпляра — ростер честно не назначает.</p>
+    </details>
+
+    <div id="qual-body" class="hidden">
+      <form id="qual-warn-form" class="card form-card">
+        <div class="config-grid">
+          <div class="form-row">
+            <label for="qual-warn" data-i18n="html.qual.warn">Окно тревоги «истекает скоро», дней после месяца</label>
+            <input type="number" id="qual-warn" min="0" max="365" step="1" value="30">
+          </div>
+        </div>
+        <div class="form-row form-actions">
+          <button type="submit" class="btn btn-primary" id="qual-warn-save" data-i18n="html.save">Сохранить</button>
+          <button type="button" class="btn btn-ghost" id="btn-qual-demo" data-i18n="html.qual.demo">Демо-записи</button>
+          <button type="button" class="btn btn-ghost" id="btn-qual-clear" data-i18n="html.qual.clear">Очистить</button>
+          <span id="qual-status" class="muted"></span>
+        </div>
+      </form>
+
+      <div id="qual-summary" class="hidden">
+        <h3 data-i18n="html.qual.calendar">Календарь соответствия</h3>
+        <div class="kpi-strip" id="qual-tiles"></div>
+        <div id="qual-alerts"></div>
+        <div class="form-row form-actions">
+          <button type="button" class="btn btn-primary hidden" id="btn-qual-apply" data-i18n="html.qual.apply">Заземлить просроченных → новый экземпляр</button>
+        </div>
+      </div>
+    </div>
+    <p id="qual-empty" class="muted" data-i18n="html.qual.pickInstance">Выберите экземпляр с сотрудниками.</p>
+  </section>
+
+  <!-- ============ Tab: Операция (план-факт, день операции) ============ -->
+  <section class="tab-panel hidden" id="panel-ops">
+    <div class="section-head">
+      <h2 data-i18n="html.ops.h">Операция: план-факт</h2>
+      <button class="btn btn-ghost" id="btn-refresh-ops" data-i18n="html.refresh">Обновить</button>
+    </div>
+    <details class="panel-help">
+      <summary data-i18n="ui.how">Как работает этот экран</summary>
+      <p data-i18n="html.ops.p">Сопоставление планового расписания с фактом дня операции:
+      пунктуальность (OTP), выполнимость рейсов, задержки по причинам. Факт можно
+      импортировать из публичных данных BTS (реальный день) или вводить вручную.
+      Ползунок времени показывает, что «уже случилось» к выбранному часу.
+      Кнопка «Сгенерировать события Сбоя» превращает отклонения в события режима
+      «Сбой», после чего доступна пересборка окрестности.</p>
+    </details>
+
+    <div class="form-row inline-controls">
+      <label for="ops-instance" data-i18n="html.ops.instance">Экземпляр</label>
+      <select id="ops-instance"></select>
+      <button type="button" class="btn btn-primary btn-small" id="btn-ops-import"
+              data-i18n="html.ops.import">Импорт факта (BTS)</button>
+      <button type="button" class="btn btn-small" id="btn-ops-generate"
+              data-i18n="html.ops.generate">Сгенерировать события Сбоя</button>
+      <button type="button" class="btn btn-ghost btn-small" id="btn-ops-clear"
+              data-i18n="html.ops.clear">Сбросить факт</button>
+    </div>
+    <p id="ops-action" class="muted small"></p>
+
+    <div class="kpi-strip" id="ops-tiles"></div>
+
+    <div class="form-row inline-controls" id="ops-scrubber-row">
+      <label for="ops-scrubber" data-i18n="html.ops.asOf">Срез на время дня</label>
+      <input type="range" id="ops-scrubber" min="0" max="1440" step="15" value="1440">
+      <span class="mono" id="ops-scrubber-val">—</span>
+    </div>
+    <p class="muted small" data-i18n="html.ops.tilesWholeDay">Плитки — итог за сутки; таблица ниже — срез на выбранное время.</p>
+
+    <div class="table-wrap">
+      <table class="data-table" id="ops-table">
+        <thead>
+          <tr>
+            <th data-i18n="html.ops.th.flight">Рейс</th>
+            <th data-i18n="html.ops.th.route">Маршрут</th>
+            <th data-i18n="html.ops.th.schedDep">План. вылет (UTC)</th>
+            <th data-i18n="html.ops.th.status">Статус</th>
+            <th class="num" data-i18n="html.ops.th.depDelay">Δ вылет</th>
+            <th class="num" data-i18n="html.ops.th.arrDelay">Δ прилёт</th>
+            <th data-i18n="html.ops.th.cause">Причина</th>
+          </tr>
+        </thead>
+        <tbody id="ops-tbody">
+          <tr><td colspan="7" class="empty-row" data-i18n="html.ops.pickInstance">Выберите экземпляр.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Ф8: сравнение «наш ростер vs исторический» + акт приёмки -->
+    <div class="card form-card" id="rcmp-card">
+      <div class="section-head">
+        <h3 data-i18n="html.rcmp.h">Сравнение ростеров (историческая репликация)</h3>
+        <div class="inline-controls">
+          <button class="btn btn-primary btn-small" id="rcmp-build"
+                  data-i18n="html.rcmp.build">Построить отчёт</button>
+          <button class="btn btn-ghost btn-small" id="rcmp-act"
+                  data-i18n="html.rcmp.act">Скачать акт (MD)</button>
+        </div>
+      </div>
+      <p class="muted small" data-i18n="html.rcmp.p">Наш ростер (вторая стадия + правки доски) против исторического
+      (назначения из flightAssignments загруженного набора): покрытие,
+      блок- и кредит-часы, оплачиваемые часы, стоимость, нарушения.
+      Акт — документ для подписания приёмки теневого прогона.</p>
+      <div id="rcmp-box"></div>
+    </div>
+  </section>
+
+  <!-- ============ Tab: Интерактивная доска ============ -->
+  <section class="tab-panel hidden" id="panel-board">
+    <div class="section-head">
+      <h2 data-i18n="html.board.h">Доска планирования</h2>
+      <div class="inline-controls">
+        <select id="board-instance" data-i18n-title="html.label.instance" title="Экземпляр"></select>
+        <button class="btn btn-ghost" id="btn-refresh-board" data-i18n="html.refresh">Обновить</button>
+      </div>
+    </div>
+    <details class="panel-help">
+      <summary data-i18n="ui.how">Как работает этот экран</summary>
+      <p data-i18n="html.board.p">Готовый ростер как лента «экипаж × дни». Кликните по плитке пейринга,
+      чтобы перекинуть его на другого члена экипажа, снять назначение или
+      закрепить (pin) — закреплённые защищены от правок. После каждой правки
+      законность перепроверяется: пересечения по времени, тип ВС,
+      недоступность, покрытие и межпейринговый отдых подсвечиваются.</p>
+    </details>
+
+    <div id="board-body" class="hidden">
+      <div class="kpi-strip" id="board-tiles"></div>
+      <div class="form-row form-actions">
+        <button type="button" class="btn btn-ghost" id="btn-board-reset" data-i18n="html.board.reset">Сбросить правки</button>
+        <button type="button" class="btn btn-dz" id="btn-dz-toggle" data-i18n="html.dz.toggle">Сбой…</button>
+        <span id="board-status" class="muted"></span>
+      </div>
+
+      <!-- disruption recovery (режим «Сбой», slices A+B) -->
+      <div id="dz-box" class="card form-card hidden">
+        <h3 data-i18n="html.dz.h">Сбой: болезнь / срочная замена</h3>
+        <p class="muted small" data-i18n="html.dz.p">
+          Отметьте заболевшего — его дни станут жёсткой недоступностью для
+          доски и всех проверок. «План ремонта» жадно закрывает сломанные
+          пейринги минимальным числом изменений: сначала свободные резервы,
+          затем легальные переносы и обмены. План применяется обратимыми
+          правками доски; непокрытое честно показывается красным.
+        </p>
+        <p class="muted small" data-i18n="html.dz.pB">
+          События уровня рейсов — отмена, снятие борта, сдвиг — распускают
+          пейринги, задевшие эти рейсы. «Пересборка (план Б)» строит
+          ремонтный экземпляр: окрестность пересобирается генерацией
+          колонок, нетронутые пейринги замораживаются вместе с экипажем
+          (пины), новые доназначает солвер. Если часть ног непокрываема в
+          узкой окрестности, включается расширение: соседние нетронутые
+          пейринги (тот же тип борта, стыковка рядом) размораживаются
+          раундами, и колонки строятся заново.
+        </p>
+        <div class="form-row inline-controls">
+          <select id="dz-kind" data-i18n-title="html.dz.kindT"
+                  title="Вид события" aria-label="Вид события">
+            <option value="sick" data-i18n="html.dz.kindSick">Болезнь</option>
+            <option value="flights" data-i18n="html.dz.kindFlights">Отмена рейсов</option>
+            <option value="aircraft" data-i18n="html.dz.kindAircraft">Снятие борта</option>
+            <option value="delay" data-i18n="html.dz.kindDelay">Сдвиг рейсов</option>
+          </select>
+        </div>
+        <div class="form-row inline-controls" id="dz-row-sick">
+          <select id="dz-employee"></select>
+          <input type="date" id="dz-from"
+                 data-i18n-title="html.title.dateFrom" title="с (YYYY-MM-DD)">
+          <input type="date" id="dz-to"
+                 data-i18n-title="html.title.dateTo" title="по (YYYY-MM-DD)">
+          <input type="text" id="dz-note" maxlength="200"
+                 data-i18n-placeholder="html.dz.notePh" placeholder="Заметка…">
+          <button type="button" class="btn btn-primary" id="btn-dz-sick" data-i18n="html.dz.mark">Отметить болезнь</button>
+        </div>
+        <div class="form-row inline-controls hidden" id="dz-row-flights">
+          <input type="text" id="dz-fns"
+                 data-i18n-placeholder="html.dz.fnsPh"
+                 placeholder="Рейсы через запятую: LEG_01_2, LEG_05_1…">
+          <button type="button" class="btn btn-primary" id="btn-dz-flights" data-i18n="html.dz.addFlights">Отменить рейсы</button>
+        </div>
+        <div class="form-row inline-controls hidden" id="dz-row-aircraft">
+          <input type="text" id="dz-tail"
+                 data-i18n-placeholder="html.dz.tailPh"
+                 placeholder="Бортовой номер…">
+          <input type="date" id="dz-ac-from"
+                 data-i18n-title="html.title.dateFrom" title="с (YYYY-MM-DD)">
+          <input type="date" id="dz-ac-to"
+                 data-i18n-title="html.title.dateTo" title="по (YYYY-MM-DD)">
+          <button type="button" class="btn btn-primary" id="btn-dz-aircraft" data-i18n="html.dz.addAircraft">Снять борт</button>
+        </div>
+        <div class="form-row inline-controls hidden" id="dz-row-delay">
+          <input type="text" id="dz-delay-fns"
+                 data-i18n-placeholder="html.dz.fnsPh"
+                 placeholder="Рейсы через запятую: LEG_01_2, LEG_05_1…">
+          <input type="number" id="dz-shift" step="5" min="-1440" max="2880"
+                 data-i18n-placeholder="html.dz.shiftPh" placeholder="+мин">
+          <button type="button" class="btn btn-primary" id="btn-dz-delay" data-i18n="html.dz.addDelay">Сдвинуть</button>
+        </div>
+        <div id="dz-events"></div>
+        <p id="dz-surgery" class="small muted hidden"></p>
+        <div class="form-row inline-controls">
+          <button type="button" class="btn btn-primary" id="btn-dz-plan" data-i18n="html.dz.plan">План ремонта</button>
+          <button type="button" class="btn btn-danger hidden" id="btn-dz-apply" data-i18n="html.dz.apply">Применить план</button>
+          <button type="button" class="btn btn-primary hidden" id="btn-dz-rebuild" data-i18n="html.dz.rebuild">Пересборка (план Б)</button>
+          <span id="dz-status" class="muted small"></span>
+        </div>
+        <div id="dz-plan"></div>
+        <div id="dz-rebuild-report"></div>
+      </div>
+      <div id="board-editor" class="hidden"></div>
+      <div id="board-violations"></div>
+      <div class="board-scroll">
+        <table class="board-grid" id="board-table">
+          <thead><tr id="board-head"></tr></thead>
+          <tbody id="board-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+    <p id="board-empty" class="muted" data-i18n="html.board.noRoster">У этого экземпляра ещё нет ростера (этап 2). Запустите этап 2 во вкладке «Расчёты».</p>
+  </section>
+
+  <!-- ============ Tab: Балансировка баз ============ -->
+  <section class="tab-panel hidden" id="panel-bases">
+    <div class="section-head">
+      <h2 data-i18n="html.bases.h">Балансировка баз</h2>
+      <div class="inline-controls">
+        <select id="bases-instance" data-i18n-title="html.label.instance" title="Экземпляр"></select>
+        <button class="btn btn-ghost" id="btn-refresh-bases" data-i18n="html.refresh">Обновить</button>
+      </div>
+    </div>
+    <details class="panel-help">
+      <summary data-i18n="ui.how">Как работает этот экран</summary>
+      <p data-i18n="html.bases.p">Стратегический разрез по экипажным базам: для каждой базы сравнивается
+      предложение (линейный экипаж × месячный лимит блок-часов) со спросом
+      (блок-часы пейрингов, привязанных к базе), считается утилизация,
+      межбазовые связи (прокси дедхедов) и разрез по типам ВС. Из разрыва
+      выводится сайзинг: где базе не хватает или избыток экипажа и сколько
+      человек перебросить, чтобы выровнять загрузку сети.</p>
+    </details>
+
+    <div id="bases-body" class="hidden">
+      <div class="kpi-strip" id="bases-tiles"></div>
+      <div id="bases-reco"></div>
+
+      <h3 data-i18n="html.bases.perbase">По базам</h3>
+      <div class="table-wrap">
+        <table class="data-table" id="bases-table">
+          <thead><tr id="bases-head"></tr></thead>
+          <tbody id="bases-tbody"></tbody>
+        </table>
+      </div>
+
+      <h3 data-i18n="html.bases.fleet">По типам воздушных судов</h3>
+      <div id="bases-fleet"></div>
+
+      <h3 data-i18n="html.bases.inter">Межбазовые связи</h3>
+      <p class="muted small" data-i18n="html.bases.interNote">
+        Пейринги, привязанные к базе X, но затрагивающие своим маршрутом базу
+        Y — приблизительная оценка позиционирования/дедхедов при открытии или
+        закрытии базы.
+      </p>
+      <div id="bases-inter"></div>
+    </div>
+    <p id="bases-empty" class="muted" data-i18n="html.bases.empty">Выберите экземпляр с каталогом пейрингов (этап 1).</p>
+
+    <!-- Outside #bases-body on purpose: the global sizing knobs must stay
+         editable for admins even when no instance has a catalog yet (audit
+         2026-07-15) — mirrors the always-available cost-config form. -->
+    <form id="bases-config-form" class="card form-card hidden">
+      <h3 data-i18n="html.bases.cfg.h">Параметры сайзинга (администратор)</h3>
+      <div class="config-grid">
+        <div class="form-row">
+          <label for="bases-cap" data-i18n="html.bases.cap">Месячный лимит блок-часов на экипаж</label>
+          <input type="number" id="bases-cap" min="1" max="400" step="1">
+        </div>
+        <div class="form-row">
+          <label for="bases-target" data-i18n="html.bases.target">Целевая утилизация (0.1–1.0)</label>
+          <input type="number" id="bases-target" min="0.1" max="1" step="0.05">
+        </div>
+      </div>
+      <div class="form-row form-actions">
+        <button type="submit" class="btn btn-primary" id="bases-config-save" data-i18n="html.save">Сохранить</button>
+        <span id="bases-config-status" class="muted"></span>
+      </div>
+    </form>
+  </section>
+
+  <!-- ============ Tab: Мой кабинет (самообслуживание экипажа) ============ -->
+  <section class="tab-panel hidden" id="panel-cabinet">
+    <div class="section-head">
+      <h2 data-i18n="html.cab.h">Мой кабинет</h2>
+      <div class="inline-controls">
+        <select id="cab-instance" class="hidden" data-i18n-title="html.label.instance" title="Экземпляр"></select>
+        <button class="btn btn-ghost" id="btn-refresh-cabinet" data-i18n="html.refresh">Обновить</button>
+      </div>
+    </div>
+    <details class="panel-help">
+      <summary data-i18n="ui.how">Как работает этот экран</summary>
+      <p data-i18n="html.cab.p">Личный кабинет члена экипажа: мой график из готового ростера (с учётом
+      ручных правок планировщика), мои допуски, подача отпускной заявки в
+      торги и подтверждение ознакомления с графиком. Доступ даёт привязка
+      вашего email к табельному номеру — её делает администратор или
+      владелец данных.</p>
+    </details>
+
+    <div id="cab-body" class="hidden">
+      <div class="card cab-card" id="cab-identity"></div>
+      <div class="kpi-strip" id="cab-tiles"></div>
+
+      <h3 data-i18n="html.cab.schedule">Мой график</h3>
+      <div id="cab-schedule"></div>
+
+      <h3 data-i18n="html.cab.quals">Мои допуски</h3>
+      <div id="cab-quals"></div>
+
+      <h3 data-i18n="html.cab.vacation">Отпуск</h3>
+      <div class="card cab-card" id="cab-vacation">
+        <p class="muted small" id="cab-vac-month"></p>
+        <div id="cab-vac-windows"></div>
+        <div class="form-row inline-controls">
+          <input type="date" id="cab-vac-start"
+                 data-i18n-title="html.title.dateFrom" title="с (YYYY-MM-DD)">
+          <input type="date" id="cab-vac-end"
+                 data-i18n-title="html.title.dateTo" title="по (YYYY-MM-DD)">
+          <button type="button" class="btn btn-ghost" id="btn-cab-vac-add" data-i18n="html.cab.vac.add">Добавить окно</button>
+        </div>
+        <div class="form-row form-actions">
+          <button type="button" class="btn btn-primary" id="btn-cab-vac-submit" data-i18n="html.cab.vac.submit">Отправить заявку</button>
+          <button type="button" class="btn btn-ghost" id="btn-cab-vac-withdraw" data-i18n="html.cab.vac.withdraw">Отозвать</button>
+          <span id="cab-vac-status" class="muted small"></span>
+        </div>
+        <div id="cab-vac-award"></div>
+      </div>
+    </div>
+    <p id="cab-empty" class="muted hidden" data-i18n="html.cab.empty">Ваш email пока не привязан к члену экипажа. Обратитесь к администратору или владельцу данных.</p>
+
+    <!-- planner side: link management (admins / instance owners) -->
+    <div class="card form-card hidden" id="cab-links-card">
+      <h3 data-i18n="html.cab.links.h">Привязки экипажа (планировщик)</h3>
+      <p class="muted small" data-i18n="html.cab.links.p">
+        Привяжите email пользователя к табельному номеру в экземпляре — после
+        этого пользователь видит свой кабинет по этому экземпляру (и только
+        его: остальные данные экземпляра ему по-прежнему недоступны).
+      </p>
+      <div class="form-row inline-controls">
+        <select id="cablink-instance" data-i18n-title="html.label.instance" title="Экземпляр"></select>
+        <input type="email" id="cablink-email" placeholder="user@example.com"
+               autocomplete="off" data-i18n-title="html.th.email" title="Email">
+        <select id="cablink-emp" data-i18n-title="html.vac.th.emp" title="Сотрудник"></select>
+        <button type="button" class="btn btn-primary" id="btn-cablink-add" data-i18n="html.cab.links.add">Привязать</button>
+      </div>
+      <div id="cablink-table"></div>
+    </div>
+  </section>
+
+  <!-- ============ Tab: Помощь / Ask AI ============ -->
+  <section class="tab-panel hidden" id="panel-ask">
+    <div class="section-head">
+      <h2 data-i18n="html.ask.h">Ask AI — вопросы о программе</h2>
+      <span id="ask-backends" class="muted small"></span>
+    </div>
+    <details class="panel-help">
+      <summary data-i18n="ui.how">Как работает этот экран</summary>
+      <p data-i18n="html.ask.p">Задайте любой вопрос о работе программы и смежных темах планирования
+      экипажей. Можно спрашивать о своих данных: отметьте наборы ниже (или
+      просто упомяните их название в вопросе — они подхватятся
+      автоматически). Выбор модели честен к контуру: если затронут хотя бы
+      один набор с признаком L (только локально), ответ готовит локальная
+      модель — вопрос не покидает сервер. Посторонние темы ассистент
+      вежливо отклоняет.</p>
+    </details>
+    <div class="card form-card">
+      <textarea id="ask-question" rows="3" maxlength="2000"
+                data-i18n-placeholder="html.ask.ph"
+                placeholder="Например: как запустить этап 2 и где посмотреть нарушения отдыха?"></textarea>
+      <div id="ask-instances" class="ask-instances"></div>
+      <label class="ask-prefer">
+        <span data-i18n="html.ask.preferCloud">Предпочесть облачный AI</span>
+        <input type="checkbox" id="ask-prefer-cloud">
+        <span class="muted small" data-i18n="html.ask.preferNote">Недопустим для данных типа L</span>
+      </label>
+      <div class="form-row form-actions">
+        <button type="button" class="btn btn-primary" id="btn-ask" data-i18n="html.ask.btn">Спросить</button>
+        <span id="ask-status" class="muted small" aria-live="polite"></span>
+      </div>
+    </div>
+    <div id="ask-result" class="hidden">
+      <div class="card cab-card">
+        <div id="ask-answer" class="ask-answer"></div>
+      </div>
+      <p id="ask-meta" class="muted small"></p>
+    </div>
+  </section>
+
+  <!-- ============ Tab: Помощь / Предложения ============ -->
+  <section class="tab-panel hidden" id="panel-suggest">
+    <div class="section-head">
+      <h2 data-i18n="html.sug.h">Предложения разработчикам</h2>
+      <button class="btn btn-ghost" id="btn-refresh-suggest" data-i18n="html.refresh">Обновить</button>
+    </div>
+    <details class="panel-help">
+      <summary data-i18n="ui.how">Как работает этот экран</summary>
+      <p data-i18n="html.sug.p">Предложения по улучшению программы в свободной форме — от интерфейса
+      до алгоритмов пейринга/ростеринга. Каждое предложение попадает в
+      очередь разработки; в цикле автоулучшения их будет разбирать отдельный
+      агент обратной связи.</p>
+    </details>
+    <div class="card form-card">
+      <textarea id="sug-text" rows="4" maxlength="4000"
+                data-i18n-placeholder="html.sug.ph"
+                placeholder="Опишите идею или проблему…"></textarea>
+      <div class="form-row inline-controls">
+        <select id="sug-category">
+          <option value="interface" data-i18n="html.sug.cat.interface">Интерфейс</option>
+          <option value="algorithms" data-i18n="html.sug.cat.algorithms">Алгоритмы</option>
+          <option value="data" data-i18n="html.sug.cat.data">Данные</option>
+          <option value="other" selected data-i18n="html.sug.cat.other">Прочее</option>
+        </select>
+        <button type="button" class="btn btn-primary" id="btn-sug-send" data-i18n="html.sug.send">Отправить</button>
+        <span id="sug-status" class="muted small"></span>
+      </div>
+    </div>
+    <h3 data-i18n="html.sug.list">Отправленные предложения</h3>
+    <div id="sug-list"></div>
+  </section>
+
+  <!-- ============ Tab: Обучение (интерактивные уроки) ============ -->
+  <section class="tab-panel hidden" id="panel-learn">
+    <div class="section-head">
+      <h2 data-i18n="html.learn.h">Обучение</h2>
+    </div>
+    <details class="panel-help">
+      <summary data-i18n="ui.how">Как работает этот экран</summary>
+      <p data-i18n="html.learn.p">Интерактивные уроки по разделам программы. Автопилот — программа сама
+      проходит сценарий: переключает экраны, подсвечивает элементы и
+      рассказывает. Интерактив — вы выполняете шаги сами, программа
+      подсказывает и проверяет. Уроки безопасны: они только перемещаются по
+      экранам и ничего не отправляют и не запускают.</p>
+    </details>
+    <div id="learn-chapters" class="demo-launcher"></div>
+  </section>
+
+  <!-- ============ Tab 4: Формат и правила ============ -->
+  <section class="tab-panel hidden" id="panel-format">
+    <h2 data-i18n="html.format.params.h">Параметры авиакомпании (уровень 1) — шаблон установки</h2>
+    <div class="banner-ok" data-i18n="html.format.banner">
+      Это ШАБЛОН для НОВЫХ наборов. При появлении набора действующие значения
+      копируются в него и дальше живут с ним: правка этого шаблона уже
+      созданных наборов не касается — иначе один и тот же набор, посчитанный
+      в разные месяцы, считался бы по разным нормам без следа в артефакте.
+      Правила конкретного набора видны и правятся в таблице «Экземпляры
+      задач», столбец «Правила набора». Отпечаток задачи включает правила:
+      значения, отличные от встроенных, дают другой отпечаток, и каталоги с
+      результатами ведутся отдельно для каждого набора правил.
+    </div>
+    <form id="config-form" class="card form-card">
+      <div class="config-grid" id="config-grid"></div>
+      <div class="form-row form-actions">
+        <button type="submit" class="btn btn-primary" id="config-save" data-i18n="html.save">Сохранить</button>
+        <span id="config-status" class="muted"></span>
+      </div>
+    </form>
+
+    <h2 data-i18n="html.cost.cfg.h">Стоимостные параметры (ставки)</h2>
+    <p class="muted" data-i18n="html.cost.cfg.p">
+      Лёгкая стоимостная модель: оплата за блок-часы, суточные за час вне
+      базы, гостиничные ставки по станциям. Используется в карточке
+      «Стоимость и гостиницы» и стоимостных показателях. Сохранение —
+      только администратор.
+    </p>
+    <form id="cost-config-form" class="card form-card">
+      <div class="config-grid">
+        <div class="form-row">
+          <label for="cc-currency" data-i18n="html.cost.currency">Валюта</label>
+          <input type="text" id="cc-currency" maxlength="8" autocomplete="off">
+        </div>
+        <div class="form-row">
+          <label for="cc-block" data-i18n="html.cost.block">Ставка блок-часа</label>
+          <input type="number" id="cc-block" min="0" step="0.01">
+        </div>
+        <div class="form-row">
+          <label for="cc-perdiem" data-i18n="html.cost.perdiem">Суточные, за час вне базы</label>
+          <input type="number" id="cc-perdiem" min="0" step="0.01">
+        </div>
+        <div class="form-row">
+          <label for="cc-hotel" data-i18n="html.cost.hotelDefault">Гостиница по умолчанию, за ночь</label>
+          <input type="number" id="cc-hotel" min="0" step="0.01">
+        </div>
+      </div>
+      <div class="form-row">
+        <label for="cc-hotel-rates" data-i18n="html.cost.hotelRates">Гостиничные ставки по станциям (строка: КОД ставка)</label>
+        <textarea id="cc-hotel-rates" rows="4" spellcheck="false"
+                  placeholder="ATL 95&#10;JFK 140"></textarea>
+      </div>
+      <div class="form-row form-actions">
+        <button type="submit" class="btn btn-primary" id="cost-config-save" data-i18n="html.save">Сохранить</button>
+        <span id="cost-config-status" class="muted"></span>
+      </div>
+    </form>
+
+    <h2 data-i18n="html.pay.cfg.h">Параметры оплаты труда (pay-and-credit)</h2>
+    <p class="muted" data-i18n="html.pay.cfg.p">
+      Контрактные параметры кредитных часов: риги указываются по-отраслевому
+      «часов на один кредитный час» (риг служебного времени 1:2 — введите 2).
+      Используются в карточке «Оплата и кредитные часы» на вкладке
+      «Результаты». Ставка блок-часа берётся из стоимостных параметров выше.
+      Сохранение — только администратор.
+    </p>
+    <form id="pay-config-form" class="card form-card">
+      <div class="config-grid">
+        <div class="form-row">
+          <label for="pay-duty-rig" data-i18n="html.pay.dutyRig">Риг служебного времени, ч на 1 кредитный час</label>
+          <input type="number" id="pay-duty-rig" min="1" max="10" step="0.1">
+        </div>
+        <div class="form-row">
+          <label for="pay-trip-rig" data-i18n="html.pay.tripRig">Риг времени вне базы, ч на 1 кредитный час</label>
+          <input type="number" id="pay-trip-rig" min="1" max="10" step="0.1">
+        </div>
+        <div class="form-row">
+          <label for="pay-min-duty" data-i18n="html.pay.minDuty">Минимальный кредит за служебный период, ч</label>
+          <input type="number" id="pay-min-duty" min="0" max="12" step="0.25">
+        </div>
+        <div class="form-row">
+          <label for="pay-guarantee" data-i18n="html.pay.guarantee">Месячная гарантия, кредитных часов</label>
+          <input type="number" id="pay-guarantee" min="0" max="200" step="1">
+        </div>
+      </div>
+      <div class="form-row form-actions">
+        <button type="submit" class="btn btn-primary" id="pay-config-save" data-i18n="html.save">Сохранить</button>
+        <span id="pay-config-status" class="muted"></span>
+      </div>
+    </form>
+
+    <h2 data-i18n="html.format.schema.h">Канонический формат данных (JSON Schema)</h2>
+    <p class="muted" data-i18n="html.format.schema.p">Схема канонического входа конвейера (слой 1). Все адаптеры импорта обязаны выдавать ровно этот формат.</p>
+    <pre id="schema-pre" class="schema-view" data-i18n="html.loading">Загрузка…</pre>
+  </section>
+
+  <!-- ============ Tab 5: Демо ============ -->
+  <section class="tab-panel hidden" id="panel-demo">
+    <div class="section-head">
+      <h2 id="demo-heading" data-i18n="html.demo.h">Демонстрации</h2>
+    </div>
+    <p class="muted small" data-i18n="html.demo.lead">Красная нить всех сценариев: COSMOS не просто планирует расписание — это самоулучшающаяся система, непрерывно совершенствующаяся по пяти направлениям (Алгоритмы, UI/UX, Регуляторика, Отзывы, База знаний). Сюжет «Автоулучшение» показывает это целиком.</p>
+    <div id="demo-root"></div>
+  </section>
+
+  <!-- ============ Tab 6: Пользователи (admin only) ============ -->
+  <section class="tab-panel hidden" id="panel-users">
+    <div class="section-head">
+      <h2 data-i18n="html.users.h">Пользователи</h2>
+      <button class="btn btn-ghost" id="btn-refresh-users" data-i18n="html.refresh">Обновить</button>
+    </div>
+    <div id="users-stats" class="stats-row"></div>
+    <div class="table-wrap">
+      <table class="data-table" id="users-table">
+        <thead>
+          <tr>
+            <th data-i18n="html.th.email">Email</th>
+            <th data-i18n="html.th.role">Роль</th>
+            <th data-i18n="html.th.status">Статус</th>
+            <th data-i18n="html.th.created">Создан</th>
+            <th data-i18n="html.th.lastLogin">Последний вход</th>
+            <th class="num" data-i18n="html.th.logins">Входов</th>
+            <th class="num" data-i18n="html.th.jobs">Задач</th>
+            <th class="num" data-i18n="html.th.uploads">Загрузок</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="users-tbody">
+          <tr><td colspan="9" class="empty-row" data-i18n="html.loading">Загрузка…</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 data-i18n="html.users.add.h">Добавить пользователя</h2>
+    <p class="muted" data-i18n="html.users.add.p">
+      Пользователь получит доступ после входа по коду на указанный email
+      (Cloudflare Access). Роль «администратор» открывает эту вкладку и
+      колонку «Владелец» в списке экземпляров.
+    </p>
+    <form id="user-add-form" class="card form-card">
+      <div class="form-row">
+        <label for="user-add-email" data-i18n="html.label.email">Email</label>
+        <input type="email" id="user-add-email" required
+               placeholder="user@example.com" autocomplete="off">
+      </div>
+      <div class="form-row">
+        <label for="user-add-role" data-i18n="html.label.role">Роль</label>
+        <select id="user-add-role">
+          <option value="user" data-i18n="html.role.user">пользователь</option>
+          <option value="admin" data-i18n="html.role.admin">администратор</option>
+        </select>
+      </div>
+      <div class="form-row form-actions">
+        <button type="submit" class="btn btn-primary" id="user-add-submit" data-i18n="html.users.add.btn">Добавить</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- ============ Tab: Журнал активности (admin only) ============ -->
+  <section class="tab-panel hidden" id="panel-activity">
+    <div class="section-head">
+      <h2 data-i18n="html.act.h">Журнал активности</h2>
+      <button class="btn btn-ghost" id="btn-refresh-activity" data-i18n="html.refresh">Обновить</button>
+    </div>
+    <p class="muted" data-i18n="html.act.p">
+      Кто входил и выходил и какие разделы открывал. Журнал хранится на
+      сервере (последние записи), виден только администратору; фиксируются
+      вход, выход и переключение разделов.
+    </p>
+    <div class="form-row inline-controls">
+      <input type="text" id="act-email" autocomplete="off"
+             data-i18n-placeholder="html.act.emailPh"
+             placeholder="фильтр по email (точное совпадение)">
+      <select id="act-event" aria-label="event filter">
+        <option value="" data-i18n="html.act.ev.all">Все события</option>
+        <option value="login" data-i18n="html.act.ev.login">Вход</option>
+        <option value="logout" data-i18n="html.act.ev.logout">Выход</option>
+        <option value="nav" data-i18n="html.act.ev.nav">Переход</option>
+      </select>
+      <button type="button" class="btn btn-primary btn-small" id="act-apply"
+              data-i18n="html.act.apply">Показать</button>
+    </div>
+    <div class="table-wrap">
+      <table class="data-table" id="activity-table">
+        <thead>
+          <tr>
+            <th data-i18n="html.act.th.ts">Время (UTC)</th>
+            <th data-i18n="html.th.email">Email</th>
+            <th data-i18n="html.act.th.event">Событие</th>
+            <th data-i18n="html.act.th.detail">Деталь</th>
+          </tr>
+        </thead>
+        <tbody id="activity-tbody">
+          <tr><td colspan="4" class="empty-row" data-i18n="html.loading">Загрузка…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ====== Tab: ИИ-контур — реестр точек вызова моделей (admin) ====== -->
+  <section class="tab-panel hidden" id="panel-llmreg">
+    <div class="section-head">
+      <h2 data-i18n="html.llmreg.h">ИИ-контур: реестр точек вызова моделей</h2>
+      <button class="btn btn-ghost" id="btn-refresh-llmreg" data-i18n="html.refresh">Обновить</button>
+    </div>
+    <details class="panel-help">
+      <summary data-i18n="ui.how">Как работает этот экран</summary>
+      <p data-i18n="html.llmreg.p">Полный перечень мест, где приложение обращается к языковым
+      моделям: какой механизм решает «локальная или облачная» и какие
+      данные попадают в запрос. Это артефакт для аудита заказчика в
+      строгом режиме (облако запрещено для данных заказчика). Реестр
+      охраняется автотестом: новая точка вызова без записи здесь роняет
+      тесты.</p>
+    </details>
+    <div class="table-wrap">
+      <table class="data-table" id="llmreg-table">
+        <thead>
+          <tr>
+            <th data-i18n="html.llmreg.th.purpose">Назначение</th>
+            <th data-i18n="html.llmreg.th.module">Модуль</th>
+            <th data-i18n="html.llmreg.th.routing">Маршрутизация</th>
+            <th data-i18n="html.llmreg.th.backends">Модели</th>
+            <th data-i18n="html.llmreg.th.data">Данные в запросе</th>
+          </tr>
+        </thead>
+        <tbody id="llmreg-tbody">
+          <tr><td colspan="5" class="empty-row" data-i18n="html.loading">Загрузка…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ====== Tab: База шаблонов (P-N-SHD 6а, admin) ====== -->
+  <section class="tab-panel hidden" id="panel-templates">
+    <div class="section-head">
+      <h2 data-i18n="html.tpl.h">База шаблонов-исполнителей</h2>
+      <button class="btn btn-ghost" id="btn-refresh-templates" data-i18n="html.refresh">Обновить</button>
+    </div>
+    <details class="panel-help">
+      <summary data-i18n="ui.how">Как работает этот экран</summary>
+      <p data-i18n="html.tpl.p">Машинная карта семей шаблонов COSMOS: механика, исполнители,
+      признаки сопоставления с правилами пакета и правила действующего
+      ВМП, опирающиеся на семью. Шаблон — это код с контрактом и
+      тестами, поэтому правка и удаление не редактируют код напрямую:
+      кнопки создают заявку контура самоулучшения, изменение проходит
+      гейты и принимается человеком. Удаление семьи, на которую
+      опираются правила действующего ВМП, — честный отказ с перечнем
+      зависимых.</p>
+    </details>
+    <div class="table-wrap">
+      <table class="data-table" id="templates-table">
+        <thead>
+          <tr>
+            <th data-i18n="html.tpl.th.family">Семья</th>
+            <th data-i18n="html.tpl.th.class">Класс</th>
+            <th data-i18n="html.tpl.th.title">Механика</th>
+            <th data-i18n="html.tpl.th.executors">Исполнители</th>
+            <th data-i18n="html.tpl.th.mapped">Признаки пакета</th>
+            <th data-i18n="html.tpl.th.dependents">Правила текущего ВМП</th>
+            <th data-i18n="html.tpl.th.actions">Действия</th>
+          </tr>
+        </thead>
+        <tbody id="templates-tbody">
+          <tr><td colspan="7" class="empty-row" data-i18n="html.loading">Загрузка…</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3 data-i18n="html.tpl.crit.h">Критерии оптимизации</h3>
+    <div class="table-wrap">
+      <table class="data-table" id="templates-crit-table">
+        <thead>
+          <tr>
+            <th data-i18n="html.tpl.th.kind">Вид</th>
+            <th data-i18n="html.tpl.th.title">Название</th>
+            <th data-i18n="html.tpl.th.class">Класс</th>
+            <th data-i18n="html.tpl.th.exec">Исполнитель</th>
+          </tr>
+        </thead>
+        <tbody id="templates-crit-tbody">
+          <tr><td colspan="4" class="empty-row" data-i18n="html.loading">Загрузка…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ====== Tab: Студия формализации (Ф1/Ф5, admin) ====== -->
+  <section class="tab-panel hidden" id="panel-studio">
+    <div class="section-head">
+      <h2 data-i18n="html.fs.h">Студия формализации</h2>
+      <button class="btn btn-ghost" id="btn-refresh-studio" data-i18n="html.refresh">Обновить</button>
+    </div>
+    <details class="panel-help">
+      <summary data-i18n="ui.how">Как работает этот экран</summary>
+      <p data-i18n="html.fs.p">Сессия формализации ведёт онбординг заказчика: опросник
+      инвентаризации источников (Ф1), глоссарий семантики с фиксацией
+      решений (Ф5), привязка сессии маппинга и пакета правил. Итог —
+      версионируемый «Пакет маппинга заказчика»: переносимый JSON со всей
+      формализацией, переиспользуемый как шаблон для заказчиков той же
+      страны. Смысл подтверждает только человек — ИИ в Студии решений не
+      принимает.</p>
+    </details>
+    <div class="card form-card">
+      <div class="form-row inline-controls">
+        <input type="text" id="fs-new-name" autocomplete="off"
+               data-i18n-placeholder="html.fs.namePh" placeholder="название (заказчик)">
+        <input type="text" id="fs-new-country" autocomplete="off" size="6"
+               data-i18n-placeholder="html.rp.countryPh" placeholder="страна">
+        <button type="button" class="btn btn-primary btn-small" id="fs-create"
+                data-i18n="html.fs.create">Создать сессию</button>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table class="data-table" id="fs-table">
+        <thead>
+          <tr>
+            <th data-i18n="html.fs.th.name">Сессия</th>
+            <th data-i18n="html.rp.th.country">Страна</th>
+            <th data-i18n="html.fs.th.inv">Опросник</th>
+            <th data-i18n="html.fs.th.glo">Глоссарий</th>
+            <th data-i18n="html.fs.th.links">Связки</th>
+            <th data-i18n="html.lab.th.actions">Действия</th>
+          </tr>
+        </thead>
+        <tbody id="fs-tbody">
+          <tr><td colspan="7" class="empty-row" data-i18n="html.loading">Загрузка…</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="fs-detail" class="hidden"></div>
+  </section>
+
+  <!-- ============ Tab: Установки (super admin only) ============ -->
+  <section class="tab-panel hidden" id="panel-settings">
+    <div class="section-head">
+      <h2 data-i18n="html.settings.h">Установки</h2>
+      <button class="btn btn-ghost" id="btn-refresh-settings" data-i18n="html.refresh">Обновить</button>
+    </div>
+    <details class="panel-help">
+      <summary data-i18n="ui.how">Как работает этот экран</summary>
+      <p data-i18n="html.settings.p">Раздел виден только супер-администратору
+      установки. Здесь задаётся API-ключ Claude, извлекается список
+      актуальных моделей и назначается модель на каждое использование
+      (кодинг, обработка текстов, Ask AI и др.). Облачные модели применяются
+      ТОЛЬКО там, где облако уже разрешено контуром данных; данные заказчика
+      во внутреннем контуре по-прежнему обрабатывает локальная модель.</p>
+    </details>
+    <div id="settings-body"></div>
+  </section>
+
+  <!-- ============ Tab: Пакеты правил (Rule Pack, Ф7) ============ -->
+  <section class="tab-panel hidden" id="panel-rules">
+    <div class="section-head">
+      <h2 data-i18n="html.rp.h">Пакеты правил</h2>
+      <button class="btn btn-ghost" id="btn-refresh-rules" data-i18n="html.refresh">Обновить</button>
+    </div>
+    <details class="panel-help">
+      <summary data-i18n="ui.how">Как работает этот экран</summary>
+      <p data-i18n="html.rp.p">Правило как объект с полной цепочкой происхождения: документ
+      (страница/пункт) → формальное утверждение → исполняемое ограничение
+      (параметр Яруса 1) → положительные и отрицательные тесты →
+      утверждение с подписью. Пакет утверждается, когда утверждено каждое
+      правило; утверждённый пакет можно применить к конфигурации правил
+      или экспортировать как страновой шаблон для другого экземпляра.</p>
+    </details>
+    <div class="card form-card" id="rp-create-card">
+      <div class="form-row inline-controls">
+        <input type="text" id="rp-new-name" autocomplete="off"
+               data-i18n-placeholder="html.rp.namePh" placeholder="название пакета">
+        <input type="text" id="rp-new-country" autocomplete="off" size="6"
+               data-i18n-placeholder="html.rp.countryPh" placeholder="страна">
+        <button type="button" class="btn btn-primary btn-small" id="rp-create"
+                data-i18n="html.rp.create">Создать пакет</button>
+        <button type="button" class="btn btn-ghost btn-small" id="rp-import"
+                data-i18n="html.rp.import">Импорт JSON…</button>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table class="data-table" id="rp-table">
+        <thead>
+          <tr>
+            <th data-i18n="html.rp.th.name">Пакет</th>
+            <th data-i18n="html.rp.th.country">Страна</th>
+            <th data-i18n="html.rp.th.scope">Область</th>
+            <th data-i18n="html.rp.th.status">Статус</th>
+            <th class="num" data-i18n="html.rp.th.version">Версия</th>
+            <th data-i18n="html.rp.th.rules">Правила (утв./всего)</th>
+            <th data-i18n="html.lab.th.actions">Действия</th>
+          </tr>
+        </thead>
+        <tbody id="rp-tbody">
+          <tr><td colspan="7" class="empty-row" data-i18n="html.loading">Загрузка…</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="rp-detail" class="hidden"></div>
+  </section>
+
+  <!-- ============ Tab: Контуры — обзор наблюдений (admin only) ========== -->
+  <section class="tab-panel hidden" id="panel-loops">
+    <div class="section-head">
+      <h2 data-i18n="html.loops.h">Контуры наблюдения</h2>
+      <button class="btn btn-ghost" id="btn-refresh-loops" data-i18n="html.refresh">Обновить</button>
+    </div>
+    <details class="panel-help">
+      <summary data-i18n="ui.how">Как работает этот экран</summary>
+      <p data-i18n="html.loops.p">Каждый контур что-то наблюдает и превращает замеченное в
+      предложение об изменении (CR) — сам он ничего не чинит и в рабочие
+      настройки не пишет. Четыре контура детерминированы и не вызывают
+      языковую модель: «Здоровье данных» (снимки дефектов экземпляров),
+      «Отклик планировщика» (повторяющиеся ручные переделки доски с
+      указанной причиной), «Надёжность стенда» (укладываемость прогонов в
+      бюджет и доля отказов), «Буфер стыковки» (пересадки внутри смены,
+      у которых по плану нет запаса времени). Остальные обращаются к
+      модели по правилам контура установки. Строка разворачивается в
+      подробности; решение по предложениям принимается на вкладке
+      «Изменения».</p>
+    </details>
+    <div class="table-wrap">
+      <table class="data-table" id="loops-table">
+        <thead>
+          <tr>
+            <th data-i18n="html.loops.th.loop">Контур</th>
+            <th data-i18n="html.loops.th.observes">Что наблюдает</th>
+            <th data-i18n="html.loops.th.last">Последнее наблюдение</th>
+            <th data-i18n="html.loops.th.metric">Метрика сейчас</th>
+            <th class="num" data-i18n="html.loops.th.open">Открытых предложений</th>
+            <th data-i18n="html.loops.th.action">Действие</th>
+          </tr>
+        </thead>
+        <tbody id="loops-tbody">
+          <tr><td colspan="7" class="empty-row" data-i18n="html.loading">Загрузка…</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted small" data-i18n="html.loops.heavy">Два последних контура — «Алгоритмы» (ночной
+    агент-исследователь) и «База знаний» по выбору солверов — держат свои
+    находки не в очереди «Изменения», а на собственных экранах: кнопка в
+    строке уводит туда, и там же принимаются решения по ним.</p>
+    <div id="loops-detail" class="hidden"></div>
+  </section>
+
+  <!-- ============ Tab: Изменения — CR-конвейер (admin only) ============ -->
+  <section class="tab-panel hidden" id="panel-crs">
+    <div class="section-head">
+      <h2 data-i18n="html.crs.h">Изменения (запросы на доработку)</h2>
+      <button class="btn btn-ghost" id="btn-refresh-crs" data-i18n="html.refresh">Обновить</button>
+    </div>
+    <details class="panel-help">
+      <summary data-i18n="ui.how">Как работает этот экран</summary>
+      <p data-i18n="html.crs.p">Единая очередь запросов на изменение (CR). Их формируют агенты
+      Автоулучшения: «Отзывы» (кластеры предложений пользователей),
+      «Регуляторика» (изменения норм по странам экземпляров), «Идеи UI/UX».
+      Приоритет отзывов = число сходных предложений; трудоёмкость 1–10.
+      Администратор принимает или отклоняет CR; «Реализовать на Тест»
+      запускает агента-исполнителя в изолированном тест-контуре (отдельная
+      ветка cr-…, прогон тестов).</p>
+    </details>
+    <!-- agent view switcher: pick the agent's interface first, run inside -->
+    <nav class="tabs subtabs" id="crs-agents" style="margin-bottom:10px"></nav>
+    <div class="card form-card">
+      <p class="muted small" id="crs-agent-desc"></p>
+      <div class="form-row inline-controls">
+        <button type="button" class="btn btn-primary" id="btn-crs-run" data-i18n="html.crs.runBtn">Запустить агента</button>
+        <span id="crs-agent-status" class="muted small"></span>
+      </div>
+      <!-- third-party audit inbox (the «Аудит» view's own controls) -->
+      <div id="crs-audit-box" class="hidden">
+        <div class="form-row inline-controls">
+          <button type="button" class="btn btn-primary" id="btn-audit-check" data-i18n="html.audit.check">Проверить наличие аудита</button>
+          <span id="audit-status" class="muted small"></span>
+        </div>
+        <div id="audit-files"></div>
+      </div>
+      <p class="muted small" id="crs-quota"></p>
+    </div>
+    <div id="crs-list"></div>
+  </section>
+
+  <!-- ============ Tab 7: Лаборатория (admin only, read-only) ============ -->
+  <section class="tab-panel hidden" id="panel-lab">
+    <div class="section-head">
+      <h2 data-i18n="html.lab.h">Лаборатория улучшений</h2>
+      <div class="inline-controls">
+        <button class="btn btn-primary" id="btn-lab-scan" data-i18n="html.lab.scan">Начать R&amp;D</button>
+        <button class="btn btn-ghost" id="btn-lab-score" data-i18n="html.lab.score">Оценить эффективность</button>
+        <div class="rv-seg-group" id="lab-sort">
+          <span class="muted small" data-i18n="html.lab.sort">Сортировка:</span>
+          <button class="btn btn-ghost btn-small" data-lab-sort="impact"><span class="lab-sort-label" data-i18n="html.lab.sort.impact">Эффективность</span><span class="lab-sort-arrow" aria-hidden="true"></span></button>
+          <button class="btn btn-ghost btn-small" data-lab-sort="published"><span class="lab-sort-label" data-i18n="html.lab.sort.date">Дата
+публикации</span><span class="lab-sort-arrow" aria-hidden="true"></span></button>
+          <button class="btn btn-ghost btn-small" data-lab-sort="found"><span class="lab-sort-label" data-i18n="html.lab.sort.found">Дата
+нахождения</span><span class="lab-sort-arrow" aria-hidden="true"></span></button>
+        </div>
+        <button class="btn btn-ghost" id="btn-refresh-lab" data-i18n="html.refresh">Обновить</button>
+      </div>
+    </div>
+    <details class="panel-help">
+      <summary data-i18n="ui.how">Как работает этот экран</summary>
+      <p data-i18n="html.lab.p">Находки ночного агента-исследователя и их путь Test → Stage → Prod;
+      решения принимаются кнопками ниже или в Telegram. Агент и стенд Test
+      работают только с публичными данными (внешний контур); Stage и
+      Prod — внутренний контур без внешних ИИ-вызовов.</p>
+    </details>
+
+    <div id="lab-score-banner" class="lab-activity hidden">
+      <div class="lab-activity-head">
+        <span class="lab-spinner" id="lab-score-spinner"></span>
+        <strong id="lab-score-title" data-i18n="app.lab.scoring">Оценка идёт…</strong>
+        <span id="lab-score-counter" class="mono"></span>
+      </div>
+      <div style="height:8px;border-radius:4px;background:var(--border,#d7dbe0);overflow:hidden;margin-top:6px;">
+        <div id="lab-score-bar" style="height:100%;width:0%;background:var(--accent,#2f6fed);transition:width .6s;"></div>
+      </div>
+    </div>
+
+    <div id="lab-activity" class="lab-activity hidden">
+      <div class="lab-activity-head">
+        <span class="lab-spinner" id="lab-spinner"></span>
+        <span id="lab-activity-title" data-i18n="app.lab.activeTitle">Идёт исследование…</span>
+        <span id="lab-activity-status" class="muted small"></span>
+        <button id="lab-stop-btn" type="button"
+                class="btn btn-danger btn-small hidden"
+                data-i18n="app.ev.stop">Остановить</button>
+      </div>
+      <div id="lab-activity-pinned" class="lab-activity-pinned hidden">
+        <div class="lab-pin-title" data-i18n="app.ev.pinned.title">Итоги по тестам</div>
+        <div id="lab-activity-summaries"></div>
+        <div id="lab-activity-verdict"></div>
+      </div>
+      <ul id="lab-activity-feed" class="lab-activity-feed"></ul>
+    </div>
+
+    <div class="table-wrap">
+      <table class="data-table" id="lab-table">
+        <thead>
+          <tr>
+            <th data-i18n="html.th.id">ID</th>
+            <th data-i18n="html.lab.th.title">Публикации</th>
+            <th data-i18n="html.th.status">Статус</th>
+            <th data-i18n="html.lab.th.source">Источник</th>
+            <th data-i18n="html.lab.th.impact">Оценка</th>
+            <th data-i18n="html.lab.th.published">Публикация</th>
+            <th data-i18n="html.lab.th.found">Найдена</th>
+            <th data-i18n="html.lab.th.actions">Действия</th>
+          </tr>
+        </thead>
+        <tbody id="lab-tbody">
+          <tr><td colspan="8" class="empty-row" data-i18n="html.loading">Загрузка…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ Tab 8: База знаний (admin only) ============ -->
+  <section class="tab-panel hidden" id="panel-kb">
+    <div class="section-head">
+      <h2 data-i18n="html.kb.h">База знаний по выбору решателей</h2>
+      <div class="inline-controls">
+        <button class="btn btn-primary" id="btn-kb-build" data-i18n="html.kb.build">Перестроить (Test)</button>
+        <button class="btn btn-ghost" id="btn-kb-refresh" data-i18n="html.refresh">Обновить</button>
+      </div>
+    </div>
+    <details class="panel-help">
+      <summary data-i18n="ui.how">Как работает этот экран</summary>
+      <p data-i18n="html.kb.p">«Скилл» — документ с рекомендациями, какие решатели и подходы
+      использовать для пейринга и ростеринга. Строится на этапе Test из
+      публичных бенчмарков облачной моделью (внешний контур). На Stage/Prod
+      используется как советник — выбор подтверждает человек.</p>
+    </details>
+    <div class="kb-meta" id="kb-meta"></div>
+    <div class="kb-build-status hidden" id="kb-build-status"></div>
+    <pre class="kb-doc" id="kb-doc"></pre>
+  </section>
+
+</main>
+
+<div id="toasts" class="toasts" role="status" aria-live="polite"></div>
+<div id="product-version" class="product-version hidden" aria-hidden="true"></div>
+
+<script src="ui-config.js"></script>
+<script src="i18n.js"></script>
+<script src="net-map.js"></script>
+<script src="app.js"></script>
+<script src="onboarding.js"></script>
+<script src="demo.js"></script>
+<script src="training.js"></script>
+</body>
+</html>

@@ -1,0 +1,3 @@
+# Keep integration schema copies byte-identical to their LF reader schemas.
+# This changes checkout policy only, not historical blobs or signed releases.
+catalog-integration/**/schema/catalog.schema.json text eol=lf

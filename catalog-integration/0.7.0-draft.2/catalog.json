@@ -1,0 +1,20 @@
+{
+ "fingerprint": "07d68c15c6fb8c66d44b5cd5bc466e632a59e20db807d78a91772145010f9357",
+ "form_version": 1,
+ "gates": {
+  "stand_tasks_required": false,
+  "subject_words_required": false
+ },
+ "legacy_registry_rev": "07f945deecdc",
+ "name": "template-catalog",
+ "note": "Изолированный проект GPT: alias long_duty_threshold равен базовому HARD-пределу; в st-extension-1/2 база исправлена с 780 на 720. Не выпуск, не акт владельца, не подтверждение поддержки и не активация. released_* обязательны формой предрелиза; released_by=аналитик не означает приёмку владельцем.",
+ "released_at": "2026-09-18",
+ "released_by": "аналитик",
+ "sections": {
+  "criteria": "criteria.json",
+  "dictionaries": "dictionaries.json",
+  "families": "families.json",
+  "requests": "requests.json"
+ },
+ "version": "0.7.0-draft.2"
+}

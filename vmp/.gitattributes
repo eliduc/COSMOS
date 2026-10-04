@@ -1,0 +1,10 @@
+# Носители шага 4 каталога шаблонов пишутся с переводом строки LF
+# (форма template_catalog.export: LF, отступ 1, ключи по алфавиту). На
+# машине владельца core.autocrlf=true, и без этого правила git
+# перематериализовал бы их с CRLF при clone, worktree и смене ветки —
+# гейт привязок, сравнивающий байты файла с тем, что собирает
+# генератор, покраснел бы там, где ничего не менялось. То же правило
+# уже действует у каталога (catalog/.gitattributes).
+bindings.json text eol=lf
+bindings_seed.json text eol=lf
+stand_results.json text eol=lf

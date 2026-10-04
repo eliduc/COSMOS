@@ -1,0 +1,367 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "cosmos-run-tree/v1",
+ "title": "Дерево прогонов: индекс записей о прогонах",
+ "description": "База прогонов имеет вид дерева, а не списка (раздел 7 проекта final-report/PROEKT-ZAPIS-O-PROGONE-CLD.md): корень — отпечатки документов правил, данных и ответов на анкеты; узел — прогон; ребро — «те же входы, другое объявление» либо «продолжение от артефакта родителя». Индекс собирается из записей о прогонах (cosmos-run-record/v1) и ничего к ним не добавляет: узел — плоский взгляд на объявление и итоги записи. Схему читает модуль vmp/run_tree.py.",
+ "type": "object",
+ "additionalProperties": false,
+ "required": ["schema", "built_at", "roots", "orphans", "refusals"],
+ "properties": {
+  "schema": {
+   "description": "Версия индекса дерева.",
+   "const": "cosmos-run-tree/v1"
+  },
+  "built_at": {
+   "description": "Когда индекс собран: часы площадки с поясом. Индекс — снимок, а не хранилище: записи живут в своих папках.",
+   "$ref": "#/$defs/moment"
+  },
+  "roots": {
+   "description": "Корни дерева: входы и прогоны на них.",
+   "type": "array",
+   "items": {"$ref": "#/$defs/root"}
+  },
+  "orphans": {
+   "description": "Прогоны без корня: объявление не назвало отпечатков входов и родителя в перечне нет. Молчать о них нельзя — они есть.",
+   "type": "array",
+   "items": {"$ref": "#/$defs/node"}
+  },
+  "refusals": {
+   "description": "Отказы обхода: что найдено, но не прочитано (не JSON, не по словарю записи, папка не читается, номер прогона встретился дважды). Читатель обязан видеть не только найденное, но и НЕ прочитанное.",
+   "type": "array",
+   "items": {"$ref": "#/$defs/refusal"}
+  }
+ },
+ "$defs": {
+  "sha256": {
+   "type": ["string", "null"],
+   "pattern": "^[0-9a-f]{64}$"
+  },
+  "moment": {
+   "description": "Отметка времени ISO 8601; отметки прежних носителей бывают без пояса и принимаются как есть.",
+   "type": ["string", "null"],
+   "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}([.][0-9]+)?([+-][0-9]{2}:[0-9]{2}|Z)?$"
+  },
+  "seconds": {
+   "type": ["number", "null"],
+   "minimum": 0
+  },
+  "count": {
+   "type": ["integer", "null"],
+   "minimum": 0
+  },
+  "words": {
+   "description": "Слова человеку: деловой русский.",
+   "type": ["string", "null"]
+  },
+
+  "root": {
+   "description": "Корень дерева: отпечатки входов и все прогоны на них. Смена одного ответа анкеты корня по документам и данным не меняет — она даёт другой root_answers_sha256, то есть ветвь с пометкой «изменены ответы» (раздел 7 проекта).",
+   "type": "object",
+   "additionalProperties": false,
+   "required": ["root_sha256", "root_answers_sha256", "airline", "documents",
+                "runs"],
+   "properties": {
+    "root_sha256": {
+     "description": "Корень по документам правил и данным: известен до старта.",
+     "$ref": "#/$defs/sha256"
+    },
+    "root_answers_sha256": {
+     "description": "Корни с ответами, встреченные у прогонов этого корня: больше одного — на дереве есть ветвь по изменённым ответам.",
+     "type": "array",
+     "items": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+    },
+    "airline": {
+     "description": "Авиакомпания по первой записи корня: корень определяется отпечатками, а не именем.",
+     "type": ["string", "null"]
+    },
+    "documents": {"$ref": "#/$defs/documents"},
+    "runs": {
+     "description": "Прогоны корня по времени объявления.",
+     "type": "array",
+     "items": {"$ref": "#/$defs/node"}
+    }
+   }
+  },
+
+  "documents": {
+   "description": "Входы корня по ПЕРВОЙ записи: имена для узнавания человеком, отпечатки — для сверки.",
+   "type": "object",
+   "additionalProperties": false,
+   "required": ["rules", "data"],
+   "properties": {
+    "rules": {
+     "type": "array",
+     "items": {"$ref": "#/$defs/document"}
+    },
+    "data": {
+     "type": "array",
+     "items": {"$ref": "#/$defs/document"}
+    }
+   }
+  },
+
+  "document": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": ["name", "sha256"],
+   "properties": {
+    "name": {"type": ["string", "null"]},
+    "sha256": {"$ref": "#/$defs/sha256"}
+   }
+  },
+
+  "node": {
+   "description": "Узел дерева — прогон: плоский взгляд на объявление и итоги записи. Журнал этапов в узел не переносится (его читают в самой записи), адреса служб площадки — тоже: индекс носят между машинами.",
+   "type": "object",
+   "additionalProperties": false,
+   "required": ["run_id", "path", "created_at", "created_by", "purpose",
+                "contour", "state", "declaration_sha256", "root_sha256",
+                "root_answers_sha256", "airline", "catalog",
+                "catalog_extension", "bindings", "code", "libraries",
+                "models", "solvers", "planned_stages", "stop_after",
+                "parent_run", "branch_of", "source_run", "package_sha256",
+                "edge", "verdicts", "timing", "tokens", "counters",
+                "systems", "golden"],
+   "properties": {
+    "run_id": {
+     "description": "Номер прогона: один на обе системы.",
+     "type": ["string", "null"]
+    },
+    "path": {
+     "description": "Где лежит запись: путь файла run-record.json, найденного обходом.",
+     "type": ["string", "null"]
+    },
+    "created_at": {"$ref": "#/$defs/moment"},
+    "created_by": {"type": ["string", "null"]},
+    "purpose": {
+     "enum": ["приёмка", "демонстрация", "регресс", "исследование", "рабочий",
+              null]
+    },
+    "contour": {
+     "description": "Имя площадки; адреса её служб в индекс не переносятся.",
+     "enum": ["local", "test", "stage", "prod", null]
+    },
+    "state": {
+     "enum": ["объявлен", "идёт", "завершён", "остановлен по правилу", "сбой",
+              "остановлен человеком", null]
+    },
+    "declaration_sha256": {"$ref": "#/$defs/sha256"},
+    "root_sha256": {"$ref": "#/$defs/sha256"},
+    "root_answers_sha256": {"$ref": "#/$defs/sha256"},
+    "airline": {"type": ["string", "null"]},
+    "catalog": {"$ref": "#/$defs/catalog"},
+    "catalog_extension": {
+     "description": "Расширение каталога под авиакомпанию; расширения нет — null.",
+     "oneOf": [{"$ref": "#/$defs/catalog"}, {"type": "null"}]
+    },
+    "bindings": {"$ref": "#/$defs/bindings"},
+    "code": {"$ref": "#/$defs/code"},
+    "libraries": {"$ref": "#/$defs/libraries"},
+    "models": {
+     "description": "Модели прогона: роль → модель, провайдер, канал, усилие. Роль в двух каналах даёт ключ «роль/канал» — вторая строка не теряется.",
+     "type": "object",
+     "additionalProperties": {"$ref": "#/$defs/model_row"}
+    },
+    "solvers": {
+     "description": "Решатели прогона: задача → движок и его параметры (лимиты, ходы, воспроизводимый профиль). Ветви одного корня чаще всего различаются именно здесь.",
+     "type": "object",
+     "additionalProperties": {"$ref": "#/$defs/solver_row"}
+    },
+    "planned_stages": {
+     "type": "array",
+     "items": {"type": "string"}
+    },
+    "stop_after": {"type": ["string", "null"]},
+    "parent_run": {"type": ["string", "null"]},
+    "branch_of": {
+     "description": "Чем ветвь отличается от родителя по объявлению её хозяина: модели / решатели / параметры / ответы.",
+     "type": ["string", "null"]
+    },
+    "source_run": {
+     "description": "Прогон-источник входа, который этот прогон не производил (частичный прогон от готового ВМП).",
+     "type": ["string", "null"]
+    },
+    "package_sha256": {"$ref": "#/$defs/sha256"},
+    "edge": {"$ref": "#/$defs/edge"},
+    "verdicts": {
+     "description": "Вердикты задач: свободный словарь «задача → вердикт».",
+     "type": "object"
+    },
+    "timing": {"$ref": "#/$defs/timing"},
+    "tokens": {
+     "description": "Расход моделей прогона по журналу: «роль/модель» → токены (решение владельца № 1 от 10.09.2026 — в токенах, не в деньгах).",
+     "type": "object",
+     "additionalProperties": {"$ref": "#/$defs/tokens_row"}
+    },
+    "counters": {
+     "description": "Счётчики прогона: имя → сумма по этапам журнала. Сравнение счётчиков — справочно: число гуляет по чтению модели.",
+     "type": "object",
+     "additionalProperties": {"type": ["number", "null"]}
+    },
+    "systems": {
+     "description": "Какие системы отметились в записи: имена систем-летописцев журнала (cdpm, runner, cosmos) без повторов. Единица журнала без имени системы в перечень ничего не добавляет.",
+     "type": "array",
+     "items": {"type": "string"}
+    },
+    "golden": {"$ref": "#/$defs/golden"}
+   }
+  },
+
+  "edge": {
+   "description": "Ребро дерева: чем прогон приходится соседям. «корень» — первый прогон на этих входах; «соседняя ветвь» — те же входы, другое объявление; «изменены ответы» — другой корень с ответами при том же корне входов; «продолжение» — частичный прогон от артефакта родителя (ВМП, пакет).",
+   "type": "object",
+   "additionalProperties": false,
+   "required": ["kind", "to", "differs", "words"],
+   "properties": {
+    "kind": {
+     "enum": ["корень", "соседняя ветвь", "изменены ответы", "продолжение"]
+    },
+    "to": {
+     "description": "К какому прогону ведёт ребро; у корня — null.",
+     "type": ["string", "null"]
+    },
+    "differs": {
+     "description": "Чем ветвь отличается от того, к кому ведёт ребро, крупными частями объявления.",
+     "type": "array",
+     "items": {
+      "enum": ["модели", "решатели", "параметры решателей", "каталог",
+               "привязки", "код", "библиотеки", "цель", "площадка", "план"]
+     }
+    },
+    "words": {"$ref": "#/$defs/words"}
+   }
+  },
+
+  "catalog": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": ["name", "version", "fingerprint"],
+   "properties": {
+    "name": {"type": ["string", "null"]},
+    "version": {"type": ["string", "null"]},
+    "fingerprint": {"type": ["string", "null"]}
+   }
+  },
+
+  "bindings": {
+   "description": "Привязки исполнителей COSMOS: версия каталога, под который они выпущены.",
+   "type": "object",
+   "additionalProperties": false,
+   "required": ["catalog_version", "catalog_fingerprint"],
+   "properties": {
+    "catalog_version": {"type": ["string", "null"]},
+    "catalog_fingerprint": {"type": ["string", "null"]}
+   }
+  },
+
+  "code": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": ["cdpm_commit", "cosmos_commit", "runner_fingerprint"],
+   "properties": {
+    "cdpm_commit": {"type": ["string", "null"]},
+    "cosmos_commit": {"type": ["string", "null"]},
+    "runner_fingerprint": {"type": ["string", "null"]}
+   }
+  },
+
+  "libraries": {
+   "description": "Интерпретатор и отпечаток перечня пакетов. Сам перечень остаётся в записи: индекс носят между машинами, и расти без меры он не должен.",
+   "type": "object",
+   "additionalProperties": false,
+   "required": ["python", "packages_sha256"],
+   "properties": {
+    "python": {"type": ["string", "null"]},
+    "packages_sha256": {"$ref": "#/$defs/sha256"}
+   }
+  },
+
+  "model_row": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": ["model", "provider", "channel", "effort"],
+   "properties": {
+    "model": {"type": ["string", "null"]},
+    "provider": {"type": ["string", "null"]},
+    "channel": {"type": ["string", "null"]},
+    "effort": {"type": ["string", "null"]}
+   }
+  },
+
+  "solver_row": {
+   "description": "Движок задачи и его параметры — имена те же, что в словаре записи (declaration.solvers[] без поля task: задача стала ключом).",
+   "type": "object",
+   "additionalProperties": false,
+   "required": ["engine", "version", "build_sha256", "spent_limit_s",
+                "unimproved_spent_limit_s", "moves", "seed", "step_limit",
+                "unimproved_step_limit", "deterministic_time",
+                "accepted_uncovered"],
+   "properties": {
+    "engine": {"type": ["string", "null"]},
+    "version": {"type": ["string", "null"]},
+    "build_sha256": {"$ref": "#/$defs/sha256"},
+    "spent_limit_s": {"$ref": "#/$defs/seconds"},
+    "unimproved_spent_limit_s": {"$ref": "#/$defs/seconds"},
+    "moves": {"type": ["string", "null"]},
+    "seed": {"type": ["integer", "null"]},
+    "step_limit": {"$ref": "#/$defs/count"},
+    "unimproved_step_limit": {"$ref": "#/$defs/count"},
+    "deterministic_time": {"$ref": "#/$defs/seconds"},
+    "accepted_uncovered": {
+     "type": ["array", "null"],
+     "items": {"type": "string"}
+    }
+   }
+  },
+
+  "tokens_row": {
+   "description": "Токены одной модели в одной роли за прогон. Канал без учёта (например командной строки) даёт counted = false: половина расхода, выданная за целое, хуже честного «не считается».",
+   "type": "object",
+   "additionalProperties": false,
+   "required": ["input_tokens", "output_tokens", "calls", "counted"],
+   "properties": {
+    "input_tokens": {"$ref": "#/$defs/count"},
+    "output_tokens": {"$ref": "#/$defs/count"},
+    "calls": {"$ref": "#/$defs/count"},
+    "counted": {"type": "boolean"}
+   }
+  },
+
+  "timing": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": ["machine_s", "waiting_human_s", "total_s"],
+   "properties": {
+    "machine_s": {"$ref": "#/$defs/seconds"},
+    "waiting_human_s": {"$ref": "#/$defs/seconds"},
+    "total_s": {"$ref": "#/$defs/seconds"}
+   }
+  },
+
+  "golden": {
+   "description": "Признак прогона-образца. Ставится ТОЛЬКО подтверждением владельца после приёмки на Prod (решение владельца № 3 от 10.09.2026); новые ветви того же корня сравниваются с ним по умолчанию.",
+   "type": "object",
+   "additionalProperties": false,
+   "required": ["confirmed", "by", "at", "words"],
+   "properties": {
+    "confirmed": {"type": "boolean"},
+    "by": {"type": ["string", "null"]},
+    "at": {"$ref": "#/$defs/moment"},
+    "words": {"$ref": "#/$defs/words"}
+   }
+  },
+
+  "refusal": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": ["path", "words"],
+   "properties": {
+    "path": {"type": ["string", "null"]},
+    "words": {
+     "type": "array",
+     "items": {"type": "string"}
+    }
+   }
+  }
+ }
+}

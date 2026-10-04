@@ -1,0 +1,78 @@
+{
+  "summary": {
+    "sit_min": 60,
+    "lines": 34,
+    "line_lengths": [
+      53,
+      49,
+      47,
+      47,
+      46,
+      46,
+      45,
+      43,
+      43,
+      42,
+      40,
+      38,
+      38,
+      37,
+      35,
+      35,
+      34,
+      33,
+      33,
+      29,
+      29,
+      28,
+      22,
+      22,
+      21,
+      20,
+      17,
+      9,
+      8,
+      8,
+      8,
+      3,
+      3,
+      1
+    ],
+    "by_skill": {
+      "Captain": {
+        "employees": 21,
+        "lines_assigned": 21,
+        "seats_seeded": 842,
+        "employees_free": 0
+      },
+      "FirstOfficer": {
+        "employees": 22,
+        "lines_assigned": 22,
+        "seats_seeded": 870,
+        "employees_free": 0
+      }
+    },
+    "seats_total": 2024,
+    "seats_seeded": 1712
+  },
+  "results": [
+    {
+      "arm": "затравка как есть",
+      "runId": "8654b652-66e1-4597-af41-3d94b029cd3e",
+      "score": "-9831hard/-71512soft",
+      "budget": 2
+    },
+    {
+      "arm": "с затравкой",
+      "runId": "cc295bbb-fcf8-487c-8bb7-4347cf5b00ee",
+      "score": "-1917hard/-196530soft",
+      "budget": 300
+    },
+    {
+      "arm": "без затравки",
+      "runId": "29f21c64-0cc0-47fe-940d-1a3203852612",
+      "score": "-5550hard/-473638soft",
+      "budget": 300
+    }
+  ]
+}

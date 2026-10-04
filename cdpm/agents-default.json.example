@@ -1,0 +1,12 @@
+{
+  "form_version": 1,
+  "customer": "образец установки (замените названием авиакомпании)",
+  "_comment": "Площадочный носитель раскладки моделей ролей CDPM: каталог данных <цель>-data/agents-default.json (переопределение пути — CDPM_AGENTS_DEFAULT). Создаётся установщиком из этого образца, если носителя ещё нет (S06-R2, ревизия 1.18.5, 06.09.2026): без объявленной раскладки облачные стадии панели не стартуют — отказ словами до первого вызова модели. Раскладка умолчания владельца для всех наборов (05.09.2026): извлечение/обработчик/ответчик claude-sonnet-5, аудитор gpt-5.6-terra (усилие high), арбитр тупиков claude-fable-5, применение ответов и линия данных claude-opus-5, зрение claude-opus-5. Ключей провайдеров здесь нет и быть не должно — ключи живут в настройках панели (cdpm-settings.json) или в среде процесса.",
+  "worker": {"channels": {"cloud": {"provider": "cloud", "model": "claude-sonnet-5"}}},
+  "extractor": {"channels": {"cloud": {"provider": "cloud", "model": "claude-sonnet-5"}}},
+  "replier": {"channels": {"cloud": {"provider": "cloud", "model": "claude-sonnet-5"}}},
+  "auditor": {"channels": {"cloud": {"provider": "openai", "model": "gpt-5.6-terra", "effort": "high"}}},
+  "arbiter": {"channels": {"cloud": {"provider": "cloud", "model": "claude-fable-5"}}},
+  "applier": {"channels": {"cloud": {"provider": "cloud", "model": "claude-opus-5"}}},
+  "vision": {"channels": {"cloud": {"provider": "cloud", "model": "claude-opus-5"}}}
+}

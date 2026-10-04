@@ -1,0 +1,216 @@
+{
+  "source": "VYBORKA-CDPM-perechni-64.json",
+  "source_sha256": "3FB40F5B5A8DD64CC1FAC5E02CD0263C5313F266984B20AEDF45A1DC7947A83F",
+  "note": "22 supplied rule-id/text records, not 22 distinct closed lists. Expected sets assigned from the literal definitions; thresholds and the feasibility objective are negative controls. This is not a live compiler/run coverage measure.",
+  "cases": [
+    {
+      "id": "CDPM348-1",
+      "source_rule": "R-S1-абз-17",
+      "source_file": "crew-demo-data\\cdpm-runs\\run-0072\\extract\\model.json",
+      "kind": "SOFT",
+      "statement": "Превышение базового предела 720 минут разрешено до потолка 780 минут со штрафом 15 у.е. за смену с превышением.",
+      "expected": null
+    },
+    {
+      "id": "CDPM348-2",
+      "source_rule": "R-S3-абз-6",
+      "source_file": "crew-demo-data\\cdpm-runs\\run-0080\\extract\\model.json",
+      "kind": "DEF",
+      "statement": "Парк набора состоит только из воздушных судов типа Полярис-Р200; судов иных типов нет.",
+      "expected": [
+        "Полярис-Р200"
+      ]
+    },
+    {
+      "id": "CDPM348-3",
+      "source_rule": "R-S1-абз-14",
+      "source_file": "crew-demo-data\\cdpm-runs\\run-0081\\extract\\model.json",
+      "kind": "HARD",
+      "statement": "Базовый предел полётной смены — 720 минут; превышение допустимо только продлением по VN-011.",
+      "expected": null
+    },
+    {
+      "id": "CDPM348-4",
+      "source_rule": "R-S1-абз-6",
+      "source_file": "crew-demo-data\\cdpm-runs\\run-0084\\extract\\model.json",
+      "kind": "DEF",
+      "statement": "Парк набора состоит только из воздушных судов типа Полярис-Р200; судов иных типов в наборе нет.",
+      "expected": [
+        "Полярис-Р200"
+      ]
+    },
+    {
+      "id": "CDPM348-5",
+      "source_rule": "R-S1-абз-6",
+      "source_file": "crew-demo-data\\cdpm-runs\\run-0085\\extract\\model.json",
+      "kind": "DEF",
+      "statement": "Парк набора состоит только из воздушных судов типа Полярис-Р200; судов иных типов нет.",
+      "expected": [
+        "Полярис-Р200"
+      ]
+    },
+    {
+      "id": "CDPM348-6",
+      "source_rule": "R-S1-абз-6",
+      "source_file": "crew-demo-data\\cdpm-runs\\run-0087\\extract\\model.json",
+      "kind": "DEF",
+      "statement": "Парк набора состоит только из воздушных судов типа Полярис-Р200.",
+      "expected": [
+        "Полярис-Р200"
+      ]
+    },
+    {
+      "id": "CDPM348-7",
+      "source_rule": "R-S1-абз-6",
+      "source_file": "crew-demo-data\\cdpm-runs\\run-0102\\extract\\model.json",
+      "kind": "DEF",
+      "statement": "Парк набора состоит только из воздушных судов типа Полярис-Р200; иных типов в наборе нет.",
+      "expected": [
+        "Полярис-Р200"
+      ]
+    },
+    {
+      "id": "CDPM348-8",
+      "source_rule": "R-S1-абз-14",
+      "source_file": "crew-demo-data\\cdpm-runs\\run-0102\\extract\\model.json",
+      "kind": "HARD",
+      "statement": "Базовый предел длительности полётной смены — 720 минут (12:00); превышение допустимо только продлением по VN-011.",
+      "expected": null
+    },
+    {
+      "id": "CDPM348-9",
+      "source_rule": "R-S1-абз-14",
+      "source_file": "crew-demo-data\\cdpm-runs\\run-0105\\extract\\model.json",
+      "kind": "HARD",
+      "statement": "Базовый предел полётной смены — 720 минут (12:00); превышение допустимо только продлением по VN-011.",
+      "expected": null
+    },
+    {
+      "id": "CDPM348-10",
+      "source_rule": "R-S1-абз-6",
+      "source_file": "crew-demo-data\\cdpm-runs\\run-0123\\extract\\model.json",
+      "kind": "DEF",
+      "statement": "Парк набора состоит только из воздушных судов типа Полярис-Р200; иных типов нет.",
+      "expected": [
+        "Полярис-Р200"
+      ]
+    },
+    {
+      "id": "CDPM348-11",
+      "source_rule": "R-S1-абз-6",
+      "source_file": "crew-demo-data\\cdpm-runs\\run-0142\\extract\\model.json",
+      "kind": "DEF",
+      "statement": "Парк набора состоит только из ВС типа Полярис-Р200; иных типов в наборе нет.",
+      "expected": [
+        "Полярис-Р200"
+      ]
+    },
+    {
+      "id": "CDPM348-12",
+      "source_rule": "R-S1-абз-14",
+      "source_file": "crew-demo-data\\cdpm-runs\\run-0152\\extract\\model.json",
+      "kind": "HARD",
+      "statement": "Базовый предел полётной смены — 720 минут (12:00); превышение допустимо только продлением по правилу VN-011.",
+      "expected": null
+    },
+    {
+      "id": "CDPM348-13",
+      "source_rule": "R-S1-абз-6",
+      "source_file": "crew-demo-data\\cdpm-runs\\run-0160\\extract\\model.json",
+      "kind": "DEF",
+      "statement": "Парк воздушных судов набора состоит только из судов типа Полярис-Р200.",
+      "expected": [
+        "Полярис-Р200"
+      ]
+    },
+    {
+      "id": "CDPM348-14",
+      "source_rule": "R-S1-абз-6",
+      "source_file": "crew-demo-data\\cdpm-runs\\run-0161\\extract\\model.json",
+      "kind": "DEF",
+      "statement": "Парк набора состоит только из судов типа Полярис-Р200.",
+      "expected": [
+        "Полярис-Р200"
+      ]
+    },
+    {
+      "id": "CDPM348-15",
+      "source_rule": "R-S1-абз-6",
+      "source_file": "crew-demo-data\\cdpm-runs\\run-0168\\extract\\model.json",
+      "kind": "DEF",
+      "statement": "Парк набора состоит только из ВС типа Полярис-Р200.",
+      "expected": [
+        "Полярис-Р200"
+      ]
+    },
+    {
+      "id": "CDPM348-16",
+      "source_rule": "R-S1-строка-11",
+      "source_file": "crew-demo\\final-report\\КН0-ДЕМО-GPT\\kn0-demo-gpt-20260905\\cdpm-01\\native\\cycle\\extract\\model.json",
+      "kind": "DEF",
+      "statement": "Парк набора состоит только из воздушных судов типа Полярис-Р200.",
+      "expected": [
+        "Полярис-Р200"
+      ]
+    },
+    {
+      "id": "CDPM348-17",
+      "source_rule": "R-S1-строка-51",
+      "source_file": "crew-demo\\final-report\\КН0-ДЕМО-GPT\\kn0-demo-gpt-20260905\\cdpm-01\\native\\cycle\\extract\\model.json",
+      "kind": "DEF",
+      "statement": "Критерия оптимизации для ростеринга нет; требуется любое допустимое решение (feasibility-hard). Новые целевые функции и штрафы не вносятся.",
+      "expected": null
+    },
+    {
+      "id": "CDPM348-18",
+      "source_rule": "R-S1-строка-11",
+      "source_file": "crew-demo\\final-report\\КН0-ДЕМО-GPT\\kn0-demo-gpt-20260905\\cdpm-03\\native\\answers\\extract\\model.json",
+      "kind": "DEF",
+      "statement": "Парк воздушных судов набора состоит только из типа Полярис-Р200; иных типов нет.",
+      "expected": [
+        "Полярис-Р200"
+      ]
+    },
+    {
+      "id": "CDPM348-19",
+      "source_rule": "R-S1-строка-11",
+      "source_file": "crew-demo\\final-report\\КН0-ДЕМО-GPT\\kn0-demo-gpt-20260905\\cdpm-05\\native\\answers\\extract\\model.json",
+      "kind": "DEF",
+      "statement": "Парк воздушных судов набора состоит только из судов типа Полярис-Р200; иных типов нет.",
+      "expected": [
+        "Полярис-Р200"
+      ]
+    },
+    {
+      "id": "CDPM348-20",
+      "source_rule": "R-S1-строка-11",
+      "source_file": "crew-demo\\final-report\\КН0-ДЕМО-GPT\\kn0-demo-gpt-20260905\\cdpm-06\\native\\answers\\extract\\model.json",
+      "kind": "DEF",
+      "statement": "Парк набора состоит только из ВС типа Полярис-Р200; судов иных типов нет.",
+      "expected": [
+        "Полярис-Р200"
+      ]
+    },
+    {
+      "id": "CDPM348-21",
+      "source_rule": "R-S1-строка-13",
+      "source_file": "crew-demo\\final-report\\КН0-ДЕМО-GPT\\kn0-demo-gpt-20260905\\cdpm-06\\native\\answers\\extract\\model.json",
+      "kind": "DEF",
+      "statement": "Должности пилотов в наборе — КВС и Второй пилот (закрытый перечень).",
+      "expected": [
+        "КВС",
+        "Второй пилот"
+      ]
+    },
+    {
+      "id": "CDPM348-22",
+      "source_rule": "R-S1-строка-11",
+      "source_file": "crew-demo\\final-report\\КН0-ДЕМО-GPT\\kn0-demo-gpt-20260905\\cdpm-07\\native\\answers\\extract\\model.json",
+      "kind": "DEF",
+      "statement": "Парк набора состоит только из воздушных судов типа Полярис-Р200; судов иных типов нет.",
+      "expected": [
+        "Полярис-Р200"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+[23:42:14] p9094 a1: OK score=0hard/547284soft dur=482s
+[23:50:23] p9094 a2: OK score=0hard/547284soft dur=482s
+[23:55:44] p9094 a3: EXC:ConnectionResetError score=None dur=315s
+[00:04:03] p9094 a4: OK score=-351hard/-541218soft dur=490s
+[00:12:17] p9094 a5: OK score=0hard/547284soft dur=486s
+[00:20:27] p9094 a6: OK score=0hard/547284soft dur=483s
+[00:28:36] p9094 a7: OK score=0hard/547284soft dur=483s
+[00:36:46] p9094 a8: OK score=0hard/547284soft dur=483s
+[00:44:56] p9094 a9: OK score=0hard/547284soft dur=483s
+[00:53:06] p9094 a10: OK score=0hard/547284soft dur=483s
+[01:01:15] p9094 a11: OK score=0hard/547284soft dur=483s
+[01:09:25] p9094 a12: OK score=0hard/547284soft dur=483s
+[01:09:28] p9094: lane finished

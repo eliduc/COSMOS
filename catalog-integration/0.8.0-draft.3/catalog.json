@@ -1,0 +1,20 @@
+{
+  "fingerprint": "0330424a6cd67ba08bf4b2bd919c8b4d6b15f3e8b9b349ab4bed5d89f9317bc9",
+  "form_version": 1,
+  "gates": {
+    "stand_tasks_required": false,
+    "subject_words_required": false
+  },
+  "legacy_registry_rev": "07f945deecdc",
+  "name": "template-catalog",
+  "note": "UNRELEASED Local-only qualification candidate; two explicitly declared native spread companions; originals/failures preserved; no approval, release or deployment.",
+  "released_at": "2026-09-20",
+  "released_by": "аналитик",
+  "sections": {
+    "criteria": "criteria.json",
+    "dictionaries": "dictionaries.json",
+    "families": "families.json",
+    "requests": "requests.json"
+  },
+  "version": "0.8.0-draft.3"
+}

@@ -1,0 +1,212 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ВМП — форма выдачи и приёмки (общий раздел, части «Пейринг» и «Ростеринг»)",
+  "description": "Спецификация final-report/VMP-FORMA-CLD.md (решения владельца 2026-09-02). Место строки задаёт зону и вид: общий раздел — определения и параметры мира; части — а) жёсткие, б) мягкие с коэффициентом и единицей размера нарушения, в) критерии. Машинная модель CDPM строится из формы и в форму кодом без потерь (cdpm/vmp_form.py); поля модели, не входящие в постановку, переносятся в machine.",
+  "type": "object",
+  "required": ["form_version", "customer", "currency", "sources", "common", "pairing", "rostering"],
+  "additionalProperties": false,
+  "properties": {
+    "form_version": {"const": 1},
+    "customer": {"type": "string", "minLength": 1},
+    "currency": {"type": "string", "minLength": 1, "description": "Единая валюта ставок критериев и коэффициентов штрафов (по умолчанию «условные единицы»)."},
+    "registry_rev": {"type": "string", "description": "Отпечаток базы шаблонов, по которой посажены строки."},
+    "meta": {"type": "object", "description": "Конверт машинной модели (cdpm_version, mode, revision, note, fit_contract, data_sids) — переносится без изменений."},
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["sid", "file", "sha256"],
+        "additionalProperties": false,
+        "properties": {
+          "sid": {"type": "string", "minLength": 1},
+          "file": {"type": "string", "minLength": 1},
+          "sha256": {"type": "string", "pattern": "^[0-9a-fA-F]{64}$"},
+          "note": {"type": "string"}
+        }
+      }
+    },
+    "common": {
+      "type": "object",
+      "required": ["definitions", "world"],
+      "additionalProperties": false,
+      "properties": {
+        "definitions": {"type": "array", "items": {"$ref": "#/definitions/definition"}},
+        "world": {"type": "array", "items": {"$ref": "#/definitions/rule"}, "description": "Правила семей обеих зон (шкала времени, состав экипажа): scope для каждой задачи."}
+      }
+    },
+    "pairing": {"$ref": "#/definitions/part"},
+    "rostering": {"$ref": "#/definitions/part"},
+    "withdrawn": {"type": "array", "items": {"$ref": "#/definitions/withdrawn"}, "description": "Приложение: строки, выведенные из контура (OUT), с причиной."},
+    "open_questions": {"type": "array", "items": {"type": "object"}, "description": "Приложение: вопросы анкеты без применённого ответа (нет ответа, «не разобран», «ожидает обработчика») — только во время формирования; в готовом ВМП пусто."},
+    "answered_questions": {"type": "array", "items": {"type": "object"}, "description": "Приложение: вопросы анкеты со статусом ответа «применён» — источники строк, порождённых ответами."}
+  },
+  "definitions": {
+    "source": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": ["sid", "anchor"],
+          "additionalProperties": false,
+          "description": "Документ и клауза; quote — дословный фрагмент клаузы (как в источнике модели), переносится без изменений.",
+          "properties": {"sid": {"type": "string", "minLength": 1}, "anchor": {"type": "string", "minLength": 1}, "quote": {"type": "string"}}
+        },
+        {
+          "type": "object",
+          "required": ["question", "revision"],
+          "additionalProperties": false,
+          "description": "Ответ авиакомпании на вопрос анкеты: у целевой, рождённой ответом (origin модели), стоит рядом с якорями документа.",
+          "properties": {"question": {"type": "string", "minLength": 1}, "revision": {"type": "integer", "minimum": 1}}
+        }
+      ]
+    },
+    "param": {
+      "type": "object",
+      "required": ["name", "value", "quote"],
+      "additionalProperties": false,
+      "properties": {
+        "name": {"type": "string", "minLength": 1, "description": "Имя из закрытого словаря параметров базы шаблонов."},
+        "value": {"oneOf": [
+          {"type": ["number", "string", "boolean"]},
+          {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+          {"type": "object", "minProperties": 1, "propertyNames": {"pattern": "^[A-Z0-9][A-Z0-9_-]*$"}, "additionalProperties": {"type": "integer", "minimum": 0}}
+        ], "description": "Скаляр, типизированный code_list или карта резервов по базам. Принадлежность типу параметра и происхождение дополнительно проверяются общей дисциплиной посадки."},
+        "unit": {"type": "string", "description": "Единица словаря параметров (duration_minutes, count, …) либо единица условия семьи из каталога (code_list, flag); при задании обязана совпадать со словарной."},
+        "quote": {"type": "string", "minLength": 1, "description": "Дословный фрагмент формулировки этой же строки."}
+      }
+    },
+    "template": {
+      "type": "object",
+      "required": ["family", "category"],
+      "additionalProperties": false,
+      "properties": {
+        "family": {"type": "string", "minLength": 1},
+        "category": {"enum": ["A", "B"]},
+        "assumption": {"type": "string", "minLength": 1},
+        "quote": {"type": "string", "minLength": 1, "description": "Цитата-носитель нормы у беспараметрной семьи."}
+      }
+    },
+    "penalty": {
+      "type": "object",
+      "required": ["coefficient", "violation_unit"],
+      "additionalProperties": false,
+      "properties": {
+        "coefficient": {"type": "integer", "minimum": 0},
+        "as_written": {"type": "string", "minLength": 1, "description": "Дословный фрагмент источника с числом коэффициента (носитель веса: weight_quote модели)."},
+        "violation_unit": {"type": ["string", "null"], "description": "Единица размера нарушения из закрытого словаря базы шаблонов (night, duty, hour, day, minute, event); атрибут семьи шаблона — документ подтверждает, не меняет; null — не задана (нарушение формы)."}
+      }
+    },
+    "excluded_until_data": {
+      "type": "object",
+      "required": ["question", "revision"],
+      "additionalProperties": false,
+      "properties": {"question": {"type": "string", "minLength": 1}, "revision": {"type": "integer", "minimum": 1}},
+      "description": "Единственная допустимая пометка строки: исключено из расчёта до получения данных по решению авиакомпании (вопрос и ревизия ответа)."
+    },
+    "rule": {
+      "type": "object",
+      "required": ["id", "title", "statement", "sources", "template"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "title": {"type": "string", "minLength": 1},
+        "statement": {"type": "string", "minLength": 1},
+        "sources": {"type": "array", "minItems": 1, "items": {"$ref": "#/definitions/source"}},
+        "template": {"oneOf": [{"type": "null"}, {"$ref": "#/definitions/template"}]},
+        "gap": {"type": "string", "minLength": 1, "description": "При template = null: какой механики не хватает (заявка на шаблон, посадка C)."},
+        "params": {"type": "array", "items": {"$ref": "#/definitions/param"}},
+        "penalty": {"$ref": "#/definitions/penalty"},
+        "scope": {
+          "type": "object",
+          "required": ["pairing", "rostering"],
+          "additionalProperties": false,
+          "properties": {"pairing": {"type": "string", "minLength": 1}, "rostering": {"type": "string", "minLength": 1}},
+          "description": "Только параметры мира: область действия для каждой задачи (носитель в модели — поле scope правила)."
+        },
+        "excluded_until_data": {"$ref": "#/definitions/excluded_until_data"},
+        "case": {"type": "boolean", "description": "Исключение (запись листа исключений) — правило вида CASE модели; стоит в разделе а) своей части."},
+        "note": {"type": "string"},
+        "machine": {"type": "object", "description": "Поля модели вне постановки (logic, conditional, blockers, export_solver, legacy params, служебные поля посадки; kind — для общего раздела) — без изменений."}
+      }
+    },
+    "definition": {
+      "type": "object",
+      "required": ["id", "title", "statement", "sources", "role"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "title": {"type": "string", "minLength": 1},
+        "statement": {"type": "string", "minLength": 1},
+        "sources": {"type": "array", "minItems": 1, "items": {"$ref": "#/definitions/source"}},
+        "role": {"enum": ["term", "registry"], "description": "term — определение термина или перечень с кодами из документа правил (DEF); registry — запись файла данных набора (DATA)."},
+        "excluded_until_data": {"$ref": "#/definitions/excluded_until_data"},
+        "note": {"type": "string"},
+        "machine": {"type": "object"}
+      }
+    },
+    "criterion": {
+      "type": "object",
+      "required": ["id", "title", "statement", "sources", "direction", "tier"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "title": {"type": "string", "minLength": 1},
+        "statement": {"type": "string", "minLength": 1},
+        "sources": {"type": "array", "minItems": 1, "items": {"$ref": "#/definitions/source"}},
+        "metric": {"type": "string", "minLength": 1},
+        "direction": {"enum": ["minimize", "maximize"]},
+        "kind": {"type": "string", "minLength": 1, "description": "Машинный вид критерия приёмника (min_person_days, rank_normalized_cost)."},
+        "rate": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Ставка в валюте формы — у каждого критерия: value (и per — за что) либо rates рангов.",
+          "properties": {
+            "value": {"type": "number", "exclusiveMinimum": 0},
+            "per": {"type": "string", "description": "За что начисляется ставка (календарный день командировки, час разброса, …)."},
+            "rates": {
+              "type": "object",
+              "required": ["flight", "work"],
+              "additionalProperties": false,
+              "properties": {"flight": {"type": "number", "exclusiveMinimum": 0}, "work": {"type": "number", "exclusiveMinimum": 0}}
+            },
+            "as_written": {"type": "string"}
+          }
+        },
+        "version": {"type": "string"},
+        "effective_from": {"type": "string"},
+        "tier": {"type": "integer", "minimum": 1},
+        "tolerance": {
+          "type": "object",
+          "required": ["value", "unit"],
+          "additionalProperties": false,
+          "properties": {"value": {"type": "number", "minimum": 0}, "unit": {"enum": ["percent", "absolute"]}}
+        },
+        "note": {"type": "string"},
+        "machine": {"type": "object", "description": "Поля целевой вне постановки; zone — служебно, зону задаёт место (в обеих частях — BOTH)."}
+      }
+    },
+    "withdrawn": {
+      "type": "object",
+      "required": ["id", "title", "statement", "sources", "reason"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "title": {"type": "string", "minLength": 1},
+        "statement": {"type": "string", "minLength": 1},
+        "sources": {"type": "array", "minItems": 1, "items": {"$ref": "#/definitions/source"}},
+        "reason": {"type": "string"},
+        "excluded_until_data": {"$ref": "#/definitions/excluded_until_data"},
+        "machine": {"type": "object"}
+      }
+    },
+    "part": {
+      "type": "object",
+      "required": ["hard", "soft", "criteria"],
+      "additionalProperties": false,
+      "properties": {
+        "hard": {"type": "array", "items": {"$ref": "#/definitions/rule"}},
+        "soft": {"type": "array", "items": {"$ref": "#/definitions/rule"}},
+        "criteria": {"type": "array", "items": {"$ref": "#/definitions/criterion"}}
+      }
+    }
+  }
+}

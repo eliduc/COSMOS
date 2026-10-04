@@ -1,0 +1,822 @@
+{
+ "acceptance_default": "правило того же типа с другими значениями другой авиакомпании исполняется без правки кода и без нового носителя контура",
+ "actors": [
+  "аналитик",
+  "владелец",
+  "контур самоулучшения",
+  "сессия CDPM",
+  "сессия COSMOS"
+ ],
+ "area_qualifiers": [
+  "база",
+  "вне базы"
+ ],
+ "check_template_groups": [
+  "builtin_prefix",
+  "certificate",
+  "data",
+  "history_form",
+  "soft_wave"
+ ],
+ "check_templates": {
+  "выходных-в-месяце": {
+   "at_least_one_of": [],
+   "fields": [
+    "end_column",
+    "group_column",
+    "min_days_off",
+    "sheet",
+    "start_column"
+   ],
+   "group": "data",
+   "optional_fields": [],
+   "optional_groups": []
+  },
+  "горизонт-*": {
+   "at_least_one_of": [],
+   "fields": [
+    "sheet"
+   ],
+   "group": "builtin_prefix",
+   "optional_fields": [],
+   "optional_groups": []
+  },
+  "действительность-на-дату": {
+   "at_least_one_of": [],
+   "fields": [
+    "date_column",
+    "key_column",
+    "ref_key_column",
+    "ref_sheet",
+    "ref_until_column",
+    "sheet"
+   ],
+   "group": "data",
+   "optional_fields": [],
+   "optional_groups": []
+  },
+  "значение-в-диапазоне": {
+   "at_least_one_of": [
+    "max",
+    "min"
+   ],
+   "fields": [
+    "column",
+    "sheet"
+   ],
+   "group": "data",
+   "optional_fields": [
+    "max",
+    "min"
+   ],
+   "optional_groups": []
+  },
+  "значение-существует": {
+   "at_least_one_of": [],
+   "fields": [
+    "column",
+    "sheet",
+    "value"
+   ],
+   "group": "data",
+   "optional_fields": [],
+   "optional_groups": []
+  },
+  "история-*": {
+   "at_least_one_of": [],
+   "fields": [
+    "sheet"
+   ],
+   "group": "builtin_prefix",
+   "optional_fields": [],
+   "optional_groups": []
+  },
+  "максимальная-длительность-часов": {
+   "at_least_one_of": [],
+   "fields": [
+    "end_column",
+    "max_hours",
+    "sheet",
+    "start_column"
+   ],
+   "group": "data",
+   "optional_fields": [],
+   "optional_groups": []
+  },
+  "мера-мягкого-правила": {
+   "at_least_one_of": [],
+   "fields": [
+    "statement",
+    "unit"
+   ],
+   "group": "certificate",
+   "optional_fields": [],
+   "optional_groups": []
+  },
+  "минимальный-разрыв-часов": {
+   "at_least_one_of": [],
+   "fields": [
+    "end_column",
+    "group_column",
+    "min_hours",
+    "sheet",
+    "start_column"
+   ],
+   "group": "data",
+   "optional_fields": [],
+   "optional_groups": [
+    [
+     "area",
+     "base_column",
+     "place_column"
+    ]
+   ]
+  },
+  "мягкий-предел-дней-подряд": {
+   "at_least_one_of": [],
+   "fields": [
+    "bound",
+    "flights_sheet",
+    "sheet"
+   ],
+   "group": "soft_wave",
+   "optional_fields": [],
+   "optional_groups": []
+  },
+  "неудовлетворённая-выполнимая-заявка": {
+   "at_least_one_of": [],
+   "fields": [
+    "crews_sheet",
+    "flights_sheet",
+    "requests_sheet",
+    "sheet"
+   ],
+   "group": "soft_wave",
+   "optional_fields": [],
+   "optional_groups": []
+  },
+  "обязательное-поле": {
+   "at_least_one_of": [],
+   "fields": [
+    "column",
+    "sheet"
+   ],
+   "group": "data",
+   "optional_fields": [],
+   "optional_groups": []
+  },
+  "однородность-цепочки-ночь-день": {
+   "at_least_one_of": [],
+   "fields": [
+    "crews_sheet",
+    "flights_sheet",
+    "sheet",
+    "window_from_min",
+    "window_to_min"
+   ],
+   "group": "soft_wave",
+   "optional_fields": [],
+   "optional_groups": []
+  },
+  "отдых-в-скользящем-окне": {
+   "at_least_one_of": [],
+   "fields": [
+    "employee_column",
+    "end_column",
+    "min_rest_min",
+    "sheet",
+    "start_column",
+    "window_days"
+   ],
+   "group": "history_form",
+   "optional_fields": [],
+   "optional_groups": []
+  },
+  "параметр-мира-применён": {
+   "at_least_one_of": [],
+   "fields": [
+    "statement"
+   ],
+   "group": "certificate",
+   "optional_fields": [],
+   "optional_groups": []
+  },
+  "перечень-значений": {
+   "at_least_one_of": [],
+   "fields": [
+    "allowed",
+    "column",
+    "sheet"
+   ],
+   "group": "data",
+   "optional_fields": [],
+   "optional_groups": []
+  },
+  "серия-ночных-смен": {
+   "at_least_one_of": [],
+   "fields": [
+    "employee_column",
+    "end_column",
+    "max_consecutive",
+    "night_from_min",
+    "night_to_min",
+    "sheet",
+    "start_column"
+   ],
+   "group": "history_form",
+   "optional_fields": [],
+   "optional_groups": []
+  },
+  "ссылка-существует": {
+   "at_least_one_of": [],
+   "fields": [
+    "column",
+    "ref_column",
+    "ref_sheet",
+    "sheet"
+   ],
+   "group": "data",
+   "optional_fields": [],
+   "optional_groups": []
+  },
+  "счёт-состава-группы": {
+   "at_least_one_of": [],
+   "fields": [
+    "count",
+    "group_column",
+    "sheet"
+   ],
+   "group": "data",
+   "optional_fields": [
+    "distinct_column",
+    "relation",
+    "role_column",
+    "role_value"
+   ],
+   "optional_groups": [
+    [
+     "role_column",
+     "role_value"
+    ]
+   ]
+  },
+  "уникальность": {
+   "at_least_one_of": [],
+   "fields": [
+    "columns",
+    "sheet"
+   ],
+   "group": "data",
+   "optional_fields": [],
+   "optional_groups": []
+  },
+  "штраф-за-разрыв-смены": {
+   "at_least_one_of": [],
+   "fields": [
+    "duties_sheet",
+    "flights_sheet",
+    "sheet",
+    "threshold_min"
+   ],
+   "group": "soft_wave",
+   "optional_fields": [],
+   "optional_groups": []
+  },
+  "штраф-ступенчатый-за-стыковку": {
+   "at_least_one_of": [],
+   "fields": [
+    "flights_sheet",
+    "sheet",
+    "step_min",
+    "threshold_min"
+   ],
+   "group": "soft_wave",
+   "optional_fields": [],
+   "optional_groups": []
+  }
+ },
+ "classes": [
+  "core",
+  "extension"
+ ],
+ "code_units": [
+  "code",
+  "code_list"
+ ],
+ "condition_relations": [
+  "in",
+  "yes"
+ ],
+ "condition_units": [
+  "code_list",
+  "flag"
+ ],
+ "directions": [
+  "maximize",
+  "minimize"
+ ],
+ "executor_kinds": [
+  "builder_method",
+  "check_code",
+  "check_template",
+  "condition_fn",
+  "export_form",
+  "kotlin_constraint",
+  "kotlin_form",
+  "kotlin_knob",
+  "kotlin_logic_form",
+  "kotlin_metric"
+ ],
+ "executor_states": [
+  "есть",
+  "заявлен",
+  "нет"
+ ],
+ "family_natures": [
+  "history",
+  "people",
+  "schedule",
+  "world_param"
+ ],
+ "fit_categories": [
+  "A",
+  "B",
+  "C",
+  "D"
+ ],
+ "form_version": 1,
+ "history_kinds": [
+  "замечание",
+  "заявка",
+  "изменение",
+  "инвентаризация",
+  "решение владельца",
+  "создание"
+ ],
+ "history_read_kinds": [
+  "accumulator",
+  "boundary",
+  "series",
+  "window"
+ ],
+ "kinds": [
+  "HARD",
+  "SOFT"
+ ],
+ "languages": [
+  "kotlin",
+  "python"
+ ],
+ "lexicon_order": [
+  "duty_limits",
+  "duty_extension_penalty",
+  "rest_floors",
+  "connection_windows",
+  "layover_penalty",
+  "calendar_windows",
+  "balanced_workload",
+  "reserve_floors",
+  "crew_composition",
+  "time_scale",
+  "deadhead_rules",
+  "span_accumulators",
+  "fleet_exclusions",
+  "crew_unavailability"
+ ],
+ "nature_witnesses": [
+  "certifier_registry",
+  "change_request",
+  "none",
+  "solver_tables"
+ ],
+ "origin_kinds": [
+  "заявка",
+  "инвентаризация",
+  "обобщено из ИДАК",
+  "решение владельца",
+  "синтетика"
+ ],
+ "param_relations": [
+  "eq",
+  "max",
+  "min",
+  "window"
+ ],
+ "param_sources": [
+  "словарь CDPM",
+  "словарь решателя"
+ ],
+ "param_tz": [
+  "UTC",
+  "acclimatized",
+  "base-local"
+ ],
+ "param_units": [
+  "code",
+  "code_list",
+  "count",
+  "credit_hours",
+  "credit_hours_per_hour",
+  "duration_minutes",
+  "hours_per_credit_hour",
+  "time_of_day_minutes"
+ ],
+ "products": [
+  "CDPM",
+  "COSMOS"
+ ],
+ "qualifier_kinds": [
+  "area",
+  "base_code",
+  "crew_variant"
+ ],
+ "rates_policies": [
+  "MUST_BE_EXTERNAL"
+ ],
+ "record_statuses": [
+  "есть",
+  "снята"
+ ],
+ "request_source_kinds": [
+  "вручную",
+  "посадка категории C",
+  "пробел при нажатии"
+ ],
+ "request_states": [
+  "есть",
+  "исполнитель заявлен",
+  "отклонена",
+  "подана",
+  "принята"
+ ],
+ "request_submitters": [
+  "CDPM",
+  "COSMOS",
+  "аналитик",
+  "владелец"
+ ],
+ "stand_results": [
+  "failed",
+  "passed",
+  "skipped"
+ ],
+ "stand_task_kinds": [
+  "builder_method",
+  "check_code",
+  "check_template",
+  "export_form",
+  "kotlin_constraint",
+  "kotlin_form",
+  "kotlin_knob",
+  "kotlin_logic_form",
+  "kotlin_metric"
+ ],
+ "synthetic_codes": {
+  "dataset_ids": [
+   "S1",
+   "S2",
+   "S3",
+   "S4",
+   "S5",
+   "S6",
+   "S7",
+   "S8",
+   "S9"
+  ],
+  "employee_pattern": "^P[1-9][0-9]*$",
+  "fleet_types": [
+   "T1",
+   "T2",
+   "T3",
+   "T4",
+   "T5",
+   "T6",
+   "T7",
+   "T8",
+   "T9"
+  ],
+  "stations": [
+   "ST1",
+   "ST2",
+   "ST3",
+   "ST4",
+   "ST5",
+   "ST6",
+   "ST7",
+   "ST8",
+   "ST9"
+  ]
+ },
+ "task_kinds": [
+  "pairing",
+  "rostering"
+ ],
+ "unbound_params": {
+  "accumulation_window": {
+   "note": "окно накопления налёта",
+   "relation": null,
+   "source": "словарь CDPM",
+   "unit": "duration_minutes"
+  },
+  "briefing_min": {
+   "note": "подготовка к полёту перед сменой",
+   "relation": null,
+   "source": "словарь CDPM",
+   "unit": "duration_minutes"
+  },
+  "debriefing_min": {
+   "note": "разбор после полёта",
+   "relation": null,
+   "source": "словарь CDPM",
+   "unit": "duration_minutes"
+  },
+  "duty_rig": {
+   "note": "гарантированный кредит по длительности смены",
+   "relation": null,
+   "source": "словарь CDPM",
+   "unit": "hours_per_credit_hour"
+  },
+  "duty_split_threshold": {
+   "note": "порог разрыва смены (мягкая форма)",
+   "relation": null,
+   "source": "словарь CDPM",
+   "unit": "duration_minutes"
+  },
+  "earliest_departure": {
+   "note": "самый ранний вылет по времени суток",
+   "relation": null,
+   "source": "словарь CDPM",
+   "unit": "time_of_day_minutes"
+  },
+  "latest_arrival": {
+   "note": "самый поздний прилёт по времени суток",
+   "relation": null,
+   "source": "словарь CDPM",
+   "unit": "time_of_day_minutes"
+  },
+  "long_sit_step": {
+   "note": "шаг ступени штрафа за длинную стыковку",
+   "relation": null,
+   "source": "словарь CDPM",
+   "unit": "duration_minutes"
+  },
+  "long_sit_threshold": {
+   "note": "порог длинной стыковки",
+   "relation": null,
+   "source": "словарь CDPM",
+   "unit": "duration_minutes"
+  },
+  "max_block_time": {
+   "note": "предел налёта в окне накопления",
+   "relation": null,
+   "source": "словарь CDPM",
+   "unit": "duration_minutes"
+  },
+  "max_consecutive_days": {
+   "note": "предел рабочих дней подряд",
+   "relation": null,
+   "source": "словарь CDPM",
+   "unit": "count"
+  },
+  "max_pairing_span": {
+   "note": "предел размаха командировки",
+   "relation": null,
+   "source": "словарь CDPM",
+   "unit": "duration_minutes"
+  },
+  "min_duty_credit": {
+   "note": "минимальный кредит за смену",
+   "relation": null,
+   "source": "словарь CDPM",
+   "unit": "credit_hours"
+  },
+  "min_rest_after_long": {
+   "note": "отдых после длинной смены",
+   "relation": null,
+   "source": "словарь CDPM",
+   "unit": "duration_minutes"
+  },
+  "monthly_guarantee": {
+   "note": "месячная гарантия кредитных часов",
+   "relation": null,
+   "source": "словарь CDPM",
+   "unit": "credit_hours"
+  },
+  "soft_consecutive_days": {
+   "note": "мягкий предел дней подряд",
+   "relation": null,
+   "source": "словарь CDPM",
+   "unit": "count"
+  },
+  "trip_rig": {
+   "note": "гарантированный кредит по длительности командировки",
+   "relation": null,
+   "source": "словарь CDPM",
+   "unit": "hours_per_credit_hour"
+  }
+ },
+ "unit_words": {
+  "code": {
+   "canon": "обозначение",
+   "form": "code",
+   "scale": {},
+   "words": [
+    "обозначение"
+   ]
+  },
+  "code_list": {
+   "canon": "перечень обозначений",
+   "form": "code_list",
+   "scale": {},
+   "words": [
+    "перечень обозначений",
+    "через запятую"
+   ]
+  },
+  "count": {
+   "canon": "штука",
+   "form": "integer_nonneg",
+   "scale": {},
+   "words": [
+    "день",
+    "дней",
+    "дня",
+    "перегон",
+    "перегона",
+    "перегонов",
+    "посадка",
+    "посадки",
+    "посадок",
+    "раз",
+    "раза",
+    "смен",
+    "смена",
+    "смены",
+    "сутки",
+    "суток",
+    "человек",
+    "человека",
+    "шт",
+    "штук",
+    "штука",
+    "штуки"
+   ]
+  },
+  "credit_hours": {
+   "canon": "кредитный час",
+   "form": "decimal_nonneg",
+   "scale": {},
+   "words": [
+    "кредитного часа",
+    "кредитный час",
+    "кредитных часов",
+    "ч кредита",
+    "ч",
+    "час",
+    "часа",
+    "часах",
+    "часов",
+    "часы"
+   ]
+  },
+  "credit_hours_per_hour": {
+   "canon": "кредитный час на час",
+   "form": "decimal_positive",
+   "scale": {},
+   "words": [
+    "кредитный час на час",
+    "кредитных часов на час"
+   ]
+  },
+  "duration_minutes": {
+   "canon": "минута",
+   "form": "integer_nonneg",
+   "scale": {
+    "день": 1440,
+    "дн": 1440,
+    "дней": 1440,
+    "дня": 1440,
+    "мин": 1,
+    "минут": 1,
+    "минута": 1,
+    "минутах": 1,
+    "минуты": 1,
+    "сут": 1440,
+    "сутки": 1440,
+    "суток": 1440,
+    "ч": 60,
+    "час": 60,
+    "часа": 60,
+    "часах": 60,
+    "часов": 60,
+    "часы": 60
+   },
+   "words": [
+    "день",
+    "дн",
+    "дней",
+    "дня",
+    "мин",
+    "минут",
+    "минута",
+    "минутах",
+    "минуты",
+    "сут",
+    "сутки",
+    "суток",
+    "ч",
+    "час",
+    "часа",
+    "часах",
+    "часов",
+    "часы",
+    "чч:мм"
+   ]
+  },
+  "flag": {
+   "canon": "да/нет",
+   "form": "boolean",
+   "scale": {},
+   "words": [
+    "да",
+    "не требуется",
+    "нет",
+    "требуется"
+   ]
+  },
+  "hours_per_credit_hour": {
+   "canon": "час на кредитный час",
+   "form": "decimal_positive",
+   "scale": {},
+   "words": [
+    "час на кредитный час",
+    "часа на кредитный час",
+    "часов на час кредита"
+   ]
+  },
+  "time_of_day_minutes": {
+   "canon": "минута от полуночи",
+   "form": "integer_0_1439_tz",
+   "scale": {},
+   "words": [
+    "чч:мм"
+   ]
+  }
+ },
+ "violation_sizes": [
+  "count",
+  "magnitude"
+ ],
+ "violation_units": {
+  "day": "сутки",
+  "duty": "смена",
+  "event": "событие",
+  "hour": "час",
+  "minute": "минута",
+  "night": "ночь"
+ },
+ "weekdays": [
+  "friday",
+  "monday",
+  "saturday",
+  "sunday",
+  "thursday",
+  "tuesday",
+  "wednesday"
+ ],
+ "world_forms": {
+  "cost_pair": {
+   "fields": [
+    "crew",
+    "dh_min",
+    "flight_min",
+    "form",
+    "rates_deci"
+   ],
+   "note": "контрольная пара критерия: минуты полёта и перегона, число людей, ставки деци-целыми; ожидание построителя — целая сумма в деци"
+  },
+  "schedule": {
+   "fields": [
+    "crews",
+    "flights",
+    "form",
+    "history",
+    "horizon",
+    "params"
+   ],
+   "note": "синтетическое расписание: рейсы (id, from, to, dep, arr, fleet_type и необязательный deadhead), сотрудники (id, base, rank, ratings и необязательные preferred_days_off, seniority), params — «имя параметра → значение», history — список записей истории либо null, horizon — «from/to» либо null; коды — только синтетические. Необязательные ключи мира: assignments (crew, flight, seat; без них единственный сотрудник летит все рейсы в порядке вылета), history_calendar (табельный номер, дата, вид суток, признак ночной смены), rule_form (поля формы правила), conditions (условия записи), criterion (экземпляр критерия), stand (ручки стенда, не параметры каталога)"
+  },
+  "tables": {
+   "fields": [
+    "form",
+    "tables"
+   ],
+   "note": "таблицы линии данных: книга «идентификатор набора/лист» с колонками и строками; идентификаторы наборов — только синтетические; ожидание проверки по шаблону — имя шаблона, значения параметров и число находок, где значения покрывают обязательные поля шаблона словаря"
+  }
+ },
+ "zones": [
+  "BOTH",
+  "PAIRING",
+  "ROSTERING"
+ ]
+}

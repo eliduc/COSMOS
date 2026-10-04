@@ -1,0 +1,20 @@
+{
+  "fingerprint": "73bd325004cecf00f4abac915296613ad968c6d1e7b3923c3c47f4e8ed065d0a",
+  "form_version": 1,
+  "gates": {
+    "stand_tasks_required": false,
+    "subject_words_required": false
+  },
+  "legacy_registry_rev": "07f945deecdc",
+  "name": "template-catalog",
+  "note": "UNRELEASED Local-only: additional arrival-day unavailability violation/healthy controls; all existing tasks and norms preserved.",
+  "released_at": "2026-09-20",
+  "released_by": "аналитик",
+  "sections": {
+    "criteria": "criteria.json",
+    "dictionaries": "dictionaries.json",
+    "families": "families.json",
+    "requests": "requests.json"
+  },
+  "version": "0.8.0-draft.6"
+}

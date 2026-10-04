@@ -1,0 +1,162 @@
+{
+ "customer": "Полярис-H0-C (ВМП H0 с правилом без шаблона)",
+ "catalog": {
+  "version": "0.6.0",
+  "fingerprint": "7dc0626d4ce85eb0b7a26ca385953ac03a2dce68557bb2e040a614f1584ad549"
+ },
+ "stage": "ИД H0-C, фаза 2 (каталог с семьёй crew_unavailability: полный прогон)",
+ "phase": 2,
+ "data_class": "synthetic",
+ "llm_scope": "any",
+ "llm_scope_basis": "набор синтетический: вымышленная авиакомпания, генератор в репозитории (build_kit_h0c.py поверх build_kit_h0.py); решение владельца 03.09.2026 — для синтетических и открытых данных любые модели, включая облачные",
+ "rules_files": [
+  "docs/ID-H0C-VMP-1.docx",
+  "docs/ID-H0C-VMP-2.xlsx",
+  "docs/ID-H0C-VMP-3.jpg"
+ ],
+ "data_files": [
+  "data/ID-H0-DATA.xlsx"
+ ],
+ "answer_book": "etalon/ANSWER-BOOK-MACHINE.json",
+ "agents_layout_from_repo": "open-bench/polyaris-h0/agents-layout-h0.json",
+ "agents_layout": "../polyaris-h0/agents-layout-h0.json",
+ "strict_questions": false,
+ "etalon_vmp": "open-bench/polyaris-h0c/etalon/VMP-H0C.json",
+ "etalon_form": "open-bench/polyaris-h0c/etalon/VMP-H0C-form.json",
+ "expect": {
+  "_comment": "Фаза 2 H0-C (каталог с семьёй после слова владельца, CR конвейера и выпуска): VN-027 садится в категорию A, ВМП = H0 + VN-027, готовность «в»; COSMOS: пейринг «построен», ростер «допустимо», обе сверки с ИДАК без нарушений (строк справочно 11 и 14 — H0 плюс VN-027).",
+  "questions": [
+   "Q-3b-история-accumulator",
+   "Q-3b-история-boundary"
+  ],
+  "objectives": 2,
+  "readiness_ladder": {
+   "pairing": "optimization",
+   "rostering": "optimization"
+  },
+  "rule_landing": {
+   "VN-027": "A"
+  },
+  "cosmos_numbers": {
+   "pairing": "11/0",
+   "rostering": "14/0",
+   "_note": "справочно, по чтению ИДАК каналом api: строк ok+soft_info+not_checkable / нарушений; число строк гуляет по чтению модели, критерий — вердикты, сертификаты и 0 нарушений"
+  },
+  "stage_verdicts": {
+   "extract": [
+    "EQUIVALENT",
+    "NOT_EQUIVALENT"
+   ],
+   "answers": "EQUIVALENT",
+   "package": "EQUIVALENT",
+   "pairing": "пейринг построен",
+   "rostering": "допустимо",
+   "source-check": "без нарушений",
+   "_note": "ожидаемые вердикты стадий фазы 2. Извлечение эквивалентно эталону, если модель не задала необязательный вопрос по VN-027 (логика «свод против пересказа», величина «одна»); задала — NOT_EQUIVALENT до ответа, оба пути законны. Вопросы об истории рождаются линией данных (стадия cycle) и закрываются книгой ответов; после ответов и в пакете ВМП = H0 + VN-027. Вердикты стадий COSMOS судятся только с машинным отчётом нажатий (--cosmos-press). У фазы 1 ключа нет: прогон встаёт на пробеле покрытия, пакет не выдаётся, и вердикт пакета там другой."
+  },
+  "consistency": "sat",
+  "record_stitched": {
+   "cosmos_stages": [
+    "pairing",
+    "rostering",
+    "source-check"
+   ],
+   "_note": "запись о прогоне сшита: у хозяина записи стоят этапы COSMOS по каждой нажатой задаче и по сверке с ИДАК; судится только с машинным отчётом нажатий (--cosmos-press)"
+  },
+  "golden_by_owner_only": {
+   "runner_sets_golden": false,
+   "_note": "признак золотого прогона ставит ТОЛЬКО владелец словом после приёмки на Prod: раннер не ставит его никогда, а признак у хозяина записи без подписи (кто, когда, какими словами) — красная строка; судится только с машинным отчётом нажатий (--cosmos-press)"
+  },
+  "questions_optional": [
+   "Q-2-лог-R-S2-лист-«VMP-H0-2»-строка-5",
+   "Q-2-balance-S2-лист-«VMP-H0-2»-строка-5-number_word"
+  ],
+  "family": {
+   "id": "crew_unavailability",
+   "roles": {},
+   "params": {}
+  },
+  "family_complete": {
+   "crew_unavailability": []
+  }
+ },
+ "expect_phases": {
+  "1": {
+   "_comment": "Фаза 1 H0-C (каталог без семьи): машинное правило VN-027 садится в категорию C — пробел покрытия; CDPM подаёт заявку в каталог (черновик семьи), прогон останавливается «стоп → заявка → шаблон»; пакет с готовностью «в» не выдаётся. Вопрос анкеты по VN-027 не задаётся (иначе строка не кандидат заявки).",
+   "questions": [
+    "Q-3b-история-accumulator",
+    "Q-3b-история-boundary"
+   ],
+   "objectives": 2,
+   "coverage_gap_rules": [
+    "VN-027"
+   ],
+   "catalog_requests": {
+    "count": 1,
+    "kind": "HARD",
+    "zone": "ROSTERING",
+    "statement_contains": "отпуск",
+    "param_unit": "flag"
+   },
+   "package_ready": false,
+   "questions_optional": [
+    "Q-2-лог-R-S2-лист-«VMP-H0-2»-строка-5",
+    "Q-2-balance-S2-лист-«VMP-H0-2»-строка-5-number_word"
+   ]
+  },
+  "2": {
+   "_comment": "Фаза 2 H0-C (каталог с семьёй после слова владельца, CR конвейера и выпуска): VN-027 садится в категорию A, ВМП = H0 + VN-027, готовность «в»; COSMOS: пейринг «построен», ростер «допустимо», обе сверки с ИДАК без нарушений (строк справочно 11 и 14 — H0 плюс VN-027).",
+   "questions": [
+    "Q-3b-история-accumulator",
+    "Q-3b-история-boundary"
+   ],
+   "objectives": 2,
+   "readiness_ladder": {
+    "pairing": "optimization",
+    "rostering": "optimization"
+   },
+   "rule_landing": {
+    "VN-027": "A"
+   },
+   "cosmos_numbers": {
+    "pairing": "11/0",
+    "rostering": "14/0",
+    "_note": "справочно, по чтению ИДАК каналом api: строк ok+soft_info+not_checkable / нарушений; число строк гуляет по чтению модели, критерий — вердикты, сертификаты и 0 нарушений"
+   },
+   "stage_verdicts": {
+    "extract": [
+     "EQUIVALENT",
+     "NOT_EQUIVALENT"
+    ],
+    "answers": "EQUIVALENT",
+    "package": "EQUIVALENT",
+    "pairing": "пейринг построен",
+    "rostering": "допустимо",
+    "source-check": "без нарушений",
+    "_note": "ожидаемые вердикты стадий фазы 2. Извлечение эквивалентно эталону, если модель не задала необязательный вопрос по VN-027 (логика «свод против пересказа», величина «одна»); задала — NOT_EQUIVALENT до ответа, оба пути законны. Вопросы об истории рождаются линией данных (стадия cycle) и закрываются книгой ответов; после ответов и в пакете ВМП = H0 + VN-027. Вердикты стадий COSMOS судятся только с машинным отчётом нажатий (--cosmos-press). У фазы 1 ключа нет: прогон встаёт на пробеле покрытия, пакет не выдаётся, и вердикт пакета там другой."
+   },
+   "consistency": "sat",
+   "record_stitched": {
+    "cosmos_stages": [
+     "pairing",
+     "rostering",
+     "source-check"
+    ],
+    "_note": "запись о прогоне сшита: у хозяина записи стоят этапы COSMOS по каждой нажатой задаче и по сверке с ИДАК; судится только с машинным отчётом нажатий (--cosmos-press)"
+   },
+   "golden_by_owner_only": {
+    "runner_sets_golden": false,
+    "_note": "признак золотого прогона ставит ТОЛЬКО владелец словом после приёмки на Prod: раннер не ставит его никогда, а признак у хозяина записи без подписи (кто, когда, какими словами) — красная строка; судится только с машинным отчётом нажатий (--cosmos-press)"
+   },
+   "questions_optional": [
+    "Q-2-лог-R-S2-лист-«VMP-H0-2»-строка-5",
+    "Q-2-balance-S2-лист-«VMP-H0-2»-строка-5-number_word"
+   ]
+  }
+ },
+ "same_run": {
+  "docs_registry_rev": "5534196f824aff80156e33cd5fa741c869c5fd8d23e48b39e295d15d73e8b7d9",
+  "note": "документы и книга — байт в байт фазы 1 (продолжение того же прогона)"
+ },
+ "note": "ИДАК H0-C = H0 плюс правило VN-027 «Отпуск» без семьи в каталоге 0.2.0 (владелец 09.09.2026, вариант C). Фаза 1: посадка C, заявка в каталог, стоп; слово владельца → CR конвейера пишет семью и исполнитель → перевод записи → выпуск; фаза 2: полный прогон, ВМП = H0 + VN-027, COSMOS без нарушений (строк справочно 11 и 14). Книга данных — ID-H0-DATA.xlsx набора H0 плюс одна строка отпуска (H02, 2026-09-05…2026-09-06; слово владельца 16.09.2026). Продолжение того же прогона фазы 1 (--same-run): документы и книга — фазы 1."
+}

@@ -1,0 +1,81 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://fregene.ai/schemas/catalog-support-1.json",
+ "title": "Свидетельство поддержки записей каталога (support/1)",
+ "description": "Файл catalog/support.json — носитель свидетельства поддержки (K06, П0 §3.5; сторона COSMOS §4.2 и приложение Г). Файл ВНЕ отпечатка каталога (как requests.json): его запись не меняет ни версии, ни отпечатка. Пишет его ТОЛЬКО служба каталога одной функцией читателя (template_catalog.bindings.support_table) по клеткам привязок продуктов (vmp/bindings.json, cdpm/bindings.json), их стендовым подтверждениям и акту выпуска; неизменяемая копия ложится в catalog/releases/<версия>/support.json. Читают все одинаково — Catalog.support(); ручка GET /api/records/{section}/{id}/support — представление этого файла, а не второй носитель. Три роли, один носитель: ЗАЯВЛЯЕТ продукт, ВЫЧИСЛЯЕТ служба, УТВЕРЖДАЕТ владелец актом выпуска (approved). Для готовности «не проверено» = не поддержано. Носитель схемы — template_catalog/schemas/support.schema.json (читатель каталога, общий пакет обоих продуктов); catalog_service/schemas/support.schema.json — байт-в-байт копия, как у схемы квитанции. Схема ПРИМЕНЯЕТСЯ при каждом чтении (template_catalog.bindings.support_form_problems зовётся из Catalog.support()): неизвестная версия схемы и иная форма — отказ читателя словами, а не «годное свидетельство» (общий закон 5 П0).",
+ "type": "object",
+ "required": ["schema_version", "form_version", "catalog", "computed_at",
+              "computed_by", "cells"],
+ "properties": {
+  "schema_version": {"const": "support/1",
+                     "description": "версия схемы свидетельства (П0 §0.1)"},
+  "form_version": {"const": 1, "description": "форма файла"},
+  "catalog": {"type": "object", "required": ["version", "fingerprint"],
+              "description": "каталог, для которого вычислена таблица; иной отпечаток — свидетельство к этому каталогу не относится",
+              "properties": {
+               "version": {"type": "string", "minLength": 1},
+               "fingerprint": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}},
+  "computed_at": {"type": "string", "minLength": 1},
+  "computed_by": {"const": "служба",
+                  "description": "вычисляет только служба каталога"},
+  "cells": {"type": "array", "items": {"$ref": "#/$defs/cell"}}
+ },
+ "$defs": {
+  "cell": {
+   "type": "object", "additionalProperties": false,
+   "required": ["section", "record_id", "kind", "product", "state", "binding",
+                "bindings_file", "stand", "approved"],
+   "description": "Ячейка: раздел × запись × вид исполнителя × продукт. Заводится на КАЖДЫЙ вид, объявленный записью (executor_kinds / computable_by), и КАЖДЫЙ продукт словаря products — в том числе там, где продукт не сказал ничего.",
+   "properties": {
+    "section": {"enum": ["families", "criteria"]},
+    "record_id": {"type": "string", "minLength": 1},
+    "kind": {"type": "string", "minLength": 1,
+             "description": "вид исполнителя словом словаря executor_kinds"},
+    "product": {"type": "string", "minLength": 1,
+                "description": "продукт словом словаря products"},
+    "state": {"enum": ["есть", "нет", "не проверено"],
+              "description": "«есть» — строка «есть» в привязках продукта И стенд по виду на этом отпечатке без провалов (≥ 1 passed, 0 failed); «нет» — строки нет, «нет» либо «заявлен»; «не проверено» — строка «есть» без подтверждения на этом отпечатке (нет стенда, один skipped, провал, либо файл привязок написан не для этого каталога)"},
+    "binding": {"type": ["object", "null"], "additionalProperties": false,
+                "required": ["state", "file", "symbol", "cr_key", "note"],
+                "description": "лучшая по рангу строка привязок продукта (есть > заявлен > нет); строки нет — null",
+                "properties": {
+                 "state": {"type": ["string", "null"]},
+                 "file": {"type": ["string", "null"]},
+                 "symbol": {"type": ["string", "null"]},
+                 "cr_key": {"type": ["string", "null"]},
+                 "note": {"type": ["string", "null"]}}},
+    "bindings_file": {"type": "object", "additionalProperties": false,
+                      "required": ["sha256", "product_version",
+                                   "generated_from", "catalog_version",
+                                   "catalog_fingerprint", "generated_at"],
+                      "description": "идентичность файла привязок, из которого взята строка; у продукта без файла все поля null",
+                      "properties": {
+                       "sha256": {"type": ["string", "null"],
+                                  "pattern": "^[0-9a-f]{64}$"},
+                       "product_version": {"type": ["string", "null"]},
+                       "generated_from": {"type": ["string", "null"]},
+                       "catalog_version": {"type": ["string", "null"]},
+                       "catalog_fingerprint": {"type": ["string", "null"]},
+                       "generated_at": {"type": ["string", "null"]}}},
+    "stand": {"type": ["object", "null"], "additionalProperties": false,
+              "required": ["tasks", "passed", "failed", "skipped", "commit",
+                           "at"],
+              "description": "стендовые подтверждения ЭТОГО вида у записи (stand_verified продукта); подтверждений нет — null",
+              "properties": {
+               "tasks": {"type": "array", "items": {"type": "string"}},
+               "passed": {"type": "integer", "minimum": 0},
+               "failed": {"type": "integer", "minimum": 0},
+               "skipped": {"type": "integer", "minimum": 0},
+               "commit": {"type": ["string", "null"]},
+               "at": {"type": ["string", "null"]}}},
+    "approved": {"type": ["object", "null"], "additionalProperties": false,
+                 "required": ["by", "at", "how"],
+                 "description": "акт владельца: заполняется ТОЛЬКО выпуском и только у подтверждённых ячеек; между выпусками null",
+                 "properties": {
+                  "by": {"type": "string", "minLength": 1},
+                  "at": {"type": "string", "minLength": 1},
+                  "how": {"type": "string"}}}
+   }
+  }
+ }
+}

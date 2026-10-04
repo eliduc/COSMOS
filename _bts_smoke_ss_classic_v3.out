@@ -1,0 +1,15 @@
+[14:11:06] === BTS COMPARE ===
+  schedule:   DL_ATL_2024-08-15.json
+  budget:     60s per algorithm
+  algorithms: ['ss_classic']
+
+[14:11:07] Source: 1358 flights, 9097 crew, 6824 crew-slot assignments
+
+========= [14:11:07] [1/1] ss_classic =========
+[14:11:10] firing classic LA budget=60s ...
+  [+   61s] best=0hard/-336369soft
+  [14:12:11] ss_classic DONE: 0hard/-336369soft (first feas @ 61.5s) elapsed=61.5s
+
+[14:12:11] === SUMMARY ===
+algorithm          mode           score                  first_feas  elapsed
+ss_classic         single_stage   0hard/-336369soft            61.5     61.5

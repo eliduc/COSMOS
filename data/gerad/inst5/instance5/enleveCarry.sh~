@@ -1,0 +1,10 @@
+sed -e 's/ *UCC_//' \
+		-e '/LEG_.._\S* 0/ d' \
+		-e 's/ 100000.*$/ \/ d/' \
+		-e 's/^/\//' \
+carry > test.txt;
+
+sed -i --file=test.txt day_1.csv;
+sed -i --file=test.txt day_31.csv;
+
+#rm test.txt;

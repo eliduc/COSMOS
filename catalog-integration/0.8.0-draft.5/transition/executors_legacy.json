@@ -1,0 +1,63 @@
+{
+ "balanced_workload": [
+  "kotlin FlightCrewSchedulingConstraintProvider.creditHoursSpreadOverThreshold («Credit hours spread over threshold»): порог — параметр workload_spread_threshold (часы) через окно порогов workload_spread_threshold_min; целевая credit_hours_spread — соседнее ограничение creditHoursSpread («Credit hours spread»), разброс целиком"
+ ],
+ "calendar_windows": [
+  "kotlin FlightCrewSchedulingConstraintProvider.calendarWindowLayovers",
+  "kotlin TaskPackage.calendarWindowsOf"
+ ],
+ "connection_windows": [
+  "_pairing_builder.chain_ok"
+ ],
+ "crew_composition": [
+  "crew_size пакета + судья состава решателя"
+ ],
+ "days_off_floor": [
+  "kotlin LogicForms.daysOffPerMonthMin (форма DAYS_OFF_PER_MONTH_MIN; логика из посадки либо из блока logic; перенос month_to_date.days_worked)",
+  "kotlin LogicForms.daysOffInRollingWindow (форма DAYS_OFF_IN_ROLLING_WINDOW_MIN; календарь history.calendar)",
+  "python vmp/run/logic_checks._days_off / _days_off_window (сертификат: листы «Назначения», «История», «Календарь истории»)"
+ ],
+ "deadhead_rules": [
+  "_pairing_builder.adjacent_dh_ok",
+  "_pairing_builder.periods_of"
+ ],
+ "duty_extension_penalty": [
+  "kotlin FlightCrewSchedulingConstraintProvider.dutyExtensionOverThreshold («Duty extension over threshold»)",
+  "kotlin RunThresholds.applyDutyExtension (жёсткая грань = потолок продления; базовый предел — мягкий порог; построитель пейринга получает потолок эхом порога max_duty_span_min)"
+ ],
+ "duty_limits": [
+  "_conditions.worktime_exact",
+  "_pairing_builder.duty_limit_ok"
+ ],
+ "fleet_exclusions": [
+  "vmp.conditions_export (машинные формы пакета)",
+  "kotlin FlightCrewSchedulingConstraintProvider.typeRatingRequired",
+  "kotlin FlightCrewSchedulingConstraintProvider.typeRatingCurrency"
+ ],
+ "layover_penalty": [
+  "kotlin FlightCrewSchedulingConstraintProvider.layoverNights («Layover nights away from home»)"
+ ],
+ "night_series": [
+  "kotlin LogicForms.consecutiveNightDuties (форма CONSECUTIVE_NIGHT_DUTIES_MAX; логика из посадки либо из блока logic; перенос series.consecutive_night_duties)",
+  "kotlin LogicForms.nightDutiesInRollingWindow (форма NIGHT_DUTIES_IN_ROLLING_WINDOW_MAX; календарь history.calendar)",
+  "python vmp/run/logic_checks._night_series / _night_window (сертификат: листы «Смены», «История», «Календарь истории»)"
+ ],
+ "reserve_floors": [
+  "решатель: ограничение Reserve crews (нормы reserve_crews пакета)"
+ ],
+ "rest_floors": [
+  "_conditions.rest_floor",
+  "_duty_periods.build_periods"
+ ],
+ "rolling_rest": [
+  "kotlin LogicForms.restInRollingWindow (форма REST_IN_ROLLING_WINDOW из блока logic; перенос last_duty.end)",
+  "python vmp/run/logic_checks._rolling_rest (сертификат: листы «Назначения» и «История»)"
+ ],
+ "span_accumulators": [
+  "_pairing_builder.chain_cost",
+  "_roster_cpsat.build_and_solve"
+ ],
+ "time_scale": [
+  "решатель: ручка base_tz_offset_min пакета + контракт правил построителя"
+ ]
+}

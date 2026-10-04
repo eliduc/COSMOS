@@ -1,0 +1,20 @@
+{
+ "fingerprint": "2dd8037b1fd6fd5c6cb17950f818cc5b4a94f5c7cb2fda1029a6bfdac1234c1d",
+ "form_version": 1,
+ "gates": {
+  "stand_tasks_required": false,
+  "subject_words_required": false
+ },
+ "legacy_registry_rev": "d9b12d93d9b7",
+ "name": "template-catalog",
+ "note": "0.3.0: param_sets у пяти семей с независимыми параметрами (duty_limits, connection_windows, fleet_exclusions, deadhead_rules, span_accumulators) — слово владельца 09.09.2026 11:4x, вариант 1",
+ "released_at": "2026-09-09",
+ "released_by": "владелец",
+ "sections": {
+  "criteria": "criteria.json",
+  "dictionaries": "dictionaries.json",
+  "families": "families.json",
+  "requests": "requests.json"
+ },
+ "version": "0.3.0"
+}

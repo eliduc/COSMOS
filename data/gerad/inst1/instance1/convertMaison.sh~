@@ -1,0 +1,81 @@
+#!/bin/bash
+
+#dossier ou va l'output
+mkdir maison;
+
+
+# convertit les day_x.csv en day_x
+
+for x in day_*[0-9].csv; do  
+
+a=$(echo $x|sed s/.csv//);
+
+sed  -e '1 s/^.*$/AirLegs = {/g' \
+     -e 's/ , / /g' \
+     -e '2,$ s/$/;/'  \
+     -e '$ a};' \
+     $x > maison/$a ; 
+
+done
+
+# convertit listOfBases.csv en listOfBases
+sed -e '1 s/^.*$/Airports = {/g' \
+    -e 's/ *, */ /' \
+    -e 's/ *, */  /g' \
+    -e '2,$ s/$/;/'  \
+    -e '$ a};' \
+    listOfBases.csv > maison/listOfBases ;
+
+    
+# convertit personalizedEmployees.csv en personalizedEmployees.in
+sed -e '1 s/^.*$/PersonalizedEmployees = { /g' \
+    -e 's/ , /  1   \"/' \
+    -e 's/ , /\"     \"/' \
+    -e 's/ , /\"            /' \
+    -e 's/ , /      /' \
+    -e 's/ , /       /' \
+    -e 's/ , /       /' \
+    -e '2,$ s/$/;/'  \
+    -e '$ a};' \
+    personalizedEmployees.csv > maison/personalizedEmployees.in ;
+
+# convertit PreferredAirLegs.csv en PreferredAirLegs.txt
+sed -e '1 s/^.*$/PreferredAirLegs = { /g' \
+    -e 's/ , /     /' \
+    -e 's/ , / ,/g' \
+    -e '2,$ s/$/ ;/'  \
+    -e '$ a};' \
+    PreferredAirLegs.csv > maison/PreferredAirLegs.txt ;
+    
+# convertit crew_avail_const.csv en Crews_availability_netgen
+sed -e '1 s/^.*$/Crews_availability={/g' \
+		-e '2d' \
+		-e 's/ *$//' \
+    -e '2,$ s/$/;/' \
+    -e '$ a}' \
+    -e '2,12 s/  , /  /' \
+    -e '13,$ s/ , / /' \
+    -e 's/ , / /g'\
+    crew_avail_const.csv > maison/Crews_availability_netgen ;
+    
+# convertit crew_avail_const_avg.csv en Crews_availability_netgen_avg
+sed -e '1 s/^.*$/Crews_availability={/g' \
+		-e '2d' \
+		-e 's/ *$//' \
+    -e '2,$ s/$/;/' \
+    -e '$ a}' \
+    -e '2,12 s/  , /  /' \
+    -e '13,$ s/ , / /' \
+    -e 's/ , / /g'\
+    crew_avail_const_avg.csv > maison/Crews_availability_netgen_avg ;
+    
+#convertit credit_constrains.csv en credit_constrains
+sed -e 's/ *$/ ;/g' \
+		-e '4,$ s/^/"/'\
+		-e '3,$ s/ /" /'\
+		-e '1 s/^.*$/creditConstrains = {/g' \
+		-e '2d' \
+		-e 's/ , / /g' \
+		-e '$ a}' \
+		credit_constrains.csv > maison/credit_constrains
+    

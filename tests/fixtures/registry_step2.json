@@ -1,0 +1,610 @@
+{
+ "code": "754c272613f075c3978a0d242b35e3a9185e4eb2",
+ "criteria_spec": {
+  "min_person_days": {
+   "needs": null,
+   "title": "минимум человеко-дней командировки"
+  },
+  "rank_normalized_cost": {
+   "needs": null,
+   "semantics": {
+    "formula": "стоимость цепочки = Σ по рангам состава [полётное×ставка_полёт + рабочее×ставка_работа]; времена ПО ПЕРЕЛЁТАМ (не по размаху смен): рабочий перелёт входит в обе суммы, перегон/эстафета — только в рабочее; умножение на число людей каждого ранга (расширенный состав платится)",
+    "rates_form": {
+     "fields": [
+      "flight",
+      "work"
+     ],
+     "note": "значения — только из данных пакета; код валидирует форму (числа > 0, кратность 0,1), не значения",
+     "policy": "MUST_BE_EXTERNAL"
+    }
+   },
+   "title": "нормированная стоимость по рангам"
+  }
+ },
+ "criterion_types": {
+  "min_person_days": {
+   "class": "core"
+  },
+  "rank_normalized_cost": {
+   "class": "core"
+  }
+ },
+ "families": {
+  "balanced_workload": [
+   "workload_spread_threshold"
+  ],
+  "calendar_windows": [],
+  "connection_windows": [
+   "min_turnaround"
+  ],
+  "crew_composition": [
+   "crew_size"
+  ],
+  "days_off_floor": [
+   "days_off_window_days",
+   "min_days_off",
+   "min_days_off_in_window"
+  ],
+  "deadhead_rules": [],
+  "duty_extension_penalty": [
+   "duty_extension_cap",
+   "long_duty_threshold"
+  ],
+  "duty_limits": [
+   "max_duty_duration",
+   "max_landings_per_duty",
+   "max_pairing_days"
+  ],
+  "fleet_exclusions": [
+   "fleet_types"
+  ],
+  "layover_penalty": [],
+  "night_series": [
+   "max_consecutive_night_duties",
+   "max_night_duties_in_window",
+   "night_duty_end",
+   "night_duty_start",
+   "night_window_days"
+  ],
+  "reserve_floors": [
+   "reserve_crews"
+  ],
+  "rest_floors": [
+   "min_rest_home",
+   "min_rest_outstation"
+  ],
+  "rolling_rest": [
+   "weekly_rest_period",
+   "weekly_rest_required"
+  ],
+  "span_accumulators": [],
+  "time_scale": [
+   "base_tz_offset_min"
+  ]
+ },
+ "families_meta": {
+  "balanced_workload": {
+   "class": "core",
+   "kind": "SOFT",
+   "params": [
+    "workload_spread_threshold"
+   ],
+   "violation_unit": "hour",
+   "zone": "ROSTERING"
+  },
+  "calendar_windows": {
+   "class": "extension",
+   "kind": "SOFT",
+   "params": [],
+   "violation_unit": "night",
+   "zone": "PAIRING"
+  },
+  "connection_windows": {
+   "class": "core",
+   "kind": "HARD",
+   "params": [
+    "min_turnaround"
+   ],
+   "violation_unit": null,
+   "zone": "PAIRING"
+  },
+  "crew_composition": {
+   "class": "core",
+   "kind": "HARD",
+   "params": [
+    "crew_size"
+   ],
+   "violation_unit": null,
+   "zone": "BOTH"
+  },
+  "days_off_floor": {
+   "class": "core",
+   "kind": "HARD",
+   "params": [
+    "days_off_window_days",
+    "min_days_off",
+    "min_days_off_in_window"
+   ],
+   "violation_unit": null,
+   "zone": "ROSTERING"
+  },
+  "deadhead_rules": {
+   "class": "core",
+   "kind": "HARD",
+   "params": [],
+   "violation_unit": null,
+   "zone": "PAIRING"
+  },
+  "duty_extension_penalty": {
+   "class": "extension",
+   "kind": "SOFT",
+   "params": [
+    "duty_extension_cap",
+    "long_duty_threshold"
+   ],
+   "violation_unit": "duty",
+   "zone": "PAIRING"
+  },
+  "duty_limits": {
+   "class": "core",
+   "kind": "HARD",
+   "params": [
+    "max_duty_duration",
+    "max_landings_per_duty",
+    "max_pairing_days"
+   ],
+   "violation_unit": null,
+   "zone": "PAIRING"
+  },
+  "fleet_exclusions": {
+   "class": "core",
+   "kind": "HARD",
+   "params": [
+    "fleet_types"
+   ],
+   "violation_unit": null,
+   "zone": "BOTH"
+  },
+  "layover_penalty": {
+   "class": "core",
+   "kind": "SOFT",
+   "params": [],
+   "violation_unit": "night",
+   "zone": "PAIRING"
+  },
+  "night_series": {
+   "class": "core",
+   "kind": "HARD",
+   "params": [
+    "max_consecutive_night_duties",
+    "max_night_duties_in_window",
+    "night_duty_end",
+    "night_duty_start",
+    "night_window_days"
+   ],
+   "violation_unit": null,
+   "zone": "ROSTERING"
+  },
+  "reserve_floors": {
+   "class": "core",
+   "kind": "HARD",
+   "params": [
+    "reserve_crews"
+   ],
+   "violation_unit": null,
+   "zone": "ROSTERING"
+  },
+  "rest_floors": {
+   "class": "core",
+   "kind": "HARD",
+   "params": [
+    "min_rest_home",
+    "min_rest_outstation"
+   ],
+   "violation_unit": null,
+   "zone": "ROSTERING"
+  },
+  "rolling_rest": {
+   "class": "core",
+   "kind": "HARD",
+   "params": [
+    "weekly_rest_period",
+    "weekly_rest_required"
+   ],
+   "violation_unit": null,
+   "zone": "ROSTERING"
+  },
+  "span_accumulators": {
+   "class": "core",
+   "kind": "HARD",
+   "params": [],
+   "violation_unit": null,
+   "zone": "PAIRING"
+  },
+  "time_scale": {
+   "class": "core",
+   "kind": "HARD",
+   "params": [
+    "base_tz_offset_min"
+   ],
+   "violation_unit": null,
+   "zone": "BOTH"
+  }
+ },
+ "family_kind_zone": {
+  "balanced_workload": [
+   "SOFT",
+   "ROSTERING"
+  ],
+  "calendar_windows": [
+   "SOFT",
+   "PAIRING"
+  ],
+  "connection_windows": [
+   "HARD",
+   "PAIRING"
+  ],
+  "crew_composition": [
+   "HARD",
+   "BOTH"
+  ],
+  "days_off_floor": [
+   "HARD",
+   "ROSTERING"
+  ],
+  "deadhead_rules": [
+   "HARD",
+   "PAIRING"
+  ],
+  "duty_extension_penalty": [
+   "SOFT",
+   "PAIRING"
+  ],
+  "duty_limits": [
+   "HARD",
+   "PAIRING"
+  ],
+  "fleet_exclusions": [
+   "HARD",
+   "BOTH"
+  ],
+  "layover_penalty": [
+   "SOFT",
+   "PAIRING"
+  ],
+  "night_series": [
+   "HARD",
+   "ROSTERING"
+  ],
+  "reserve_floors": [
+   "HARD",
+   "ROSTERING"
+  ],
+  "rest_floors": [
+   "HARD",
+   "ROSTERING"
+  ],
+  "rolling_rest": [
+   "HARD",
+   "ROSTERING"
+  ],
+  "span_accumulators": [
+   "HARD",
+   "PAIRING"
+  ],
+  "time_scale": [
+   "HARD",
+   "BOTH"
+  ]
+ },
+ "family_violation_unit": {
+  "balanced_workload": "hour",
+  "calendar_windows": "night",
+  "duty_extension_penalty": "duty",
+  "layover_penalty": "night"
+ },
+ "form_version": 1,
+ "frozen_at": "2026-09-07",
+ "frozen_by": "сессия COSMOS",
+ "frozen_until": {
+  "class_title_kind_zone_violation_unit_criteria_spec": "шаг 7",
+  "executors": "шаг 4 (привязки)",
+  "families_params_registry_rev": "перевыпуск эталонов (шаги 3/5)"
+ },
+ "known_dates": [
+  "2026-08-26",
+  "2026-08-29",
+  "2026-08-30",
+  "2026-08-31",
+  "2026-09-01",
+  "2026-09-02",
+  "2026-09-03",
+  "2026-09-04",
+  "2026-09-05",
+  "2026-09-07"
+ ],
+ "name": "registry-step1",
+ "param_to_family": [
+  [
+   "max_duty_duration",
+   "duty_limits"
+  ],
+  [
+   "max_landings_per_duty",
+   "duty_limits"
+  ],
+  [
+   "max_pairing_days",
+   "duty_limits"
+  ],
+  [
+   "min_turnaround",
+   "connection_windows"
+  ],
+  [
+   "min_rest_home",
+   "rest_floors"
+  ],
+  [
+   "min_rest_outstation",
+   "rest_floors"
+  ],
+  [
+   "crew_size",
+   "crew_composition"
+  ],
+  [
+   "reserve_crews",
+   "reserve_floors"
+  ],
+  [
+   "base_tz_offset_min",
+   "time_scale"
+  ],
+  [
+   "long_duty_threshold",
+   "duty_extension_penalty"
+  ],
+  [
+   "duty_extension_cap",
+   "duty_extension_penalty"
+  ],
+  [
+   "fleet_types",
+   "fleet_exclusions"
+  ],
+  [
+   "workload_spread_threshold",
+   "balanced_workload"
+  ],
+  [
+   "max_consecutive_night_duties",
+   "night_series"
+  ],
+  [
+   "night_duty_start",
+   "night_series"
+  ],
+  [
+   "night_duty_end",
+   "night_series"
+  ],
+  [
+   "weekly_rest_required",
+   "rolling_rest"
+  ],
+  [
+   "weekly_rest_period",
+   "rolling_rest"
+  ],
+  [
+   "min_days_off",
+   "days_off_floor"
+  ],
+  [
+   "max_night_duties_in_window",
+   "night_series"
+  ],
+  [
+   "night_window_days",
+   "night_series"
+  ],
+  [
+   "min_days_off_in_window",
+   "days_off_floor"
+  ],
+  [
+   "days_off_window_days",
+   "days_off_floor"
+  ]
+ ],
+ "purpose": "снимок констант реестра кода на момент шага 2 — эталон гейта паритета до шага 7; воспроизводится freeze_registry_step1.py --check из ревизии code; правка — только новым файлом registry_step<N>.json по слову владельца",
+ "registry_rev": "bc78f37804ec",
+ "rule_mechanic_types": [
+  [
+   "calendar_windows",
+   {
+    "class": "extension",
+    "executors": [
+     "kotlin FlightCrewSchedulingConstraintProvider.calendarWindowLayovers",
+     "kotlin TaskPackage.calendarWindowsOf"
+    ],
+    "title": "действия в окне дней недели (штраф ночёвок и родня); окно/пояс/действие — формой пакета, вес — весами пакета"
+   }
+  ],
+  [
+   "night_series",
+   {
+    "class": "core",
+    "executors": [
+     "kotlin LogicForms.consecutiveNightDuties (форма CONSECUTIVE_NIGHT_DUTIES_MAX; логика из посадки либо из блока logic; перенос series.consecutive_night_duties)",
+     "kotlin LogicForms.nightDutiesInRollingWindow (форма NIGHT_DUTIES_IN_ROLLING_WINDOW_MAX; календарь history.calendar)",
+     "python vmp/run/logic_checks._night_series / _night_window (сертификат: листы «Смены», «История», «Календарь истории»)"
+    ],
+    "title": "ночных смен подряд не более N (max_consecutive_night_duties) либо ночных смен в скользящем окне не более K (max_night_duties_in_window за night_window_days суток); ночная — начало смены в окне [night_duty_start, night_duty_end) местного времени базы; серия из истории продолжается первой ночной сменой горизонта, окна через границу горизонта — по посуточному календарю истории"
+   }
+  ],
+  [
+   "rolling_rest",
+   {
+    "class": "core",
+    "executors": [
+     "kotlin LogicForms.restInRollingWindow (форма REST_IN_ROLLING_WINDOW из блока logic; перенос last_duty.end)",
+     "python vmp/run/logic_checks._rolling_rest (сертификат: листы «Назначения» и «История»)"
+    ],
+    "title": "в каждые N суток непрерывный отдых не менее W минут (скользящее окно weekly_rest_period, порог weekly_rest_required); окна открываются концом последней смены истории"
+   }
+  ],
+  [
+   "days_off_floor",
+   {
+    "class": "core",
+    "executors": [
+     "kotlin LogicForms.daysOffPerMonthMin (форма DAYS_OFF_PER_MONTH_MIN; логика из посадки либо из блока logic; перенос month_to_date.days_worked)",
+     "kotlin LogicForms.daysOffInRollingWindow (форма DAYS_OFF_IN_ROLLING_WINDOW_MIN; календарь history.calendar)",
+     "python vmp/run/logic_checks._days_off / _days_off_window (сертификат: листы «Назначения», «История», «Календарь истории»)"
+    ],
+    "title": "выходных в календарном месяце не менее N (min_days_off; месяц среза истории — с отработанными до среза сутками) либо выходных в скользящем окне не менее K (min_days_off_in_window за days_off_window_days суток; окна через границу горизонта — по посуточному календарю истории)"
+   }
+  ],
+  [
+   "layover_penalty",
+   {
+    "class": "core",
+    "executors": [
+     "kotlin FlightCrewSchedulingConstraintProvider.layoverNights («Layover nights away from home»)"
+    ],
+    "title": "мягкий штраф за ночёвку вне базы; вес — весом правила пакета"
+   }
+  ],
+  [
+   "balanced_workload",
+   {
+    "class": "core",
+    "executors": [
+     "kotlin FlightCrewSchedulingConstraintProvider.creditHoursSpreadOverThreshold («Credit hours spread over threshold»): порог — параметр workload_spread_threshold (часы) через окно порогов workload_spread_threshold_min; целевая credit_hours_spread — соседнее ограничение creditHoursSpread («Credit hours spread»), разброс целиком"
+    ],
+    "title": "штраф за целый кредитный час разброса сверх порога существенности по всему штату; вес — весом правила пакета"
+   }
+  ],
+  [
+   "duty_extension_penalty",
+   {
+    "class": "extension",
+    "executors": [
+     "kotlin FlightCrewSchedulingConstraintProvider.dutyExtensionOverThreshold («Duty extension over threshold»)",
+     "kotlin RunThresholds.applyDutyExtension (жёсткая грань = потолок продления; базовый предел — мягкий порог; построитель пейринга получает потолок эхом порога max_duty_span_min)"
+    ],
+    "title": "мягкое превышение порога длительности смены до жёсткого потолка: порог — базовый предел смены пакета, потолок — параметр duty_extension_cap правила семьи, вес — весом правила пакета"
+   }
+  ],
+  [
+   "time_scale",
+   {
+    "class": "core",
+    "executors": [
+     "решатель: ручка base_tz_offset_min пакета + контракт правил построителя"
+    ],
+    "title": "временная шкала планирования (сдвиг местного времени данных; сдвиг, не предел)"
+   }
+  ],
+  [
+   "crew_composition",
+   {
+    "class": "core",
+    "executors": [
+     "crew_size пакета + судья состава решателя"
+    ],
+    "title": "состав экипажа полётной смены"
+   }
+  ],
+  [
+   "reserve_floors",
+   {
+    "class": "core",
+    "executors": [
+     "решатель: ограничение Reserve crews (нормы reserve_crews пакета)"
+    ],
+    "title": "нормы резерва по базам"
+   }
+  ],
+  [
+   "duty_limits",
+   {
+    "class": "core",
+    "executors": [
+     "_conditions.worktime_exact",
+     "_pairing_builder.duty_limit_ok"
+    ],
+    "title": "пределы рабочей смены (ярусы, посадки, продления)"
+   }
+  ],
+  [
+   "rest_floors",
+   {
+    "class": "core",
+    "executors": [
+     "_conditions.rest_floor",
+     "_duty_periods.build_periods"
+    ],
+    "title": "полы отдыха (база/вне базы, длинные, ярусные)"
+   }
+  ],
+  [
+   "connection_windows",
+   {
+    "class": "core",
+    "executors": [
+     "_pairing_builder.chain_ok"
+    ],
+    "title": "стыковки (минимальные, максимальные, пороговые окна станций)"
+   }
+  ],
+  [
+   "deadhead_rules",
+   {
+    "class": "core",
+    "executors": [
+     "_pairing_builder.adjacent_dh_ok",
+     "_pairing_builder.periods_of"
+    ],
+    "title": "перемещения пассажиром (пределы, примыкания, интервалы между перегонами)"
+   }
+  ],
+  [
+   "span_accumulators",
+   {
+    "class": "core",
+    "executors": [
+     "_pairing_builder.chain_cost",
+     "_roster_cpsat.build_and_solve"
+    ],
+    "title": "накопители размаха (командировка, месячные минуты, календарные дни)"
+   }
+  ],
+  [
+   "fleet_exclusions",
+   {
+    "class": "core",
+    "executors": [
+     "vmp.conditions_export (машинные формы пакета)",
+     "kotlin FlightCrewSchedulingConstraintProvider.typeRatingRequired",
+     "kotlin FlightCrewSchedulingConstraintProvider.typeRatingCurrency"
+    ],
+    "title": "исключения и допуски по типам судов и разметке данных"
+   }
+  ]
+ ],
+ "source_files": [
+  "vmp/template_registry.py",
+  "vmp/criteria.py"
+ ],
+ "violation_units": [
+  "night",
+  "duty",
+  "hour",
+  "day",
+  "minute",
+  "event"
+ ]
+}

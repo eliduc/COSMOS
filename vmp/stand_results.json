@@ -1,0 +1,1343 @@
+{
+ "at": "2026-09-16T23:04:51+00:00",
+ "catalog_fingerprint": "7dc0626d4ce85eb0b7a26ca385953ac03a2dce68557bb2e040a614f1584ad549",
+ "catalog_version": "0.6.0",
+ "code": {
+  "_duty_periods.py": "064a400043a66d199b2fd22114b951b4e510410ba66c6b9c78384250638e40ad",
+  "_pairing_builder.py": "c3e27f32d558c38a4e490a2cbecb57904d86a530c9cb25b6fd05de48d46d2da5",
+  "vmp/chain_price.py": "1b0c92b2c2ef594263f6ca6f64dfaa9d8cb4390656b3c68cebeb3498d9bfd287",
+  "vmp/criteria.py": "3193aafacdeeb407d1f476eefacd2fbce226727af01d0f4012ff820ecec12fca",
+  "vmp/run/fit_checks.py": "5566c7029e0aa0952b08cd1aaee0655e14df1cdcfad563fa6d507469feef3d08",
+  "vmp/run/logic_checks.py": "5d9f191e178aa61f88a11f6d3bdfcf5df46ea1abdeabb359c3802d042175e3ca",
+  "vmp/run/roster_certify.py": "d832fda331f6c1adcd88605956d281575704eb73cf8b8429ba238cefcb992a2e",
+  "vmp/stand_adapters.py": "54d1bbaf3fd8e86cae49a1871bf8659c5aa72599b981195c2777584948273ab5",
+  "vmp/stand_solver.py": "08be77ae188402b90018db5d3de45ab4cf7997d525acedbc5121d70514f1410c",
+  "vmp/stand_tasks.py": "38c98c4febaf05f78ed3adb6b150beb7d8136b8ffd42c916d7a87505e151584d"
+ },
+ "commit": "737e35a3c2906af10007c0f87b533ab38323055f",
+ "form_version": 1,
+ "results": [
+  {
+   "executor_kind": "kotlin_metric",
+   "expected": {
+    "matches": 1,
+    "refusal": false,
+    "value": 7
+   },
+   "got": null,
+   "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+   "package_fingerprint": null,
+   "record": "criteria/credit_hours_spread",
+   "result": "skipped",
+   "run_id": null,
+   "task": "st-chs-1"
+  },
+  {
+   "executor_kind": "kotlin_metric",
+   "expected": {
+    "matches": 1,
+    "refusal": false,
+    "value": 1
+   },
+   "got": null,
+   "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+   "package_fingerprint": null,
+   "record": "criteria/layover_nights_total",
+   "result": "skipped",
+   "run_id": null,
+   "task": "st-lnt-1"
+  },
+  {
+   "executor_kind": "builder_method",
+   "expected": {
+    "symbol": "_exec_min_person_days",
+    "unit": "criterion",
+    "value": 14
+   },
+   "got": 14,
+   "note": "получено 14, ожидалось 14 (_exec_min_person_days)",
+   "package_fingerprint": null,
+   "record": "criteria/min_person_days",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-mpd-1"
+  },
+  {
+   "executor_kind": "kotlin_metric",
+   "expected": {
+    "matches": 1,
+    "refusal": false,
+    "value": 1
+   },
+   "got": null,
+   "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+   "package_fingerprint": null,
+   "record": "criteria/positioning_cost",
+   "result": "skipped",
+   "run_id": null,
+   "task": "st-pos-1"
+  },
+  {
+   "executor_kind": "kotlin_metric",
+   "expected": {
+    "matches": 1,
+    "refusal": false,
+    "value": 70
+   },
+   "got": null,
+   "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+   "package_fingerprint": null,
+   "record": "criteria/preferred_days_off_violations",
+   "result": "skipped",
+   "run_id": null,
+   "task": "st-pdo-1"
+  },
+  {
+   "executor_kind": "builder_method",
+   "expected": {
+    "symbol": "_exec_rank_normalized_cost",
+    "unit": "deci",
+    "value": 14400
+   },
+   "got": 14400,
+   "note": "получено 14400, ожидалось 14400 (_exec_rank_normalized_cost); контрольная пара мира: ok",
+   "package_fingerprint": null,
+   "record": "criteria/rank_normalized_cost",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-rnc-1"
+  },
+  {
+   "executor_kind": "builder_method",
+   "expected": {
+    "symbol": "Builder.price",
+    "unit": "criterion",
+    "value": 15
+   },
+   "got": 15,
+   "note": "получено 15, ожидалось 15 (Builder.price)",
+   "package_fingerprint": null,
+   "record": "criteria/total_pairing_cost",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-tpc-1"
+  },
+  {
+   "executor_kind": "kotlin_metric",
+   "expected": {
+    "matches": null,
+    "refusal": true,
+    "value": null
+   },
+   "got": null,
+   "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+   "package_fingerprint": null,
+   "record": "criteria/total_pairing_cost",
+   "result": "skipped",
+   "run_id": null,
+   "task": "st-tpc-1"
+  },
+  {
+   "executor_kind": "kotlin_metric",
+   "expected": {
+    "matches": 1,
+    "refusal": false,
+    "value": 1
+   },
+   "got": null,
+   "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+   "package_fingerprint": null,
+   "record": "criteria/uncovered_seats",
+   "result": "skipped",
+   "run_id": null,
+   "task": "st-unc-1"
+  },
+  {
+   "executor_kind": "check_template",
+   "expected": {
+    "findings": 0,
+    "measure": 2,
+    "params": {
+     "workload_spread_threshold": 5
+    },
+    "template": "мера-мягкого-правила"
+   },
+   "got": {
+    "findings": 0,
+    "measure": 2,
+    "params": {
+     "workload_spread_threshold": 5
+    },
+    "template": "мера-мягкого-правила"
+   },
+   "note": "получено findings=0, measure=2, params.workload_spread_threshold=5, template='мера-мягкого-правила', ожидалось findings=0, measure=2, params.workload_spread_threshold=5, template='мера-мягкого-правила' (мера-мягкого-правила)",
+   "package_fingerprint": null,
+   "record": "families/balanced_workload",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-spread-1"
+  },
+  {
+   "executor_kind": "kotlin_constraint",
+   "expected": {
+    "amount": 2,
+    "constraint": "Credit hours spread over threshold",
+    "matches": 1
+   },
+   "got": null,
+   "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+   "package_fingerprint": null,
+   "record": "families/balanced_workload",
+   "result": "skipped",
+   "run_id": null,
+   "task": "st-spread-1"
+  },
+  {
+   "executor_kind": "builder_method",
+   "expected": {
+    "symbol": "measure",
+    "unit": "night",
+    "value": 1
+   },
+   "got": 1,
+   "note": "получено 1, ожидалось 1 (measure)",
+   "package_fingerprint": null,
+   "record": "families/calendar_windows",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-window-1"
+  },
+  {
+   "executor_kind": "check_template",
+   "expected": {
+    "findings": 1,
+    "measure": null,
+    "params": {
+     "days": [
+      "thursday"
+     ]
+    },
+    "template": "мера-мягкого-правила"
+   },
+   "got": {
+    "findings": 1,
+    "params": {
+     "days": [
+      "thursday"
+     ]
+    },
+    "template": "мера-мягкого-правила"
+   },
+   "note": "получено findings=1, params.days=['thursday'], template='мера-мягкого-правила', ожидалось findings=1, measure=None, params.days=['thursday'], template='мера-мягкого-правила' (мера-мягкого-правила)",
+   "package_fingerprint": null,
+   "record": "families/calendar_windows",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-window-1"
+  },
+  {
+   "executor_kind": "kotlin_constraint",
+   "expected": {
+    "amount": 1,
+    "constraint": "Calendar window layover penalty",
+    "matches": 1
+   },
+   "got": null,
+   "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+   "package_fingerprint": null,
+   "record": "families/calendar_windows",
+   "result": "skipped",
+   "run_id": null,
+   "task": "st-window-1"
+  },
+  {
+   "executor_kind": "builder_method",
+   "expected": {
+    "symbol": "Builder.periods_tiers",
+    "unit": "chain",
+    "value": 1
+   },
+   "got": 1,
+   "note": "получено 1, ожидалось 1 (Builder.periods_tiers)",
+   "package_fingerprint": null,
+   "record": "families/connection_windows",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-sit-1"
+  },
+  {
+   "executor_kind": "check_code",
+   "expected": {
+    "findings": 1,
+    "symbol": "_turnaround"
+   },
+   "got": 1,
+   "note": "получено 1, ожидалось 1 (_turnaround)",
+   "package_fingerprint": null,
+   "record": "families/connection_windows",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-sit-1"
+  },
+  {
+   "executor_kind": "kotlin_constraint",
+   "expected": {
+    "amount": 25,
+    "constraint": "Minimum turnaround",
+    "matches": 1
+   },
+   "got": null,
+   "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+   "package_fingerprint": null,
+   "record": "families/connection_windows",
+   "result": "skipped",
+   "run_id": null,
+   "task": "st-sit-1"
+  },
+  {
+   "executor_kind": "builder_method",
+   "expected": {
+    "symbol": "Builder.crew_size",
+    "unit": "person",
+    "value": 2
+   },
+   "got": 2,
+   "note": "получено 2, ожидалось 2 (Builder.crew_size)",
+   "package_fingerprint": null,
+   "record": "families/crew_composition",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-crew-1"
+  },
+  {
+   "executor_kind": "kotlin_constraint",
+   "expected": {
+    "amount": 1,
+    "constraint": "Crew size",
+    "matches": 1
+   },
+   "got": null,
+   "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+   "package_fingerprint": null,
+   "record": "families/crew_composition",
+   "result": "skipped",
+   "run_id": null,
+   "task": "st-crew-1"
+  },
+  {
+   "executor_kind": "check_template",
+   "expected": {
+    "findings": 0,
+    "params": {
+     "count": 2,
+     "distinct_column": "Табельный номер",
+     "group_column": "Рейс",
+     "relation": "eq",
+     "sheet": "S1/Назначения"
+    },
+    "template": "счёт-состава-группы"
+   },
+   "got": null,
+   "note": "мир формы «tables» стенд COSMOS не строит: задачу судит стенд линии данных CDPM",
+   "package_fingerprint": null,
+   "record": "families/crew_composition",
+   "result": "skipped",
+   "run_id": null,
+   "task": "st-crew-count-0"
+  },
+  {
+   "executor_kind": "check_template",
+   "expected": {
+    "findings": 2,
+    "params": {
+     "count": 2,
+     "distinct_column": "Табельный номер",
+     "group_column": "Рейс",
+     "relation": "eq",
+     "sheet": "S1/Назначения"
+    },
+    "template": "счёт-состава-группы"
+   },
+   "got": null,
+   "note": "мир формы «tables» стенд COSMOS не строит: задачу судит стенд линии данных CDPM",
+   "package_fingerprint": null,
+   "record": "families/crew_composition",
+   "result": "skipped",
+   "run_id": null,
+   "task": "st-crew-count-2"
+  },
+  {
+   "executor_kind": "kotlin_constraint",
+   "expected": {
+    "amount": 0,
+    "constraint": "Employee unavailable",
+    "matches": 0
+   },
+   "got": null,
+   "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+   "package_fingerprint": null,
+   "record": "families/crew_unavailability",
+   "result": "skipped",
+   "run_id": null,
+   "task": "st-unavail-0"
+  },
+  {
+   "executor_kind": "check_template",
+   "expected": {
+    "findings": 0,
+    "params": {
+     "end_column": "Конец",
+     "group_column": "Табельный номер",
+     "min_days_off": 6,
+     "sheet": "S1/Смены",
+     "start_column": "Начало"
+    },
+    "template": "выходных-в-месяце"
+   },
+   "got": null,
+   "note": "мир формы «tables» стенд COSMOS не строит: задачу судит стенд линии данных CDPM",
+   "package_fingerprint": null,
+   "record": "families/days_off_floor",
+   "result": "skipped",
+   "run_id": null,
+   "task": "st-daysoff-month-0"
+  },
+  {
+   "executor_kind": "check_template",
+   "expected": {
+    "findings": 1,
+    "params": {
+     "end_column": "Конец",
+     "group_column": "Табельный номер",
+     "min_days_off": 7,
+     "sheet": "S1/Смены",
+     "start_column": "Начало"
+    },
+    "template": "выходных-в-месяце"
+   },
+   "got": null,
+   "note": "мир формы «tables» стенд COSMOS не строит: задачу судит стенд линии данных CDPM",
+   "package_fingerprint": null,
+   "record": "families/days_off_floor",
+   "result": "skipped",
+   "run_id": null,
+   "task": "st-daysoff-month-1"
+  },
+  {
+   "executor_kind": "check_code",
+   "expected": {
+    "findings": 1,
+    "symbol": "_days_off"
+   },
+   "got": 1,
+   "note": "получено 1, ожидалось 1 (_days_off)",
+   "package_fingerprint": null,
+   "record": "families/days_off_floor",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-off-1"
+  },
+  {
+   "executor_kind": "kotlin_logic_form",
+   "expected": {
+    "amount": null,
+    "form": "DAYS_OFF_PER_MONTH_MIN",
+    "matches": 1
+   },
+   "got": null,
+   "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+   "package_fingerprint": null,
+   "record": "families/days_off_floor",
+   "result": "skipped",
+   "run_id": null,
+   "task": "st-off-1"
+  },
+  {
+   "executor_kind": "check_code",
+   "expected": {
+    "findings": 1,
+    "symbol": "_days_off_window"
+   },
+   "got": 1,
+   "note": "получено 1, ожидалось 1 (_days_off_window)",
+   "package_fingerprint": null,
+   "record": "families/days_off_floor",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-off-2"
+  },
+  {
+   "executor_kind": "kotlin_logic_form",
+   "expected": {
+    "amount": null,
+    "form": "DAYS_OFF_IN_ROLLING_WINDOW_MIN",
+    "matches": 1
+   },
+   "got": null,
+   "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+   "package_fingerprint": null,
+   "record": "families/days_off_floor",
+   "result": "skipped",
+   "run_id": null,
+   "task": "st-off-2"
+  },
+  {
+   "executor_kind": "builder_method",
+   "expected": {
+    "symbol": "Builder.adjacent_dh_ok",
+    "unit": "chain",
+    "value": 1
+   },
+   "got": 1,
+   "note": "получено 1, ожидалось 1 (Builder.adjacent_dh_ok)",
+   "package_fingerprint": null,
+   "record": "families/deadhead_rules",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-dh-1"
+  },
+  {
+   "executor_kind": "kotlin_constraint",
+   "expected": {
+    "amount": 1,
+    "constraint": "Deadheads per day",
+    "matches": 1
+   },
+   "got": null,
+   "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+   "package_fingerprint": null,
+   "record": "families/deadhead_rules",
+   "result": "skipped",
+   "run_id": null,
+   "task": "st-dh-1"
+  },
+  {
+   "executor_kind": "builder_method",
+   "expected": {
+    "symbol": "measure",
+    "unit": "duty",
+    "value": 1
+   },
+   "got": 1,
+   "note": "получено 1, ожидалось 1 (measure)",
+   "package_fingerprint": null,
+   "record": "families/duty_extension_penalty",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-extension-1"
+  },
+  {
+   "executor_kind": "check_code",
+   "expected": {
+    "findings": 0,
+    "symbol": "apply_extension_caps"
+   },
+   "got": 0,
+   "note": "получено 0, ожидалось 0 (apply_extension_caps)",
+   "package_fingerprint": null,
+   "record": "families/duty_extension_penalty",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-extension-1"
+  },
+  {
+   "executor_kind": "check_template",
+   "expected": {
+    "findings": 1,
+    "measure": null,
+    "params": {
+     "long_duty_threshold": 720
+    },
+    "template": "мера-мягкого-правила"
+   },
+   "got": {
+    "findings": 1,
+    "params": {
+     "duty_extension_cap": 960,
+     "extension_bases": [
+      "ST1"
+     ],
+     "extension_consent": "yes",
+     "long_duty_threshold": 720
+    },
+    "template": "мера-мягкого-правила"
+   },
+   "note": "получено findings=1, params.long_duty_threshold=720, template='мера-мягкого-правила', ожидалось findings=1, measure=None, params.long_duty_threshold=720, template='мера-мягкого-правила' (мера-мягкого-правила)",
+   "package_fingerprint": null,
+   "record": "families/duty_extension_penalty",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-extension-1"
+  },
+  {
+   "executor_kind": "kotlin_constraint",
+   "expected": {
+    "amount": 1,
+    "constraint": "Duty extension over threshold",
+    "matches": 1
+   },
+   "got": null,
+   "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+   "package_fingerprint": null,
+   "record": "families/duty_extension_penalty",
+   "result": "skipped",
+   "run_id": null,
+   "task": "st-extension-1"
+  },
+  {
+   "executor_kind": "check_code",
+   "expected": {
+    "findings": 1,
+    "symbol": "apply_extension_caps"
+   },
+   "got": 1,
+   "note": "получено 1, ожидалось 1 (apply_extension_caps)",
+   "package_fingerprint": null,
+   "record": "families/duty_extension_penalty",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-extension-2"
+  },
+  {
+   "executor_kind": "builder_method",
+   "expected": {
+    "symbol": "Builder.duty_limit_ok",
+    "unit": "duty",
+    "value": 1
+   },
+   "got": 1,
+   "note": "получено 1, ожидалось 1 (Builder.duty_limit_ok)",
+   "package_fingerprint": null,
+   "record": "families/duty_limits",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-duty-1"
+  },
+  {
+   "executor_kind": "check_code",
+   "expected": {
+    "findings": 0,
+    "symbol": "_landings_per_duty"
+   },
+   "got": 0,
+   "note": "получено 0, ожидалось 0 (_landings_per_duty)",
+   "package_fingerprint": null,
+   "record": "families/duty_limits",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-duty-1"
+  },
+  {
+   "executor_kind": "kotlin_constraint",
+   "expected": {
+    "amount": 120,
+    "constraint": "Max duty period (rest-segmented)",
+    "matches": 1
+   },
+   "got": null,
+   "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+   "package_fingerprint": null,
+   "record": "families/duty_limits",
+   "result": "skipped",
+   "run_id": null,
+   "task": "st-duty-1"
+  },
+  {
+   "executor_kind": "check_code",
+   "expected": {
+    "findings": 1,
+    "symbol": "_landings_per_duty"
+   },
+   "got": 1,
+   "note": "получено 1, ожидалось 1 (_landings_per_duty)",
+   "package_fingerprint": null,
+   "record": "families/duty_limits",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-duty-2"
+  },
+  {
+   "executor_kind": "kotlin_constraint",
+   "expected": {
+    "amount": 1,
+    "constraint": "Max landings per duty",
+    "matches": 1
+   },
+   "got": null,
+   "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+   "package_fingerprint": null,
+   "record": "families/duty_limits",
+   "result": "skipped",
+   "run_id": null,
+   "task": "st-duty-2"
+  },
+  {
+   "executor_kind": "builder_method",
+   "expected": {
+    "symbol": "Builder.pairing_days_ok",
+    "unit": "chain",
+    "value": 1
+   },
+   "got": 1,
+   "note": "получено 1, ожидалось 1 (Builder.pairing_days_ok)",
+   "package_fingerprint": null,
+   "record": "families/duty_limits",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-duty-3"
+  },
+  {
+   "executor_kind": "check_code",
+   "expected": {
+    "findings": 1,
+    "symbol": "_pairing_days"
+   },
+   "got": 1,
+   "note": "получено 1, ожидалось 1 (_pairing_days)",
+   "package_fingerprint": null,
+   "record": "families/duty_limits",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-duty-3"
+  },
+  {
+   "executor_kind": "check_template",
+   "expected": {
+    "findings": 0,
+    "params": {
+     "end_column": "Конец",
+     "max_hours": 13,
+     "sheet": "S1/Смены",
+     "start_column": "Начало"
+    },
+    "template": "максимальная-длительность-часов"
+   },
+   "got": null,
+   "note": "мир формы «tables» стенд COSMOS не строит: задачу судит стенд линии данных CDPM",
+   "package_fingerprint": null,
+   "record": "families/duty_limits",
+   "result": "skipped",
+   "run_id": null,
+   "task": "st-duty-hours-0"
+  },
+  {
+   "executor_kind": "check_template",
+   "expected": {
+    "findings": 2,
+    "params": {
+     "end_column": "Конец",
+     "max_hours": 13,
+     "sheet": "S1/Смены",
+     "start_column": "Начало"
+    },
+    "template": "максимальная-длительность-часов"
+   },
+   "got": null,
+   "note": "мир формы «tables» стенд COSMOS не строит: задачу судит стенд линии данных CDPM",
+   "package_fingerprint": null,
+   "record": "families/duty_limits",
+   "result": "skipped",
+   "run_id": null,
+   "task": "st-duty-hours-2"
+  },
+  {
+   "executor_kind": "check_code",
+   "expected": {
+    "findings": 0,
+    "symbol": "_duty_series"
+   },
+   "got": 0,
+   "note": "получено 0, ожидалось 0 (_duty_series)",
+   "package_fingerprint": null,
+   "record": "families/duty_series_limit",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-series-0"
+  },
+  {
+   "executor_kind": "kotlin_logic_form",
+   "expected": {
+    "amount": null,
+    "form": "DUTY_SERIES_LIMIT",
+    "matches": 0
+   },
+   "got": null,
+   "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+   "package_fingerprint": null,
+   "record": "families/duty_series_limit",
+   "result": "skipped",
+   "run_id": null,
+   "task": "st-series-0"
+  },
+  {
+   "executor_kind": "check_code",
+   "expected": {
+    "findings": 1,
+    "symbol": "_duty_series"
+   },
+   "got": 1,
+   "note": "получено 1, ожидалось 1 (_duty_series)",
+   "package_fingerprint": null,
+   "record": "families/duty_series_limit",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-series-1"
+  },
+  {
+   "executor_kind": "kotlin_logic_form",
+   "expected": {
+    "amount": null,
+    "form": "DUTY_SERIES_LIMIT",
+    "matches": 1
+   },
+   "got": null,
+   "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+   "package_fingerprint": null,
+   "record": "families/duty_series_limit",
+   "result": "skipped",
+   "run_id": null,
+   "task": "st-series-1"
+  },
+  {
+   "executor_kind": "check_code",
+   "expected": {
+    "findings": 1,
+    "symbol": "_duty_series"
+   },
+   "got": 1,
+   "note": "получено 1, ожидалось 1 (_duty_series)",
+   "package_fingerprint": null,
+   "record": "families/duty_series_limit",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-series-2"
+  },
+  {
+   "executor_kind": "kotlin_logic_form",
+   "expected": {
+    "amount": null,
+    "form": "DUTY_SERIES_LIMIT",
+    "matches": 1
+   },
+   "got": null,
+   "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+   "package_fingerprint": null,
+   "record": "families/duty_series_limit",
+   "result": "skipped",
+   "run_id": null,
+   "task": "st-series-2"
+  },
+  {
+   "executor_kind": "check_code",
+   "expected": {
+    "findings": 1,
+    "symbol": "_fleet_qualification"
+   },
+   "got": 1,
+   "note": "получено 1, ожидалось 1 (_fleet_qualification)",
+   "package_fingerprint": null,
+   "record": "families/fleet_exclusions",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-fleet-1"
+  },
+  {
+   "executor_kind": "kotlin_constraint",
+   "expected": {
+    "amount": 1,
+    "constraint": "Type rating required",
+    "matches": 1
+   },
+   "got": null,
+   "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+   "package_fingerprint": null,
+   "record": "families/fleet_exclusions",
+   "result": "skipped",
+   "run_id": null,
+   "task": "st-fleet-1"
+  },
+  {
+   "executor_kind": "check_template",
+   "expected": {
+    "findings": 0,
+    "params": {
+     "date_column": "Дата",
+     "key_column": "Табельный номер",
+     "ref_key_column": "Табельный номер",
+     "ref_sheet": "S1/Допуски",
+     "ref_until_column": "Действует до",
+     "sheet": "S2/Назначения"
+    },
+    "template": "действительность-на-дату"
+   },
+   "got": null,
+   "note": "мир формы «tables» стенд COSMOS не строит: задачу судит стенд линии данных CDPM",
+   "package_fingerprint": null,
+   "record": "families/fleet_exclusions",
+   "result": "skipped",
+   "run_id": null,
+   "task": "st-fleet-valid-0"
+  },
+  {
+   "executor_kind": "check_template",
+   "expected": {
+    "findings": 2,
+    "params": {
+     "date_column": "Дата",
+     "key_column": "Табельный номер",
+     "ref_key_column": "Табельный номер",
+     "ref_sheet": "S1/Допуски",
+     "ref_until_column": "Действует до",
+     "sheet": "S2/Назначения"
+    },
+    "template": "действительность-на-дату"
+   },
+   "got": null,
+   "note": "мир формы «tables» стенд COSMOS не строит: задачу судит стенд линии данных CDPM",
+   "package_fingerprint": null,
+   "record": "families/fleet_exclusions",
+   "result": "skipped",
+   "run_id": null,
+   "task": "st-fleet-valid-2"
+  },
+  {
+   "executor_kind": "builder_method",
+   "expected": {
+    "symbol": "measure",
+    "unit": "night",
+    "value": 1
+   },
+   "got": 1,
+   "note": "получено 1, ожидалось 1 (measure)",
+   "package_fingerprint": null,
+   "record": "families/layover_penalty",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-layover-1"
+  },
+  {
+   "executor_kind": "check_template",
+   "expected": {
+    "findings": 1,
+    "measure": null,
+    "params": {},
+    "template": "мера-мягкого-правила"
+   },
+   "got": {
+    "findings": 1,
+    "params": {},
+    "template": "мера-мягкого-правила"
+   },
+   "note": "получено findings=1, template='мера-мягкого-правила', ожидалось findings=1, measure=None, template='мера-мягкого-правила' (мера-мягкого-правила)",
+   "package_fingerprint": null,
+   "record": "families/layover_penalty",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-layover-1"
+  },
+  {
+   "executor_kind": "kotlin_constraint",
+   "expected": {
+    "amount": 1,
+    "constraint": "Layover nights away from home",
+    "matches": 1
+   },
+   "got": null,
+   "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+   "package_fingerprint": null,
+   "record": "families/layover_penalty",
+   "result": "skipped",
+   "run_id": null,
+   "task": "st-layover-1"
+  },
+  {
+   "executor_kind": "check_code",
+   "expected": {
+    "findings": 1,
+    "symbol": "_night_series"
+   },
+   "got": 1,
+   "note": "получено 1, ожидалось 1 (_night_series)",
+   "package_fingerprint": null,
+   "record": "families/night_series",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-night-1"
+  },
+  {
+   "executor_kind": "kotlin_logic_form",
+   "expected": {
+    "amount": null,
+    "form": "CONSECUTIVE_NIGHT_DUTIES_MAX",
+    "matches": 1
+   },
+   "got": null,
+   "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+   "package_fingerprint": null,
+   "record": "families/night_series",
+   "result": "skipped",
+   "run_id": null,
+   "task": "st-night-1"
+  },
+  {
+   "executor_kind": "check_code",
+   "expected": {
+    "findings": 1,
+    "symbol": "_night_window"
+   },
+   "got": 1,
+   "note": "получено 1, ожидалось 1 (_night_window)",
+   "package_fingerprint": null,
+   "record": "families/night_series",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-night-2"
+  },
+  {
+   "executor_kind": "kotlin_logic_form",
+   "expected": {
+    "amount": null,
+    "form": "NIGHT_DUTIES_IN_ROLLING_WINDOW_MAX",
+    "matches": 1
+   },
+   "got": null,
+   "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+   "package_fingerprint": null,
+   "record": "families/night_series",
+   "result": "skipped",
+   "run_id": null,
+   "task": "st-night-2"
+  },
+  {
+   "executor_kind": "check_template",
+   "expected": {
+    "findings": 0,
+    "params": {
+     "employee_column": "Табельный номер",
+     "end_column": "Конец",
+     "max_consecutive": 2,
+     "night_from_min": 1320,
+     "night_to_min": 360,
+     "sheet": "S1/Смены",
+     "start_column": "Начало"
+    },
+    "template": "серия-ночных-смен"
+   },
+   "got": null,
+   "note": "мир формы «tables» стенд COSMOS не строит: задачу судит стенд линии данных CDPM",
+   "package_fingerprint": null,
+   "record": "families/night_series",
+   "result": "skipped",
+   "run_id": null,
+   "task": "st-night-run-0"
+  },
+  {
+   "executor_kind": "check_template",
+   "expected": {
+    "findings": 1,
+    "params": {
+     "employee_column": "Табельный номер",
+     "end_column": "Конец",
+     "max_consecutive": 2,
+     "night_from_min": 1320,
+     "night_to_min": 360,
+     "sheet": "S1/Смены",
+     "start_column": "Начало"
+    },
+    "template": "серия-ночных-смен"
+   },
+   "got": null,
+   "note": "мир формы «tables» стенд COSMOS не строит: задачу судит стенд линии данных CDPM",
+   "package_fingerprint": null,
+   "record": "families/night_series",
+   "result": "skipped",
+   "run_id": null,
+   "task": "st-night-run-1"
+  },
+  {
+   "executor_kind": "kotlin_constraint",
+   "expected": {
+    "amount": 1,
+    "constraint": "Reserve crews",
+    "matches": 1
+   },
+   "got": null,
+   "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+   "package_fingerprint": null,
+   "record": "families/reserve_floors",
+   "result": "skipped",
+   "run_id": null,
+   "task": "st-reserve-1"
+  },
+  {
+   "executor_kind": "builder_method",
+   "expected": {
+    "symbol": "Builder.rest_floor_after",
+    "unit": "minute",
+    "value": 700
+   },
+   "got": 700,
+   "note": "получено 700, ожидалось 700 (Builder.rest_floor_after)",
+   "package_fingerprint": null,
+   "record": "families/rest_floors",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-rest-1"
+  },
+  {
+   "executor_kind": "check_code",
+   "expected": {
+    "findings": 2,
+    "symbol": "_rest_floor"
+   },
+   "got": 2,
+   "note": "получено 2, ожидалось 2 (_rest_floor)",
+   "package_fingerprint": null,
+   "record": "families/rest_floors",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-rest-1"
+  },
+  {
+   "executor_kind": "kotlin_constraint",
+   "expected": {
+    "amount": 300,
+    "constraint": "Rest before horizon (history)",
+    "matches": 1
+   },
+   "got": null,
+   "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+   "package_fingerprint": null,
+   "record": "families/rest_floors",
+   "result": "skipped",
+   "run_id": null,
+   "task": "st-rest-1"
+  },
+  {
+   "executor_kind": "check_template",
+   "expected": {
+    "findings": 1,
+    "params": {
+     "area": "вне базы",
+     "base_column": "База приписки",
+     "end_column": "Конец",
+     "group_column": "Табельный номер",
+     "min_hours": 12,
+     "place_column": "Место отдыха",
+     "sheet": "S1/Смены",
+     "start_column": "Начало"
+    },
+    "template": "минимальный-разрыв-часов"
+   },
+   "got": null,
+   "note": "мир формы «tables» стенд COSMOS не строит: задачу судит стенд линии данных CDPM",
+   "package_fingerprint": null,
+   "record": "families/rest_floors",
+   "result": "skipped",
+   "run_id": null,
+   "task": "st-rest-away-1"
+  },
+  {
+   "executor_kind": "check_template",
+   "expected": {
+    "findings": 0,
+    "params": {
+     "end_column": "Конец",
+     "group_column": "Табельный номер",
+     "min_hours": 9,
+     "sheet": "S1/Смены",
+     "start_column": "Начало"
+    },
+    "template": "минимальный-разрыв-часов"
+   },
+   "got": null,
+   "note": "мир формы «tables» стенд COSMOS не строит: задачу судит стенд линии данных CDPM",
+   "package_fingerprint": null,
+   "record": "families/rest_floors",
+   "result": "skipped",
+   "run_id": null,
+   "task": "st-rest-gap-0"
+  },
+  {
+   "executor_kind": "check_template",
+   "expected": {
+    "findings": 1,
+    "params": {
+     "area": "база",
+     "base_column": "База приписки",
+     "end_column": "Конец",
+     "group_column": "Табельный номер",
+     "min_hours": 12,
+     "place_column": "Место отдыха",
+     "sheet": "S1/Смены",
+     "start_column": "Начало"
+    },
+    "template": "минимальный-разрыв-часов"
+   },
+   "got": null,
+   "note": "мир формы «tables» стенд COSMOS не строит: задачу судит стенд линии данных CDPM",
+   "package_fingerprint": null,
+   "record": "families/rest_floors",
+   "result": "skipped",
+   "run_id": null,
+   "task": "st-rest-home-1"
+  },
+  {
+   "executor_kind": "check_code",
+   "expected": {
+    "findings": 1,
+    "symbol": "_rolling_rest"
+   },
+   "got": 1,
+   "note": "получено 1, ожидалось 1 (_rolling_rest)",
+   "package_fingerprint": null,
+   "record": "families/rolling_rest",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-roll-1"
+  },
+  {
+   "executor_kind": "kotlin_logic_form",
+   "expected": {
+    "amount": null,
+    "form": "REST_IN_ROLLING_WINDOW",
+    "matches": 1
+   },
+   "got": null,
+   "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+   "package_fingerprint": null,
+   "record": "families/rolling_rest",
+   "result": "skipped",
+   "run_id": null,
+   "task": "st-roll-1"
+  },
+  {
+   "executor_kind": "check_template",
+   "expected": {
+    "findings": 0,
+    "params": {
+     "employee_column": "Табельный номер",
+     "end_column": "Конец",
+     "min_rest_min": 1440,
+     "sheet": "S1/Смены",
+     "start_column": "Начало",
+     "window_days": 7
+    },
+    "template": "отдых-в-скользящем-окне"
+   },
+   "got": null,
+   "note": "мир формы «tables» стенд COSMOS не строит: задачу судит стенд линии данных CDPM",
+   "package_fingerprint": null,
+   "record": "families/rolling_rest",
+   "result": "skipped",
+   "run_id": null,
+   "task": "st-rolling-rest-0"
+  },
+  {
+   "executor_kind": "check_template",
+   "expected": {
+    "findings": 1,
+    "params": {
+     "employee_column": "Табельный номер",
+     "end_column": "Конец",
+     "min_rest_min": 1440,
+     "sheet": "S1/Смены",
+     "start_column": "Начало",
+     "window_days": 7
+    },
+    "template": "отдых-в-скользящем-окне"
+   },
+   "got": null,
+   "note": "мир формы «tables» стенд COSMOS не строит: задачу судит стенд линии данных CDPM",
+   "package_fingerprint": null,
+   "record": "families/rolling_rest",
+   "result": "skipped",
+   "run_id": null,
+   "task": "st-rolling-rest-1"
+  },
+  {
+   "executor_kind": "builder_method",
+   "expected": {
+    "symbol": "Builder.pairing_span_ok",
+    "unit": "chain",
+    "value": 1
+   },
+   "got": 1,
+   "note": "получено 1, ожидалось 1 (Builder.pairing_span_ok)",
+   "package_fingerprint": null,
+   "record": "families/span_accumulators",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-span-1"
+  },
+  {
+   "executor_kind": "check_code",
+   "expected": {
+    "findings": 1,
+    "symbol": "_monthly_block"
+   },
+   "got": 1,
+   "note": "получено 1, ожидалось 1 (_monthly_block)",
+   "package_fingerprint": null,
+   "record": "families/span_accumulators",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-span-1"
+  },
+  {
+   "executor_kind": "kotlin_constraint",
+   "expected": {
+    "amount": 60,
+    "constraint": "Max monthly flight hours",
+    "matches": 1
+   },
+   "got": null,
+   "note": "решатель не зван: живой прогон Kotlin-видов идёт только командой --with-solver <адрес> по слову владельца (правило прогонов); умолчания у адреса нет, и сам стенд к экземпляру решателя не обращается",
+   "package_fingerprint": null,
+   "record": "families/span_accumulators",
+   "result": "skipped",
+   "run_id": null,
+   "task": "st-span-1"
+  },
+  {
+   "executor_kind": "builder_method",
+   "expected": {
+    "symbol": "resolve_time_scale",
+    "unit": "minute",
+    "value": 0
+   },
+   "got": 0,
+   "note": "получено 0, ожидалось 0 (resolve_time_scale)",
+   "package_fingerprint": null,
+   "record": "families/time_scale",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-scale-0"
+  },
+  {
+   "executor_kind": "check_template",
+   "expected": {
+    "findings": 0,
+    "measure": null,
+    "params": {
+     "base_tz_offset_min": 0
+    },
+    "template": "параметр-мира-применён"
+   },
+   "got": {
+    "findings": 0,
+    "params": {
+     "base_tz_offset_min": 0
+    },
+    "template": "параметр-мира-применён"
+   },
+   "note": "получено findings=0, params.base_tz_offset_min=0, template='параметр-мира-применён', ожидалось findings=0, measure=None, params.base_tz_offset_min=0, template='параметр-мира-применён' (параметр-мира-применён)",
+   "package_fingerprint": null,
+   "record": "families/time_scale",
+   "result": "passed",
+   "run_id": null,
+   "task": "st-scale-0"
+  }
+ ],
+ "solver": null
+}

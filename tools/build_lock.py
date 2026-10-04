@@ -1,0 +1,163 @@
+"""Замок пакетов выпуска по платформам (РВ-143 D, РВ-147).
+
+Две ступени:
+
+1. ``closure`` — замыкание зависимостей ``[project].dependencies`` из
+   ``pyproject.toml`` (без dev/tools) по МЕТАДАННЫМ рабочего venv, которым
+   запущен этот сценарий, с маркерами целевой платформы. Версии — ровно те,
+   что стоят в venv. Пакет, нужный платформе, но не стоящий в venv (например,
+   лишь-Linux зависимость), печатается как «нет в venv» — версии ему никто не
+   выдумывает.
+2. ``lock`` — замок ``requirements-lock-<платформа>.txt``: ``имя==версия`` и
+   ``--hash=sha256:…`` КАЖДОГО колеса этой версии из папки ``--wheels``
+   (вывод ``pip download --no-deps --only-binary=:all:``). Нет колеса —
+   отказ словами (sdist не собирается).
+
+Сеть сценарий не трогает; скачивание — отдельной командой pip по слову
+владельца (РВ-147)."""
+from __future__ import annotations
+
+import argparse
+import hashlib
+import importlib.metadata
+import json
+import re
+import sys
+import tomllib
+from pathlib import Path
+
+from packaging.markers import Marker
+from packaging.requirements import Requirement
+from packaging.utils import canonicalize_name, parse_wheel_filename
+
+PLATFORMS = {
+    "Windows-AMD64": {"os_name": "nt", "sys_platform": "win32",
+                      "platform_system": "Windows", "platform_machine": "AMD64"},
+    "Linux-x86_64": {"os_name": "posix", "sys_platform": "linux",
+                     "platform_system": "Linux", "platform_machine": "x86_64"},
+}
+# Теги колёс, которые pip выберет на платформе (для сверки папки колёс).
+WHEEL_PLATFORM = {
+    "Windows-AMD64": re.compile(r"^(any|win_amd64)$"),
+    "Linux-x86_64": re.compile(r"^(any|(many|musl)?linux[_0-9a-z]*_x86_64)$"),
+}
+PYTHON = "3.14"
+
+
+class LockError(ValueError):
+    pass
+
+
+def marker_env(platform_key: str, python_full: str) -> dict:
+    env = {"python_version": PYTHON, "python_full_version": python_full,
+           "implementation_name": "cpython", "implementation_version": python_full,
+           "platform_python_implementation": "CPython",
+           "platform_release": "", "platform_version": "", "extra": ""}
+    env.update(PLATFORMS[platform_key])
+    return env
+
+
+def _applies(marker: Marker | None, env: dict, extras: frozenset[str]) -> bool:
+    if marker is None:
+        return True
+    return any(marker.evaluate({**env, "extra": e}) for e in (extras or {""}))
+
+
+def root_requirements(pyproject: Path) -> list[Requirement]:
+    doc = tomllib.loads(pyproject.read_text(encoding="utf-8"))
+    return [Requirement(r) for r in doc["project"]["dependencies"]]
+
+
+def closure(pyproject: Path, platform_key: str) -> tuple[dict[str, str], dict[str, list[str]]]:
+    """{имя: версия из venv} и {имя: [кто требует]} для отсутствующих в venv."""
+    env = marker_env(platform_key, ".".join(map(str, sys.version_info[:3])))
+    found: dict[str, str] = {}
+    missing: dict[str, list[str]] = {}
+    seen: set[tuple[str, frozenset[str]]] = set()
+    queue = [(r, "pyproject") for r in root_requirements(pyproject)
+             if _applies(r.marker, env, frozenset())]
+    while queue:
+        req, parent = queue.pop()
+        name = canonicalize_name(req.name)
+        key = (name, frozenset(req.extras))
+        if key in seen:
+            continue
+        seen.add(key)
+        try:
+            dist = importlib.metadata.distribution(name)
+        except importlib.metadata.PackageNotFoundError:
+            missing.setdefault(name, []).append(parent)
+            continue
+        if not req.specifier.contains(dist.version, prereleases=True):
+            raise LockError("%s %s в venv не отвечает требованию %s (%s)"
+                            % (name, dist.version, req, parent))
+        found[name] = dist.version
+        for raw in dist.requires or []:
+            sub = Requirement(raw)
+            if _applies(sub.marker, env, frozenset(req.extras)):
+                queue.append((Requirement(str(sub).split(";")[0]), name))
+    return dict(sorted(found.items())), missing
+
+
+def wheel_hashes(wheels: Path, platform_key: str, pins: dict[str, str]) -> dict[str, list[str]]:
+    by_pin: dict[tuple[str, str], list[str]] = {}
+    for path in sorted(wheels.glob("*.whl")):
+        name, version, _build, tags = parse_wheel_filename(path.name)
+        if not any(WHEEL_PLATFORM[platform_key].match(t.platform) for t in tags):
+            continue
+        digest = hashlib.sha256(path.read_bytes()).hexdigest()
+        by_pin.setdefault((canonicalize_name(name), str(version)), []).append(digest)
+    absent = [n for n, v in pins.items() if (n, v) not in by_pin]
+    if absent:
+        raise LockError("нет колеса для %s: %s" % (platform_key, ", ".join(absent)))
+    return {n: sorted(by_pin[(n, v)]) for n, v in pins.items()}
+
+
+def render_lock(platform_key: str, pins: dict[str, str],
+                hashes: dict[str, list[str]] | None, omitted: list[str] = ()) -> bytes:
+    lines = ["# COSMOS release lock: %s, CPython %s; generated by tools/build_lock.py"
+             % (platform_key, PYTHON),
+             "# install: pip install --no-deps --only-binary=:all: --require-hashes -r <this file>"]
+    lines += ["# omitted (optional, not in the qualified venv): %s" % name for name in omitted]
+    for name, version in pins.items():
+        line = "%s==%s" % (name, version)
+        for digest in (hashes or {}).get(name, []):
+            line += " --hash=sha256:" + digest
+        lines.append(line)
+    return ("\n".join(lines) + "\n").encode("utf-8")
+
+
+def main(argv=None) -> int:
+    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    ap.add_argument("step", choices=("closure", "lock"))
+    ap.add_argument("--pyproject", default="pyproject.toml")
+    ap.add_argument("--platform", choices=sorted(PLATFORMS), action="append")
+    ap.add_argument("--wheels", help="папка колёс pip download (для lock)")
+    ap.add_argument("--out", help="папка замков (для lock)")
+    ap.add_argument("--omit", action="append", default=[],
+                    help="необязательный пакет вне рабочего venv, сознательно не "
+                         "берётся (пишется в шапку замка); прочие пропуски — отказ")
+    args = ap.parse_args(argv)
+    omit = sorted(canonicalize_name(n) for n in args.omit)
+    if sys.version_info[:2] != (3, 14):
+        raise SystemExit("нужен CPython 3.14 (venv выпуска), а не %s" % sys.version.split()[0])
+    report = {}
+    for key in args.platform or sorted(PLATFORMS):
+        pins, missing = closure(Path(args.pyproject), key)
+        report[key] = {"pins": pins, "missing_in_venv": missing}
+        if args.step == "lock":
+            left = sorted(set(missing) - set(omit))
+            if left:
+                raise LockError("%s: нет в venv — %s" % (key, ", ".join(left)))
+            hashes = wheel_hashes(Path(args.wheels), key, pins)
+            body = render_lock(key, pins, hashes, sorted(set(missing) & set(omit)))
+            out = Path(args.out) / ("requirements-lock-%s.txt" % key)
+            out.write_bytes(body)
+            report[key]["lock"] = {"path": str(out), "sha256": hashlib.sha256(body).hexdigest(),
+                                   "wheels": sum(len(v) for v in hashes.values())}
+    print(json.dumps(report, ensure_ascii=False, indent=1))
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

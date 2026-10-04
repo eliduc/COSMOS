@@ -1,0 +1,208 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "crew-demo/canonical-payload/v2",
+  "title": "Canonical crew pairing-rostering problem (layer 1)",
+  "description": "Solver-independent canonical input for the pairing-rostering pipeline. Every import adapter (GERAD, BTS, SSIM, CSV) must emit exactly this format; everything downstream (column generation, covering IP, completion, rostering, validators, gate) consumes only this. v2 (2026-07-17, data-formalization doc, канон v2) adds OPTIONAL entities — qualifications, contracts, dutyHistory, costComponents — every v1 payload stays valid unchanged.",
+  "type": "object",
+  "required": ["airports", "employees", "flights", "flightAssignments"],
+  "additionalProperties": true,
+  "properties": {
+    "formatVersion": {
+      "type": "string",
+      "description": "Canonical format version; absent means v1",
+      "enum": ["1", "2"]
+    },
+    "provenance": {
+      "type": "object",
+      "description": "Where this payload came from (adapter, source data, conversion check artifact) — required for new imports, optional for historical instances",
+      "properties": {
+        "adapter": { "type": "string" },
+        "source": { "type": "string" },
+        "convertedAt": { "type": "string" },
+        "conversionCheck": { "type": "string" }
+      }
+    },
+    "airports": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["code"],
+        "properties": {
+          "code": { "type": "string", "minLength": 1 },
+          "name": { "type": "string" },
+          "latitude": { "type": "number" },
+          "longitude": { "type": "number" },
+          "taxiTimeInMinutes": { "type": "object" },
+          "languages": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "employees": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "homeAirport", "skills"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "name": { "type": "string" },
+          "homeAirport": { "type": "string" },
+          "skills": { "type": "array", "items": { "type": "string" } },
+          "languages": { "type": "array", "items": { "type": "string" } },
+          "unavailableDays": {
+            "type": "array",
+            "items": { "type": "string", "format": "date" }
+          },
+          "typeRatings": { "type": "array", "items": { "type": "string" } },
+          "seniority": { "type": "number", "minimum": -1e12, "maximum": 1e12 },
+          "isReserve": { "type": "boolean" },
+          "preferredDaysOff": {
+            "type": "array",
+            "items": { "type": "string", "format": "date" }
+          },
+          "undesiredAirports": { "type": "array", "items": { "type": "string" } },
+          "preferredFlights": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "flights": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["flightNumber", "departureAirport", "departureUTCDateTime",
+                     "arrivalAirport", "arrivalUTCDateTime"],
+        "properties": {
+          "flightNumber": { "type": "string", "minLength": 1 },
+          "flightLegId": {
+            "type": "string",
+            "minLength": 1,
+            "description": "OPTIONAL first-class operating-leg identity (C01/C02 phase 3). Importers materialize it as flightNumber+'|'+departureUTCDateTime; when present it must be unique across the payload (conditional referential check) and downstream readers prefer it over flightNumber. Absent on historical payloads — flightNumber stays the identity then. The id persists through retimes (identity, not a formula)."
+          },
+          "departureAirport": { "type": "string" },
+          "departureUTCDateTime": { "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(Z|[+-]\\d{2}:\\d{2})?$",
+            "description": "ISO seconds: naive means UTC; an explicit offset ('+03:00', 'Z') is recalculated to UTC by the shared parser — never silently truncated. Garbage and fractional seconds are rejected at admission (external audit R6, P0-03)." },
+          "arrivalAirport": { "type": "string" },
+          "arrivalUTCDateTime": { "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(Z|[+-]\\d{2}:\\d{2})?$" },
+          "aircraftType": { "type": "string" },
+          "tailNumber": { "type": "string" }
+        }
+      }
+    },
+    "flightAssignments": {
+      "type": "array",
+      "description": "Crew slots: one entry per required seat per flight",
+      "items": {
+        "type": "object",
+        "required": ["id", "flight", "indexInFlight", "requiredSkill"],
+        "properties": {
+          "id": { "type": "string" },
+          "crewSlotId": {
+            "type": "string",
+            "minLength": 1,
+            "description": "OPTIONAL first-class crew-seat identity (C01/C02 phase 3). When present it must be unique across flightAssignments (conditional referential check); the Kotlin solver uses it as @PlanningId, falling back to id when absent."
+          },
+          "flight": { "type": "string" },
+          "flightLegId": {
+            "type": "string",
+            "minLength": 1,
+            "description": "OPTIONAL leg reference by first-class identity (C01/C02 phase 3). When present it must name an existing flights[].flightLegId (conditional referential check); readers prefer it over the flight (flightNumber) reference for leg identity. The flight field stays for backward compatibility."
+          },
+          "indexInFlight": { "type": "integer", "minimum": 0 },
+          "requiredSkill": { "type": "string" },
+          "employee": { "type": ["string", "null"] }
+        }
+      }
+    },
+    "qualifications": {
+      "type": "array",
+      "description": "v2 QualificationValidity: temporal validity of crew clearances (dated kinds carry validTo; recency carries event counters). Mirrors the qualifications feature's record shape so the compliance calendar can read the canon directly.",
+      "items": {
+        "type": "object",
+        "required": ["employee", "kind", "code"],
+        "properties": {
+          "employee": { "type": "string", "minLength": 1 },
+          "kind": {
+            "type": "string",
+            "enum": ["licence", "medical", "visa", "passport",
+                     "type_rating", "recency"]
+          },
+          "code": { "type": "string", "minLength": 1, "maxLength": 40 },
+          "validFrom": { "type": "string", "format": "date" },
+          "validTo": { "type": "string", "format": "date" },
+          "requiredEvents": { "type": "integer", "minimum": 0 },
+          "recentEvents": { "type": "integer", "minimum": 0 },
+          "withinDays": { "type": "integer", "minimum": 0 }
+        },
+        "if": {
+          "properties": { "kind": { "const": "recency" } }
+        },
+        "then": {
+          "required": ["requiredEvents", "recentEvents", "withinDays"]
+        },
+        "else": {
+          "required": ["validTo"]
+        }
+      }
+    },
+    "contracts": {
+      "type": "array",
+      "description": "v2 EmploymentContract: per-employee pay/credit terms. Absent fields fall back to the airline-level pay config (pay_credit.PAY_DEFAULTS). At most one contract per employee (referential check).",
+      "items": {
+        "type": "object",
+        "required": ["employee"],
+        "properties": {
+          "employee": { "type": "string", "minLength": 1 },
+          "type": {
+            "type": "string",
+            "enum": ["lineholder", "reserve", "parttime", "contractor"]
+          },
+          "monthlyGuaranteeHours": { "type": "number", "minimum": 0, "maximum": 300 },
+          "blockHourRate": { "type": "number", "minimum": 0 },
+          "dutyRig": { "type": "number", "minimum": 1, "maximum": 10 },
+          "tripRig": { "type": "number", "minimum": 1, "maximum": 10 },
+          "currency": { "type": "string", "maxLength": 8 }
+        }
+      }
+    },
+    "dutyHistory": {
+      "type": "array",
+      "description": "v2 DutyHistory: accumulated duty/block/credit per employee per closed month — the carry-over at the month boundary that cumulative-limit rules need. Unique per (employee, month) (referential check).",
+      "items": {
+        "type": "object",
+        "required": ["employee", "month"],
+        "properties": {
+          "employee": { "type": "string", "minLength": 1 },
+          "month": { "type": "string", "pattern": "^\\d{4}-(0[1-9]|1[0-2])$" },
+          "blockMinutes": { "type": "number", "minimum": 0 },
+          "dutyMinutes": { "type": "number", "minimum": 0 },
+          "creditMinutes": { "type": "number", "minimum": 0 },
+          "carryInMinutes": { "type": "number" }
+        }
+      }
+    },
+    "costComponents": {
+      "type": "array",
+      "description": "v2 CostComponent: named elements of the airline's cost model, each with an amount and a unit the costing layer understands.",
+      "items": {
+        "type": "object",
+        "required": ["code", "amount", "unit"],
+        "properties": {
+          "code": { "type": "string", "minLength": 1, "maxLength": 40 },
+          "amount": { "type": "number" },
+          "unit": {
+            "type": "string",
+            "enum": ["per_block_hour", "per_duty_hour", "per_diem_day",
+                     "per_landing", "per_deadhead", "fixed_month",
+                     "fixed_trip"]
+          },
+          "note": { "type": "string", "maxLength": 200 }
+        }
+      }
+    },
+    "score": { "type": ["string", "null"] }
+  }
+}

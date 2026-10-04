@@ -1,0 +1,10 @@
+{
+ "parameters": {
+  "min_sit_min": 30,
+  "max_landings_per_duty": 5,
+  "max_duty_span_min": 840,
+  "min_rest_min": 600,
+  "max_monthly_block_min": 5100,
+  "max_pairing_span_min": 5760
+ }
+}

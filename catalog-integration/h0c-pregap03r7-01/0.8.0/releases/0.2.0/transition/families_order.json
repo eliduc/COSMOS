@@ -1,0 +1,18 @@
+[
+ "calendar_windows",
+ "night_series",
+ "rolling_rest",
+ "days_off_floor",
+ "layover_penalty",
+ "balanced_workload",
+ "duty_extension_penalty",
+ "time_scale",
+ "crew_composition",
+ "reserve_floors",
+ "duty_limits",
+ "rest_floors",
+ "connection_windows",
+ "deadhead_rules",
+ "span_accumulators",
+ "fleet_exclusions"
+]

@@ -1,0 +1,20 @@
+{
+ "fingerprint": "e9cb16948ac5c8df07bf09f3a1ddfbe745e39798c797c26bdb4dc87197343aa1",
+ "form_version": 1,
+ "gates": {
+  "stand_tasks_required": false,
+  "subject_words_required": false
+ },
+ "legacy_registry_rev": "07f945deecdc",
+ "name": "template-catalog",
+ "note": "Isolated GPT integration candidate derived from draft.4: exactly two additional explicit synthetic export_form component tasks for rest_floors and fleet_exclusions. No release, activation, approval or inherited stand evidence.",
+ "released_at": "2026-09-19",
+ "released_by": "аналитик",
+ "sections": {
+  "criteria": "criteria.json",
+  "dictionaries": "dictionaries.json",
+  "families": "families.json",
+  "requests": "requests.json"
+ },
+ "version": "0.7.0-draft.5"
+}

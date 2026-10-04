@@ -1,0 +1,182 @@
+[21:38:56] === BTS MULTI-TRIAL v2 (clean: cold starts + seeds) ===
+  run_id:  20260702T213856
+  budget:  1200s per run
+  trials:  5 × 3 methods = 15 runs
+  est. wall-clock: ~5.3 h
+
+[21:38:56] Source: 1358 flights, 9097 crew, 6824 crew-slots
+[21:38:56] STAGE 1A: enumerate pairings ...
+  44660 pairings
+[21:39:31] STAGE 1B: CP-SAT set-partitioning (num_workers=1) ...
+  551 pairings selected (OPTIMAL)
+  PINNED: full=6824 slots, synthetic=3031 slots (551 pairings)
+
+
+========== [21:39:39] BLOCK 1/5 order=['trips_no_exchange', 'all_at_once', 'trips_with_exchange'] ==========
+
+----- [21:39:39] trips_no_exchange trial 1 (cold) -----
+[21:39:40]   spawning JVM on port 9091 ...
+[21:39:43]   JVM on port 9091 ready
+  [21:59:44] trips_no_exchange t1 seed=12: 0hard/-991825soft (-327.23/slot) elapsed=1205s [OK]
+
+----- [22:00:14] all_at_once trial 1 (cold) -----
+[22:00:15]   spawning JVM on port 9091 ...
+[22:00:18]   JVM on port 9091 ready
+  [22:20:19] all_at_once t1 seed=11: 0hard/-1639968soft (-240.32/slot) elapsed=1205s [OK]
+
+----- [22:20:49] trips_with_exchange trial 1 (cold) -----
+[22:20:50]   spawning JVM on port 9091 ...
+[22:20:50]   spawning JVM on port 9092 ...
+[22:20:50]   spawning JVM on port 9093 ...
+[22:20:50]   spawning JVM on port 9094 ...
+[22:20:53]   JVM on port 9091 ready
+[22:20:53]   JVM on port 9092 ready
+[22:20:53]   JVM on port 9093 ready
+[22:20:54]   JVM on port 9094 ready
+      interval 1/8: best-ever=0hard/-554843soft
+      interval 2/8: best-ever=0hard/-554843soft
+      interval 3/8: best-ever=0hard/-554843soft
+      interval 4/8: best-ever=0hard/-554843soft
+      interval 5/8: best-ever=0hard/-554843soft
+      interval 6/8: best-ever=0hard/-554843soft
+      interval 7/8: best-ever=0hard/-554843soft
+      interval 8/8: best-ever=0hard/-554843soft
+  [22:41:04] trips_with_exchange t1 seed=1000: 0hard/-554843soft (-183.06/slot) elapsed=1215s [OK]
+[22:41:34] block cooldown 60s ...
+
+========== [22:42:34] BLOCK 2/5 order=['trips_with_exchange', 'trips_no_exchange', 'all_at_once'] ==========
+
+----- [22:42:34] trips_with_exchange trial 2 (cold) -----
+[22:42:35]   spawning JVM on port 9091 ...
+[22:42:35]   spawning JVM on port 9092 ...
+[22:42:35]   spawning JVM on port 9093 ...
+[22:42:35]   spawning JVM on port 9094 ...
+[22:42:37]   JVM on port 9091 ready
+[22:42:38]   JVM on port 9092 ready
+[22:42:38]   JVM on port 9093 ready
+[22:42:38]   JVM on port 9094 ready
+      interval 1/8: best-ever=-100hard/-490833soft
+      interval 2/8: best-ever=0hard/-934542soft
+      interval 3/8: best-ever=0hard/-934542soft
+      interval 4/8: best-ever=0hard/-934542soft
+      interval 5/8: best-ever=0hard/-934542soft
+      interval 6/8: best-ever=0hard/-934542soft
+      interval 7/8: best-ever=0hard/-934542soft
+      interval 8/8: best-ever=0hard/-934542soft
+  [23:02:48] trips_with_exchange t2 seed=2000: 0hard/-934542soft (-308.33/slot) elapsed=1214s [OK]
+
+----- [23:03:18] trips_no_exchange trial 2 (cold) -----
+[23:03:19]   spawning JVM on port 9091 ...
+[23:03:21]   JVM on port 9091 ready
+  [23:23:23] trips_no_exchange t2 seed=22: 0hard/-991816soft (-327.22/slot) elapsed=1205s [OK]
+
+----- [23:23:53] all_at_once trial 2 (cold) -----
+[23:23:54]   spawning JVM on port 9091 ...
+[23:23:56]   JVM on port 9091 ready
+  [23:43:58] all_at_once t2 seed=21: 0hard/-1639513soft (-240.26/slot) elapsed=1205s [OK]
+[23:44:28] block cooldown 60s ...
+
+========== [23:45:28] BLOCK 3/5 order=['trips_no_exchange', 'trips_with_exchange', 'all_at_once'] ==========
+
+----- [23:45:28] trips_no_exchange trial 3 (cold) -----
+[23:45:29]   spawning JVM on port 9091 ...
+[23:45:31]   JVM on port 9091 ready
+  [00:05:32] trips_no_exchange t3 seed=32: 0hard/-991822soft (-327.23/slot) elapsed=1205s [OK]
+
+----- [00:06:02] trips_with_exchange trial 3 (cold) -----
+[00:06:03]   spawning JVM on port 9091 ...
+[00:06:03]   spawning JVM on port 9092 ...
+[00:06:03]   spawning JVM on port 9093 ...
+[00:06:03]   spawning JVM on port 9094 ...
+[00:06:06]   JVM on port 9091 ready
+[00:06:06]   JVM on port 9092 ready
+[00:06:07]   JVM on port 9093 ready
+[00:06:07]   JVM on port 9094 ready
+      interval 1/8: best-ever=-100hard/-778741soft
+      interval 2/8: best-ever=0hard/-991825soft
+      interval 3/8: best-ever=0hard/-991817soft
+      interval 4/8: best-ever=0hard/-991813soft
+      interval 5/8: best-ever=0hard/-991813soft
+      interval 6/8: best-ever=0hard/-991813soft
+      interval 7/8: best-ever=0hard/-991813soft
+      interval 8/8: best-ever=0hard/-991813soft
+  [00:26:15] trips_with_exchange t3 seed=3000: 0hard/-991813soft (-327.22/slot) elapsed=1213s [OK]
+
+----- [00:26:45] all_at_once trial 3 (cold) -----
+[00:26:46]   spawning JVM on port 9091 ...
+[00:26:49]   JVM on port 9091 ready
+  [00:46:51] all_at_once t3 seed=31: 0hard/-1641498soft (-240.55/slot) elapsed=1206s [OK]
+[00:47:21] block cooldown 60s ...
+
+========== [00:48:21] BLOCK 4/5 order=['trips_no_exchange', 'trips_with_exchange', 'all_at_once'] ==========
+
+----- [00:48:21] trips_no_exchange trial 4 (cold) -----
+[00:48:22]   spawning JVM on port 9091 ...
+[00:48:24]   JVM on port 9091 ready
+  [01:08:26] trips_no_exchange t4 seed=42: 0hard/-991835soft (-327.23/slot) elapsed=1205s [OK]
+
+----- [01:08:56] trips_with_exchange trial 4 (cold) -----
+[01:08:57]   spawning JVM on port 9091 ...
+[01:08:57]   spawning JVM on port 9092 ...
+[01:08:57]   spawning JVM on port 9093 ...
+[01:08:57]   spawning JVM on port 9094 ...
+[01:09:00]   JVM on port 9091 ready
+[01:09:00]   JVM on port 9092 ready
+[01:09:00]   JVM on port 9093 ready
+[01:09:00]   JVM on port 9094 ready
+      interval 1/8: best-ever=0hard/-567299soft
+      interval 2/8: best-ever=0hard/-567299soft
+      interval 3/8: best-ever=0hard/-567299soft
+      interval 4/8: best-ever=0hard/-567299soft
+      interval 5/8: best-ever=0hard/-567299soft
+      interval 6/8: best-ever=0hard/-567299soft
+      interval 7/8: best-ever=0hard/-567299soft
+      interval 8/8: best-ever=0hard/-567299soft
+  [01:29:11] trips_with_exchange t4 seed=4000: 0hard/-567299soft (-187.17/slot) elapsed=1215s [OK]
+
+----- [01:29:41] all_at_once trial 4 (cold) -----
+[01:29:42]   spawning JVM on port 9091 ...
+[01:29:45]   JVM on port 9091 ready
+  [01:49:46] all_at_once t4 seed=41: 0hard/-1641765soft (-240.59/slot) elapsed=1205s [OK]
+[01:50:16] block cooldown 60s ...
+
+========== [01:51:16] BLOCK 5/5 order=['trips_no_exchange', 'all_at_once', 'trips_with_exchange'] ==========
+
+----- [01:51:16] trips_no_exchange trial 5 (cold) -----
+[01:51:17]   spawning JVM on port 9091 ...
+[01:51:20]   JVM on port 9091 ready
+  [02:11:21] trips_no_exchange t5 seed=52: 0hard/-991820soft (-327.23/slot) elapsed=1205s [OK]
+
+----- [02:11:51] all_at_once trial 5 (cold) -----
+[02:11:52]   spawning JVM on port 9091 ...
+[02:11:55]   JVM on port 9091 ready
+  [02:31:57] all_at_once t5 seed=51: 0hard/-1641637soft (-240.57/slot) elapsed=1206s [OK]
+
+----- [02:32:27] trips_with_exchange trial 5 (cold) -----
+[02:32:28]   spawning JVM on port 9091 ...
+[02:32:28]   spawning JVM on port 9092 ...
+[02:32:28]   spawning JVM on port 9093 ...
+[02:32:28]   spawning JVM on port 9094 ...
+[02:32:30]   JVM on port 9091 ready
+[02:32:31]   JVM on port 9092 ready
+[02:32:31]   JVM on port 9093 ready
+[02:32:31]   JVM on port 9094 ready
+      interval 1/8: best-ever=0hard/-565679soft
+      interval 2/8: best-ever=0hard/-565679soft
+      interval 3/8: best-ever=0hard/-565679soft
+      interval 4/8: best-ever=0hard/-565679soft
+      interval 5/8: best-ever=0hard/-565679soft
+      interval 6/8: best-ever=0hard/-565679soft
+      interval 7/8: best-ever=0hard/-565679soft
+      interval 8/8: best-ever=0hard/-565679soft
+  [02:52:41] trips_with_exchange t5 seed=5000: 0hard/-565679soft (-186.63/slot) elapsed=1215s [OK]
+
+
+========== [02:52:41] AGGREGATE (cold, seeded, n=5) ==========
+method                 n_feas  median/slot  best/slot  worst/slot    range    stdev
+all_at_once                 5       -240.6     -240.3      -240.6      0.3      0.2
+trips_no_exchange           5       -327.2     -327.2      -327.2      0.0      0.0
+trips_with_exchange         5       -187.2     -183.1      -327.2    144.2     72.7
+
+[02:52:41] CSV: C:\work\Sandbox\Testing\TimeFold\crew-demo\data\bts_multitrial2_results.csv
+[02:52:41] DONE.

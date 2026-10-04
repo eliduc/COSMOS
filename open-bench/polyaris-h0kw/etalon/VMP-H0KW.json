@@ -1,0 +1,522 @@
+{
+ "meta": {
+  "customer": "Полярис-H0-КИ-окна (ВМП H0 без критерия оптимизации, с правилами окон истории сотрудника)",
+  "mode": 1,
+  "cdpm_version": "vmp-nano-1",
+  "fit_contract": true,
+  "note": "Ревизия 06.09.2026: предел полётной смены 600 минут без продления (VN-011 снято) — чтобы оба пути ростеринга сходились на суточном расписании. ИДАК H0-КИ-окна (2026-09-05): форма H0-К плюс три жёстких правила ростеринга об окнах истории сотрудника (VN-091, VN-092: семьи night_series, rolling_rest базы шаблонов bc78f37804ec); у каждого — посадка A с параметрами и машинный блок logic (только в machine/эталоне, в документы не рендерится). ИДАК H0-К (2026-09-04): форма H0 без разделов «в) критерии оптимизации» — целевых нет по замыслу; ожидается отказ от оптимизации по ответу авиакомпании и режим взвешенных штрафов. канонический ВМП по построению (решение владельца 2026-09-01): вход COSMOS первичен, документы рендерятся из него (Ш-3); носители машинных условий — в модели (criterion у целевой пейринга), вопросов анкеты нет; якоря — из карты комплекта anchors-map.json"
+ },
+ "sources": [
+  {
+   "sid": "S1",
+   "file": "ID-H0KW-VMP-1.docx",
+   "sha256": "1e95bcf6e6b48b6c54f8a53be492b9b122b206288e4ecfd0788784b669435174"
+  },
+  {
+   "sid": "S2",
+   "file": "ID-H0KW-VMP-2.xlsx",
+   "sha256": "fc1401dc7f1906e072a43b06d1e0f6cccc2af656768fee3ef023b3d4bcd9e0b4"
+  },
+  {
+   "sid": "S3",
+   "file": "ID-H0KW-VMP-3.jpg",
+   "sha256": "44acd15153b040b4d0927ad944640cc2695e8b2f247e93d0fa3d9ea639765a3f"
+  }
+ ],
+ "rules": [
+  {
+   "id": "VN-003",
+   "title": "Базы приписки",
+   "statement": "Базы приписки экипажей: SVG (Северогорск), PLY (Полярный), GRT (Гранитный); главная база — PLY.",
+   "zone": "BOTH",
+   "kind": "DEF",
+   "sources": [
+    {
+     "sid": "S1",
+     "anchor": "абз.5"
+    }
+   ]
+  },
+  {
+   "id": "VN-002",
+   "title": "Парк воздушных судов",
+   "statement": "Парк набора — воздушные суда типа Полярис-Р200; судов иных типов в наборе нет.",
+   "zone": "BOTH",
+   "kind": "DEF",
+   "sources": [
+    {
+     "sid": "S1",
+     "anchor": "абз.6"
+    }
+   ],
+   "codes": [
+    {
+     "code": "Полярис-Р200",
+     "quote": "Полярис-Р200"
+    }
+   ]
+  },
+  {
+   "id": "VN-005",
+   "title": "Должности пилотов",
+   "statement": "Должности пилотов набора: КВС (командир воздушного судна) и Второй пилот.",
+   "zone": "BOTH",
+   "kind": "DEF",
+   "sources": [
+    {
+     "sid": "S1",
+     "anchor": "абз.7"
+    }
+   ],
+   "codes": [
+    {
+     "code": "КВС",
+     "quote": "КВС (командир воздушного судна)"
+    }
+   ]
+  },
+  {
+   "id": "VN-006",
+   "title": "Кредитный час",
+   "statement": "Кредитный час — час налёта по назначению (время от вылета до прилёта рейса), засчитанный пилоту; перелёт пассажиром пилоту не засчитывается; пилоту без назначений кредитные часы не засчитываются, и он входит в разброс.",
+   "zone": "BOTH",
+   "kind": "DEF",
+   "sources": [
+    {
+     "sid": "S1",
+     "anchor": "абз.8"
+    }
+   ]
+  },
+  {
+   "id": "VN-004",
+   "title": "Шкала времени",
+   "statement": "Все времена набора — фиксированное местное время главной базы PLY; смещение шкалы данных 0 минут.",
+   "zone": "BOTH",
+   "kind": "HARD",
+   "sources": [
+    {
+     "sid": "S1",
+     "anchor": "абз.10"
+    }
+   ],
+   "template_fit": {
+    "category": "A",
+    "registry_rev": "5c9d26c1dfcac9f9de12771f0ede271a27f65a95b817048c1c853961b7dd8f78",
+    "family": "time_scale",
+    "params": {
+     "base_tz_offset_min": {
+      "value": 0,
+      "quote": "смещение шкалы данных 0 минут"
+     }
+    }
+   }
+  },
+  {
+   "id": "VN-010",
+   "title": "Предел полётной смены",
+   "statement": "Предел полётной смены — 10:00 (600 минут); продление смены не допускается.",
+   "zone": "PAIRING",
+   "kind": "HARD",
+   "sources": [
+    {
+     "sid": "S1",
+     "anchor": "абз.14"
+    }
+   ],
+   "template_fit": {
+    "category": "A",
+    "registry_rev": "5c9d26c1dfcac9f9de12771f0ede271a27f65a95b817048c1c853961b7dd8f78",
+    "family": "duty_limits",
+    "params": {
+     "max_duty_duration": {
+      "value": 600,
+      "quote": "Предел полётной смены — 10:00 (600 минут)"
+     }
+    }
+   }
+  },
+  {
+   "id": "VN-020",
+   "title": "Стыковка в базе",
+   "statement": "Минимальная стыковка между рейсами — 45 минут (в базе и вне базы одинаково).",
+   "zone": "PAIRING",
+   "kind": "HARD",
+   "sources": [
+    {
+     "sid": "S1",
+     "anchor": "абз.15"
+    }
+   ],
+   "template_fit": {
+    "category": "A",
+    "registry_rev": "5c9d26c1dfcac9f9de12771f0ede271a27f65a95b817048c1c853961b7dd8f78",
+    "family": "connection_windows",
+    "params": {
+     "min_turnaround": {
+      "value": 45,
+      "quote": "Минимальная стыковка между рейсами — 45 минут"
+     }
+    }
+   }
+  },
+  {
+   "id": "VN-023",
+   "title": "Отдых дома",
+   "statement": "Минимальный отдых между сменами дома — 12:00 (720 минут).",
+   "zone": "ROSTERING",
+   "kind": "HARD",
+   "sources": [
+    {
+     "sid": "S2",
+     "anchor": "лист «VMP-H0-2», строка 2"
+    }
+   ],
+   "template_fit": {
+    "category": "A",
+    "registry_rev": "5c9d26c1dfcac9f9de12771f0ede271a27f65a95b817048c1c853961b7dd8f78",
+    "family": "rest_floors",
+    "params": {
+     "min_rest_home": {
+      "value": 720,
+      "quote": "Минимальный отдых между сменами дома — 12:00 (720 минут)"
+     }
+    }
+   }
+  },
+  {
+   "id": "VN-024",
+   "title": "Отдых вне базы",
+   "statement": "Минимальный отдых между сменами вне базы — 10:00 (600 минут).",
+   "zone": "ROSTERING",
+   "kind": "HARD",
+   "sources": [
+    {
+     "sid": "S2",
+     "anchor": "лист «VMP-H0-2», строка 3"
+    }
+   ],
+   "template_fit": {
+    "category": "A",
+    "registry_rev": "5c9d26c1dfcac9f9de12771f0ede271a27f65a95b817048c1c853961b7dd8f78",
+    "family": "rest_floors",
+    "params": {
+     "min_rest_outstation": {
+      "value": 600,
+      "quote": "Минимальный отдых между сменами вне базы — 10:00 (600 минут)"
+     }
+    }
+   }
+  },
+  {
+   "id": "VN-060",
+   "title": "Резерв на базах",
+   "statement": "Ежедневно резерв: PLY ≥ 2 экипажа, SVG ≥ 1, GRT ≥ 1; сутки — по местному времени базы; мера — полные экипажи.",
+   "zone": "ROSTERING",
+   "kind": "HARD",
+   "sources": [
+    {
+     "sid": "S2",
+     "anchor": "лист «VMP-H0-2», строка 4"
+    }
+   ],
+   "template_fit": {
+    "category": "A",
+    "registry_rev": "5c9d26c1dfcac9f9de12771f0ede271a27f65a95b817048c1c853961b7dd8f78",
+    "family": "reserve_floors",
+    "params": {
+     "reserve_crews": {
+      "value": "GRT:1,PLY:2,SVG:1",
+      "quote": "Ежедневно резерв: PLY ≥ 2 экипажа, SVG ≥ 1, GRT ≥ 1"
+     }
+    }
+   }
+  },
+  {
+   "id": "VN-091",
+   "title": "Серия ночных смен",
+   "statement": "Ночных смен подряд у сотрудника не более 2; ночная смена — начавшаяся с 22:00 до 06:00 местного времени базы.",
+   "zone": "ROSTERING",
+   "kind": "HARD",
+   "sources": [
+    {
+     "sid": "S2",
+     "anchor": "лист «VMP-H0-2», строка 5"
+    }
+   ],
+   "template_fit": {
+    "category": "A",
+    "registry_rev": "5c9d26c1dfcac9f9de12771f0ede271a27f65a95b817048c1c853961b7dd8f78",
+    "family": "night_series",
+    "params": {
+     "max_consecutive_night_duties": {
+      "value": 2,
+      "quote": "не более 2"
+     },
+     "night_duty_start": {
+      "value": 1320,
+      "quote": "22:00"
+     },
+     "night_duty_end": {
+      "value": 360,
+      "quote": "06:00"
+     }
+    }
+   },
+   "params": [
+    {
+     "name": "max_consecutive_night_duties",
+     "value": 2,
+     "unit": "count",
+     "as_written": "не более 2",
+     "relation": "max"
+    },
+    {
+     "name": "night_duty_start",
+     "value": 1320,
+     "unit": "time_of_day_minutes",
+     "as_written": "22:00",
+     "relation": "window",
+     "tz": "base-local"
+    },
+    {
+     "name": "night_duty_end",
+     "value": 360,
+     "unit": "time_of_day_minutes",
+     "as_written": "06:00",
+     "relation": "window",
+     "tz": "base-local"
+    }
+   ],
+   "logic": {
+    "subject": "duty",
+    "condition": [
+     {
+      "predicate": "starts_in",
+      "from_param": "night_duty_start",
+      "to_param": "night_duty_end",
+      "as_written": "с 22:00 до 06:00 местного времени базы"
+     },
+     {
+      "predicate": "consecutive",
+      "unit": "duty",
+      "param": "max_consecutive_night_duties",
+      "as_written": "Ночных смен подряд"
+     }
+    ],
+    "demand": {
+     "kind": "count_within",
+     "relation": "max",
+     "param": "max_consecutive_night_duties",
+     "as_written": "не более 2"
+    },
+    "source_params": [
+     "night_duty_start",
+     "night_duty_end",
+     "max_consecutive_night_duties"
+    ],
+    "enforce": "required"
+   }
+  },
+  {
+   "id": "VN-092",
+   "title": "Отдых в скользящем окне",
+   "statement": "В каждые 7 суток у сотрудника есть непрерывный отдых не менее 36 часов (2160 минут).",
+   "zone": "ROSTERING",
+   "kind": "HARD",
+   "sources": [
+    {
+     "sid": "S2",
+     "anchor": "лист «VMP-H0-2», строка 6"
+    }
+   ],
+   "template_fit": {
+    "category": "A",
+    "registry_rev": "5c9d26c1dfcac9f9de12771f0ede271a27f65a95b817048c1c853961b7dd8f78",
+    "family": "rolling_rest",
+    "params": {
+     "weekly_rest_required": {
+      "value": 2160,
+      "quote": "не менее 36 часов (2160 минут)"
+     },
+     "weekly_rest_period": {
+      "value": 10080,
+      "quote": "В каждые 7 суток"
+     }
+    }
+   },
+   "params": [
+    {
+     "name": "weekly_rest_required",
+     "value": 2160,
+     "unit": "duration_minutes",
+     "as_written": "36 часов",
+     "relation": "min"
+    },
+    {
+     "name": "weekly_rest_period",
+     "value": 10080,
+     "unit": "duration_minutes",
+     "as_written": "7 суток",
+     "relation": "window"
+    }
+   ],
+   "logic": {
+    "subject": "rest",
+    "condition": [
+     {
+      "predicate": "longer_than",
+      "param": "weekly_rest_required",
+      "as_written": "не менее 36 часов (2160 минут)"
+     }
+    ],
+    "demand": {
+     "kind": "exists_universe",
+     "subject": "rest",
+     "universe": "employee×rolling_window",
+     "as_written": "у сотрудника есть непрерывный отдых"
+    },
+    "window": {
+     "kind": "rolling",
+     "unit": "day",
+     "param": "weekly_rest_period"
+    },
+    "source_params": [
+     "weekly_rest_required",
+     "weekly_rest_period"
+    ],
+    "enforce": "required"
+   }
+  },
+  {
+   "id": "VN-070",
+   "title": "Допуск по типу воздушного судна",
+   "statement": "Рейс на воздушном судне типа Полярис-Р200 выполняет пилот, у которого допуск на этот тип действует на дату рейса.",
+   "zone": "BOTH",
+   "kind": "HARD",
+   "sources": [
+    {
+     "sid": "S1",
+     "anchor": "абз.11"
+    }
+   ],
+   "template_fit": {
+    "category": "A",
+    "registry_rev": "5c9d26c1dfcac9f9de12771f0ede271a27f65a95b817048c1c853961b7dd8f78",
+    "family": "fleet_exclusions",
+    "params": {
+     "fleet_types": {
+      "value": "Полярис-Р200",
+      "quote": "на воздушном судне типа Полярис-Р200"
+     }
+    }
+   }
+  },
+  {
+   "id": "VN-081",
+   "title": "Состав экипажа",
+   "statement": "Экипаж смены — ровно 2 пилота; должности КВС и Второй пилот при комплектовании смены не различаются.",
+   "zone": "BOTH",
+   "kind": "HARD",
+   "sources": [
+    {
+     "sid": "S1",
+     "anchor": "абз.12"
+    }
+   ],
+   "template_fit": {
+    "category": "A",
+    "registry_rev": "5c9d26c1dfcac9f9de12771f0ede271a27f65a95b817048c1c853961b7dd8f78",
+    "family": "crew_composition",
+    "params": {
+     "crew_size": {
+      "value": 2,
+      "quote": "Экипаж смены — ровно 2 пилота"
+     }
+    }
+   }
+  },
+  {
+   "id": "VN-030",
+   "title": "Ночёвки вне базы",
+   "statement": "Штраф 10 условных единиц за каждую ночёвку вне базы приписки.",
+   "zone": "PAIRING",
+   "kind": "SOFT",
+   "weight": 10,
+   "sources": [
+    {
+     "sid": "S1",
+     "anchor": "абз.17"
+    }
+   ],
+   "template_fit": {
+    "category": "A",
+    "registry_rev": "5c9d26c1dfcac9f9de12771f0ede271a27f65a95b817048c1c853961b7dd8f78",
+    "family": "layover_penalty",
+    "quote": "Штраф 10 условных единиц за каждую ночёвку вне базы приписки"
+   },
+   "export_solver": {
+    "family": "layover_penalty"
+   }
+  },
+  {
+   "id": "VN-D91",
+   "title": "Ночёвки в конце недели",
+   "statement": "Надбавка 25 условных единиц к штрафу за ночёвку вне базы, календарный день начала которой (по местному времени базы) — пятница или суббота.",
+   "zone": "PAIRING",
+   "kind": "SOFT",
+   "weight": 25,
+   "sources": [
+    {
+     "sid": "S1",
+     "anchor": "абз.18"
+    }
+   ],
+   "template_fit": {
+    "category": "A",
+    "registry_rev": "5c9d26c1dfcac9f9de12771f0ede271a27f65a95b817048c1c853961b7dd8f78",
+    "family": "calendar_windows",
+    "quote": "ночёвку вне базы, календарный день начала которой (по местному времени базы) — пятница или суббота"
+   },
+   "export_solver": {
+    "family": "calendar_windows",
+    "days": [
+     "friday",
+     "saturday"
+    ],
+    "tz": "base-local"
+   }
+  },
+  {
+   "id": "VN-050",
+   "title": "Разброс кредитных часов",
+   "statement": "Штраф 3 условные единицы за каждый кредитный час разброса сверх порога существенности 10 кредитных часов за месяц.",
+   "zone": "ROSTERING",
+   "kind": "SOFT",
+   "weight": 3,
+   "sources": [
+    {
+     "sid": "S2",
+     "anchor": "лист «VMP-H0-2», строка 8"
+    }
+   ],
+   "template_fit": {
+    "category": "A",
+    "registry_rev": "5c9d26c1dfcac9f9de12771f0ede271a27f65a95b817048c1c853961b7dd8f78",
+    "family": "balanced_workload",
+    "params": {
+     "workload_spread_threshold": {
+      "value": 10,
+      "quote": "сверх порога существенности 10 кредитных часов за месяц"
+     }
+    },
+    "quote": "Штраф 3 условные единицы за каждый кредитный час разброса сверх порога существенности 10 кредитных часов за месяц"
+   },
+   "export_solver": {
+    "family": "balanced_workload"
+   }
+  }
+ ],
+ "questions": [],
+ "objectives": []
+}

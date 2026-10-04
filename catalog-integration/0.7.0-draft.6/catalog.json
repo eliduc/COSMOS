@@ -1,0 +1,20 @@
+{
+ "fingerprint": "a7180288f0c54b70a8009e6efcda730aec648e88ad9b8d148a51641664b8df81",
+ "form_version": 1,
+ "gates": {
+  "stand_tasks_required": false,
+  "subject_words_required": false
+ },
+ "legacy_registry_rev": "07f945deecdc",
+ "name": "template-catalog",
+ "note": "Isolated component candidate: two typed Kotlin expectations on unchanged existing worlds. No admission, release, activation, approval or inherited stand evidence.",
+ "released_at": "2026-09-19",
+ "released_by": "аналитик",
+ "sections": {
+  "criteria": "criteria.json",
+  "dictionaries": "dictionaries.json",
+  "families": "families.json",
+  "requests": "requests.json"
+ },
+ "version": "0.7.0-draft.6"
+}

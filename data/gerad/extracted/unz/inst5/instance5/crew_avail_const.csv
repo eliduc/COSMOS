@@ -1,0 +1,34 @@
+"Number of crews available at each base for each day of the period."
+
+base  , BASE1 , BASE2 , BASE3
+Day1  , 42    , 30    , 2    
+Day2  , 48    , 33    , 2    
+Day3  , 46    , 35    , 3    
+Day4  , 48    , 34    , 2    
+Day5  , 49    , 35    , 2    
+Day6  , 47    , 35    , 2    
+Day7  , 49    , 34    , 2    
+Day8  , 50    , 33    , 2    
+Day9  , 48    , 36    , 2    
+Day10 , 48    , 32    , 3    
+Day11 , 51    , 32    , 2    
+Day12 , 44    , 37    , 2    
+Day13 , 45    , 37    , 1    
+Day14 , 46    , 36    , 1    
+Day15 , 47    , 37    , 1    
+Day16 , 47    , 33    , 3    
+Day17 , 49    , 35    , 2    
+Day18 , 47    , 35    , 3    
+Day19 , 46    , 37    , 2    
+Day20 , 47    , 34    , 1    
+Day21 , 49    , 35    , 2    
+Day22 , 48    , 34    , 2    
+Day23 , 52    , 33    , 2    
+Day24 , 46    , 34    , 2    
+Day25 , 49    , 34    , 1    
+Day26 , 46    , 34    , 1    
+Day27 , 42    , 39    , 2    
+Day28 , 43    , 35    , 2    
+Day29 , 43    , 42    , 3    
+Day30 , 41    , 37    , 2    
+Day31 , 39    , 35    , 1    

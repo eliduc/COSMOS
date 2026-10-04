@@ -1,0 +1,140 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Токены темы (визуальный язык CodeForge, общий с панелью CDPM) ──
+   Светлая палитра задаётся на :root; в .dark переопределяются ТОЛЬКО
+   переменные. У body — явный фон из токена. */
+:root {
+  --cf-bg: #f1f5f9;
+  --cf-panel: #ffffff;
+  --cf-border: #e2e8f0;
+  --cf-text: #1e293b;
+  --cf-text-muted: #475569;
+  --cf-input-bg: #f8fafc;
+  --cf-hover: #f1f5f9;
+  --cf-code-bg: #f1f5f9;
+  --cf-scrollbar-track: #f1f5f9;
+  --cf-scrollbar-thumb: #cbd5e1;
+  --cf-scrollbar-hover: #6366f1;
+}
+
+.dark {
+  --cf-bg: #0f1419;
+  --cf-panel: #1a1f2e;
+  --cf-border: #2d3748;
+  --cf-text: #e2e8f0;
+  --cf-text-muted: #94a3b8;
+  --cf-input-bg: #1a1f2e;
+  --cf-hover: #2d3748;
+  --cf-code-bg: #1a1f2e;
+  --cf-scrollbar-track: #1a1f2e;
+  --cf-scrollbar-thumb: #4a5568;
+  --cf-scrollbar-hover: #6366f1;
+}
+
+body {
+  background-color: var(--cf-bg);
+  color: var(--cf-text);
+}
+
+/* Скроллбары */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--cf-scrollbar-thumb) transparent;
+}
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--cf-scrollbar-track);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--cf-scrollbar-thumb);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cf-scrollbar-hover);
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-cf-primary px-4
+      py-2 text-sm font-medium text-white transition-colors
+      hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border
+      border-cf-border bg-cf-panel px-4 py-2 text-sm font-medium
+      text-cf-text transition-colors hover:bg-cf-hover
+      disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-3 py-2 text-sm
+      font-medium text-cf-text-muted transition-colors hover:bg-cf-hover
+      hover:text-cf-text disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-danger {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-cf-error px-4
+      py-2 text-sm font-medium text-white transition-colors
+      hover:bg-red-600 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .input-field {
+    @apply w-full rounded-lg border border-cf-border bg-cf-input px-3
+      py-2 text-sm text-cf-text placeholder:text-cf-text-muted
+      focus:border-cf-primary focus:outline-none focus:ring-1
+      focus:ring-cf-primary;
+  }
+  .card {
+    @apply rounded-xl border border-cf-border bg-cf-panel p-4;
+  }
+  .status-badge {
+    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5
+      text-xs font-medium;
+  }
+  /* Таблицы записей, словарей, заявок и исполнителей: одна разметка на
+     все пять экранов — шапка липкая, строки разделены рамкой темы. */
+  .table-head {
+    @apply sticky top-0 z-10 bg-cf-panel px-3 py-2 text-left text-xs
+      font-semibold uppercase tracking-wide text-cf-text-muted;
+  }
+  .table-cell {
+    @apply border-t border-cf-border px-3 py-2 align-top text-sm
+      text-cf-text;
+  }
+  .table-row {
+    @apply transition-colors hover:bg-cf-hover;
+  }
+  /* Якорная группа карточки записи: заголовок + рамка, чтобы ссылки
+     #params / #executors / #stand / #history вели к видимой границе. */
+  .field-group {
+    @apply scroll-mt-24 rounded-xl border border-cf-border bg-cf-panel p-4;
+  }
+  .field-label {
+    @apply mb-1 block text-xs font-medium text-cf-text-muted;
+  }
+}
+
+/* Стилизованная подсказка CodeForge: глобальный слой TooltipLayer
+   показывает содержимое title/data-tip в панели темы — быстрее и
+   читабельнее системной подсказки браузера. */
+.cf-tooltip {
+  position: fixed;
+  z-index: 9999;
+  padding: 7px 11px;
+  border: 1px solid var(--cf-border);
+  border-radius: 10px;
+  background: var(--cf-panel);
+  color: var(--cf-text);
+  font-size: 12px;
+  line-height: 1.5;
+  white-space: pre-line;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.38);
+  pointer-events: none;
+  animation: cf-tip-in 0.12s ease-out;
+}
+@keyframes cf-tip-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

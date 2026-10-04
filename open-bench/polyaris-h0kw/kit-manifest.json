@@ -1,0 +1,59 @@
+{
+ "customer": "Полярис-H0-КИ-окна (ВМП H0 без критерия оптимизации, с правилами окон истории сотрудника)",
+ "catalog": {
+  "version": "0.2.0",
+  "fingerprint": "5c9d26c1dfcac9f9de12771f0ede271a27f65a95b817048c1c853961b7dd8f78"
+ },
+ "stage": "ИД H0-КИ-окна (H0-К + два жёстких правила окон истории сотрудника: серия ночных смен, отдых в скользящем окне, выходные в месяц; спецификация 1.17)",
+ "data_class": "synthetic",
+ "llm_scope": "any",
+ "llm_scope_basis": "набор синтетический: вымышленная авиакомпания, генератор в репозитории (build_kit_h0kw.py поверх build_kit_h0k.py и build_kit_h0.py); решение владельца 03.09.2026 — для синтетических и открытых данных любые модели, включая облачные",
+ "rules_files": [
+  "docs/ID-H0KW-VMP-1.docx",
+  "docs/ID-H0KW-VMP-2.xlsx",
+  "docs/ID-H0KW-VMP-3.jpg"
+ ],
+ "data_files": [
+  "data/ID-H0KW-DATA.xlsx"
+ ],
+ "answer_book": "etalon/ANSWER-BOOK-MACHINE.json",
+ "agents_layout": "../polyaris-h0/agents-layout-h0.json",
+ "strict_questions": false,
+ "etalon_vmp": "open-bench/polyaris-h0kw/etalon/VMP-H0KW.json",
+ "etalon_form": "open-bench/polyaris-h0kw/etalon/VMP-H0KW-form.json",
+ "expect": {
+  "_comment": "Ожидание прогона H0-КИ-окна (простой набор, требование владельца 05.09.2026): критерия оптимизации нет → отказ подтверждён, feasibility-soft (как H0-К); анкета — вопросы о целевой и вопрос об истории сотрудников (лист «История» не передан): Q-3b-история-нет → «б» (продолжить с нулевой историей), раздел history пакета — coverage none с решением пользователя continue_zero. Три правила окон истории судятся по посадке (kind/zone/family/params), блок logic гейтом не сравнивается. Раннер сверяет ключи ниже с пакетом.",
+  "questions": [
+   "Q-3a-GOAL",
+   "Q-3b-GOAL",
+   "Q-3b-история-нет"
+  ],
+  "_history_question": "истории нет ни у кого (книга данных по умолчанию без листа «История») — задаётся Q-3b-история-нет, книга ответов отвечает «б»: продолжить с нулевой историей, COSMOS называет допущение и считает (пример владельца 05.09.2026). Вариант с историей — data/ID-H0KW-HIST-DATA.xlsx, отдельная демонстрация.",
+  "allowed_modes": {
+   "pairing": [
+    "feasibility-soft",
+    "feasibility-hard"
+   ],
+   "rostering": [
+    "feasibility-soft",
+    "feasibility-hard"
+   ]
+  },
+  "readiness_ladder": {
+   "pairing": "feasible_soft",
+   "rostering": "feasible_soft"
+  },
+  "optimization_state": "отказ подтверждён",
+  "note_contains": "критерия оптимизации нет",
+  "objectives": 0,
+  "cosmos_default_mode": "feasibility-soft",
+  "history": {
+   "present": true,
+   "employees_total": 24,
+   "with_history": 0,
+   "coverage_kind": "none",
+   "user_decision": "continue_zero"
+  }
+ },
+ "note": "ИДАК H0-КИ-окна = H0-К плюс два жёстких правила ростеринга об окнах истории сотрудника (VN-091, VN-092: семьи night_series, rolling_rest) — в xlsx (часть 2 а), с посадкой A и параметрами в тексте строки; блок logic — только в эталоне и machine формы, гейт судит посадку (kind/zone/family/params). Книга ответов закрывает вопросы о целевой («критерия оптимизации нет») и вопрос об истории («б» — продолжить с нулевой историей). Книга данных ID-H0KW-DATA.xlsx — простой набор (требование владельца 05.09.2026): сбалансированная программа рейсов, без листа «История»; отдельный генератор build_data_h0kw.py."
+}

@@ -1,0 +1,20 @@
+{
+ "fingerprint": "2733c31fb805a9e4b434e1b00d5f78e1411210b55061319d2e53df44fd8f530f",
+ "form_version": 1,
+ "gates": {
+  "stand_tasks_required": false,
+  "subject_words_required": false
+ },
+ "legacy_registry_rev": "07f945deecdc",
+ "name": "template-catalog",
+ "note": "Owner-authorized own Local release with genuine H0C PRE-GAP request lineage and all fresh exact-C4 executor evidence. No customer-pipeline acceptance or deployment.",
+ "released_at": "2026-09-21",
+ "released_by": "владелец",
+ "sections": {
+  "criteria": "criteria.json",
+  "dictionaries": "dictionaries.json",
+  "families": "families.json",
+  "requests": "requests.json"
+ },
+ "version": "0.8.0"
+}

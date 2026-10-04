@@ -1,0 +1,20 @@
+{
+ "fingerprint": "dd8687d5f8574f2f3573b5a908a15c7c7bb8b1142991bb1297c2e445cbfaa02e",
+ "form_version": 1,
+ "gates": {
+  "stand_tasks_required": false,
+  "subject_words_required": false
+ },
+ "legacy_registry_rev": "07f945deecdc",
+ "name": "template-catalog",
+ "note": "Изолированный проект GPT К12: явный параметрический словарь для 31/31 адреса; long_duty_threshold назван базовым жёстким пределом, а не мягким порогом. Остальное тело draft.2 сохранено. Не выпуск, не акт владельца, не подтверждение поддержки и не активация. Старые одобрения и bindings не перенесены. released_* обязательны формой предрелиза; released_by=аналитик не означает приёмку владельцем.",
+ "released_at": "2026-09-19",
+ "released_by": "аналитик",
+ "sections": {
+  "criteria": "criteria.json",
+  "dictionaries": "dictionaries.json",
+  "families": "families.json",
+  "requests": "requests.json"
+ },
+ "version": "0.7.0-draft.3"
+}

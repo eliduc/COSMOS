@@ -1,0 +1,148 @@
+{
+ "form_version": 1,
+ "name": "НШ-H0",
+ "note": "набор шаблонов COSMOS под ВМП H0 (фаза ИДАК-0): детерминированный срез базы по факту использования; руками не редактируется — перевыпускается генератором",
+ "registry_rev": "0ce7a9570d66",
+ "vmp": {
+  "customer": "Полярис-нано (ВМП нано)",
+  "cdpm_version": "vmp-nano-1"
+ },
+ "families": {
+  "balanced_workload": {
+   "class": "core",
+   "title": "равномерность кредитных часов группы; вес — весом правила пакета",
+   "executors": [
+    "kotlin FlightCrewSchedulingConstraintProvider.balancedWorkload («Balanced workload»)"
+   ],
+   "params": [],
+   "kind": "SOFT",
+   "zone": "ROSTERING",
+   "violation_unit": "hour"
+  },
+  "calendar_windows": {
+   "class": "extension",
+   "title": "действия в окне дней недели (штраф ночёвок и родня); окно/пояс/действие — формой пакета, вес — весами пакета",
+   "executors": [
+    "kotlin FlightCrewSchedulingConstraintProvider.calendarWindowLayovers",
+    "kotlin TaskPackage.calendarWindowsOf"
+   ],
+   "params": [],
+   "kind": "SOFT",
+   "zone": "PAIRING",
+   "violation_unit": "night"
+  },
+  "connection_windows": {
+   "class": "core",
+   "title": "стыковки (минимальные, максимальные, пороговые окна станций)",
+   "executors": [
+    "_pairing_builder.chain_ok"
+   ],
+   "params": [
+    "min_turnaround"
+   ],
+   "kind": "HARD",
+   "zone": "PAIRING",
+   "violation_unit": null
+  },
+  "crew_composition": {
+   "class": "core",
+   "title": "состав экипажа полётной смены",
+   "executors": [
+    "crew_size пакета + судья состава решателя"
+   ],
+   "params": [
+    "crew_size"
+   ],
+   "kind": "HARD",
+   "zone": "BOTH",
+   "violation_unit": null
+  },
+  "duty_extension_penalty": {
+   "class": "extension",
+   "title": "мягкое превышение порога длительности смены до жёсткого потолка: порог — базовый предел смены пакета, потолок — параметр max_duty_duration правила семьи, вес — весом правила пакета",
+   "executors": [
+    "kotlin FlightCrewSchedulingConstraintProvider.dutyExtensionOverThreshold («Duty extension over threshold»)",
+    "kotlin RunThresholds.applyDutyExtension (жёсткая грань = потолок продления; базовый предел — мягкий порог; построитель пейринга получает потолок эхом порога max_duty_span_min)"
+   ],
+   "params": [
+    "duty_extension_cap",
+    "long_duty_threshold"
+   ],
+   "kind": "SOFT",
+   "zone": "PAIRING",
+   "violation_unit": "duty"
+  },
+  "duty_limits": {
+   "class": "core",
+   "title": "пределы рабочей смены (ярусы, посадки, продления)",
+   "executors": [
+    "_conditions.worktime_exact",
+    "_pairing_builder.duty_limit_ok"
+   ],
+   "params": [
+    "max_duty_duration"
+   ],
+   "kind": "HARD",
+   "zone": "PAIRING",
+   "violation_unit": null
+  },
+  "layover_penalty": {
+   "class": "core",
+   "title": "мягкий штраф за ночёвку вне базы; вес — весом правила пакета",
+   "executors": [
+    "kotlin FlightCrewSchedulingConstraintProvider.layoverNights («Layover nights away from home»)"
+   ],
+   "params": [],
+   "kind": "SOFT",
+   "zone": "PAIRING",
+   "violation_unit": "night"
+  },
+  "reserve_floors": {
+   "class": "core",
+   "title": "нормы резерва по базам",
+   "executors": [
+    "решатель: ограничение Reserve crews (нормы reserve_crews пакета)"
+   ],
+   "params": [
+    "reserve_crews"
+   ],
+   "kind": "HARD",
+   "zone": "ROSTERING",
+   "violation_unit": null
+  },
+  "rest_floors": {
+   "class": "core",
+   "title": "полы отдыха (база/вне базы, длинные, ярусные)",
+   "executors": [
+    "_conditions.rest_floor",
+    "_duty_periods.build_periods"
+   ],
+   "params": [
+    "min_rest_home",
+    "min_rest_outstation"
+   ],
+   "kind": "HARD",
+   "zone": "ROSTERING",
+   "violation_unit": null
+  },
+  "time_scale": {
+   "class": "core",
+   "title": "временная шкала планирования (сдвиг местного времени данных; сдвиг, не предел)",
+   "executors": [
+    "решатель: ручка base_tz_offset_min пакета + контракт правил построителя"
+   ],
+   "params": [
+    "base_tz_offset_min"
+   ],
+   "kind": "HARD",
+   "zone": "BOTH",
+   "violation_unit": null
+  }
+ },
+ "criteria": {
+  "min_person_days": {
+   "title": "минимум человеко-дней командировки",
+   "executor": true
+  }
+ }
+}

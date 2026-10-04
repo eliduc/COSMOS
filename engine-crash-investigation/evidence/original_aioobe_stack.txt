@@ -1,0 +1,28 @@
+LEN 1422
+	at ai.timefold.solver.core.impl.bavet.common.AbstractIfExistsNode.doRetractCounter(AbstractIfExistsNode.java:179)
+	at ai.timefold.solver.core.impl.bavet.common.AbstractIfExistsNode.incrementCounterRight(AbstractIfExistsNode.java:108)
+	at ai.timefold.solver.core.impl.bavet.common.AbstractIfExistsNode.updateCounterFromRight(AbstractIfExistsNode.java:164)
+	at ai.timefold.solver.core.impl.bavet.common.AbstractIndexedIfExistsNode.lambda$updateCounterLeft$0(AbstractIndexedIfExistsNode.java:154)
+	at ai.timefold.solver.core.impl.util.ElementAwareLinkedList.forEach(ElementAwareLinkedList.java:149)
+	at ai.timefold.solver.core.impl.bavet.common.index.LinkedListIndexerBackend.forEach(LinkedListIndexerBackend.java:40)
+	at ai.timefold.solver.core.impl.bavet.common.index.EqualIndexer.forEach(EqualIndexer.java:104)
+	at ai.timefold.solver.core.impl.bavet.common.AbstractIndexedIfExistsNode.updateCounterLeft(AbstractIndexedIfExistsNode.java:154)
+	at ai.timefold.solver.core.impl.bavet.common.AbstractIndexedIfExistsNode.updateRight(AbstractIndexedIfExistsNode.java:184)
+	at ai.timefold.solver.core.impl.bavet.common.AbstractIndexedIfExistsNode.updateRight(AbstractIndexedIfExistsNode.java:23)
+	at ai.timefold.solver.core.impl.bavet.common.tuple.RightTupleLifecycleImpl.update(RightTupleLifecycleImpl.java:20)
+	at ai.timefold.solver.core.impl.bavet.common.tuple.AggregatedTupleLifecycle.update(AggregatedTupleLifecycle.java:25)
+======END======
+LEN 1422
+	at ai.timefold.solver.core.impl.bavet.common.AbstractIfExistsNode.doRetractCounter(AbstractIfExistsNode.java:179)
+	at ai.timefold.solver.core.impl.bavet.common.AbstractIfExistsNode.incrementCounterRight(AbstractIfExistsNode.java:108)
+	at ai.timefold.solver.core.impl.bavet.common.AbstractIfExistsNode.updateCounterFromRight(AbstractIfExistsNode.java:164)
+	at ai.timefold.solver.core.impl.bavet.common.AbstractIndexedIfExistsNode.lambda$updateCounterLeft$0(AbstractIndexedIfExistsNode.java:154)
+	at ai.timefold.solver.core.impl.util.ElementAwareLinkedList.forEach(ElementAwareLinkedList.java:149)
+	at ai.timefold.solver.core.impl.bavet.common.index.LinkedListIndexerBackend.forEach(LinkedListIndexerBackend.java:40)
+	at ai.timefold.solver.core.impl.bavet.common.index.EqualIndexer.forEach(EqualIndexer.java:104)
+	at ai.timefold.solver.core.impl.bavet.common.AbstractIndexedIfExistsNode.updateCounterLeft(AbstractIndexedIfExistsNode.java:154)
+	at ai.timefold.solver.core.impl.bavet.common.AbstractIndexedIfExistsNode.updateRight(AbstractIndexedIfExistsNode.java:184)
+	at ai.timefold.solver.core.impl.bavet.common.AbstractIndexedIfExistsNode.updateRight(AbstractIndexedIfExistsNode.java:23)
+	at ai.timefold.solver.core.impl.bavet.common.tuple.RightTupleLifecycleImpl.update(RightTupleLifecycleImpl.java:20)
+	at ai.timefold.solver.core.impl.bavet.common.tuple.AggregatedTupleLifecycle.update(AggregatedTupleLifecycle.java:25)
+======END======

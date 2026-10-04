@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Вход — COSMOS</title>
+<link rel="icon" type="image/svg+xml" href="/logo.svg">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<main class="login-page">
+  <form id="login-form" class="card login-card">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:8px">
+      <div class="brand">
+        <img class="app-logo" src="/logo.svg" alt="">
+        <h1 id="login-heading">COSMOS — конвейер пейринг–ростеринг</h1>
+      </div>
+      <button type="button" class="btn btn-ghost btn-small" id="login-lang">EN</button>
+    </div>
+    <p class="muted">
+      <span id="login-intro-before">Введите токен доступа. Токен печатается в консоль сервера один раз
+      при первом запуске; для сброса удалите </span><span class="mono">webapp/config/auth.json</span><span id="login-intro-after"> и перезапустите сервер.</span>
+    </p>
+    <div class="form-row">
+      <label for="login-token" id="login-token-label">Токен доступа</label>
+      <input type="password" id="login-token" autocomplete="current-password"
+             autofocus spellcheck="false">
+    </div>
+    <div class="form-row form-actions">
+      <button type="submit" class="btn btn-primary" id="login-submit">Войти</button>
+    </div>
+    <p id="login-error" class="login-error hidden"></p>
+  </form>
+</main>
+<script src="/ui-config.js"></script>
+<script>
+"use strict";
+/* Login page is intentionally self-contained: app.js requires a session
+ * and is not loaded here, and i18n.js is NOT public (see PUBLIC_PATHS in
+ * webapp/app.py), so the page carries its own tiny dictionary. It shares
+ * the "crewLang" localStorage key with the main app so the choice made
+ * here follows the user in. */
+var LANG_KEY = "crewLang";
+
+var I18N = {
+  ru: {
+    title: "Вход — COSMOS",
+    heading: "COSMOS — конвейер пейринг–ростеринг",
+    introBefore: "Введите токен доступа. Токен печатается в консоль сервера один раз при первом запуске; для сброса удалите ",
+    introAfter: " и перезапустите сервер.",
+    tokenLabel: "Токен доступа",
+    submit: "Войти",
+    errEmpty: "Введите токен.",
+    errUnauthorized: "Неверный токен.",
+    errServer: "Ошибка сервера (HTTP {n}).",
+    errNetwork: "Нет соединения с сервером.",
+    toggle: "EN"
+  },
+  en: {
+    title: "Sign in — COSMOS",
+    heading: "COSMOS — Pairing–Rostering Pipeline",
+    introBefore: "Enter the access token. The token is printed to the server console once at first start; to reset it, delete ",
+    introAfter: " and restart the server.",
+    tokenLabel: "Access token",
+    submit: "Sign in",
+    errEmpty: "Enter the token.",
+    errUnauthorized: "Invalid token.",
+    errServer: "Server error (HTTP {n}).",
+    errNetwork: "No connection to the server.",
+    toggle: "RU"
+  }
+};
+
+function uiLang() {
+  var v = localStorage.getItem(LANG_KEY);
+  if (v === "en" || v === "ru") { return v; }
+  /* Первый заход: умолчание установки из /ui-config.js. Словари этой
+   * страницы — только ru/en: русский остаётся умолчанием (как было),
+   * а любой ЯВНО заданный установкой не-русский язык даёт английский —
+   * для узбекского/казахского/арабского он ближе навязанного русского. */
+  var d = window.CREW_DEFAULT_LANG;
+  return (d && d !== "ru") ? "en" : "ru";
+}
+
+/* The last shown error, kept as a key (+ HTTP status for errServer) so a
+ * language toggle re-renders it in the new language. */
+var lastError = null;
+
+function errorText(dict) {
+  if (lastError.key === "errServer") {
+    return dict.errServer.split("{n}").join(String(lastError.status));
+  }
+  return dict[lastError.key];
+}
+
+function showError(key, status) {
+  lastError = { key: key, status: status };
+  var errBox = document.getElementById("login-error");
+  errBox.textContent = errorText(I18N[uiLang()]);
+  errBox.classList.remove("hidden");
+}
+
+function render() {
+  var lang = uiLang();
+  var dict = I18N[lang];
+  document.documentElement.lang = lang;
+  document.title = dict.title;
+  document.getElementById("login-heading").textContent = dict.heading;
+  document.getElementById("login-lang").textContent = dict.toggle;
+  document.getElementById("login-intro-before").textContent = dict.introBefore;
+  document.getElementById("login-intro-after").textContent = dict.introAfter;
+  document.getElementById("login-token-label").textContent = dict.tokenLabel;
+  document.getElementById("login-submit").textContent = dict.submit;
+  if (lastError !== null) {
+    document.getElementById("login-error").textContent = errorText(dict);
+  }
+}
+
+document.getElementById("login-lang").addEventListener("click", function () {
+  localStorage.setItem(LANG_KEY, uiLang() === "en" ? "ru" : "en");
+  render();
+});
+
+document.getElementById("login-form").addEventListener("submit", function (evt) {
+  evt.preventDefault();
+  var errBox = document.getElementById("login-error");
+  errBox.classList.add("hidden");
+  lastError = null;
+  var token = document.getElementById("login-token").value.trim();
+  if (!token) {
+    showError("errEmpty");
+    return;
+  }
+  var btn = document.getElementById("login-submit");
+  btn.disabled = true;
+  fetch("/api/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ token: token })
+  }).then(function (resp) {
+    if (resp.ok) { window.location.href = "/"; return; }
+    if (resp.status === 401) { showError("errUnauthorized"); }
+    else { showError("errServer", resp.status); }
+  }).catch(function () {
+    showError("errNetwork");
+  }).finally(function () {
+    btn.disabled = false;
+  });
+});
+
+render();
+</script>
+</body>
+</html>

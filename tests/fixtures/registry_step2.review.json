@@ -1,0 +1,60 @@
+{
+  "schema": "registry-snapshot-review/1",
+  "date": "2026-09-20",
+  "author": "GPT helper /root/component_knob_contract",
+  "source_commit": "88c71bfb55bdf8496c2263b62d2e0edd39f72ff8",
+  "baseline": {
+    "path": "tests/fixtures/registry_step1.json",
+    "sha256_lf": "c968a13dd06a272da00c591ed4a873369ba3de0c97d75f8dbee4a36f900850c7",
+    "immutable": true
+  },
+  "snapshot": {
+    "path": "tests/fixtures/registry_step2.json",
+    "sha256_lf": "8cc2971430e0a0c450aae7d15924b79aa1ceb128266d18cef76180a08ed68bcd",
+    "inherited_metadata": "All original snapshot fields, including historical code/frozen_at/frozen_by/name, are preserved. Those fields describe the step1 origin, not a new approval or signature. The only data change is change below; this sidecar records the new derivation."
+  },
+  "applicability": {
+    "minimum_version_triple": [0, 8, 0],
+    "include_drafts": true
+  },
+  "change": {
+    "family": "duty_extension_penalty",
+    "field": "title",
+    "before": "мягкое превышение порога длительности смены до жёсткого потолка: порог — базовый предел смены пакета, потолок — параметр max_duty_duration правила семьи, вес — весом правила пакета",
+    "after": "мягкое превышение порога длительности смены до жёсткого потолка: порог — базовый предел смены пакета, потолок — параметр duty_extension_cap правила семьи, вес — весом правила пакета"
+  },
+  "causal_basis": [
+    {
+      "path": "catalog/families.json",
+      "sha256": "444c1af4bcef6d1b50cd9c795cb7d93cab79296653699893f439a7c21f24ea08",
+      "location": "duty_extension_penalty.history, date 2026-09-01",
+      "fact": "Recorded historical decision assigns the extension ceiling its own duty_extension_cap name; max_duty_duration remains the base of duty_limits. This is historical source evidence, not a new human signature."
+    },
+    {
+      "path": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/TaskPackage.kt",
+      "sha256": "b47efc3077383b0567af170028b5bd9cc0209e27295515f6b32fa00a451eb439",
+      "location": "dutyExtensionOf, lines 867-902",
+      "fact": "The typed landing ceiling is duty_extension_cap. max_duty_duration in legacy rule.params remains a compatibility carrier, with mismatch refusal; it is not the modern family parameter."
+    },
+    {
+      "path": "kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+      "sha256": "be2f074bdab0b72133ec4e27aa66fff1d1a9c5d5da71c744154098855017f1fb",
+      "location": "applyDutyExtensions/resolveNative, lines 737-781",
+      "fact": "The base max_duty_span_min reading is preserved; the independently parsed cap is attached to each applicable extension policy. A declared soft threshold must match the base."
+    }
+  ],
+  "authorization": {
+    "mode": "delegated-owner-authorization",
+    "human_signature": false,
+    "basis": "Owner authorized GPT to decide and execute its recommendations in the scoped Local/TEST task; parent /root explicitly delegated this isolated versioned-snapshot repair. This document does not claim the owner personally reviewed or signed these bytes."
+  },
+  "review": {
+    "status": "root-reviewed",
+    "reviewer": "parent /root",
+    "at": "2026-09-20T19:41:23Z",
+    "scope": "Separate root review of the parity diff, test, sidecar and handoff; verified all three causal source hashes and TaskPackage.kt:867-902, RunThresholds.kt:737-781, historical 2026-09-01 decision; git no-index comparison confirms exactly one title-field change. Approved version-selected witness for catalog >=0.8 including drafts; historical step1 immutable. Product and E2E acceptance remain false.",
+    "required_reviewer": "parent /root, separate from this authoring helper",
+    "product_acceptance": false
+  },
+  "limitations": "Offline semantic witness repair only. No JVM/provider/API run, catalog release, deployed gate pass or end-to-end acceptance is asserted. Catalog bytes, historical snapshots and existing actual failure receipts are unchanged."
+}

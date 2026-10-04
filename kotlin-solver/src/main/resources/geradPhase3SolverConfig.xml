@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Named solver "gerad3" — GERAD phase-3 experiment 1: personalized
+     profile + integrated chain-compactness objective term. Registered so
+     the Timefold Quarkus processor accepts the ConstraintProvider;
+     per-request configs are built programmatically (rules=GERAD3). -->
+<solver xmlns="https://timefold.ai/xsd/solver">
+  <solutionClass>org.acme.flighcrewscheduling.domain.FlightCrewSchedule</solutionClass>
+  <entityClass>org.acme.flighcrewscheduling.domain.FlightAssignment</entityClass>
+  <scoreDirectorFactory>
+    <constraintProviderClass>org.acme.flighcrewscheduling.solver.GeradPhase3ConstraintProvider</constraintProviderClass>
+  </scoreDirectorFactory>
+</solver>

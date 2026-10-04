@@ -1,0 +1,2 @@
+*.txt -text
+confusables.json text eol=lf

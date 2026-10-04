@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PANORAMA COS — Система оптимизации экипажа</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" />
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/vis-timeline@7.7.2/styles/vis-timeline-graph2d.min.css"
+        integrity="sha256-svzNasPg1yR5gvEaRei2jg+n4Pc3sVyMUWeS6xRAh6U="
+        crossorigin="anonymous" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="pn-topbar">
+    <a href="/" class="pn-brand" aria-label="PANORAMA COS">
+      <svg class="pn-brand-mark" width="36" height="36" viewBox="0 0 42 42"
+           xmlns="http://www.w3.org/2000/svg" fill="none" aria-hidden="true">
+        <path d="M2.53711 4.58813L9.87224 6.51846C16.275 8.20335 23.0047 8.20335 29.4074 6.51846L36.7425 4.58813V36.9932L31.1974 35.2421C23.6754 32.8668 15.6042 32.8668 8.08226 35.2421L2.53711 36.9932V4.58813Z"
+              fill="#0075DB" />
+        <path d="M28.0976 24.3184V22.7038L21.2816 17.3235V13.9155C21.2816 13.4635 21.1021 13.0301 20.7825 12.7105C20.463 12.391 20.0296 12.2114 19.5776 12.2114C19.1257 12.2114 18.6923 12.391 18.3727 12.7105C18.0532 13.0301 17.8736 13.4635 17.8736 13.9155V17.4129L11.0576 22.7933V24.3175L17.8736 21.9234V25.8434L15.3176 27.5475V29.2514L19.5776 27.5475L23.8376 29.2514V27.5475L21.2816 25.8434V21.8518L28.0976 24.3184Z"
+              fill="white" />
+      </svg>
+      <span class="pn-brand-text">
+        <span>PANORAMA</span>
+        <span class="pn-cos">COS</span>
+      </span>
+    </a>
+    <div class="pn-topbar-right">
+      <div class="pn-subtitle">
+        Crew Optimization System<br />
+        Оптимизация расписания лётных экипажей
+      </div>
+      <button id="resetButton" class="pn-topbar-action" type="button"
+              title="Сбросить в исходное (загрузить демо-данные)"
+              aria-label="Сброс">
+        <span class="fas fa-arrow-rotate-left"></span>
+      </button>
+      <button id="settingsButton" class="pn-topbar-action" type="button"
+              title="Настройки" aria-label="Настройки">
+        <span class="fas fa-gear"></span>
+      </button>
+    </div>
+  </header>
+
+  <div id="notificationPanel" class="pn-notifications"
+       aria-live="polite" aria-atomic="true"></div>
+
+  <main class="pn-page">
+
+    <nav class="pn-tabs" role="tablist">
+      <button id="mainScheduleTab" class="pn-tab active" type="button" role="tab"
+              data-bs-toggle="tab" data-bs-target="#schedulePane"
+              aria-controls="schedulePane" aria-selected="true">
+        <span class="fas fa-calendar-check"></span> Расписание
+      </button>
+      <button id="mainCrewTab" class="pn-tab" type="button" role="tab"
+              data-bs-toggle="tab" data-bs-target="#crewPane"
+              aria-controls="crewPane" aria-selected="false">
+        <span class="fas fa-users"></span> Экипаж
+        <span id="crewCount" class="pn-tab-badge">0</span>
+      </button>
+      <button id="mainFlightsTab" class="pn-tab" type="button" role="tab"
+              data-bs-toggle="tab" data-bs-target="#flightsPane"
+              aria-controls="flightsPane" aria-selected="false">
+        <span class="fas fa-plane-departure"></span> Рейсы
+        <span id="flightCount" class="pn-tab-badge">0</span>
+      </button>
+      <button id="mainBenchTab" class="pn-tab" type="button" role="tab"
+              data-bs-toggle="tab" data-bs-target="#benchPane"
+              aria-controls="benchPane" aria-selected="false">
+        <span class="fas fa-chart-line"></span> Бенчмарк
+      </button>
+    </nav>
+
+    <div class="tab-content">
+
+      <div class="tab-pane fade show active" id="schedulePane" role="tabpanel"
+           aria-labelledby="mainScheduleTab">
+
+        <section class="pn-hero">
+          <h1>Расписание экипажей</h1>
+          <p>Назначьте пилотов и бортпроводников на рейсы с учётом квалификаций,
+             отдыха, полётного времени и языковых требований.</p>
+        </section>
+
+        <div class="pn-toolbar">
+          <button id="solveButton" type="button" class="pn-btn pn-btn-primary">
+            <span class="fas fa-play"></span> Запустить
+          </button>
+          <button id="stopSolvingButton" type="button" class="pn-btn pn-btn-danger"
+                  style="display: none;">
+            <span class="fas fa-stop"></span> Остановить
+          </button>
+          <span class="pn-score">Оценка <strong id="score">—</strong></span>
+          <span class="pn-score pn-elapsed" id="elapsedWrap" style="display:none">Время <strong id="elapsed">00:00</strong></span>
+          <button id="analyzeButton" type="button"
+                  class="pn-btn pn-btn-ghost pn-btn-icon"
+                  title="Анализ ограничений">
+            <span class="fas fa-chart-column"></span>
+          </button>
+
+          <div class="pn-spacer"></div>
+
+          <div class="pn-segmented" role="tablist">
+            <button id="byCrewTab" class="pn-seg-btn active"
+                    data-bs-toggle="tab" data-bs-target="#byCrewPanel"
+                    type="button" role="tab"
+                    aria-controls="byCrewPanel" aria-selected="true">
+              По экипажу
+            </button>
+            <button id="byFlightTab" class="pn-seg-btn"
+                    data-bs-toggle="tab" data-bs-target="#byFlightPanel"
+                    type="button" role="tab"
+                    aria-controls="byFlightPanel" aria-selected="false">
+              По рейсам
+            </button>
+          </div>
+        </div>
+
+        <div class="tab-content">
+          <div class="tab-pane fade show active" id="byCrewPanel" role="tabpanel"
+               aria-labelledby="byCrewTab">
+            <div class="pn-panel">
+              <div id="crewVisualization"></div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="byFlightPanel" role="tabpanel"
+               aria-labelledby="byFlightTab">
+            <div class="pn-panel">
+              <div id="flightVisualization"></div>
+            </div>
+          </div>
+        </div>
+
+        <h2>Нераспределённые назначения</h2>
+        <div id="unassignedCrew" class="pn-unassigned-grid"></div>
+      </div>
+
+      <div class="tab-pane fade" id="crewPane" role="tabpanel"
+           aria-labelledby="mainCrewTab">
+        <div class="pn-section-header">
+          <h2>Экипаж</h2>
+          <button id="addEmployeeButton" class="pn-btn pn-btn-primary">
+            <span class="fas fa-plus"></span> Добавить сотрудника
+          </button>
+        </div>
+        <div class="pn-data-table">
+          <table id="employeeTable">
+            <thead>
+              <tr>
+                <th>Имя</th>
+                <th>База</th>
+                <th>Должность</th>
+                <th>Типы ВС</th>
+                <th>Языки</th>
+                <th>Стаж</th>
+                <th>Отпуск / предпочтения</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="flightsPane" role="tabpanel"
+           aria-labelledby="mainFlightsTab">
+        <div class="pn-section-header">
+          <h2>Рейсы</h2>
+          <button id="addFlightButton" class="pn-btn pn-btn-primary">
+            <span class="fas fa-plus"></span> Добавить рейс
+          </button>
+        </div>
+        <div class="pn-data-table">
+          <table id="flightTable">
+            <thead>
+              <tr>
+                <th>Номер</th>
+                <th>Вылет</th>
+                <th>Прибытие</th>
+                <th>Тип ВС</th>
+                <th>Отправление (UTC)</th>
+                <th>Прилёт (UTC)</th>
+                <th>Длительность</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="benchPane" role="tabpanel"
+           aria-labelledby="mainBenchTab">
+        <div class="pn-section-header">
+          <h2>Бенчмарк движков</h2>
+          <div class="pn-section-actions">
+            <button id="benchStartButton" class="pn-btn pn-btn-primary">
+              <span class="fas fa-play"></span> Запустить
+            </button>
+            <button id="benchResumeButton" class="pn-btn">
+              <span class="fas fa-forward"></span> Продолжить
+            </button>
+            <button id="benchStopButton" class="pn-btn pn-btn-danger" style="display:none">
+              <span class="fas fa-stop"></span> Остановить
+            </button>
+            <a id="benchCsvLink" class="pn-btn" href="/benchmark/results.csv" target="_blank">
+              <span class="fas fa-file-csv"></span> CSV
+            </a>
+          </div>
+        </div>
+
+        <div class="pn-bench-summary">
+          <div><span class="pn-bench-label">Прогресс</span>
+               <span id="benchProgress">—</span></div>
+          <div><span class="pn-bench-label">Текущий</span>
+               <span id="benchCurrent">—</span></div>
+          <div><span class="pn-bench-label">Health</span>
+               <span id="benchHealth">—</span></div>
+        </div>
+
+        <div class="pn-bench-config" style="margin: 12px 0; padding: 12px; background: #f8f9fa; border-radius: 6px;">
+          <div style="display:flex; gap:24px; flex-wrap:wrap; align-items:flex-start;">
+            <div>
+              <div style="font-weight:600; margin-bottom:6px;">Движки</div>
+              <label style="display:block;"><input type="checkbox" class="benchEngine" value="timefold_python" checked> Timefold Python 1.24</label>
+              <label style="display:block;"><input type="checkbox" class="benchEngine" value="ortools" checked> OR-Tools CP-SAT 9.15</label>
+              <label style="display:block;"><input type="checkbox" class="benchEngine" value="timefold_kotlin" checked> Timefold Kotlin 2.0</label>
+              <label style="display:block;"><input type="checkbox" class="benchEngine" value="timefold_kotlin_comprehensive" checked> Timefold Kotlin 2.0 (Комплексный поиск)</label>
+              <label style="display:block;"><input type="checkbox" class="benchEngine" value="solverforge" checked> SolverForge 1.24</label>
+            </div>
+            <div>
+              <div style="font-weight:600; margin-bottom:6px;">Таймауты, с</div>
+              <label style="display:block;"><input type="checkbox" class="benchTimeout" value="60" checked> 60</label>
+              <label style="display:block;"><input type="checkbox" class="benchTimeout" value="150" checked> 150</label>
+              <label style="display:block;"><input type="checkbox" class="benchTimeout" value="300" checked> 300</label>
+              <label style="display:block;"><input type="checkbox" class="benchTimeout" value="600" checked> 600</label>
+              <label style="display:block;"><input type="checkbox" class="benchTimeout" value="900" checked> 900</label>
+            </div>
+            <div>
+              <div style="font-weight:600; margin-bottom:6px;">Режим</div>
+              <label style="display:block;"><input type="checkbox" id="benchAppend"> Добавить к существующим</label>
+              <div style="font-size:0.85rem; color:#666; max-width:280px; margin-top:6px;">
+                Без галочки — стартует с чистого CSV. С галочкой — дописывает новые строки в `benchmark_results.csv`.
+              </div>
+            </div>
+            <div style="margin-left:auto; padding:8px 12px; background:#e9f5ff; border-radius:4px; min-width:240px;">
+              <div style="font-weight:600;">Оценка</div>
+              <div id="benchEstimate" style="font-size:0.9rem; margin-top:4px;">—</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pn-data-table">
+          <table id="benchTable">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Таймаут, с</th>
+                <th>Датасет</th>
+                <th>Рейсы</th>
+                <th>Команды/база</th>
+                <th>Движок</th>
+                <th>Hard</th>
+                <th>Soft</th>
+                <th>Elapsed, с</th>
+                <th>Причина</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="pn-footer">
+    <div>
+      <div class="pn-foot-brand">PANORAMA COS</div>
+      <div>Оптимизация расписания лётных экипажей</div>
+    </div>
+    <div>© PANORAMA · Система планирования авиационных операций</div>
+  </footer>
+
+  <div class="modal fade" id="employeeModal" tabindex="-1"
+       aria-labelledby="employeeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="employeeModalLabel">Сотрудник</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+        </div>
+        <div class="modal-body">
+          <form id="employeeForm" class="pn-form" autocomplete="off">
+            <input type="hidden" id="empId" />
+            <div class="pn-field">
+              <label for="empName">Имя</label>
+              <input type="text" id="empName" required maxlength="60" placeholder="Фамилия Имя" />
+            </div>
+            <div class="pn-field">
+              <label for="empHomeAirport">Домашняя база</label>
+              <select id="empHomeAirport" required></select>
+            </div>
+            <div class="pn-field pn-full">
+              <label>Должность</label>
+              <div class="pn-checkbox-row" id="empSkills">
+                <label><input type="radio" name="empRank" value="Captain" /> Командир (Captain)</label>
+                <label><input type="radio" name="empRank" value="First officer" /> Второй пилот (FO)</label>
+                <label><input type="radio" name="empRank" value="Senior cabin attendant" /> Старший бортпроводник</label>
+                <label><input type="radio" name="empRank" value="Cabin attendant" /> Бортпроводник</label>
+              </div>
+            </div>
+            <div class="pn-field">
+              <label>Типы ВС (type rating)</label>
+              <div class="pn-checkbox-row" id="empTypeRatings">
+                <label><input type="checkbox" value="A320" /> A320 (narrowbody)</label>
+                <label><input type="checkbox" value="A350" /> A350 (widebody)</label>
+              </div>
+            </div>
+            <div class="pn-field">
+              <label for="empSeniority">Стаж / Seniority (1 — самый старший, 1000 — младший)</label>
+              <input type="number" id="empSeniority" min="1" max="1000" value="500" />
+            </div>
+            <div class="pn-field pn-full">
+              <label>Владение языками</label>
+              <div class="pn-checkbox-row" id="empLanguages">
+                <label><input type="checkbox" value="en" /> English</label>
+                <label><input type="checkbox" value="ru" /> Русский</label>
+                <label><input type="checkbox" value="fr" /> Français</label>
+                <label><input type="checkbox" value="nl" /> Nederlands</label>
+                <label><input type="checkbox" value="pt" /> Português</label>
+              </div>
+            </div>
+            <div class="pn-field">
+              <label for="empUnavailable">Недоступные дни (отпуск, тренинг, sick)</label>
+              <input type="text" id="empUnavailable"
+                     placeholder="2026-04-24, 2026-04-26" />
+              <span class="pn-field-hint">Через запятую, YYYY-MM-DD.</span>
+            </div>
+            <div class="pn-field">
+              <label for="empPreferredOff">Предпочитаемые выходные (PBS)</label>
+              <input type="text" id="empPreferredOff"
+                     placeholder="2026-04-25" />
+              <span class="pn-field-hint">Мягкие предпочтения, вес зависит от стажа.</span>
+            </div>
+            <div class="pn-field pn-full">
+              <label class="d-inline-flex" style="gap:8px; align-items:center; cursor:pointer;">
+                <input type="checkbox" id="empIsReserve" />
+                <span>Резервный экипаж (stand-by). Используется только когда нет альтернативы.</span>
+              </label>
+            </div>
+            <div class="pn-form-error" id="empError"></div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="pn-btn pn-btn-ghost" data-bs-dismiss="modal">Отмена</button>
+          <button type="button" class="pn-btn pn-btn-primary" id="empSaveButton">Сохранить</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="flightModal" tabindex="-1"
+       aria-labelledby="flightModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="flightModalLabel">Рейс</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+        </div>
+        <div class="modal-body">
+          <form id="flightForm" class="pn-form" autocomplete="off">
+            <input type="hidden" id="flId" />
+            <div class="pn-field pn-full">
+              <label for="flNumber">Номер рейса</label>
+              <input type="text" id="flNumber" required maxlength="20"
+                     placeholder="SU 102" />
+            </div>
+            <div class="pn-field">
+              <label for="flDepAirport">Аэропорт вылета</label>
+              <select id="flDepAirport" required></select>
+            </div>
+            <div class="pn-field">
+              <label for="flArrAirport">Аэропорт прибытия</label>
+              <select id="flArrAirport" required></select>
+            </div>
+            <div class="pn-field pn-full">
+              <label for="flAircraftType">Тип воздушного судна</label>
+              <select id="flAircraftType" required>
+                <option value="A320">A320 (narrowbody)</option>
+                <option value="A350">A350 (widebody)</option>
+              </select>
+              <span class="pn-field-hint">Длинные рейсы (≥ 8 ч) обычно ставят на широкофюзеляжные.</span>
+            </div>
+            <div class="pn-field">
+              <label for="flDepDatetime">Отправление (UTC)</label>
+              <input type="datetime-local" id="flDepDatetime" required step="60" />
+            </div>
+            <div class="pn-field">
+              <label for="flArrDatetime">Прибытие (UTC)</label>
+              <input type="datetime-local" id="flArrDatetime" required step="60" />
+            </div>
+            <div class="pn-field pn-full">
+              <label>Состав экипажа (кресел)</label>
+              <div class="pn-checkbox-row">
+                <label>Пилоты: <input type="number" id="flPilots" min="1" max="4" value="2" style="width:64px" /></label>
+                <label>Бортпроводники: <input type="number" id="flAttendants" min="0" max="8" value="3" style="width:64px" /></label>
+              </div>
+              <span class="pn-field-hint">Для существующего рейса количество мест не меняется.</span>
+            </div>
+            <div class="pn-form-error" id="flError"></div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="pn-btn pn-btn-ghost" data-bs-dismiss="modal">Отмена</button>
+          <button type="button" class="pn-btn pn-btn-primary" id="flSaveButton">Сохранить</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="settingsModal" tabindex="-1"
+       aria-labelledby="settingsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="settingsModalLabel">Настройки</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"
+                  aria-label="Закрыть"></button>
+        </div>
+        <div class="modal-body">
+          <form id="settingsForm" class="pn-form" autocomplete="off">
+            <div class="pn-field pn-full">
+              <label for="stEngine">Движок оптимизации</label>
+              <select id="stEngine">
+                <option value="timefold_python">Timefold Python 1.24 — JPype, in-process</option>
+                <option value="ortools">OR-Tools CP-SAT 9.15 — нативный C++, многопоточный</option>
+                <option value="timefold_kotlin">Timefold Kotlin 2.0 — Quarkus REST на :9091</option>
+                <option value="timefold_kotlin_comprehensive">Timefold Kotlin 2.0 — Комплексный поиск (4 акцептора параллельно)</option>
+                <option value="solverforge">SolverForge-Legacy 1.24 — community-форк Timefold</option>
+              </select>
+              <span class="pn-field-hint">
+                Все 5 движков реализуют идентичные 10 жёстких и 11 мягких правил.
+                Timefold Python — стабильно, in-process. OR-Tools — многопоточный
+                CP-SAT, лучше на длинных бюджетах. Timefold Kotlin — свежий
+                2.0 через отдельный JVM-процесс (Quarkus на :9091).
+                Комплексный поиск — четыре acceptor'а (Late Acceptance,
+                Simulated Annealing, Tabu Search, Great Deluge) запускаются
+                параллельно на полный бюджет; берётся лучшее.
+                SolverForge-Legacy — JPype-форк Timefold 1.24 для сравнения.
+              </span>
+            </div>
+            <div class="pn-full"
+                 style="color: var(--pn-text-muted); font-size: 0.82rem; margin: 10px 0 4px;">
+              Критерии остановки солвера
+            </div>
+            <div class="pn-field pn-full">
+              <label for="stTimeLimit">Максимальное время, сек</label>
+              <input type="number" id="stTimeLimit" min="3" max="3600" value="120" />
+              <span class="pn-field-hint">
+                Жёсткий таймаут. По истечении солвер остановится в любом случае.
+              </span>
+            </div>
+            <div class="pn-field pn-full">
+              <label for="stSoftThreshold">Порог мягкой оценки</label>
+              <input type="number" id="stSoftThreshold" min="0" placeholder="не задан" />
+              <span class="pn-field-hint">
+                Положительное число. Солвер остановится, как только мягкая оценка
+                станет не хуже, чем <code>−(это&nbsp;значение)</code> — например,
+                введи <code>50000</code>, чтобы остановиться при
+                soft&nbsp;≥&nbsp;−50&nbsp;000. Оставь пустым, если не нужно.
+              </span>
+            </div>
+            <div class="pn-form-error" id="stError"></div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="pn-btn pn-btn-ghost" data-bs-dismiss="modal">Отмена</button>
+          <button type="button" class="pn-btn pn-btn-primary" id="stSaveButton">Сохранить</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="scoreAnalysisModal" tabindex="-1"
+       aria-labelledby="scoreAnalysisModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="scoreAnalysisModalLabel">
+            Анализ ограничений
+            <span id="scoreAnalysisScoreLabel" class="text-muted"></span>
+          </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"
+                  aria-label="Закрыть"></button>
+        </div>
+        <div class="modal-body" id="scoreAnalysisModalContent"></div>
+        <div class="modal-footer">
+          <button type="button" class="pn-btn pn-btn-ghost"
+                  data-bs-dismiss="modal">Закрыть</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-joda/1.11.0/js-joda.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@js-joda/locale@4.15.1/dist/prebuilt/en/index.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vis-timeline@7.7.2/standalone/umd/vis-timeline-graph2d.min.js"
+          integrity="sha256-Jy2+UO7rZ2Dgik50z3XrrNpnc5+2PAx9MhL2CicodME="
+          crossorigin="anonymous"></script>
+  <script src="/app.js"></script>
+</body>
+</html>

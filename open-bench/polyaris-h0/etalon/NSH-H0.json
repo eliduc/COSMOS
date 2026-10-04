@@ -1,0 +1,212 @@
+{
+ "form_version": 1,
+ "name": "НШ-H0",
+ "note": "набор шаблонов COSMOS под ВМП H0 (фаза ИДАК-0): детерминированный срез базы по факту использования; руками не редактируется — перевыпускается генератором",
+ "registry_rev": "7dc0626d4ce85eb0b7a26ca385953ac03a2dce68557bb2e040a614f1584ad549",
+ "catalog_version": "0.5.0",
+ "catalog_fingerprint": "7dc0626d4ce85eb0b7a26ca385953ac03a2dce68557bb2e040a614f1584ad549",
+ "vmp": {
+  "customer": "Полярис-H0 (ВМП H0 комплекта)",
+  "cdpm_version": "vmp-nano-1"
+ },
+ "families": {
+  "balanced_workload": {
+   "class": "core",
+   "title": "штраф за целый кредитный час разброса сверх порога существенности по всему штату; вес — весом правила пакета",
+   "executors": [
+    "check_template · measure_soft_rules · vmp/run/roster_certify.py",
+    "kotlin_constraint · FlightCrewSchedulingConstraintProvider.creditHoursSpreadOverThreshold · kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+    "kotlin_knob · RunThresholds.applyWorkloadSpread · kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt"
+   ],
+   "params": [
+    "workload_spread_threshold"
+   ],
+   "kind": "SOFT",
+   "zone": "ROSTERING",
+   "violation_unit": "hour"
+  },
+  "calendar_windows": {
+   "class": "extension",
+   "title": "действия в окне дней недели (штраф ночёвок и родня); окно/пояс/действие — формой пакета, вес — весами пакета",
+   "executors": [
+    "builder_method · Builder.soft_rules · _pairing_builder.py",
+    "builder_method · measure · vmp/chain_price.py",
+    "check_template · measure_soft_rules · vmp/run/roster_certify.py",
+    "kotlin_constraint · FlightCrewSchedulingConstraintProvider.calendarWindowLayovers · kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+    "kotlin_form · TaskPackage.calendarWindowsOf · kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/TaskPackage.kt"
+   ],
+   "params": [],
+   "kind": "SOFT",
+   "zone": "PAIRING",
+   "violation_unit": "night"
+  },
+  "connection_windows": {
+   "class": "core",
+   "title": "стыковки (минимальные, максимальные, пороговые окна станций)",
+   "executors": [
+    "builder_method · Builder.build_duties · _pairing_builder.py",
+    "builder_method · Builder.chain_ok · _pairing_builder.py",
+    "builder_method · Builder.periods_tiers · _pairing_builder.py",
+    "builder_method · Builder.sit_cap_at · _pairing_builder.py",
+    "check_code · _turnaround · vmp/run/fit_checks.py",
+    "kotlin_constraint · FlightCrewSchedulingConstraintProvider.minimumTurnaround · kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+    "kotlin_knob · RunThresholds.KNOBS · kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+    "kotlin_knob · RunThresholds.SIT_KNOBS · kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt"
+   ],
+   "params": [
+    "max_sit_duration",
+    "min_turnaround"
+   ],
+   "kind": "HARD",
+   "zone": "PAIRING",
+   "violation_unit": null
+  },
+  "crew_composition": {
+   "class": "core",
+   "title": "состав экипажа полётной смены",
+   "executors": [
+    "builder_method · Builder.crew_size · _pairing_builder.py",
+    "kotlin_constraint · FlightCrewSchedulingConstraintProvider.crewSizePerFlight · kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+    "kotlin_knob · RunThresholds.KNOBS · kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt"
+   ],
+   "params": [
+    "crew_size"
+   ],
+   "kind": "HARD",
+   "zone": "BOTH",
+   "violation_unit": null
+  },
+  "duty_extension_penalty": {
+   "class": "extension",
+   "title": "мягкое превышение порога длительности смены до жёсткого потолка: порог — базовый предел смены пакета, потолок — параметр max_duty_duration правила семьи, вес — весом правила пакета",
+   "executors": [
+    "builder_method · Builder.soft_rules · _pairing_builder.py",
+    "builder_method · measure · vmp/chain_price.py",
+    "check_code · apply_extension_caps · vmp/run/roster_certify.py",
+    "check_template · measure_soft_rules · vmp/run/roster_certify.py",
+    "kotlin_constraint · FlightCrewSchedulingConstraintProvider.dutyExtensionOverThreshold · kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+    "kotlin_knob · RunThresholds.applyDutyExtension · kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt"
+   ],
+   "params": [
+    "duty_extension_cap",
+    "long_duty_threshold"
+   ],
+   "kind": "SOFT",
+   "zone": "PAIRING",
+   "violation_unit": "duty"
+  },
+  "duty_limits": {
+   "class": "core",
+   "title": "пределы рабочей смены (ярусы, посадки, продления)",
+   "executors": [
+    "builder_method · Builder.duty_limit_ok · _pairing_builder.py",
+    "builder_method · Builder.pairing_days_ok · _pairing_builder.py",
+    "check_code · _landings_per_duty · vmp/run/fit_checks.py",
+    "check_code · _pairing_days · vmp/run/fit_checks.py",
+    "export_form · build_conditions · vmp/conditions_export.py",
+    "kotlin_constraint · FlightCrewSchedulingConstraintProvider.maxDutyPeriodRestSegmented · kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+    "kotlin_constraint · FlightCrewSchedulingConstraintProvider.maxLandingsPerDuty · kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+    "kotlin_knob · RunThresholds.KNOBS · kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+    "kotlin_knob · RunThresholds.KNOBS · kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+    "kotlin_knob · RunThresholds.KNOBS · kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt"
+   ],
+   "params": [
+    "max_duty_duration",
+    "max_landings_per_duty",
+    "max_pairing_days"
+   ],
+   "kind": "HARD",
+   "zone": "PAIRING",
+   "violation_unit": null
+  },
+  "fleet_exclusions": {
+   "class": "core",
+   "title": "исключения и допуски по типам судов и разметке данных",
+   "executors": [
+    "check_code · _fleet_qualification · vmp/run/fit_checks.py",
+    "export_form · build_conditions · vmp/conditions_export.py",
+    "kotlin_constraint · FlightCrewSchedulingConstraintProvider.typeRatingCurrency · kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+    "kotlin_constraint · FlightCrewSchedulingConstraintProvider.typeRatingRequired · kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+    "kotlin_knob · RunThresholds.FLEET_THRESHOLD · kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+    "kotlin_knob · RunThresholds.FLEET_THRESHOLD · kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt"
+   ],
+   "params": [
+    "fleet_type",
+    "fleet_types"
+   ],
+   "kind": "HARD",
+   "zone": "BOTH",
+   "violation_unit": null
+  },
+  "layover_penalty": {
+   "class": "core",
+   "title": "мягкий штраф за ночёвку вне базы; вес — весом правила пакета",
+   "executors": [
+    "builder_method · Builder.price · _pairing_builder.py",
+    "builder_method · measure · vmp/chain_price.py",
+    "check_template · measure_soft_rules · vmp/run/roster_certify.py",
+    "kotlin_constraint · FlightCrewSchedulingConstraintProvider.layoverNights · kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt"
+   ],
+   "params": [],
+   "kind": "SOFT",
+   "zone": "PAIRING",
+   "violation_unit": "night"
+  },
+  "reserve_floors": {
+   "class": "core",
+   "title": "нормы резерва по базам",
+   "executors": [
+    "kotlin_constraint · FlightCrewSchedulingConstraintProvider.reserveCrewsPerBase · kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+    "kotlin_knob · RunThresholds.KNOBS · kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt"
+   ],
+   "params": [
+    "reserve_crews"
+   ],
+   "kind": "HARD",
+   "zone": "ROSTERING",
+   "violation_unit": null
+  },
+  "rest_floors": {
+   "class": "core",
+   "title": "полы отдыха (база/вне базы, длинные, ярусные)",
+   "executors": [
+    "builder_method · Builder.rest_floor_after · _pairing_builder.py",
+    "builder_method · build_periods · _duty_periods.py",
+    "check_code · _rest_floor · vmp/run/fit_checks.py",
+    "export_form · build_conditions · vmp/conditions_export.py",
+    "kotlin_constraint · FlightCrewSchedulingConstraintProvider.restBeforeHorizon · kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+    "kotlin_constraint · FlightCrewSchedulingConstraintProvider.restBetweenDutyPeriods · kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/FlightCrewSchedulingConstraintProvider.kt",
+    "kotlin_knob · RunThresholds.KNOBS · kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt",
+    "kotlin_knob · RunThresholds.KNOBS · kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt"
+   ],
+   "params": [
+    "min_rest_home",
+    "min_rest_outstation"
+   ],
+   "kind": "HARD",
+   "zone": "ROSTERING",
+   "violation_unit": null
+  },
+  "time_scale": {
+   "class": "core",
+   "title": "временная шкала планирования (сдвиг местного времени данных; сдвиг, не предел)",
+   "executors": [
+    "builder_method · resolve_time_scale · _pairing_builder.py",
+    "check_template · world_param_checks · vmp/run/roster_certify.py",
+    "kotlin_knob · RunThresholds.KNOBS · kotlin-solver/src/main/kotlin/org/acme/flighcrewscheduling/solver/RunThresholds.kt"
+   ],
+   "params": [
+    "base_tz_offset_min"
+   ],
+   "kind": "HARD",
+   "zone": "BOTH",
+   "violation_unit": null
+  }
+ },
+ "criteria": {
+  "min_person_days": {
+   "title": "минимум человеко-дней командировки",
+   "executor": true
+  }
+ }
+}

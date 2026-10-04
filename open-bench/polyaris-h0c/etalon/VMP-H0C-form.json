@@ -1,0 +1,581 @@
+{
+ "form_version": 1,
+ "customer": "Полярис-H0-C (ВМП H0 с правилом без шаблона)",
+ "currency": "условные единицы",
+ "meta": {
+  "customer": "Полярис-H0-C (ВМП H0 с правилом без шаблона)",
+  "mode": 1,
+  "cdpm_version": "vmp-nano-1",
+  "fit_contract": true,
+  "note": "Фаза 2: семья crew_unavailability выпущена каталогом 0.6.0, правило VN-027 посажено (категория A). Продолжение того же прогона фазы 1: документы и книга данных — фазы 1, байт в байт. ИДАК H0-C (2026-09-09, вариант C): форма H0 плюс правило VN-027 «Отпуск» без семьи в каталоге — посадка C, заявка в каталог, новый шаблон по слову владельца. канонический ВМП по построению (решение владельца 2026-09-01): вход COSMOS первичен, документы рендерятся из него (Ш-3); носители машинных условий — в модели (criterion у целевой пейринга), вопросов анкеты нет; якоря — из карты комплекта anchors-map.json"
+ },
+ "sources": [
+  {
+   "sid": "S1",
+   "file": "ID-H0C-VMP-1.docx",
+   "sha256": "0b79d7a2389d17e46d8b60f9feab6834ecf9c13d4b8049cbc3612c21d45bde7f"
+  },
+  {
+   "sid": "S2",
+   "file": "ID-H0C-VMP-2.xlsx",
+   "sha256": "b5d8000da2269ad4b6f1ee649ff577872956c7442826779d94cce33cf8092459"
+  },
+  {
+   "sid": "S3",
+   "file": "ID-H0C-VMP-3.jpg",
+   "sha256": "830719974cacdc3745e87e535fec677ab009375e6395216ccdf8e3fbf6ff0b2b"
+  }
+ ],
+ "common": {
+  "definitions": [
+   {
+    "id": "VN-003",
+    "title": "Базы приписки",
+    "statement": "Базы приписки экипажей: SVG (Северогорск), PLY (Полярный), GRT (Гранитный); главная база — PLY.",
+    "sources": [
+     {
+      "sid": "S1",
+      "anchor": "абз.5"
+     }
+    ],
+    "role": "term",
+    "machine": {
+     "zone": "BOTH"
+    }
+   },
+   {
+    "id": "VN-002",
+    "title": "Парк воздушных судов",
+    "statement": "Парк набора — воздушные суда типа Полярис-Р200; судов иных типов в наборе нет.",
+    "sources": [
+     {
+      "sid": "S1",
+      "anchor": "абз.6"
+     }
+    ],
+    "role": "term",
+    "machine": {
+     "codes": [
+      {
+       "code": "Полярис-Р200",
+       "quote": "Полярис-Р200"
+      }
+     ],
+     "zone": "BOTH"
+    }
+   },
+   {
+    "id": "VN-005",
+    "title": "Должности пилотов",
+    "statement": "Должности пилотов набора: КВС (командир воздушного судна) и Второй пилот.",
+    "sources": [
+     {
+      "sid": "S1",
+      "anchor": "абз.7"
+     }
+    ],
+    "role": "term",
+    "machine": {
+     "codes": [
+      {
+       "code": "КВС",
+       "quote": "КВС (командир воздушного судна)"
+      }
+     ],
+     "zone": "BOTH"
+    }
+   },
+   {
+    "id": "VN-006",
+    "title": "Кредитный час",
+    "statement": "Кредитный час — час налёта по назначению (время от вылета до прилёта рейса), засчитанный пилоту; перелёт пассажиром пилоту не засчитывается; пилоту без назначений кредитные часы не засчитываются, и он входит в разброс.",
+    "sources": [
+     {
+      "sid": "S1",
+      "anchor": "абз.8"
+     }
+    ],
+    "role": "term",
+    "machine": {
+     "zone": "BOTH"
+    }
+   }
+  ],
+  "world": [
+   {
+    "id": "VN-004",
+    "title": "Шкала времени",
+    "statement": "Все времена набора — фиксированное местное время главной базы PLY; смещение шкалы данных 0 минут.",
+    "sources": [
+     {
+      "sid": "S1",
+      "anchor": "абз.10"
+     }
+    ],
+    "template": {
+     "family": "time_scale",
+     "category": "A"
+    },
+    "params": [
+     {
+      "name": "base_tz_offset_min",
+      "value": 0,
+      "quote": "смещение шкалы данных 0 минут",
+      "unit": "duration_minutes"
+     }
+    ],
+    "scope": {
+     "pairing": "применяется",
+     "rostering": "применяется"
+    },
+    "machine": {
+     "kind": "HARD",
+     "template_fit": {
+      "registry_rev": "7dc0626d4ce85eb0b7a26ca385953ac03a2dce68557bb2e040a614f1584ad549"
+     }
+    }
+   },
+   {
+    "id": "VN-070",
+    "title": "Допуск по типу воздушного судна",
+    "statement": "Рейс на воздушном судне типа Полярис-Р200 выполняет пилот, у которого допуск на этот тип действует на дату рейса.",
+    "sources": [
+     {
+      "sid": "S1",
+      "anchor": "абз.11"
+     }
+    ],
+    "template": {
+     "family": "fleet_exclusions",
+     "category": "A"
+    },
+    "params": [
+     {
+      "name": "fleet_types",
+      "value": "Полярис-Р200",
+      "quote": "на воздушном судне типа Полярис-Р200",
+      "unit": "code_list"
+     }
+    ],
+    "scope": {
+     "pairing": "применяется",
+     "rostering": "применяется"
+    },
+    "machine": {
+     "kind": "HARD",
+     "template_fit": {
+      "registry_rev": "7dc0626d4ce85eb0b7a26ca385953ac03a2dce68557bb2e040a614f1584ad549"
+     }
+    }
+   },
+   {
+    "id": "VN-081",
+    "title": "Состав экипажа",
+    "statement": "Экипаж смены — ровно 2 пилота; должности КВС и Второй пилот при комплектовании смены не различаются.",
+    "sources": [
+     {
+      "sid": "S1",
+      "anchor": "абз.12"
+     }
+    ],
+    "template": {
+     "family": "crew_composition",
+     "category": "A"
+    },
+    "params": [
+     {
+      "name": "crew_size",
+      "value": 2,
+      "quote": "Экипаж смены — ровно 2 пилота",
+      "unit": "count"
+     }
+    ],
+    "scope": {
+     "pairing": "применяется",
+     "rostering": "применяется"
+    },
+    "machine": {
+     "kind": "HARD",
+     "template_fit": {
+      "registry_rev": "7dc0626d4ce85eb0b7a26ca385953ac03a2dce68557bb2e040a614f1584ad549"
+     }
+    }
+   }
+  ]
+ },
+ "pairing": {
+  "hard": [
+   {
+    "id": "VN-010",
+    "title": "Предел полётной смены",
+    "statement": "Базовый предел полётной смены — 12:00 (720 минут); превышение — только продлением по правилу VN-011.",
+    "sources": [
+     {
+      "sid": "S1",
+      "anchor": "абз.14"
+     }
+    ],
+    "template": {
+     "family": "duty_limits",
+     "category": "A"
+    },
+    "params": [
+     {
+      "name": "max_duty_duration",
+      "value": 720,
+      "quote": "Базовый предел полётной смены — 12:00 (720 минут)",
+      "unit": "duration_minutes"
+     }
+    ],
+    "machine": {
+     "kind": "HARD",
+     "template_fit": {
+      "registry_rev": "7dc0626d4ce85eb0b7a26ca385953ac03a2dce68557bb2e040a614f1584ad549"
+     }
+    }
+   },
+   {
+    "id": "VN-020",
+    "title": "Стыковка в базе",
+    "statement": "Минимальная стыковка между рейсами — 45 минут (в базе и вне базы одинаково).",
+    "sources": [
+     {
+      "sid": "S1",
+      "anchor": "абз.15"
+     }
+    ],
+    "template": {
+     "family": "connection_windows",
+     "category": "A"
+    },
+    "params": [
+     {
+      "name": "min_turnaround",
+      "value": 45,
+      "quote": "Минимальная стыковка между рейсами — 45 минут",
+      "unit": "duration_minutes"
+     }
+    ],
+    "machine": {
+     "kind": "HARD",
+     "template_fit": {
+      "registry_rev": "7dc0626d4ce85eb0b7a26ca385953ac03a2dce68557bb2e040a614f1584ad549"
+     }
+    }
+   }
+  ],
+  "soft": [
+   {
+    "id": "VN-011",
+    "title": "Продление смены",
+    "statement": "Превышение базового предела 12:00 (720 минут) — мягкое предпочтение со штрафом 15 условных единиц за смену с превышением; потолок продления — 13:00 (780 минут).",
+    "sources": [
+     {
+      "sid": "S1",
+      "anchor": "абз.17"
+     }
+    ],
+    "template": {
+     "family": "duty_extension_penalty",
+     "category": "A"
+    },
+    "params": [
+     {
+      "name": "long_duty_threshold",
+      "value": 720,
+      "quote": "Превышение базового предела 12:00 (720 минут)",
+      "unit": "duration_minutes"
+     },
+     {
+      "name": "duty_extension_cap",
+      "value": 780,
+      "quote": "потолок продления — 13:00 (780 минут)",
+      "unit": "duration_minutes"
+     }
+    ],
+    "penalty": {
+     "coefficient": 15,
+     "violation_unit": "duty"
+    },
+    "machine": {
+     "export_solver": {
+      "family": "duty_extension_penalty"
+     },
+     "kind": "SOFT",
+     "template_fit": {
+      "registry_rev": "7dc0626d4ce85eb0b7a26ca385953ac03a2dce68557bb2e040a614f1584ad549"
+     }
+    }
+   },
+   {
+    "id": "VN-030",
+    "title": "Ночёвки вне базы",
+    "statement": "Штраф 10 условных единиц за каждую ночёвку вне базы приписки.",
+    "sources": [
+     {
+      "sid": "S1",
+      "anchor": "абз.18"
+     }
+    ],
+    "template": {
+     "family": "layover_penalty",
+     "category": "A",
+     "quote": "Штраф 10 условных единиц за каждую ночёвку вне базы приписки"
+    },
+    "penalty": {
+     "coefficient": 10,
+     "violation_unit": "night"
+    },
+    "machine": {
+     "export_solver": {
+      "family": "layover_penalty"
+     },
+     "kind": "SOFT",
+     "template_fit": {
+      "registry_rev": "7dc0626d4ce85eb0b7a26ca385953ac03a2dce68557bb2e040a614f1584ad549"
+     }
+    }
+   },
+   {
+    "id": "VN-D91",
+    "title": "Ночёвки в конце недели",
+    "statement": "Надбавка 25 условных единиц к штрафу за ночёвку вне базы, календарный день начала которой (по местному времени базы) — пятница или суббота.",
+    "sources": [
+     {
+      "sid": "S1",
+      "anchor": "абз.19"
+     }
+    ],
+    "template": {
+     "family": "calendar_windows",
+     "category": "A",
+     "quote": "ночёвку вне базы, календарный день начала которой (по местному времени базы) — пятница или суббота"
+    },
+    "penalty": {
+     "coefficient": 25,
+     "violation_unit": "night"
+    },
+    "machine": {
+     "export_solver": {
+      "family": "calendar_windows",
+      "days": [
+       "friday",
+       "saturday"
+      ],
+      "tz": "base-local"
+     },
+     "kind": "SOFT",
+     "template_fit": {
+      "registry_rev": "7dc0626d4ce85eb0b7a26ca385953ac03a2dce68557bb2e040a614f1584ad549"
+     }
+    }
+   }
+  ],
+  "criteria": [
+   {
+    "id": "O-PAIR",
+    "title": "Стоимость пейрингов",
+    "statement": "Минимум суммарной стоимости пейрингов; машинный критерий MIN_PERSON_DAYS, ставка 100 условных единиц за календарный день командировки (версия M-036/demo-1).",
+    "sources": [
+     {
+      "sid": "S3",
+      "anchor": "стр-1-абз-2"
+     }
+    ],
+    "direction": "minimize",
+    "tier": 1,
+    "metric": "total_pairing_cost",
+    "kind": "min_person_days",
+    "version": "M-036/demo-1",
+    "effective_from": "2026-08-01",
+    "rate": {
+     "value": 100,
+     "per": "календарный день командировки",
+     "as_written": "машинный критерий MIN_PERSON_DAYS, ставка 100 условных единиц за календарный день командировки (версия M-036/demo-1)"
+    },
+    "machine": {
+     "zone": "PAIRING"
+    }
+   }
+  ]
+ },
+ "rostering": {
+  "hard": [
+   {
+    "id": "VN-023",
+    "title": "Отдых дома",
+    "statement": "Минимальный отдых между сменами дома — 12:00 (720 минут).",
+    "sources": [
+     {
+      "sid": "S2",
+      "anchor": "лист «VMP-H0-2», строка 2"
+     }
+    ],
+    "template": {
+     "family": "rest_floors",
+     "category": "A"
+    },
+    "params": [
+     {
+      "name": "min_rest_home",
+      "value": 720,
+      "quote": "Минимальный отдых между сменами дома — 12:00 (720 минут)",
+      "unit": "duration_minutes"
+     }
+    ],
+    "machine": {
+     "kind": "HARD",
+     "template_fit": {
+      "registry_rev": "7dc0626d4ce85eb0b7a26ca385953ac03a2dce68557bb2e040a614f1584ad549"
+     }
+    }
+   },
+   {
+    "id": "VN-024",
+    "title": "Отдых вне базы",
+    "statement": "Минимальный отдых между сменами вне базы — 10:00 (600 минут).",
+    "sources": [
+     {
+      "sid": "S2",
+      "anchor": "лист «VMP-H0-2», строка 3"
+     }
+    ],
+    "template": {
+     "family": "rest_floors",
+     "category": "A"
+    },
+    "params": [
+     {
+      "name": "min_rest_outstation",
+      "value": 600,
+      "quote": "Минимальный отдых между сменами вне базы — 10:00 (600 минут)",
+      "unit": "duration_minutes"
+     }
+    ],
+    "machine": {
+     "kind": "HARD",
+     "template_fit": {
+      "registry_rev": "7dc0626d4ce85eb0b7a26ca385953ac03a2dce68557bb2e040a614f1584ad549"
+     }
+    }
+   },
+   {
+    "id": "VN-060",
+    "title": "Резерв на базах",
+    "statement": "Ежедневно резерв: PLY ≥ 2 экипажа, SVG ≥ 1, GRT ≥ 1; сутки — по местному времени базы; мера — полные экипажи.",
+    "sources": [
+     {
+      "sid": "S2",
+      "anchor": "лист «VMP-H0-2», строка 4"
+     }
+    ],
+    "template": {
+     "family": "reserve_floors",
+     "category": "A"
+    },
+    "params": [
+     {
+      "name": "reserve_crews",
+      "value": "GRT:1,PLY:2,SVG:1",
+      "quote": "Ежедневно резерв: PLY ≥ 2 экипажа, SVG ≥ 1, GRT ≥ 1",
+      "unit": "count"
+     }
+    ],
+    "machine": {
+     "kind": "HARD",
+     "template_fit": {
+      "registry_rev": "7dc0626d4ce85eb0b7a26ca385953ac03a2dce68557bb2e040a614f1584ad549"
+     }
+    }
+   },
+   {
+    "id": "VN-027",
+    "title": "Отпуск",
+    "statement": "Член экипажа не может быть назначен на рейс в дни своего отпуска.",
+    "sources": [
+     {
+      "sid": "S2",
+      "anchor": "лист «VMP-H0-2», строка 5"
+     }
+    ],
+    "template": {
+     "family": "crew_unavailability",
+     "category": "A"
+    },
+    "machine": {
+     "kind": "HARD",
+     "template_fit": {
+      "registry_rev": "7dc0626d4ce85eb0b7a26ca385953ac03a2dce68557bb2e040a614f1584ad549"
+     }
+    }
+   }
+  ],
+  "soft": [
+   {
+    "id": "VN-050",
+    "title": "Разброс кредитных часов",
+    "statement": "Штраф 3 условные единицы за каждый кредитный час разброса сверх порога существенности 10 кредитных часов за месяц.",
+    "sources": [
+     {
+      "sid": "S2",
+      "anchor": "лист «VMP-H0-2», строка 6"
+     }
+    ],
+    "template": {
+     "family": "balanced_workload",
+     "category": "A",
+     "quote": "Штраф 3 условные единицы за каждый кредитный час разброса сверх порога существенности 10 кредитных часов за месяц"
+    },
+    "params": [
+     {
+      "name": "workload_spread_threshold",
+      "value": 10,
+      "quote": "сверх порога существенности 10 кредитных часов за месяц",
+      "unit": "credit_hours"
+     }
+    ],
+    "penalty": {
+     "coefficient": 3,
+     "violation_unit": "hour"
+    },
+    "machine": {
+     "export_solver": {
+      "family": "balanced_workload"
+     },
+     "kind": "SOFT",
+     "template_fit": {
+      "registry_rev": "7dc0626d4ce85eb0b7a26ca385953ac03a2dce68557bb2e040a614f1584ad549"
+     }
+    }
+   }
+  ],
+  "criteria": [
+   {
+    "id": "O-ROST",
+    "title": "Равномерность кредитных часов",
+    "statement": "Минимум разброса кредитных часов по ростеру; ставка 1 условная единица за час разброса кредитных часов; коэффициенты мягких правил части «Ростеринг» — в их строках.",
+    "sources": [
+     {
+      "sid": "S3",
+      "anchor": "стр-1-абз-4"
+     }
+    ],
+    "direction": "minimize",
+    "tier": 1,
+    "metric": "credit_hours_spread",
+    "rate": {
+     "value": 1,
+     "per": "час разброса кредитных часов",
+     "as_written": "ставка 1 условная единица за час разброса кредитных часов"
+    },
+    "machine": {
+     "zone": "ROSTERING"
+    }
+   }
+  ]
+ },
+ "withdrawn": [],
+ "open_questions": [],
+ "answered_questions": [],
+ "registry_rev": "7dc0626d4ce85eb0b7a26ca385953ac03a2dce68557bb2e040a614f1584ad549"
+}

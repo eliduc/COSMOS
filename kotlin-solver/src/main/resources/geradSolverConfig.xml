@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Named solver "gerad" — GERAD/Kasirzadeh core-legality rules profile
+     (benchmark #1). Same crew domain, different constraint provider.
+     Registered so the Timefold Quarkus processor accepts the extra
+     ConstraintProvider on the classpath; per-request configs are still
+     built programmatically in solveSingleSync (rules=GERAD). -->
+<solver xmlns="https://timefold.ai/xsd/solver">
+  <solutionClass>org.acme.flighcrewscheduling.domain.FlightCrewSchedule</solutionClass>
+  <entityClass>org.acme.flighcrewscheduling.domain.FlightAssignment</entityClass>
+  <scoreDirectorFactory>
+    <constraintProviderClass>org.acme.flighcrewscheduling.solver.GeradConstraintProvider</constraintProviderClass>
+  </scoreDirectorFactory>
+</solver>
